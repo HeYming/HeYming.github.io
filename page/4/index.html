@@ -158,6 +158,193 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/" class="archive-article-date">
+  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
+若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
+</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
+若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
+</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
+</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
+</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
+@property(nonatomic) double maximumValue; //默认为100
+</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
+</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
+</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
+</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
+</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
+</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
+</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)incrementImageForState:(UIControlState)state;
+</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)decrementImageForState:(UIControlState)state;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">iOS开发指南-Objective—C基础-Cocoa-Touch UISlider -09</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/" class="archive-article-date">
+  	<time datetime="2016-04-26T14:34:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UISlider-滑块"><a href="#UISlider-滑块" class="headerlink" title="UISlider 滑块"></a>UISlider 滑块</h2><p>####1.    minimumValue  :</p>
+<p> 当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0</p>
+<hr>
+<pre><code>_slider.minimumValue = 10.0;
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/1.png" alt="1"></p>
+<p>####2.    maximumValue : </p>
+<p>当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0</p>
+<hr>
+<pre><code>_slider.maximumValue = 100.0;
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/2.png" alt="2"></p>
+<p>####3.    continuous : </p>
+<p>如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES</p>
+<hr>
+<pre><code>[_slider setContinuous:NO]; // 在滑块滑动结束时才获取滑块的值
+</code></pre><p>####4.    minimumValueImage : </p>
+<p>滑块条最小值处设置的图片，默认为nil</p>
+<hr>
+<pre><code>_slider.minimumValueImage = [UIImage imageNamed:@&quot;003.png&quot;];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/3.png" alt="3"></p>
+<p>####5.    maximumValueImage，</p>
+<p>滑块条最大值处设置的图片,默认为nil</p>
+<hr>
+<pre><code>_slider.maximumValueImage = [UIImage imageNamed:@&quot;002.png&quot;];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/4.png" alt="4"></p>
+<p>####6.minimumTrackTintColor : </p>
+<p>小于滑块当前值滑块条的颜色，默认为蓝色</p>
+<hr>
+<pre><code>_slider.minimumTrackTintColor = [UIColor redColor];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/5.png" alt="5"></p>
+<p>####7.maximumTrackTintColor: </p>
+<p>大于滑块当前值滑块条的颜色，默认为白色</p>
+<hr>
+<pre><code>_slider.maximumTrackTintColor = [UIColor greenColor];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/6.png" alt="6"></p>
+<p>####8.thumbTintColor : </p>
+<p>当前滑块的颜色，默认为白色</p>
+<hr>
+<pre><code>_slider.thumbTintColor = [UIColor yellowColor];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/7.png" alt="7"></p>
+<p>####9.currentMaximumTrackImage : </p>
+<p>滑块条最大值处设置的图片</p>
+<p>####10.currentMinimumTrackImage : </p>
+<p>滑块条最小值处设置的图片</p>
+<p>####11.currentThumbImage: </p>
+<p>当前滑块的图片</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UISegmentedControl-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -306,6 +493,21 @@ segmentedControl.tintColor = [UIColor redColor];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -389,6 +591,21 @@ segmentedControl.tintColor = [UIColor redColor];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -490,6 +707,21 @@ btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -606,6 +838,21 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1307,6 +1554,21 @@ NSLog(@&quot;filename:%@&quot;,filename);
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1680,6 +1942,21 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1849,6 +2126,21 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1999,6 +2291,21 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -2018,61 +2325,9 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
 
 
   
-    <article id="post-前言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/19/前言/">前言</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/19/前言/" class="archive-article-date">
-  	<time datetime="2016-04-19T15:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#前言<br>第一篇博客，试着写一下，希望可以坚持下来。</p>
-<hr>
-<p>#计划<br>既然开通了博客，就要干点事情，前期先将iOS的基本知识点进行整理，也是方便自己开发过程中查阅。</p>
-<hr>
-<p>#最后<br>先让我试试怎么传到github上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/19/前言/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -2167,6 +2422,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
             
             <div class="clearfix"></div>

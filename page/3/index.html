@@ -158,6 +158,473 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/">iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/" class="archive-article-date">
+  	<time datetime="2016-05-04T12:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIScrollView-可滚动视图"><a href="#UIScrollView-可滚动视图" class="headerlink" title="UIScrollView 可滚动视图"></a>UIScrollView 可滚动视图</h1><h2 id="1-contentOffset"><a href="#1-contentOffset" class="headerlink" title="1.    contentOffset"></a>1.    contentOffset</h2><p>默认CGPointZero，用来设置scrollView的滚动偏移量。</p>
+<pre><code>// 设置scrollView的滚动偏移量
+scrollView.contentOffset = CGPointMake(0, 200);
+</code></pre><h2 id="2-contentSize"><a href="#2-contentSize" class="headerlink" title="2.    contentSize"></a>2.    contentSize</h2><p>默认CGSizeZero，用来设置scrollView的滚动范围。</p>
+<pre><code>// 设置scrollView的滚动范围
+scrollView.contentSize = CGSizeMake( self.view.bounds.size.width, self.view.bounds.size.height * 2);
+</code></pre><h2 id="3-contentInset"><a href="#3-contentInset" class="headerlink" title="3.    contentInset"></a>3.    contentInset</h2><p>默认 UIEdgeInsetsZero，用来设置scrollView的额外滚动区域。</p>
+<pre><code>// 设置scrollView的额外顶部滚动区域:(UIEdgeInsetsMake是逆时针设置，上左下右)
+scrollView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
+</code></pre><h2 id="4-bounces"><a href="#4-bounces" class="headerlink" title="4.    bounces"></a>4.    bounces</h2><p>默认为YES，用来设置scrollView的弹簧效果</p>
+<pre><code>// 取消scrollView的弹簧效果
+scrollView.bounces = NO;
+</code></pre><h2 id="5-pagingEnabled"><a href="#5-pagingEnabled" class="headerlink" title="5.pagingEnabled"></a>5.pagingEnabled</h2><p>默认为NO，用来设置scrollView是否开启分页.</p>
+<pre><code>// 开启分页
+scrollView.pagingEnabled = YES;
+</code></pre><h2 id="6-scrollEnabled"><a href="#6-scrollEnabled" class="headerlink" title="6.scrollEnabled"></a>6.scrollEnabled</h2><p>默认为YES，用来设置scrollView是否允许滚动.</p>
+<pre><code>// scrollView禁止滚动
+scrollView.scrollEnabled = NO;
+</code></pre><h2 id="7-showsHorizontalScrollIndicator"><a href="#7-showsHorizontalScrollIndicator" class="headerlink" title="7.showsHorizontalScrollIndicator"></a>7.showsHorizontalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示水平滚动条.</p>
+<pre><code>// 隐藏水平滚动条
+scrollView.showsHorizontalScrollIndicator = NO;
+</code></pre><h2 id="8-showsVerticalScrollIndicator"><a href="#8-showsVerticalScrollIndicator" class="headerlink" title="8.showsVerticalScrollIndicator"></a>8.showsVerticalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示垂直滚动条.</p>
+<pre><code>// 隐藏垂直滚动条
+scrollView.showsVerticalScrollIndicator = NO;
+</code></pre><h2 id="9-minimumZoomScale"><a href="#9-minimumZoomScale" class="headerlink" title="9.minimumZoomScale"></a>9.minimumZoomScale</h2><p>默认1.0，用来设置scrollView最少缩小比例.</p>
+<pre><code>// 设置scrollView允许子视图的最大放大比例
+scrollView.maximumZoomScale = 2;
+</code></pre><h2 id="10-maximumZoomScale"><a href="#10-maximumZoomScale" class="headerlink" title="10.maximumZoomScale"></a>10.maximumZoomScale</h2><p>默认1.0，用来设置scrollView最大放大比例.</p>
+<pre><code>// 设置scrollView允许子视图的最小缩放比例
+scrollView.minimumZoomScale = 0.8;
+</code></pre><h2 id="11-delegate"><a href="#11-delegate" class="headerlink" title="11. delegate"></a>11. delegate</h2><p>类要遵守UIScrollViewDelegate协议</p>
+<pre><code>scrollView.delegate = self;　声明scrollView的代理是我， 这个方法在UIScrollViewDelegate里所以我们要遵守UIScrollViewDelegate这个协议
+</code></pre><p>###11.1当scrollView的偏移量一改变就会调用这个方法，即滚动scrollView就会调用。</p>
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView;                                               
+</code></pre><p>###11.2 当scrollView缩放时，就会调用这个方法</p>
+<pre><code>- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.3 即将拖拽的时候调用.</p>
+<pre><code>- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+</code></pre><p>###11.4 即将停止拖拽的时候调用</p>
+<pre><code>- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
+</code></pre><p>###11.5 停止拖拽的时候调用。</p>
+<pre><code>- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+</code></pre><p>###11.6 即将减速完成的时候调用。</p>
+<pre><code>- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   
+</code></pre><p>###11.7 减速完成的时候调用</p>
+<pre><code>- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;     
+</code></pre><p>###11.8 返回需要缩放哪个视图，这个视图必须是scrollView里的子视图。</p>
+<pre><code>- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+
+// 列如：
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return scrollView.subviews[0];
+}
+</code></pre><p>###11.9 scrollView即将开始缩放</p>
+<pre><code>- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.10 scrollView完成缩放</p>
+<pre><code>- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale; 
+</code></pre><p>###11.11没有开启分页的时候，代理方法调用顺序：</p>
+<p>scrollViewWillBeginDragging –&gt; scrollViewDidScroll -&gt; scrollViewWillEndDragging -&gt; scrollViewDidEndDragging</p>
+<p>###11.12 开启分页的时候，代理方法调用顺序</p>
+<p>scrollViewWillBeginDragging -&gt; scrollViewDidScroll -&gt; scrollViewDidEndDragging -&gt;scrollViewWillBeginDecelerating -&gt;scrollViewDidScroll -&gt; scrollViewDidEndDecelerating</p>
+<h2 id="12-directionalLockEnabled"><a href="#12-directionalLockEnabled" class="headerlink" title="12. directionalLockEnabled"></a>12. directionalLockEnabled</h2><p>指定控件是否只能在一个方向上滚动</p>
+<h2 id="13-decelerationRate"><a href="#13-decelerationRate" class="headerlink" title="13. decelerationRate"></a>13. decelerationRate</h2><p>改变scrollerView的减速点位置</p>
+<h2 id="14-tracking"><a href="#14-tracking" class="headerlink" title="14. tracking  "></a>14. tracking  </h2><p>监控当前目标是否正在被跟踪</p>
+<h2 id="15-dragging"><a href="#15-dragging" class="headerlink" title="15. dragging "></a>15. dragging </h2><p>改变scrollerView的减速点位置                         </p>
+<h2 id="16-delaysContentTouches"><a href="#16-delaysContentTouches" class="headerlink" title="16. delaysContentTouches"></a>16. delaysContentTouches</h2><p>控制视图是否延时调用开始滚动的方法         </p>
+<h2 id="17-canCancelContentTouches"><a href="#17-canCancelContentTouches" class="headerlink" title="17. canCancelContentTouches "></a>17. canCancelContentTouches </h2><p>控制控件是否接触取消touch的事件 </p>
+<h2 id="18-indicatorStyle"><a href="#18-indicatorStyle" class="headerlink" title="18. indicatorStyle"></a>18. indicatorStyle</h2><p>设定滚动条的样式</p>
+<h2 id="19-decelerating"><a href="#19-decelerating" class="headerlink" title="19. decelerating"></a>19. decelerating</h2><p>监控当前目标是否正在减速</p>
+<h1 id="UIPageControl-翻页控件"><a href="#UIPageControl-翻页控件" class="headerlink" title="UIPageControl 翻页控件"></a>UIPageControl 翻页控件</h1><p>既然说到 UIScrollView ，必须要写个滚动图的案例了。重点介绍 UIPageControl 翻页控件。</p>
+<h2 id="1-numberOfPages-设置有多少页-默认为0"><a href="#1-numberOfPages-设置有多少页-默认为0" class="headerlink" title="1.    numberOfPages // 设置有多少页 默认为0"></a>1.    numberOfPages // 设置有多少页 默认为0</h2><pre><code>//  设置页数
+[pageControl setNumberOfPages:kImageCount];
+</code></pre><h2 id="2-currentPage-设置当前页"><a href="#2-currentPage-设置当前页" class="headerlink" title="2.    currentPage  // 设置当前页"></a>2.    currentPage  // 设置当前页</h2><pre><code>[pageControl setCurrentPage:0];
+</code></pre><h2 id="3-pageIndicatorTintColor-设置页码指示器颜色"><a href="#3-pageIndicatorTintColor-设置页码指示器颜色" class="headerlink" title="3.    pageIndicatorTintColor // 设置页码指示器颜色"></a>3.    pageIndicatorTintColor // 设置页码指示器颜色</h2><pre><code>[pageControl setPageIndicatorTintColor:[UIColor blackColor]];
+</code></pre><h2 id="4-currentPageIndicatorTintColor-设置当前页码指示器颜色"><a href="#4-currentPageIndicatorTintColor-设置当前页码指示器颜色" class="headerlink" title="4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色"></a>4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色</h2><pre><code>[pageControl setCurrentPageIndicatorTintColor:[UIColor redColor]];
+</code></pre><h2 id="5-添加分页控件的监听事件（监听值改变事件）"><a href="#5-添加分页控件的监听事件（监听值改变事件）" class="headerlink" title="5.    添加分页控件的监听事件（监听值改变事件）"></a>5.    添加分页控件的监听事件（监听值改变事件）</h2><pre><code>[pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
+</code></pre><p><em>ps:占个坑 我要回来补个demo</em></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/">iOS开发指南-Objective—C基础-Interface Builder-UIWebView-19</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/" class="archive-article-date">
+  	<time datetime="2016-05-03T14:41:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIWebView-Web-视图"><a href="#UIWebView-Web-视图" class="headerlink" title="UIWebView Web 视图"></a>UIWebView Web 视图</h1><h2 id="Web视图基础"><a href="#Web视图基础" class="headerlink" title="Web视图基础"></a>Web视图基础</h2><p>加载的两种形式</p>
+<ul>
+<li>url 加载</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];</div><div class="line">NSURL *url = [[NSURL alloc]initWithString:@&quot;http://www.apple.com/cn/&quot;];</div><div class="line">[view loadRequest:[NSURLRequest requestWithURL:url]];</div></pre></td></tr></table></figure>
+<ul>
+<li>本地html 加载    </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *html = @&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;!--Copyright 2015 The Chromium Authors.All rights reserved.Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.--&gt;&lt;head&gt;&lt;script src=\&quot;chrome-search://local-ntp/config.js\&quot;&gt;&lt;/script&gt;&lt;script src=\&quot;chrome-search://local-ntp/local-ntp.js\&quot;&gt;&lt;/script&gt;&lt;link rel=\&quot;stylesheet\&quot;href=\&quot;chrome-search://local-ntp/local-ntp.css\&quot;&gt;&lt;/link&gt;&lt;meta charset=\&quot;utf-8\&quot;&gt;&lt;meta name=\&quot;google\&quot;value=\&quot;notranslate\&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=\&quot;ntp-contents\&quot;&gt;&lt;div id=\&quot;most-visited\&quot;&gt;&lt;div id=\&quot;mv-tiles\&quot;&gt;&lt;/div&gt;&lt;!--Notification shown when a tile is blacklisted.--&gt;&lt;div id=\&quot;mv-notice\&quot;class=\&quot;mv-notice-hide\&quot;&gt;&lt;span id=\&quot;mv-msg\&quot;&gt;&lt;/span&gt;&lt;!--Links in the notification.--&gt;&lt;span id=\&quot;mv-notice-links\&quot;&gt;&lt;span id=\&quot;mv-undo\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;span id=\&quot;mv-restore\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;div id=\&quot;mv-notice-x\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=\&quot;attribution\&quot;&gt;&lt;div id=\&quot;attribution-text\&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;;</div><div class="line">[view loadHTMLString:html baseURL:nil];</div></pre></td></tr></table></figure>
+<p>控制页面方法</p>
+<pre><code>//重新读取页面
+[view reload];
+
+//读入停止
+[view stopLoading];
+
+//返回前一画面
+[view goBack];
+
+//进入下一画面
+[view goForward];
+</code></pre><p><em>ps:书中介绍的内容基本如此，还有就是其他的方法调用，我直接复制粘贴百度文章，这些内容知道就可以，需要的时候直接搜索拿来就用</em></p>
+<p><em>来源：<a href="http://www.2cto.com/kf/201502/378706.html" target="_blank" rel="external">http://www.2cto.com/kf/201502/378706.html</a></em></p>
+<h2 id="一、UIWebView的基础使用"><a href="#一、UIWebView的基础使用" class="headerlink" title="一、UIWebView的基础使用"></a>一、UIWebView的基础使用</h2><p>###1、创建UIWebView：</p>
+<pre><code>CGRect bouds = [[UIScreen manScreen]applicationFrame];
+UIWebView* webView = [[UIWebView alloc]initWithFrame:bounds];
+</code></pre><p>###2、设置属性：</p>
+<pre><code>webView.scalespageToFit = YES;//自动对页面进行缩放以适应屏幕
+webView.detectsPhoneNumbers = YES;//自动检测网页上的电话号码，单击可以拨打
+</code></pre><p>###3、显示网页视图UIWebView：</p>
+<pre><code>[self.view addSubview:webView];
+</code></pre><p>###4、加载内容</p>
+<pre><code>NSURL* url = [NSURL URLWithString:@&quot;http://www.baidu.com&quot;];//创建URL
+NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
+[webView loadRequest:request];//加载
+</code></pre><p>也可以加载一个本地资源:</p>
+<pre><code>NSURL* url = [NSURL fileURLWithPath:filePath];//创建URL
+NSURLRequest* request = [NSURLRequest requestWithURL:url];//创建NSURLRequest
+[webView loadRequest:request];//加载
+</code></pre><p>UIWebView 还支持将一个NSString对象作为源来加载。你可以为其提供一个基础URL，来指导UIWebView对象如何跟随链接和加载远程资源：</p>
+<pre><code>[webView loadHTMLString:myHTML baseURL:[NSURL URLWithString:@&quot;http://baidu.com&quot;]];
+</code></pre><p>###5、导航</p>
+<p>UIWebView类内部会管理浏览器的导航动作，通过goForward和goBack方法你可以控制前进与后退动作：</p>
+<pre><code>[webView goBack];
+[webView goForward];
+[webView reload];//重载
+[webView stopLoading];//取消载入内容
+</code></pre><p>###6、UIWebViewDelegate委托代理</p>
+<p>UIWebView支持一组委托方法，这些方法将在特定时间得到通知。要使用这些方法，必须先设定webView的委托：</p>
+<pre><code>webView.delegate = self;
+</code></pre><p>下面每个委托方法的第一个参数都是指向一个UIwebview的指针，因此你可以将一个委托用于多个网页视图。</p>
+<pre><code>-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *) reuqest navigationType: (UIWebViewNavigationType)navigationType;//当网页视图被指示载入内容而得到通知。应当返回YES，这样会进行加载。通过导航类型参数可以得到请求发起的原因，可以是以下任意值：
+UIWebViewNavigationTypeLinkClicked
+UIWebViewNavigationTypeFormSubmitted
+UIWebViewNavigationTypeBackForward
+UIWebViewNavigationTypeReload
+UIWebViewNavigationTypeFormResubmitted
+UIWebViewNavigationTypeOther
+</code></pre><p>UIWebView控件加载网页的监听函数方法：</p>
+<pre><code>-(void)webViewDidStartLoad:(UIWebView*)webView ;//当网页视图已经开始加载一个请求后，得到通知。
+-(void)webViewDidFinishLoad:(UIWebView*)webView ;//当网页视图结束加载一个请求之后，得到通知。
+-(void)webView:(UIWebView*)webView DidFailLoadWithError:(NSError*)error;//当在请求加载中发生错误时，得到通知。会提供一个NSSError对象，以标识所发生错误类型。
+</code></pre><p>以上是IOS中UIWebView的基础使用要点详解，接下来一些UIWebView的常用注意点。</p>
+<h2 id="二、IOS中UIWebView常用注意点："><a href="#二、IOS中UIWebView常用注意点：" class="headerlink" title="二、IOS中UIWebView常用注意点："></a>二、IOS中UIWebView常用注意点：</h2><p>####1、与UIWebView进行交互，调用web页面中的需要传参的函数时，参数需要带单引号，或者双引号（双引号需要进行转义在转义字符前加\）,在传递json字符串时不需要加单引号或双引号：</p>
+<pre><code>-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+NSString *sendJsStr=[NSString stringWithFormat:@&quot;openFile(\&quot;%@\&quot;)&quot;,jsDocPathStr];
+[webView stringByEvaluatingJavaScriptFromString:sendJsStr];
+}
+</code></pre><p>###2、在该代理方法中判断与webView的交互，可通过html里定义的协议实现：</p>
+<pre><code>- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
+</code></pre><p>###3、只有在webView加载完毕之后在能够调用对应页面中的js方法。（对应方法如第1条）.</p>
+<p>###4、为webView添加背景图片：</p>
+<pre><code>approvalWebView.backgroundColor=[UIColor clearColor];
+approvalWebView.opaque=NO;//这句话很重要，webView是否是不透明的，no为透明 在webView下添加个imageView展示图片就可以了
+</code></pre><p>###5、获取webView页面内容信息：</p>
+<pre><code>NSString *docStr=[webView stringByEvaluatingJavaScriptFromString:@&quot;document.documentElement.textContent&quot;];//获取web页面内容信息，此处获取的是个json字符串
+SBJsonParser *parserJson=[[[SBJsonParser alloc]init]autorelease];
+NSDictionary *contentDic=[parserJson objectWithString:docStr];//将json字符串转化为字典
+</code></pre><p>###6、 加载本地文件的方法：</p>
+<pre><code>//第一种方法：
+NSString* path = [[NSBundle mainBundle] pathForResource:name ofType:@&quot;html&quot; inDirectory:@&quot;mobile&quot;];//mobile是根目录，name是文件名称，html是文件类型
+[webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]]; //加载本地文件
+//第二种方法：
+NSString *resourcePath = [[NSBundle mainBundle] resourcePath];
+NSString *filePath = [resourcePath stringByAppendingPathComponent:@&quot;mobile.html&quot;];
+NSString *htmlstring=[[NSString alloc] initWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+[uiwebview loadHTMLString:htmlstring baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+</code></pre><p>###7、将文件下载到本地址然后再用webView打开：</p>
+<pre><code>NSString *resourceDocPath = [[NSString alloc] initWithString:[[[[NSBundle mainBundle] resourcePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:@&quot;Documents&quot;]];
+self.filePath = [resourceDocPath stringByAppendingPathComponent:[NSString stringWithFormat:@&quot;maydoc%@&quot;,docType]];
+NSData *attachmentData = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:theUrl]];
+[attachmentData writeToFile:filePath atomically:YES];
+NSURL *url = [NSURL fileURLWithPath:filePath];
+NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+[attachmentWebView loadRequest:requestObj];
+//删除指定目录下的文件
+NSFileManager *magngerDoc=[NSFileManager defaultManager];
+[magngerDoc removeItemAtPath:filePath error:nil];
+</code></pre><p>###8、处理webView展示txt文档乱码问题：</p>
+<pre><code>if ([theType isEqualToString:@&quot;.txt&quot;])
+{
+//txt分带编码和不带编码两种，带编码的如UTF-8格式txt，不带编码的如ANSI格式txt
+//不带的，可以依次尝试GBK和GB18030编码
+NSString* aStr = [[NSString alloc] initWithData:attachmentData encoding:NSUTF8StringEncoding];
+if (!aStr)
+{
+//用GBK进行编码
+aStr=[[NSString alloc] initWithData:attachmentData encoding:0x80000632];
+}
+if (!aStr)
+{
+//用GBK编码不行,再用GB18030编码
+aStr=[[NSString alloc] initWithData:attachmentData encoding:0x80000631];
+}
+//通过html语言进行排版
+NSString* responseStr = [NSString stringWithFormat:
+@&quot;&quot;
+&quot;&quot;
+&quot;&quot;
+&quot;&quot;
+&quot;%@&quot;
+&quot;/pre&gt;&quot;
+&quot;&quot;
+&quot;&quot;,
+aStr];
+[attachmentWebView loadHTMLString:responseStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
+return;
+}
+</code></pre><p>###9、使用webView加载本地或网络文件整个流程：</p>
+<p>1、 Loading a local PDF file into the web view</p>
+<pre><code>- (void)viewDidLoad {
+[super viewDidLoad];
+//从本地加载
+NSString *thePath = [[NSBundle mainBundle] pathForResource:@&quot;iPhone_User_Guide&quot; ofType:@&quot;pdf&quot;];
+if (thePath) {
+NSData *pdfData = [NSData dataWithContentsOfFile:thePath];
+[(UIWebView *)self.view loadData:pdfData MIMEType:@&quot;application/pdf&quot;
+textEncodingName:@&quot;utf-8&quot; baseURL:nil];
+}
+//从网络加载
+[self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com/&quot;]]];
+}
+</code></pre><p>2、The web-view delegate managing network loading</p>
+<pre><code>- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+// starting the load, show the activity indicator in the status bar
+[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+// finished loading, hide the activity indicator in the status bar
+[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+// load error, hide the activity indicator in the status bar
+[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+
+// report the error inside the webview
+NSString* errorString = [NSString stringWithFormat:
+@&quot;An error occurred:
+%@&quot;,
+error.localizedDescription];
+[self.myWebView loadHTMLString:errorString baseURL:nil];
+}
+</code></pre><p>3、Stopping a load request when the web view is to disappear</p>
+<pre><code>- (void)viewWillDisappear:(BOOL)animated
+{
+if ( [self.myWebView loading] ) {
+[self.myWebView stopLoading];
+}
+self.myWebView.delegate = nil; // disconnect the delegate as the webview is hidden
+[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+</code></pre><p>/<strong><strong><em>**</em></strong></strong>/<br>引用自苹果官方文档（displaying web content）</p>
+<p>###10、查找webView中的scrollview：</p>
+<pre><code>- (void) addScrollViewListener
+{
+UIScrollView* currentScrollView;
+for (UIView* subView in self.webView.subviews) {
+if ([subView isKindOfClass:[UIScrollView class]]) {
+currentScrollView = (UIScrollView*)subView;
+currentScrollView.delegate = self;
+}
+}
+}
+</code></pre><p>###11、去掉webView的阴影，做成类似scrollView：</p>
+<pre><code>- (void)clearBackgroundWithColor:(UIColor*)color
+{
+// 去掉webview的阴影
+self.backgroundColor = color;
+for (UIView* subView in [self subviews])
+{
+if ([subView isKindOfClass:[UIScrollView class]]) {
+for (UIView* shadowView in [subView subviews])
+{
+if ([shadowView isKindOfClass:[UIImageView class]]) {
+[shadowView setHidden:YES];
+}
+}
+}
+}
+}
+</code></pre><p>###12、取消长按webView上的链接弹出actionSheet的问题：</p>
+<pre><code>-(void)webViewDidFinishLoad:(UIWebView *)webView
+{
+[webView stringByEvaluatingJavaScriptFromString:@&quot;document.documentElement.style.webkitTouchCallout = &apos;none&apos;;&quot;];
+}
+</code></pre><p>###13、取消webView上的超级链接加载问题：</p>
+<pre><code>-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+{
+if (navigationType==UIWebViewNavigationTypeLinkClicked) {
+return NO;
+}
+else {
+return YES;
+}
+}
+</code></pre><p>###14、webView在ios5.1之前的bug：</p>
+<p>在之前的工程中使用webView加载附件，webView支持doc，excel，ppt，pdf等格式，但这些附件必须先下载到本地然后在加载到webView上才可以显示， 当附件下载到本地之后刚刚开始加载到webView上时，此时退出附件页面会导致程序崩溃。会崩溃是由于webView控件内部没有把相关代理取消掉，所以导致退出之后程序崩溃。</p>
+<p>webView在5.1上的bug：之前项目需求要webView可以左右活动，但在往webView上加载页面时导致页面加载不全，这个bug是由于webView本身的缓存所致。（还有待研究）</p>
+<p>###15、在使用webView进行新浪微博分享时，webView会自动保存登陆的cookie导致项目中的分享模块有些问题，删除 webView的cookie的方法：</p>
+<pre><code>-(void)deleteCookieForDominPathStr:(NSString *)thePath
+{
+//删除本地cookie，thePath为cookie路径通过打印cookie可知道其路径
+for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+
+if([[cookie domain] isEqualToString:thePath]) {
+
+[[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
+}
+}
+}
+</code></pre><p>###16、在UIWebView中使用flashScrollIndicators</p>
+<p>使用UIScrollView时，我们可以使用flashScrollIndicators方法显示滚动标识然后消失，告知用户此页面可以滚动，后面还有 更多内容。UIWebView内部依赖于UIScrollView,但是其没有flashScrollIndicators方法，但可以通过其他途径使用 此方法，如下所示。</p>
+<pre><code>for (id subView in [webView subviews])
+{ if ([subView respondsToSelector:@selector(flashScrollIndicators)])
+{
+[subView flashScrollIndicators];
+}
+}
+</code></pre><p>上述代码片段可以到webViewDidFinishLoad回调中使用，加载完网页内容后flash显示滚动标识。</p>
+<p>###17、根据内容获取UIWebView的高度：</p>
+<p>有时候需要根据不同的内容调整UIWebView的高度，以使UIWebView刚好装下所有内容，不用拖动，后面也不会留白。有两种方式可根据加载内容 获取UIWebView的合适高度，但都需要在网页内容加载完成后才可以，即需要在webViewDidFinishLoad回调中使用。</p>
+<p>①.使用sizeThatFits方法。</p>
+<pre><code>- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+CGRect frame = webView.frame;
+frame.size.height = 1;
+webView.frame = frame;
+CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
+frame.size = fittingSize;
+webView.frame = frame;
+}
+</code></pre><p>sizeThatFits方法有个问题，如果当前UIView的大小比刚好合适的大小还大，则返回当前的大小，不会返回最合适的大小值，所以使用 sizeThatFits前，先将UIWebView的高度设为最小，即1，然后再使用sizeThatFits就会返回刚好合适的大小。</p>
+<p>②、使用JavaScript</p>
+<pre><code>- (void)webViewDidFinishLoad:(UIWebView *)webView
+{ CGRect frame = webView.frame;
+NSString *fitHeight = [webview stringByEvaluatingJavaScriptFromString:@&quot;document.body.scrollHeight;&quot;];
+frame.size.height = [fitHeight floatValue];
+webView.frame = frame;
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-页面创建-18" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -214,6 +681,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -268,6 +750,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -585,6 +1082,21 @@ self.tab_table.separatorStyle = UITableViewCellSeparatorStyleNone;
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -664,6 +1176,21 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -759,6 +1286,21 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -886,6 +1428,21 @@ datePicker.maximumDate = maxDate;
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -951,6 +1508,21 @@ datePicker.maximumDate = maxDate;
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1324,6 +1896,21 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1343,166 +1930,9 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
-若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
-</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
-若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
-</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
-</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
-</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
-@property(nonatomic) double maximumValue; //默认为100
-</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
-</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
-</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
-</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
-</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
-</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
-</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)incrementImageForState:(UIControlState)state;
-</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)decrementImageForState:(UIControlState)state;
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">iOS开发指南-Objective—C基础-Cocoa-Touch UISlider -09</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/" class="archive-article-date">
-  	<time datetime="2016-04-26T14:34:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="UISlider-滑块"><a href="#UISlider-滑块" class="headerlink" title="UISlider 滑块"></a>UISlider 滑块</h2><p>####1.    minimumValue  :</p>
-<p> 当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0</p>
-<hr>
-<pre><code>_slider.minimumValue = 10.0;
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/1.png" alt="1"></p>
-<p>####2.    maximumValue : </p>
-<p>当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0</p>
-<hr>
-<pre><code>_slider.maximumValue = 100.0;
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/2.png" alt="2"></p>
-<p>####3.    continuous : </p>
-<p>如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES</p>
-<hr>
-<pre><code>[_slider setContinuous:NO]; // 在滑块滑动结束时才获取滑块的值
-</code></pre><p>####4.    minimumValueImage : </p>
-<p>滑块条最小值处设置的图片，默认为nil</p>
-<hr>
-<pre><code>_slider.minimumValueImage = [UIImage imageNamed:@&quot;003.png&quot;];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/3.png" alt="3"></p>
-<p>####5.    maximumValueImage，</p>
-<p>滑块条最大值处设置的图片,默认为nil</p>
-<hr>
-<pre><code>_slider.maximumValueImage = [UIImage imageNamed:@&quot;002.png&quot;];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/4.png" alt="4"></p>
-<p>####6.minimumTrackTintColor : </p>
-<p>小于滑块当前值滑块条的颜色，默认为蓝色</p>
-<hr>
-<pre><code>_slider.minimumTrackTintColor = [UIColor redColor];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/5.png" alt="5"></p>
-<p>####7.maximumTrackTintColor: </p>
-<p>大于滑块当前值滑块条的颜色，默认为白色</p>
-<hr>
-<pre><code>_slider.maximumTrackTintColor = [UIColor greenColor];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/6.png" alt="6"></p>
-<p>####8.thumbTintColor : </p>
-<p>当前滑块的颜色，默认为白色</p>
-<hr>
-<pre><code>_slider.thumbTintColor = [UIColor yellowColor];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042601/7.png" alt="7"></p>
-<p>####9.currentMaximumTrackImage : </p>
-<p>滑块条最大值处设置的图片</p>
-<p>####10.currentMinimumTrackImage : </p>
-<p>滑块条最小值处设置的图片</p>
-<p>####11.currentThumbImage: </p>
-<p>当前滑块的图片</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
     </nav>
   
 
@@ -1597,6 +2027,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
             
             <div class="clearfix"></div>
