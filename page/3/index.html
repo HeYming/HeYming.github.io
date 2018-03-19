@@ -164,156 +164,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/">iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/" class="archive-article-date">
-  	<time datetime="2016-05-04T13:15:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIAlterView-提醒视图"><a href="#UIAlterView-提醒视图" class="headerlink" title="UIAlterView 提醒视图"></a>UIAlterView 提醒视图</h1><h2 id="1-Title"><a href="#1-Title" class="headerlink" title="1.Title"></a>1.Title</h2><p>获取或设置UIAlertView上的标题。</p>
-<h2 id="2-Message"><a href="#2-Message" class="headerlink" title="2.Message"></a>2.Message</h2><p>获取或设置UIAlertView上的消息</p>
-<pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
-alertView.title = @&quot;T&quot;;
-alertView.message = @&quot;M&quot;;
-
-[alertView show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/1.png" alt="1"></p>
-<h2 id="3-numberOfButtons-只读"><a href="#3-numberOfButtons-只读" class="headerlink" title="3.numberOfButtons (只读)"></a>3.numberOfButtons (只读)</h2><p>返回UIAlertView上有多少按钮.</p>
-<pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
-    NSLog(@&quot;%d&quot;,alertView.numberOfButtons);
-[alertView show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/2.png" alt="2"></p>
-<h2 id="4-cancelButtonIndex"><a href="#4-cancelButtonIndex" class="headerlink" title="4.cancelButtonIndex"></a>4.cancelButtonIndex</h2><pre><code>   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;提示&quot;
-                                                                  message:@&quot;请选择一个按钮：&quot;
-                                                                 delegate:nil
-                                                    cancelButtonTitle:@&quot;取消&quot;
-                                            otherButtonTitles:@&quot;按钮一&quot;, @&quot;按钮二&quot;, @&quot;按钮三&quot;,nil];
-   [alert show];
-NSLog(@&quot;UIAlertView中取消按钮的角标是%d&quot;,alert.cancelButtonIndex);
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/3.png" alt="3"></p>
-<p>注意不要认为取消按钮的角标是4，“取消”，“按钮一”，“按钮二”，“按钮三”的索引buttonIndex分别是0，1，2，3</p>
-<h2 id="5-alertViewStyle"><a href="#5-alertViewStyle" class="headerlink" title="5. alertViewStyle"></a>5. alertViewStyle</h2><p>###5.1 UIAlertViewStyleLoginAndPasswordInput</p>
-<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
-
-alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
-
-// 弹出UIAlertView
- [alert show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/4.png" alt="4"></p>
-<p>###5.2 UIAlertViewStylePlainTextInput</p>
-<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
-
-alert.alertViewStyle = UIAlertViewStylePlainTextInput;
-
-// 弹出UIAlertView
- [alert show];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/5.png" alt="5"></p>
-<p>###5.3UIAlertViewStyleSecureTextInput</p>
-<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
-
-alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
-
-// 弹出UIAlertView
- [alert show];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/6.png" alt="6"></p>
-<h2 id="6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex"><a href="#6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex" class="headerlink" title="6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex"></a>6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</h2><p>返回textFieldIndex角标对应的文本框。<br>取出文本框文字  </p>
-<pre><code>[alert textFieldAtIndex:0].text
-</code></pre><h2 id="7-手动的取消对话框"><a href="#7-手动的取消对话框" class="headerlink" title="7.手动的取消对话框"></a>7.手动的取消对话框</h2><pre><code>[alert dismissWithClickedButtonIndex:0 animated:YES];
-</code></pre><h2 id="8-delegate"><a href="#8-delegate" class="headerlink" title="8. delegate"></a>8. delegate</h2><p>作为UIAlertView的代理，必须遵守UIAlertViewDelegate。</p>
-<p>###1.当点击UIAlertView上的按钮时，就会调用，并且当方法调完后，UIAlertView会自动消失。</p>
-<pre><code>- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
-</code></pre><p>###2.当UIAlertView即将出现的时候调用</p>
-<pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView; 
-</code></pre><p>###3. 当UIAlertView完全出现的时候调用</p>
-<pre><code>- (void)didPresentAlertView:(UIAlertView *)alertView;  
-</code></pre><p>###4. 当UIAlertView即将消失的时候调用</p>
-<pre><code>- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; 
-</code></pre><p>###5. 当UIAlertView完全消失的时候调用</p>
-<pre><code>- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  
-</code></pre><h2 id="9-注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。"><a href="#9-注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。" class="headerlink" title="9.注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。"></a>9.注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。</h2><h2 id="10-为UIAlertView添加子视图"><a href="#10-为UIAlertView添加子视图" class="headerlink" title="10. 为UIAlertView添加子视图"></a>10. 为UIAlertView添加子视图</h2><p>在为UIAlertView对象太添加子视图的过程中，有点是需要注意的地方，如果删除按钮，也就是取消UIAlerView视图中所有的按钮的时候，可能会导致整个显示结构失衡。按钮占用的空间不会消失，我们也可以理解为这些按钮没有真正的删除，仅仅是他不可见了而已。如果在UIAlertview对象中仅仅用来显示文本，那么，可以在消息的开头添加换行符（@”\n）有助于平衡按钮底部和顶部的空间。<br>下面的代码用来演示如何为UIAlertview对象添加子视图的方法。</p>
-<pre><code>UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@&quot;请等待&quot; 
-                                                 message:nil
-                                                 delegate:nil   
-                                                 cancelButtonTitle:nil 
-                                                 otherButtonTitles:nil];  
-[alert show];
-UIActivityIndicatorView*activeView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.size.height - 40.0f);  
-[activeView startAnimating];  
-[alert addSubview:activeView];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/7.png" alt="7"></p>
-<h2 id="11-UIAlertView小例子"><a href="#11-UIAlertView小例子" class="headerlink" title="11. UIAlertView小例子"></a>11. UIAlertView小例子</h2><p>  UIAlertView默认情况下所有的text是居中对齐的。 那如果需要将文本向左对齐或者添加其他控件比如输入框时该怎么办呢？ 不用担心， iPhone SDK还是很灵活的， 有很多delegate消息供调用程序使用。 所要做的就是在</p>
-<pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView
-</code></pre><p>中按照自己的需要修改或添加即可， 比如需要将消息文本左对齐，下面的代码即可实现:</p>
-<pre><code>-(void) willPresentAlertView:(UIAlertView *)alertView
-{
-      for( UIView * view in alertView.subviews )
-      {
-            if( [view isKindOfClass:[UILabel class]] )
-            {
-                  UILabel* label = (UILabel*) view;
-                  label.textAlignment=UITextAlignmentLeft;
-            }
-      }
-}
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/8.png" alt="8"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1698,6 +1548,394 @@ datePicker.maximumDate = maxDate;
 
 
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/" class="archive-article-date">
+  	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UITextField-文本框"><a href="#UITextField-文本框" class="headerlink" title="UITextField 文本框"></a>UITextField 文本框</h1><h2 id="enablesReturnKeyAutomatically"><a href="#enablesReturnKeyAutomatically" class="headerlink" title="enablesReturnKeyAutomatically"></a>enablesReturnKeyAutomatically</h2><p>默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。</p>
+<h2 id="borderStyle"><a href="#borderStyle" class="headerlink" title="borderStyle"></a>borderStyle</h2><p>设置边框样式，只有设置了才会显示边框样式　</p>
+<pre><code>text.borderStyle = UITextBorderStyleRoundedRect;
+　typedef enum {
+  UITextBorderStyleNone, 
+  UITextBorderStyleLine,
+  UITextBorderStyleBezel,
+  UITextBorderStyleRoundedRect  
+} UITextBorderStyle;                                                      
+</code></pre><h2 id="backgroundColor"><a href="#backgroundColor" class="headerlink" title="backgroundColor　"></a>backgroundColor　</h2><p>设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉　</p>
+<pre><code>text.backgroundColor = [UIColor whiteColor];
+</code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><p>设置背景</p>
+<pre><code>text.background = [UIImage imageNamed:@&quot;dd.png&quot;];//UITextField 的背景，注意只有UITextBorderStyleNone的时候改属性有效
+</code></pre><p>设置enable为no时，textfield的背景 </p>
+<pre><code>text.disabledBackground = [UIImage imageNamed:@&quot;cc.png&quot;];
+</code></pre><h2 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h2><p>当输入框没有内容时， 提示内容为password</p>
+<pre><code>text.placeholder = @&quot;password&quot;;
+</code></pre><h2 id="font"><a href="#font" class="headerlink" title="font"></a>font</h2><p>设置输入框内容的字体样式和大小</p>
+<pre><code>text.font = [UIFont fontWithName:@&quot;Arial&quot; size:20.0f];
+</code></pre><h2 id="textColor"><a href="#textColor" class="headerlink" title="textColor"></a>textColor</h2><p>设置字体颜色</p>
+<pre><code>text.textColor = [UIColor redColor];
+</code></pre><h2 id="clearButtonMode"><a href="#clearButtonMode" class="headerlink" title="clearButtonMode"></a>clearButtonMode</h2><p>输入框中是否有个叉号，在什么时候显示，用于一次性删除输入框中的内容</p>
+<pre><code>text.clearButtonMode = UITextFieldViewModeAlways; 
+typedef enum {
+    UITextFieldViewModeNever,　重不出现
+    UITextFieldViewModeWhileEditing, 编辑时出现
+    UITextFieldViewModeUnlessEditing,　除了编辑外都出现
+    UITextFieldViewModeAlways 　一直出现
+} UITextFieldViewMode;
+</code></pre><h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p>输入框中一开始就有的文字</p>
+<pre><code>text.text = @&quot;一开始就在输入框的文字&quot;;
+</code></pre><h2 id="secureTextEntry"><a href="#secureTextEntry" class="headerlink" title="secureTextEntry"></a>secureTextEntry</h2><p>每输入一个字符就变成点 用来输入密码时，设置这个属性。</p>
+<pre><code>text.secureTextEntry = YES;
+</code></pre><h2 id="autocorrectionType"><a href="#autocorrectionType" class="headerlink" title="autocorrectionType"></a>autocorrectionType</h2><p>是否纠错</p>
+<pre><code>text.autocorrectionType = UITextAutocorrectionTypeNo;
+typedef enum {
+    UITextAutocorrectionTypeDefault, 默认
+    UITextAutocorrectionTypeNo, 　不自动纠错
+    UITextAutocorrectionTypeYes,　自动纠错
+} UITextAutocorrectionType;
+</code></pre><h2 id="clearsOnBeginEditing"><a href="#clearsOnBeginEditing" class="headerlink" title="clearsOnBeginEditing"></a>clearsOnBeginEditing</h2><p>再次编辑就清空</p>
+<pre><code>text.clearsOnBeginEditing = YES; 
+</code></pre><h2 id="textAlignment"><a href="#textAlignment" class="headerlink" title="textAlignment"></a>textAlignment</h2><p>内容对齐方式</p>
+<pre><code>text.textAlignment = UITextAlignmentLeft;
+</code></pre><h2 id="contentVerticalAlignment"><a href="#contentVerticalAlignment" class="headerlink" title="contentVerticalAlignment"></a>contentVerticalAlignment</h2><p>内容的垂直对齐方式  UITextField继承自UIControl,此类中有一个属性contentVerticalAlignment</p>
+<pre><code>text.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+</code></pre><h2 id="adjustsFontSizeToFitWidth"><a href="#adjustsFontSizeToFitWidth" class="headerlink" title="adjustsFontSizeToFitWidth"></a>adjustsFontSizeToFitWidth</h2><p>设置为YES时文本会自动缩小以适应文本窗口大小.默认是保持原来大小,而让长文本滚动　</p>
+<pre><code>textFied.adjustsFontSizeToFitWidth = YES;
+//设置自动缩小显示的最小字体大小
+text.minimumFontSize = 20;
+</code></pre><h2 id="keyboardType"><a href="#keyboardType" class="headerlink" title="keyboardType"></a>keyboardType</h2><p>设置键盘的样式</p>
+<pre><code>text.keyboardType = UIKeyboardTypeNumberPad;
+typedef enum {
+    UIKeyboardTypeDefault,     　默认键盘，支持所有字符         
+    UIKeyboardTypeASCIICapable,　支持ASCII的默认键盘
+    UIKeyboardTypeNumbersAndPunctuation,　标准电话键盘，支持＋＊＃字符
+    UIKeyboardTypeURL,            URL键盘，支持.com按钮 只支持URL字符
+    UIKeyboardTypeNumberPad,            　数字键盘
+    UIKeyboardTypePhonePad,　 　电话键盘
+    UIKeyboardTypeNamePhonePad, 　电话键盘，也支持输入人名
+    UIKeyboardTypeEmailAddress, 　用于输入电子 邮件地址的键盘     
+    UIKeyboardTypeDecimalPad,   　数字键盘 有数字和小数点
+    UIKeyboardTypeTwitter,      　优化的键盘，方便输入@、#字符
+    UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, 
+} UIKeyboardType;
+</code></pre><h2 id="autocapitalizationType"><a href="#autocapitalizationType" class="headerlink" title="autocapitalizationType"></a>autocapitalizationType</h2><p>首字母是否大写</p>
+<pre><code>text.autocapitalizationType = UITextAutocapitalizationTypeNone;
+typedef enum {
+    UITextAutocapitalizationTypeNone, 不自动大写
+    UITextAutocapitalizationTypeWords,　单词首字母大写
+    UITextAutocapitalizationTypeSentences,　句子的首字母大写
+    UITextAutocapitalizationTypeAllCharacters, 所有字母都大写
+} UITextAutocapitalizationType;
+</code></pre><h2 id="returnKeyType"><a href="#returnKeyType" class="headerlink" title="returnKeyType"></a>returnKeyType</h2><p>return键变成什么键</p>
+<pre><code>text.returnKeyType =UIReturnKeyDone;
+typedef enum {
+    UIReturnKeyDefault, 默认 灰色按钮，标有Return
+    UIReturnKeyGo,    　标有Go的蓝色按钮
+    UIReturnKeyGoogle,标有Google的蓝色按钮，用语搜索
+    UIReturnKeyJoin,标有Join的蓝色按钮
+    UIReturnKeyNext,标有Next的蓝色按钮
+    UIReturnKeyRoute,标有Route的蓝色按钮
+    UIReturnKeySearch,标有Search的蓝色按钮
+    UIReturnKeySend,标有Send的蓝色按钮
+    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
+    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
+    UIReturnKeyEmergencyCall, 紧急呼叫按钮
+} UIReturnKeyType;
+</code></pre><h2 id="keyboardAppearance"><a href="#keyboardAppearance" class="headerlink" title="keyboardAppearance"></a>keyboardAppearance</h2><p>键盘外观</p>
+<pre><code>textView.keyboardAppearance=UIKeyboardAppearanceDefault；
+typedef enum {
+UIKeyboardAppearanceDefault， 默认外观，浅灰色
+UIKeyboardAppearanceAlert，　 　深灰 石墨色
+} UIReturnKeyType;
+</code></pre><h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><p>设置代理 用于实现协议</p>
+<pre><code>text.delegate = self;
+</code></pre><h2 id="rightView"><a href="#rightView" class="headerlink" title="rightView"></a>rightView</h2><p>最右侧加图片是以下代码　 左侧类似</p>
+<pre><code>UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;right.png&quot;]];
+text.rightView=image;
+text.rightViewMode = UITextFieldViewModeAlways; 
+typedef enum {
+    UITextFieldViewModeNever,
+    UITextFieldViewModeWhileEditing,
+    UITextFieldViewModeUnlessEditing,
+    UITextFieldViewModeAlways
+} UITextFieldViewMode;
+</code></pre><h2 id="editing"><a href="#editing" class="headerlink" title="editing"></a>editing</h2><p>是否允许编辑。</p>
+<h2 id="界面重写绘制行为"><a href="#界面重写绘制行为" class="headerlink" title="界面重写绘制行为"></a>界面重写绘制行为</h2><p>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写。</p>
+<pre><code>– textRectForBounds:　　  　//重写来重置文字区域
+– drawTextInRect:　　      　//改变绘文字属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
+– placeholderRectForBounds:　　//重写来重置占位符区域
+– drawPlaceholderInRect:　　//重写改变绘制占位符属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
+– borderRectForBounds:　　//重写来重置边缘区域
+– editingRectForBounds:　　//重写来重置编辑区域
+– clearButtonRectForBounds:　　//重写来重置clearButton位置,改变size可能导致button的图片失真
+– leftViewRectForBounds:
+– rightViewRectForBounds:
+</code></pre><h2 id="调整键盘"><a href="#调整键盘" class="headerlink" title="调整键盘"></a>调整键盘</h2><pre><code>inputView //代替标准的系统键盘
+inputAccessoryView //编辑时显示在系统键盘或用户自定义的inputView上面的视图
+</code></pre><h2 id="delegate-1"><a href="#delegate-1" class="headerlink" title="delegate"></a>delegate</h2><p>类要遵守UITextFieldDelegate协议</p>
+<pre><code>text.delegate = self;　声明text的代理是我，我会去实现把键盘往下收的方法 这个方法在UITextFieldDelegate里所以我们要遵守UITextFieldDelegate这个协议
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [text resignFirstResponder];    //主要是[receiver resignFirstResponder]在哪调用就能把receiver（text）对应的键盘往下收
+return YES;
+}
+
+代理方法 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{　
+　　
+//返回一个BOOL值，YES代表允许编辑，NO不允许编辑.　
+    return YES;　
+}　
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{　
+ //开始编辑时触发，文本字段将成为first responder　
+}　
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{　
+//返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder　
+　 //要想在用户结束编辑时阻止文本字段消失，可以返回NO　，返回NO，点击键盘的返回按钮会无效果。
+　 //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息　
+　 
+    return NO;　
+}　
+- (void)textFieldDidEndEditing:(UITextField *)textField;{
+
+}// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
+
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{　
+//当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。　
+//这对于想要加入撤销选项的应用程序特别有用　
+//可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。　　 
+//要防止文字被改变可以返回NO　
+//这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中　
+
+　   return YES;　
+}　
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField{　
+
+//返回一个BOOL值指明是否允许根据用户请求清除内容　
+//可以设置在特定条件下才允许清除内容　
+
+　   return YES;　
+}　
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{　
+
+//返回一个BOOL值，指明是否允许在按下回车键时结束编辑　
+ //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];
+//查一下resign这个单词的意思就明白这个方法了　
+　   return YES;　
+}　
+</code></pre><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>UITextField派生自UIControl，所以UIControl类中的通知系统在文本字段中也可以使用。除了UIControl类的标准事件，你还可以使用下列UITextField类特有的事件</p>
+<pre><code>UITextFieldTextDidBeginEditingNotification
+UITextFieldTextDidChangeNotification
+UITextFieldTextDidEndEditingNotification
+</code></pre><p>当文本字段退出编辑模式时触发。通知的object属性存储了最终文本。</p>
+<p>因为文本字段要使用键盘输入文字，所以下面这些事件发生时，也会发送动作通知</p>
+<pre><code>UIKeyboardWillShowNotification 　//键盘显示之前发送
+UIKeyboardDidShowNotification  　//键盘显示之后发送
+UIKeyboardWillHideNotification 　//键盘隐藏之前发送
+UIKeyboardDidHideNotification  　//键盘隐藏之后发送
+</code></pre><h2 id="Stroyboard中："><a href="#Stroyboard中：" class="headerlink" title="Stroyboard中："></a>Stroyboard中：</h2><pre><code>1、Text ：设置文本框的默认文本。
+2、Placeholder ： 可以在文本框中显示灰色的字，用于提示用户应该在这个文本框输入什么内容。当这个文本框中输入了数据时，用于提示的灰色的字将会自动消失。
+3、Background ：
+4、Disabled ： 若选中此项，用户将不能更改文本框内容。
+5、接下来是三个按钮，用来设置对齐方式。
+6、Border Style ： 选择边界风格。
+7、Clear Button ： 这是一个下拉菜单，你可以选择清除按钮什么时候出现，所谓清除按钮就是出一个现在文本框右边的小 X ，你可以有以下选择：
+    7.1 Never appears ： 从不出现
+    7.2 Appears while editing ： 编辑时出现
+    7.3 Appears unless editing ： 
+    7.4 Is always visible ： 总是可见
+8、Clear when editing begins ： 若选中此项，则当开始编辑这个文本框时，文本框中之前的内容会被清除掉。比如，你现在这个文本框 A 中输入了 &quot;What&quot; ，之后去编辑文本框 B，若再回来编辑文本框 A ，则其中的 &quot;What&quot; 会被立即清除。
+9、Text Color ： 设置文本框中文本的颜色。
+10、Font ： 设置文本的字体与字号。
+11、Min Font Size ： 设置文本框可以显示的最小字体（不过我感觉没什么用）
+12、Adjust To Fit ： 指定当文本框尺寸减小时，文本框中的文本是否也要缩小。选择它，可以使得全部文本都可见，即使文本很长。但是这个选项要跟 Min Font Size 配合使用，文本再缩小，也不会小于设定的 Min Font Size 。
+接下来的部分用于设置键盘如何显示。
+13、Captitalization ： 设置大写。下拉菜单中有四个选项：
+    13.1 None ： 不设置大写
+    13.2 Words ： 每个单词首字母大写，这里的单词指的是以空格分开的字符串
+    13.3 Sentances ： 每个句子的第一个字母大写，这里的句子是以句号加空格分开的字符串
+    13.4 All Characters ： 所以字母大写
+14、Correction ： 检查拼写，默认是 YES 。
+15、Keyboard ： 选择键盘类型，比如全数字、字母和数字等。
+16、Appearance：
+17、Return Key ： 选择返回键，可以选择 Search 、 Return 、 Done 等。
+18、Auto-enable Return Key ： 如选择此项，则只有至少在文本框输入一个字符后键盘的返回键才有效。
+19、Secure ： 当你的文本框用作密码输入框时，可以选择这个选项，此时，字符显示为星号。
+20.Alignment Horizontal 水平对齐方式
+21.Alignment Vertical 垂直对齐方式
+22.用于返回一个BOOL值　输入框是否 Selected(选中) Enabled(可用) Highlighted(高亮)
+</code></pre><h2 id="UITextField实例一-：-UITextField限制字符-只为数字"><a href="#UITextField实例一-：-UITextField限制字符-只为数字" class="headerlink" title="UITextField实例一 ： UITextField限制字符 (只为数字)"></a>UITextField实例一 ： UITextField限制字符 (只为数字)</h2><p>ios代码  </p>
+<pre><code>#define ALPHA @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz &quot;  
+#define NUMBERS @&quot;0123456789n&quot;  
+#define ALPHANUM @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 &quot;  
+#define NUMBERSPERIOD @&quot;0123456789.&quot;  
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
+{  
+    NSCharacterSet *cs;  
+    cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERSPERIOD ] invertedSet]; //invertedSet 方法是去反字符,把所有的除了数字的字符都找出来  
+
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@&quot;&quot;];  //componentsSeparatedByCharactersInSet 方法是把输入框输入的字符string 根据cs中字符一个一个去除cs字符并分割成单字符并转化为 NSArray, 然后componentsJoinedByString 是把NSArray 的字符通过 &quot;&quot;无间隔连接成一个NSString字符 赋给filtered.就是只剩数字了.  
+
+
+    BOOL basicTest = [string isEqualToString:filtered];  
+    if(!basicTest)   
+      {  
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot;  
+                                                            message:@&quot;请输入数字&quot;  
+                                                           delegate:nil  
+                                                  cancelButtonTitle:@&quot;确定&quot;  
+                                                  otherButtonTitles:nil];  
+
+        [alert show];  
+        [alert release];  
+        return NO;  
+    }    
+    // Add any predicate testing here  
+    return basicTest;  
+}  
+
+#define NUMBERS @”0123456789n” （这个代表可以输入数字和换行，请注意这个n，如果不写这个，Done按键将不会触发，如果用在SearchBar中，将会不触发Search事件，因为你自己限制不让输入n，好惨，我在项目中才发现的。） 所以，如果你要限制输入英文和数字的话，就可以把这个定义为： #define kAlphaNum @”ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789″。 当然，你还可以在以上方法return之前，做一提示的，比如提示用户只能输入数字之类的。如果你觉得有需要的话。
+</code></pre><h2 id="实例：限制只能输入一定长度的字符"><a href="#实例：限制只能输入一定长度的字符" class="headerlink" title="实例：限制只能输入一定长度的字符"></a>实例：限制只能输入一定长度的字符</h2><p>ios代码  </p>
+<pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   
+{　
+//string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反  
+    if ([string isEqualToString:@&quot;n&quot;])　//按回车可以改变  
+    {   
+        return YES;   
+    }   
+
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容  
+
+    if (self.myTextField == textField)　//判断是否时我们想要限定的那个输入框  
+    {   
+        if ([toBeString length] &gt; 20) { //如果输入框内容大于20则弹出警告  
+  textField.text = [toBeString substringToIndex:20];   
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@&quot;超过最大字数不能输入了&quot; delegate:nil cancelButtonTitle:@&quot;Ok&quot; otherButtonTitles:nil, nil] autorelease];   
+            [alert show];   
+            return NO;   
+        }   
+    }   
+    return YES;   
+}  
+</code></pre><h2 id="UITextField实例二："><a href="#UITextField实例二：" class="headerlink" title="UITextField实例二："></a>UITextField实例二：</h2><p>在UISearchBar中,当输入信息改变时,它就会调用textDidChange函数,但是UITextField没有这个功能,唯一与这个类似的shouldChangeCharactersInRange函数,也是在文件还没有改变前就调用了,而不是在改变后调用,要想实现这个功能,我们可以增加事件监听的方式.先来看看objective-c提供的接口:</p>
+<p>ios代码  </p>
+<pre><code>// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event. 
+</code></pre><p>给特殊事件添加目标或者方法，你能够调用这个方法多次，给特殊事件指定很多目标或者方法</p>
+<pre><code>// passing in nil as the target goes up the responder chain. The action may optionally include the sender and the event in that order  
+</code></pre><p>给target传递空，会建立响应链，在这行命令，方法可以选择包含方法发送者和事件两个参数。</p>
+<pre><code>// the action cannot be NULL.   方法不能为空。
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;  
+</code></pre><p>怎么去使用这个接口呢?主要分为两步,第一步就是在UItextField组件中增加对文件编辑改变时事件的监听,然后再实现监听器监听到事件时,所调用的方法.</p>
+<p>ios代码  </p>
+<pre><code>//第一步,对组件增加监听器 可以在viewDidLoad 方法中加入 textField 为你自定义输入框的名称  
+[textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];  
+
+//第二步,实现回调函数  
+- (void) textFieldDidChange:(id) sender {  
+    UITextField *_field = (UITextField *)sender;  
+    NSLog(@&quot;%@&quot;,[_field text]);  
+}  
+</code></pre><h2 id="UITextField实例三："><a href="#UITextField实例三：" class="headerlink" title="UITextField实例三："></a>UITextField实例三：</h2><p>UITextField控件处理键盘弹出时遮住输入框的问题<br>打开键盘卷动文本字段<br>默认情况下打开键盘会遮住下面的view，带来一点点困扰，不过这不是什么大问题，我们使用点小小的手段就可以解决。</p>
+<p>首先我们要知道键盘的高度是固定不变的，不过在IOS 5.0 以后键盘的高度貌似不是216了，不过不要紧，我们调整调整就是了：</p>
+<pre><code>                 iPhone    ipad
+竖屏(portrait)    216        264
+横屏(landScape)    140        352
+</code></pre><p>我们采取的方法就是在textField(有可能是其他控件)接收到弹出键盘事件时把self.view整体上移216px了(我们就以iPhone竖屏为例了)。<br>首先我们要设置textField的代理，我们就设为当前控制器了。</p>
+<p>ios代码  </p>
+<pre><code>textField,delegate=self;  
+</code></pre><p>然后我们在当前控制器实现下面两个委托方法：</p>
+<p>ios代码  </p>
+<pre><code>- (void)textFieldDidBeginEditing:(UITextField *)textField  
+{ //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
+       NSTimeInterval animationDuration = 0.30f;      
+      CGRect frame = self.view.frame;  
+      frame.origin.y -=216;  
+      frame.size.height +=216;  
+      self.view.frame = frame;  
+       [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
+       [UIView setAnimationDuration:animationDuration];  
+       self.view.frame = frame;                  
+       [UIView commitAnimations];                  
+}  
+</code></pre><p>ios代码</p>
+<pre><code>- (BOOL)textFieldShouldReturn:(UITextField *)textField   
+{//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
+        NSTimeInterval animationDuration = 0.30f;  
+        CGRect frame = self.view.frame;      
+        frame.origin.y +=216;        
+        frame.size. height -=216;     
+        self.view.frame = frame;  
+    //self.view移回原位置    
+    [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
+    [UIView setAnimationDuration:animationDuration];  
+        self.view.frame = frame;                  
+        [UIView commitAnimations];  
+        [textField resignFirstResponder];     
+}     
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1712,7 +1950,7 @@ datePicker.maximumDate = maxDate;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 小豆子
+    		&copy; 2018 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1794,10 +2032,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
@@ -1807,6 +2041,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">入门</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
             
             <div class="clearfix"></div>
