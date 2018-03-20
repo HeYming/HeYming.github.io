@@ -164,6 +164,190 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch框架-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/">iOS开发指南-Objective—C基础-Cocoa Touch框架-02</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/" class="archive-article-date">
+  	<time datetime="2016-04-21T14:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>ps:终于迎来第二章，本章节书中只是简单的介绍，我就随意自己总结下。</em></p>
+<h1 id="Cocoa-Touch-基础"><a href="#Cocoa-Touch-基础" class="headerlink" title="Cocoa Touch 基础"></a>Cocoa Touch 基础</h1><p>Cocoa Touch 框架是苹果提供的一套用于iOS设备开发的API。</p>
+<p><strong> 技术层级 </strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Cocoa Touch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">多媒体</td>
+</tr>
+<tr>
+<td style="text-align:center">核心服务</td>
+</tr>
+<tr>
+<td style="text-align:center">核心OS</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Cocoa Touch 包含的框架 </strong></p>
+<ol>
+<li>UIkit     负责启动和结束应用程序，控制界面和多点触摸等等</li>
+<li>Map        Kit 添加内嵌地图</li>
+<li>Game Kit    用于游戏框架    </li>
+<li>Message UI等    用于访问内部程序</li>
+<li>iAd        添加广告</li>
+</ol>
+<p><strong> 多媒体 包含的框架 </strong></p>
+<ol>
+<li>AV Foundation    播放视频和音频</li>
+<li>CoreAudio    用于播放音频和录音</li>
+<li>CoreImage    添加高级图像处理功能</li>
+<li>CoreGraphics    用于绘画和合成图像</li>
+<li>CoreText    用于精确的文本控制，一般用于富文本编辑</li>
+<li>ImageI/O    用于导入和导出图片</li>
+<li>QuarterCore        用于创建动画</li>
+</ol>
+<p><strong> 核心服务 包含的框架 </strong></p>
+<ol>
+<li>Accounts    存储账户信息</li>
+<li>Address Book    直接访问操作通讯录</li>
+<li>CFNetwork     进行网络请求</li>
+<li>Core Data     基于SQLite的一个关系型数据库</li>
+<li>Core Foundation        C语言的开发框架</li>
+<li>Foundation        C语言的封装框架，用于支持数组字典等NS类型</li>
+<li>Event Kit        访问日历信息</li>
+<li>Core Location        定位</li>
+<li>Core Motion        加速计和陀螺仪调用</li>
+<li>Quick Look        文件浏览        </li>
+<li>Store Kit        创建购买失误</li>
+<li>SystemConfiguration        访问当前网络连接信息</li>
+</ol>
+<h1 id="iOS-程序的生命周期"><a href="#iOS-程序的生命周期" class="headerlink" title="iOS 程序的生命周期"></a>iOS 程序的生命周期</h1><h3 id="程序状态"><a href="#程序状态" class="headerlink" title="程序状态"></a>程序状态</h3><ol>
+<li>Not running     没有运行</li>
+<li>Inaction    前台运行但不接收事件</li>
+<li>Action     正在运行，并接收事件</li>
+<li>Background     后台运行并且还在执行代码</li>
+<li>Suspended     应用处于后台并且没有执行代码</li>
+</ol>
+<h3 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h3><p>当APP运行后就会执行Main 函数，然后就会初始化UIApplication对象并设置其为代理。</p>
+<pre><code>//程序启动完成会调用
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+
+//程序将失去焦点
+- (void)applicationWillResignActive:(UIApplication *)application
+
+//进入的后台
+- (void)applicationDidEnterBackground:(UIApplication *)application
+
+//应用将显示到前台
+- (void)applicationWillEnterForeground:(UIApplication *)application
+
+//程序获取焦点
+- (void)applicationDidBecomeActive:(UIApplication *)application
+
+//程序结束退出
+- (void)applicationWillTerminate:(UIApplication *)application
+
+//判断是否第一次安装  是：YES   否：NO
+- (BOOL)isFirstInstall
+</code></pre><h3 id="UIViewController"><a href="#UIViewController" class="headerlink" title="UIViewController"></a>UIViewController</h3><pre><code>初始化一个UIViewController 会创建一个 View，必须将View放置在一个Window 上才会显示在屏幕上。
+/**
+ *  view加载完毕
+ */
+- (void)viewDidLoad
+
+/**
+ *  view即将显示到window上
+ */
+- (void)viewWillAppear:(BOOL)animated
+
+/**
+ *  view显示完毕(已经显示到窗口)
+ */
+- (void)viewDidAppear:(BOOL)animated
+
+/**
+ *  view即将从window上移除(即将看不见)
+ */
+- (void)viewWillDisappear:(BOOL)animated
+
+/**
+ *  view从window上完全移除(完全看不见)
+ */
+- (void)viewDidDisappear:(BOOL)animated
+
+/**
+ *  view即将销毁的时候调用
+ */
+- (void)viewWillUnload
+
+/**
+ *  view销毁完毕的时候调用
+ */
+- (void)viewDidUnload
+
+/**
+ *  当接收到内存警告的时候
+ */
+- (void)didReceiveMemoryWarning    
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-数据类型-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

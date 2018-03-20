@@ -164,6 +164,178 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/" class="archive-article-date">
+  	<time datetime="2016-05-12T14:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIPopoverController-分割视图控制器"><a href="#UIPopoverController-分割视图控制器" class="headerlink" title="UIPopoverController 分割视图控制器"></a>UIPopoverController 分割视图控制器</h1><p><em>ps:本章节内容只用于ipad，我也没有开发过ipad的应用程序，所以摘抄了网上的一篇文章，来源<a href="https://yq.aliyun.com/articles/41385" target="_blank" rel="external">https://yq.aliyun.com/articles/41385</a></em></p>
+<p>#1、概述</p>
+<p>是iPad开发中常见的一种控制器（在iPhone上不允许使用），跟其他控制器不一样的是，它直接继承自NSObject，并非继承自UIViewController，它只占用部分屏幕空间来呈现信息，而且显示在屏幕的最前面。</p>
+<p>#2、使用步骤</p>
+<p>要想显示一个UIPopoverController，需要经过下列步骤：</p>
+<p>第一步：设置内容控制器</p>
+<p>由于UIPopoverController直接继承自NSObject，不具备可视化的能力。因此UIPopoverController上面的内容必须由另外一个继承自UIViewController的控制器来提供，这个控制器称为“内容控制器”。</p>
+<p>设置内容控制器有3种方法：</p>
+<p>（1）在初始化UIPopoverController的时候传入一个内容控制器：</p>
+<pre><code>- (id)initWithContentViewController:(UIViewController *)viewController;
+</code></pre><p>（2）@property (nonatomic, retain) UIViewController</p>
+<p>*contentViewController;</p>
+<p>（3）- (void)setContentViewController:</p>
+<pre><code>(UIViewController *)viewController animated:(BOOL)animated;
+</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
+<p>第二步：设置内容的尺寸</p>
+<p>即设置显示出来占据多少屏幕空间。</p>
+<p>设置内容的尺寸有2种方法：</p>
+<pre><code>（1）@property (nonatomic) CGSize popoverContentSize;
+
+（2）- (void)setPopoverContentSize:(CGSize)size animated:
+
+ (BOOL)animated;
+</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
+<p>也可以在UIPopoverController的ContentViewController（内容控制器）的viewDidLoad方法中设置popoverContentSize来设置其显示在UIPopoverController中的大小。</p>
+<p>第三步：设置显示的位置</p>
+<p>即设置从哪个地方冒出来。</p>
+<p>设置显示的位置有2种方法：</p>
+<p>（1）围绕着一个UIBarButtonItem显示（箭头指定那个UIBarButtonItem）</p>
+<pre><code>- (void)PopoverFromBarButtonItem:(UIBarButtonItem *)item permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
+</code></pre><p>item ：围绕着哪个UIBarButtonItem显示</p>
+<p>arrowDirections ：箭头的方向</p>
+<p>animated ：是否通过动画显示出来</p>
+<p>（2）围绕着某一块特定区域显示（箭头指定那块特定区域）</p>
+<pre><code>- (void)presentPopoverFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
+</code></pre><p>rect ：指定箭头所指区域的矩形框范围（位置和尺寸）</p>
+<p>view ：rect参数是以view的左上角为坐标原点（0，0）</p>
+<p>arrowDirections ：箭头的方向</p>
+<p>animated ：是否通过动画显示出来</p>
+<p>#3、rect和view参数</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160512/1.png" alt="1"></p>
+<p>#4、设置显示的位置</p>
+<p>如果想让箭头指向某一个UIView的做法有2种做法，比如指向一个button。</p>
+<p>方法1：</p>
+<pre><code>[popover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+</code></pre><p>方法2：</p>
+<pre><code>[popover presentPopoverFromRect:button.frame
+
+inView:button.superview permittedArrowDirections:
+
+UIPopoverArrowDirectionDown animated:YES];
+</code></pre><p>#5、常见报错</p>
+<p>在popover的使用过程中，经常会遇到这个错误：</p>
+<pre><code>-[UIPopoverController dealloc] reached while popover is still visible.
+</code></pre><p>错误的大体意思是：popover在仍旧可见的时候被销毁了（调用了dealloc）。</p>
+<p>从错误可以得出的结论：</p>
+<p>（1）当popover仍旧可见的时候，不准销毁popover对象</p>
+<p>（2）在销毁popover对象之前，一定先让popover消失（不可见）</p>
+<p>例如：</p>
+<pre><code>-(IBAction)menuClick:(UIBarButtonItem *)sender {
+
+//创建内容控制器
+
+UIViewController *vc = [[UIVeiwController alloc] init];
+
+vc.view.backgroundColor = [UIColor redColor];
+
+UINavigationController *nav = [[UINavigationController alloc] initWithRootController:vc];
+
+//创建popover
+
+UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContentViewController:nav];
+
+//可以不设置尺寸，会有一个默认的尺寸320x480
+
+//设置显示到那个位置
+
+[titlePopover presentPopoverFromBarButtonItem:sender permittedArrowDirectionAny animated:YES];
+
+}
+</code></pre><p>上面代码就会报这个错误，因为在ARC模式下，当执行到最后一句时，titlePopover就会被系统回收，但此时titlePopover仍然显示在屏幕上，所以会报上面错误。解决办法是创建一个属性：</p>
+<pre><code>@property (nonatomic, strong) UIPopoverController *titlePopover;
+</code></pre><p>把上面代码红色部分全部改成self.titlePopover</p>
+<p>6、通过内容控制器设置内容尺寸</p>
+<p>内容控制器可以自行设置自己在popover中显示的尺寸：</p>
+<p>在iOS 7之前：</p>
+<pre><code>@property (nonatomic,readwrite) CGSize contentSizeForViewInPopover;
+</code></pre><p>从iOS 7开始：</p>
+<pre><code>@property (nonatomic) CGSize preferredContentSize;
+</code></pre><p>以上属性都是UIViewController的</p>
+<p>7、常用属性</p>
+<p>代理对象：</p>
+<pre><code>@property (nonatomic, assign) id &lt;UIPopoverControllerDelegate&gt; delegate;
+</code></pre><p>是否可见：</p>
+<pre><code>@property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
+</code></pre><p>箭头方向：</p>
+<pre><code>@property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
+</code></pre><p>关闭popover（让popover消失）：</p>
+<pre><code>- (void)dismissPopoverAnimated:(BOOL)animated;
+</code></pre><p>#8、防止点击UIPopoverController区域外消失</p>
+<p>默认情况下：</p>
+<p>（1）只要UIPopoverController显示在屏幕上，UIPopoverController背后的所有控件默认是不能跟用户进行正常交互的</p>
+<p>（2）点击UIPopoverController区域外的控件，UIPopoverController默认会消失</p>
+<p>要想点击UIPopoverController区域外的控件时不让UIPopoverController消失，解决办法是设置passthroughViews属性：</p>
+<p>@property (nonatomic, copy) NSArray *passthroughViews;</p>
+<p>这个属性是设置当UIPopoverController显示出来时，哪些控件可以继续跟用户进行正常交互。这样的话，点击区域外的控件就不会让UIPopoverController消失了</p>
+<p>#9、如何iPhone中实现popover的效果</p>
+<p>UIPopoverController这个类是只能用在iPad中的，要想在iPhone中实现popover效果，必须得自定义view，可以参考：</p>
+<p><a href="http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000" target="_blank" rel="external">http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000</a></p>
+<p><a href="http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000" target="_blank" rel="external">http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1305,119 +1477,6 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
-  	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIActionSheet"><a href="#UIActionSheet" class="headerlink" title="UIActionSheet"></a>UIActionSheet</h1><h2 id="一、初始化方法"><a href="#一、初始化方法" class="headerlink" title="一、初始化方法"></a>一、初始化方法</h2><pre><code>- (instancetype)initWithTitle:(NSString *)title delegate:(id&lt;UIActionSheetDelegate&gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
-</code></pre><p>参数说明：</p>
-<p>title：视图标题</p>
-<p>delegate：设置代理</p>
-<p>cancelButtonTitle：取消按钮的标题</p>
-<p>destructiveButtonTitle：特殊标记的按钮的标题</p>
-<p>otherButtonTitles：其他按钮的标题</p>
-<h2 id="二、常用方法和属性介绍"><a href="#二、常用方法和属性介绍" class="headerlink" title="二、常用方法和属性介绍"></a>二、常用方法和属性介绍</h2><pre><code>@property(nonatomic,copy) NSString *title;
-</code></pre><p>设置标题</p>
-<pre><code>@property(nonatomic) UIActionSheetStyle actionSheetStyle;
-</code></pre><p>设置风格，枚举如下：</p>
-<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) {
-    UIActionSheetStyleAutomatic        = -1,      
-    UIActionSheetStyleDefault          = UIBarStyleDefault,
-    UIActionSheetStyleBlackTranslucent = UIBarStyleBlackTranslucent,
-    UIActionSheetStyleBlackOpaque      = UIBarStyleBlackOpaque,
-};
-
-- (NSInteger)addButtonWithTitle:(NSString *)title;
-</code></pre><p>添加一个按钮，会返回按钮的索引</p>
-<pre><code>- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
-</code></pre><p>获取按钮标题</p>
-<pre><code>@property(nonatomic,readonly) NSInteger numberOfButtons;
-</code></pre><p>获取按钮数量</p>
-<pre><code>@property(nonatomic) NSInteger cancelButtonIndex;
-</code></pre><p>设置取消按钮的索引值</p>
-<pre><code>@property(nonatomic) NSInteger destructiveButtonIndex;
-</code></pre><p>设置特殊标记</p>
-<pre><code>@property(nonatomic,readonly,getter=isVisible) BOOL visible;
-</code></pre><p>视图当前是否可见</p>
-<p>下面是几种弹出方式，会根据风格不同展现不同的方式</p>
-<pre><code>- (void)showFromToolbar:(UIToolbar *)view;
-- (void)showFromTabBar:(UITabBar *)view;
-- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated ;
-- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated ;
-- (void)showInView:(UIView *)view;
-
-
-
-- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
-</code></pre><p>使用代码将视图收回</p>
-<h2 id="三、UIActionSheet代理方法"><a href="#三、UIActionSheet代理方法" class="headerlink" title="三、UIActionSheet代理方法"></a>三、UIActionSheet代理方法</h2><pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
-</code></pre><p>点击按钮时触发的方法</p>
-<pre><code>- (void)willPresentActionSheet:(UIActionSheet *)actionSheet; 
-</code></pre><p>视图将要弹出时触发的方法</p>
-<pre><code>- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;
-</code></pre><p>视图已经弹出式触发的方法</p>
-<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
-</code></pre><p>点击按钮后，视图将要收回时触发的方法</p>
-<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
-</code></pre><p>点击按钮后，视图已经收回时触发的方法</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">展开全文 >></a>
         </p>
       
 

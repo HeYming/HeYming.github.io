@@ -164,6 +164,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-喜报基础架构" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/19/喜报基础架构/">喜报基础架构</a>
+    </h1>
+  
+
+        
+        <a href="/2018/03/19/喜报基础架构/" class="archive-article-date">
+  	<time datetime="2018-03-19T07:53:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-19</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#喜报基础架构</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png" alt="180319"></p>
+<p>##基础控制器</p>
+<p>###RootViewController<br>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
+<ul>
+<li>用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。</li>
+<li>设置页面基础属性，背景颜色，统一所有页面样式</li>
+<li>设置NavBar，设置Title，按钮信息</li>
+<li>基础方法，包含延时执行，获取当前页面信息等</li>
+</ul>
+<p>###LoginViewController<br>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
+<p>在3.0版本中增加了启动显示公司信息功能，这个功能在AppDelegate的时候，已经开始获取存在NSUserDefaults里面的用户信息，创建ViewController将公司信息展示，同时异步去进行组件的注册，当所有的组件注册完成的时候，在进入到LoginViewController,这个时候在将创建的公司信息视图再次创建一次放在LoginViewController的View上，异步进行获取版本信息和自动登录，这样创造启动页面一直显示公司信息的假象。<br><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319001.png" alt="180319001"></p>
+<p>###RootTableViewController<br>所有包含下拉刷新的页面均继承此View。子视图负责实现业务逻辑即可。</p>
+<ul>
+<li>根据第三方框架MJRefresh创建TableView</li>
+<li>子视图必须实现刷新方法</li>
+<li>子视图自行实现TableView的Delegate和DataSource</li>
+</ul>
+<p>###VoiceViewController<br>大部分表单视图均包含有语言输入模块，继承此视图可以直接创建带有语言输入的页面。使用该视图作为父视图的大部分为表单，此视图中还有创建线，黑块等自定义方法。</p>
+<ul>
+<li>封装表单需要使用的模块</li>
+<li>封装部分点击事件简化表单视图</li>
+<li>封装部分请求数据处理</li>
+</ul>
+<p>##UserData</p>
+<p>项目中登录后UserData中存储了诸多数据，包括</p>
+<ul>
+<li>用户登录账户密码</li>
+<li>用户账户权限</li>
+<li>用户可以看到的模块信息</li>
+<li>用户缓存数据信息</li>
+</ul>
+<p>由于数据基本不会变动，在登录获取到信息后直接保存到NSUserDefaults中，其中可能涉及变更的提供修改方法，再次启动APP的时候直接取出信息进行登录在覆盖NSUserDefailts中信息。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/03/19/喜报基础架构/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-新浪微博4-0版本移植填坑记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1040,178 +1142,6 @@ void CGContextRestoreGState(CGContextRef c)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPopoverController-分割视图控制器"><a href="#UIPopoverController-分割视图控制器" class="headerlink" title="UIPopoverController 分割视图控制器"></a>UIPopoverController 分割视图控制器</h1><p><em>ps:本章节内容只用于ipad，我也没有开发过ipad的应用程序，所以摘抄了网上的一篇文章，来源<a href="https://yq.aliyun.com/articles/41385" target="_blank" rel="external">https://yq.aliyun.com/articles/41385</a></em></p>
-<p>#1、概述</p>
-<p>是iPad开发中常见的一种控制器（在iPhone上不允许使用），跟其他控制器不一样的是，它直接继承自NSObject，并非继承自UIViewController，它只占用部分屏幕空间来呈现信息，而且显示在屏幕的最前面。</p>
-<p>#2、使用步骤</p>
-<p>要想显示一个UIPopoverController，需要经过下列步骤：</p>
-<p>第一步：设置内容控制器</p>
-<p>由于UIPopoverController直接继承自NSObject，不具备可视化的能力。因此UIPopoverController上面的内容必须由另外一个继承自UIViewController的控制器来提供，这个控制器称为“内容控制器”。</p>
-<p>设置内容控制器有3种方法：</p>
-<p>（1）在初始化UIPopoverController的时候传入一个内容控制器：</p>
-<pre><code>- (id)initWithContentViewController:(UIViewController *)viewController;
-</code></pre><p>（2）@property (nonatomic, retain) UIViewController</p>
-<p>*contentViewController;</p>
-<p>（3）- (void)setContentViewController:</p>
-<pre><code>(UIViewController *)viewController animated:(BOOL)animated;
-</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
-<p>第二步：设置内容的尺寸</p>
-<p>即设置显示出来占据多少屏幕空间。</p>
-<p>设置内容的尺寸有2种方法：</p>
-<pre><code>（1）@property (nonatomic) CGSize popoverContentSize;
-
-（2）- (void)setPopoverContentSize:(CGSize)size animated:
-
- (BOOL)animated;
-</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
-<p>也可以在UIPopoverController的ContentViewController（内容控制器）的viewDidLoad方法中设置popoverContentSize来设置其显示在UIPopoverController中的大小。</p>
-<p>第三步：设置显示的位置</p>
-<p>即设置从哪个地方冒出来。</p>
-<p>设置显示的位置有2种方法：</p>
-<p>（1）围绕着一个UIBarButtonItem显示（箭头指定那个UIBarButtonItem）</p>
-<pre><code>- (void)PopoverFromBarButtonItem:(UIBarButtonItem *)item permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
-</code></pre><p>item ：围绕着哪个UIBarButtonItem显示</p>
-<p>arrowDirections ：箭头的方向</p>
-<p>animated ：是否通过动画显示出来</p>
-<p>（2）围绕着某一块特定区域显示（箭头指定那块特定区域）</p>
-<pre><code>- (void)presentPopoverFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
-</code></pre><p>rect ：指定箭头所指区域的矩形框范围（位置和尺寸）</p>
-<p>view ：rect参数是以view的左上角为坐标原点（0，0）</p>
-<p>arrowDirections ：箭头的方向</p>
-<p>animated ：是否通过动画显示出来</p>
-<p>#3、rect和view参数</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160512/1.png" alt="1"></p>
-<p>#4、设置显示的位置</p>
-<p>如果想让箭头指向某一个UIView的做法有2种做法，比如指向一个button。</p>
-<p>方法1：</p>
-<pre><code>[popover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-</code></pre><p>方法2：</p>
-<pre><code>[popover presentPopoverFromRect:button.frame
-
-inView:button.superview permittedArrowDirections:
-
-UIPopoverArrowDirectionDown animated:YES];
-</code></pre><p>#5、常见报错</p>
-<p>在popover的使用过程中，经常会遇到这个错误：</p>
-<pre><code>-[UIPopoverController dealloc] reached while popover is still visible.
-</code></pre><p>错误的大体意思是：popover在仍旧可见的时候被销毁了（调用了dealloc）。</p>
-<p>从错误可以得出的结论：</p>
-<p>（1）当popover仍旧可见的时候，不准销毁popover对象</p>
-<p>（2）在销毁popover对象之前，一定先让popover消失（不可见）</p>
-<p>例如：</p>
-<pre><code>-(IBAction)menuClick:(UIBarButtonItem *)sender {
-
-//创建内容控制器
-
-UIViewController *vc = [[UIVeiwController alloc] init];
-
-vc.view.backgroundColor = [UIColor redColor];
-
-UINavigationController *nav = [[UINavigationController alloc] initWithRootController:vc];
-
-//创建popover
-
-UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContentViewController:nav];
-
-//可以不设置尺寸，会有一个默认的尺寸320x480
-
-//设置显示到那个位置
-
-[titlePopover presentPopoverFromBarButtonItem:sender permittedArrowDirectionAny animated:YES];
-
-}
-</code></pre><p>上面代码就会报这个错误，因为在ARC模式下，当执行到最后一句时，titlePopover就会被系统回收，但此时titlePopover仍然显示在屏幕上，所以会报上面错误。解决办法是创建一个属性：</p>
-<pre><code>@property (nonatomic, strong) UIPopoverController *titlePopover;
-</code></pre><p>把上面代码红色部分全部改成self.titlePopover</p>
-<p>6、通过内容控制器设置内容尺寸</p>
-<p>内容控制器可以自行设置自己在popover中显示的尺寸：</p>
-<p>在iOS 7之前：</p>
-<pre><code>@property (nonatomic,readwrite) CGSize contentSizeForViewInPopover;
-</code></pre><p>从iOS 7开始：</p>
-<pre><code>@property (nonatomic) CGSize preferredContentSize;
-</code></pre><p>以上属性都是UIViewController的</p>
-<p>7、常用属性</p>
-<p>代理对象：</p>
-<pre><code>@property (nonatomic, assign) id &lt;UIPopoverControllerDelegate&gt; delegate;
-</code></pre><p>是否可见：</p>
-<pre><code>@property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
-</code></pre><p>箭头方向：</p>
-<pre><code>@property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
-</code></pre><p>关闭popover（让popover消失）：</p>
-<pre><code>- (void)dismissPopoverAnimated:(BOOL)animated;
-</code></pre><p>#8、防止点击UIPopoverController区域外消失</p>
-<p>默认情况下：</p>
-<p>（1）只要UIPopoverController显示在屏幕上，UIPopoverController背后的所有控件默认是不能跟用户进行正常交互的</p>
-<p>（2）点击UIPopoverController区域外的控件，UIPopoverController默认会消失</p>
-<p>要想点击UIPopoverController区域外的控件时不让UIPopoverController消失，解决办法是设置passthroughViews属性：</p>
-<p>@property (nonatomic, copy) NSArray *passthroughViews;</p>
-<p>这个属性是设置当UIPopoverController显示出来时，哪些控件可以继续跟用户进行正常交互。这样的话，点击区域外的控件就不会让UIPopoverController消失了</p>
-<p>#9、如何iPhone中实现popover的效果</p>
-<p>UIPopoverController这个类是只能用在iPad中的，要想在iPhone中实现popover效果，必须得自定义view，可以参考：</p>
-<p><a href="http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000" target="_blank" rel="external">http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000</a></p>
-<p><a href="http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000" target="_blank" rel="external">http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">展开全文 >></a>
         </p>
       
 

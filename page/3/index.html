@@ -164,6 +164,119 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
+  	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIActionSheet"><a href="#UIActionSheet" class="headerlink" title="UIActionSheet"></a>UIActionSheet</h1><h2 id="一、初始化方法"><a href="#一、初始化方法" class="headerlink" title="一、初始化方法"></a>一、初始化方法</h2><pre><code>- (instancetype)initWithTitle:(NSString *)title delegate:(id&lt;UIActionSheetDelegate&gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
+</code></pre><p>参数说明：</p>
+<p>title：视图标题</p>
+<p>delegate：设置代理</p>
+<p>cancelButtonTitle：取消按钮的标题</p>
+<p>destructiveButtonTitle：特殊标记的按钮的标题</p>
+<p>otherButtonTitles：其他按钮的标题</p>
+<h2 id="二、常用方法和属性介绍"><a href="#二、常用方法和属性介绍" class="headerlink" title="二、常用方法和属性介绍"></a>二、常用方法和属性介绍</h2><pre><code>@property(nonatomic,copy) NSString *title;
+</code></pre><p>设置标题</p>
+<pre><code>@property(nonatomic) UIActionSheetStyle actionSheetStyle;
+</code></pre><p>设置风格，枚举如下：</p>
+<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) {
+    UIActionSheetStyleAutomatic        = -1,      
+    UIActionSheetStyleDefault          = UIBarStyleDefault,
+    UIActionSheetStyleBlackTranslucent = UIBarStyleBlackTranslucent,
+    UIActionSheetStyleBlackOpaque      = UIBarStyleBlackOpaque,
+};
+
+- (NSInteger)addButtonWithTitle:(NSString *)title;
+</code></pre><p>添加一个按钮，会返回按钮的索引</p>
+<pre><code>- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
+</code></pre><p>获取按钮标题</p>
+<pre><code>@property(nonatomic,readonly) NSInteger numberOfButtons;
+</code></pre><p>获取按钮数量</p>
+<pre><code>@property(nonatomic) NSInteger cancelButtonIndex;
+</code></pre><p>设置取消按钮的索引值</p>
+<pre><code>@property(nonatomic) NSInteger destructiveButtonIndex;
+</code></pre><p>设置特殊标记</p>
+<pre><code>@property(nonatomic,readonly,getter=isVisible) BOOL visible;
+</code></pre><p>视图当前是否可见</p>
+<p>下面是几种弹出方式，会根据风格不同展现不同的方式</p>
+<pre><code>- (void)showFromToolbar:(UIToolbar *)view;
+- (void)showFromTabBar:(UITabBar *)view;
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated ;
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated ;
+- (void)showInView:(UIView *)view;
+
+
+
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
+</code></pre><p>使用代码将视图收回</p>
+<h2 id="三、UIActionSheet代理方法"><a href="#三、UIActionSheet代理方法" class="headerlink" title="三、UIActionSheet代理方法"></a>三、UIActionSheet代理方法</h2><pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮时触发的方法</p>
+<pre><code>- (void)willPresentActionSheet:(UIActionSheet *)actionSheet; 
+</code></pre><p>视图将要弹出时触发的方法</p>
+<pre><code>- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;
+</code></pre><p>视图已经弹出式触发的方法</p>
+<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮后，视图将要收回时触发的方法</p>
+<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮后，视图已经收回时触发的方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1604,86 +1717,6 @@ datePicker.maximumDate = maxDate;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/" class="archive-article-date">
-  	<time datetime="2016-04-27T13:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UITextView-文本块"><a href="#UITextView-文本块" class="headerlink" title="UITextView 文本块"></a>UITextView 文本块</h1><h2 id="1-text-设置textView中文本"><a href="#1-text-设置textView中文本" class="headerlink" title="1.    text: 设置textView中文本"></a>1.    text: 设置textView中文本</h2><pre><code>_textView.text = @&quot;Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.&quot;; // 设置它显示的内容
-</code></pre><h2 id="2-font-设置textView中文字的字体"><a href="#2-font-设置textView中文字的字体" class="headerlink" title="2.    font:设置textView中文字的字体"></a>2.    font:设置textView中文字的字体</h2><pre><code>_textView.font = [UIFont fontWithName:@&quot;Arial&quot; size:18.0]; // 设置字体名字和字体大小
-</code></pre><h2 id="3-textColor-设置textView中文本的颜色"><a href="#3-textColor-设置textView中文本的颜色" class="headerlink" title="3.    textColor:设置textView中文本的颜色"></a>3.    textColor:设置textView中文本的颜色</h2><pre><code>_textView.textColor = [UIColor blackColor]; // 设置textview里面的字体颜色
-</code></pre><h2 id="4-textAlignment-设置textView的文本的排列方式"><a href="#4-textAlignment-设置textView的文本的排列方式" class="headerlink" title="4.    textAlignment:设置textView的文本的排列方式"></a>4.    textAlignment:设置textView的文本的排列方式</h2><pre><code>_textView.textAlignment = NSTextAlignmentCenter; // textView中的文本排列，默认靠左
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/1.png" alt="1"></p>
-<h2 id="5-backgroundColor-设置textView的背景颜色"><a href="#5-backgroundColor-设置textView的背景颜色" class="headerlink" title="5.    backgroundColor:设置textView的背景颜色"></a>5.    backgroundColor:设置textView的背景颜色</h2><pre><code>_textView.backgroundColor = [UIColor grayColor]; // 设置浅灰色的背景色，默认为白色
-</code></pre><h2 id="6-delegate-设置代理"><a href="#6-delegate-设置代理" class="headerlink" title="6.    delegate:设置代理"></a>6.    delegate:设置代理</h2><pre><code>_textView.delegate = self; // 设置代理
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/2.png" alt="2"></p>
-<h2 id="7-editable-设置textView是否可被输入"><a href="#7-editable-设置textView是否可被输入" class="headerlink" title="7.    editable:设置textView是否可被输入"></a>7.    editable:设置textView是否可被输入</h2><pre><code>_textView.editable = NO; // textView是否可被输入，默认为YES
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/3.png" alt="3"></p>
-<h2 id="8-attributedText-设置默认插入textView的文字"><a href="#8-attributedText-设置默认插入textView的文字" class="headerlink" title="8.    attributedText:设置默认插入textView的文字"></a>8.    attributedText:设置默认插入textView的文字</h2><pre><code>_textView.attributedText = [[NSAttributedString alloc]initWithString:@&quot;attributedText__-abc&quot;]; // 可以方便将文本插入到UITextView中。
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/4.png" alt="4"></p>
-<h2 id="9-inputView-设置从底部弹出的视图"><a href="#9-inputView-设置从底部弹出的视图" class="headerlink" title="9.    inputView:设置从底部弹出的视图"></a>9.    inputView:设置从底部弹出的视图</h2><pre><code>_textView.inputView = [[UIDatePicker alloc]init]; // 弹出视图，默认为键盘
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/5.png" alt="5"></p>
-<h2 id="10-inputAccessoryView-设置弹出视图上方的辅助视图"><a href="#10-inputAccessoryView-设置弹出视图上方的辅助视图" class="headerlink" title="10.    inputAccessoryView:设置弹出视图上方的辅助视图"></a>10.    inputAccessoryView:设置弹出视图上方的辅助视图</h2><pre><code>_textView.inputAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; // 弹出视图上方的辅助视图
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/6.png" alt="6"></p>
-<h2 id="11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"><a href="#11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本" class="headerlink" title="11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"></a>11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本</h2><pre><code>_textView.clearsOnInsertion = YES; // clearsOnInsertion，默认为NO
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160427/7.png" alt="7"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/">展开全文 >></a>
         </p>
       
 
