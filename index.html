@@ -185,29 +185,28 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="喜报基础架构"><a href="#喜报基础架构" class="headerlink" title="喜报基础架构"></a>喜报基础架构</h1><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png" alt="180319"></p>
-<h2 id="基础控制器"><a href="#基础控制器" class="headerlink" title="基础控制器"></a>基础控制器</h2><p>###RootViewController###<br>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
+<h2 id="基础控制器"><a href="#基础控制器" class="headerlink" title="基础控制器"></a>基础控制器</h2><h2 id="RootViewController"><a href="#RootViewController" class="headerlink" title="RootViewController"></a>RootViewController</h2><p>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
 <ul>
 <li>用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。</li>
 <li>设置页面基础属性，背景颜色，统一所有页面样式</li>
 <li>设置NavBar，设置Title，按钮信息</li>
 <li>基础方法，包含延时执行，获取当前页面信息等</li>
 </ul>
-<p>###LoginViewController###<br>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
+<h2 id="LoginViewController"><a href="#LoginViewController" class="headerlink" title="LoginViewController"></a>LoginViewController</h2><p>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
 <p>在3.0版本中增加了启动显示公司信息功能，这个功能在AppDelegate的时候，已经开始获取存在NSUserDefaults里面的用户信息，创建ViewController将公司信息展示，同时异步去进行组件的注册，当所有的组件注册完成的时候，在进入到LoginViewController,这个时候在将创建的公司信息视图再次创建一次放在LoginViewController的View上，异步进行获取版本信息和自动登录，这样创造启动页面一直显示公司信息的假象。<br><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319001.png" alt="180319001"></p>
-<p>###RootTableViewController<br>所有包含下拉刷新的页面均继承此View。子视图负责实现业务逻辑即可。</p>
+<h2 id="RootTableViewController"><a href="#RootTableViewController" class="headerlink" title="RootTableViewController"></a>RootTableViewController</h2><p>所有包含下拉刷新的页面均继承此View。子视图负责实现业务逻辑即可。</p>
 <ul>
 <li>根据第三方框架MJRefresh创建TableView</li>
 <li>子视图必须实现刷新方法</li>
 <li>子视图自行实现TableView的Delegate和DataSource</li>
 </ul>
-<p>###VoiceViewController<br>大部分表单视图均包含有语言输入模块，继承此视图可以直接创建带有语言输入的页面。使用该视图作为父视图的大部分为表单，此视图中还有创建线，黑块等自定义方法。</p>
+<h2 id="VoiceViewController"><a href="#VoiceViewController" class="headerlink" title="VoiceViewController"></a>VoiceViewController</h2><p>大部分表单视图均包含有语言输入模块，继承此视图可以直接创建带有语言输入的页面。使用该视图作为父视图的大部分为表单，此视图中还有创建线，黑块等自定义方法。</p>
 <ul>
 <li>封装表单需要使用的模块</li>
 <li>封装部分点击事件简化表单视图</li>
 <li>封装部分请求数据处理</li>
 </ul>
-<p>##UserData</p>
-<p>项目中登录后UserData中存储了诸多数据，包括</p>
+<h2 id="UserData"><a href="#UserData" class="headerlink" title="UserData"></a>UserData</h2><p>项目中登录后UserData中存储了诸多数据，包括</p>
 <ul>
 <li>用户登录账户密码</li>
 <li>用户账户权限</li>
