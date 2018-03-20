@@ -164,6 +164,171 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-数据类型-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/">iOS开发指南-Objective—C基础-数据类型-01</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/" class="archive-article-date">
+  	<time datetime="2016-04-20T14:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>ps:本文大部分内容来自《iOS8开发指南》（2015版）</em></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这本书买了很久，基本上当字典来翻，现在将其中部分内容按照自己的理解写出来。也算是系统的复习一下。</p>
+<blockquote>
+<ul>
+<li>iOS 全称 iPhone OS，居然面试的时候有人问这个，我之前还真的不知道。</li>
+</ul>
+</blockquote>
+<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><ul>
+<li>command + ‘]’     缩进</li>
+<li>command + ‘[’        反向缩进</li>
+<li>control + ‘.’        智能提示</li>
+<li>control + ‘i’        校正代码格式</li>
+<li>shift + command + ‘Y’        掉出调试对话框</li>
+</ul>
+<h1 id="编译器指令"><a href="#编译器指令" class="headerlink" title="编译器指令"></a>编译器指令</h1><table>
+<thead>
+<tr>
+<th style="text-align:center">指令</th>
+<th style="text-align:center">含义</th>
+<th style="text-align:center">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">@”chars”</td>
+<td style="text-align:center">创建字符串对象</td>
+<td style="text-align:center">NSString *string = @”string”</td>
+</tr>
+<tr>
+<td style="text-align:center">@class</td>
+<td style="text-align:center">声明对象</td>
+<td style="text-align:center">@int x,y</td>
+</tr>
+<tr>
+<td style="text-align:center">@implementation</td>
+<td style="text-align:center">类的实现部分</td>
+<td style="text-align:center">@implementation NSString;</td>
+</tr>
+<tr>
+<td style="text-align:center">@interface</td>
+<td style="text-align:center">类的声明部分，.h文件中为开放，.m文件中为私有</td>
+<td style="text-align:center">@interface NSString : Object</td>
+</tr>
+<tr>
+<td style="text-align:center">@private</td>
+<td style="text-align:center">变量作用域为私有</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">@protected</td>
+<td style="text-align:center">变量作用域为当前，可以用修饰符进行修饰</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">@public</td>
+<td style="text-align:center">变量作用域为公有</td>
+</tr>
+</tbody>
+</table>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><p>整数类型。</p>
+<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>浮点数类型，曾经在开发中有记得float类型数字长度不能超过7位，否则会出现正数7位之后的数据会出错。</p>
+<h3 id="double"><a href="#double" class="headerlink" title="double"></a>double</h3><p>双精度浮点数类型，超过7位的计算就要用double类型了。</p>
+<h3 id="char"><a href="#char" class="headerlink" title="char"></a>char</h3><p>字符常量</p>
+<h3 id="id"><a href="#id" class="headerlink" title="id"></a>id</h3><p>对象类型。可以存储任何类型。</p>
+<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2><table>
+<thead>
+<tr>
+<th style="text-align:center">转义字符</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">\n</td>
+<td style="text-align:center">回车换行</td>
+</tr>
+<tr>
+<td style="text-align:center">\t</td>
+<td style="text-align:center">制表位</td>
+</tr>
+<tr>
+<td style="text-align:center">\b</td>
+<td style="text-align:center">退格</td>
+</tr>
+<tr>
+<td style="text-align:center">\r</td>
+<td style="text-align:center">回车</td>
+</tr>
+<tr>
+<td style="text-align:center">\</td>
+<td style="text-align:center">一个反斜杠</td>
+</tr>
+<tr>
+<td style="text-align:center">\’</td>
+<td style="text-align:center">一个单引号</td>
+</tr>
+<tr>
+<td style="text-align:center">\”</td>
+<td style="text-align:center">一个双引号</td>
+</tr>
+</tbody>
+</table>
+<p><em>ps：貌似这本书没有讲NSString 等OC 语法中的特有数据类型</em></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-前言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
