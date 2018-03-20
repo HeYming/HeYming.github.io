@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>喜报基础架构 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="#喜报基础架构  ##基础控制器 ###RootViewController在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title">
+  <meta name="description" content="喜报基础架构 基础控制器###RootViewController###在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title，按">
 <meta name="keywords" content="Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="喜报基础架构">
 <meta property="og:url" content="http://yoursite.com/2018/03/19/喜报基础架构/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="#喜报基础架构  ##基础控制器 ###RootViewController在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title">
+<meta property="og:description" content="喜报基础架构 基础控制器###RootViewController###在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title，按">
 <meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png">
 <meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319001.png">
-<meta property="og:updated_time" content="2018-03-20T09:55:42.036Z">
+<meta property="og:updated_time" content="2018-03-20T10:32:09.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="喜报基础架构">
-<meta name="twitter:description" content="#喜报基础架构  ##基础控制器 ###RootViewController在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title">
+<meta name="twitter:description" content="喜报基础架构 基础控制器###RootViewController###在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title，按">
 <meta name="twitter:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
@@ -187,17 +187,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#喜报基础架构</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png" alt="180319"></p>
-<p>##基础控制器</p>
-<p>###RootViewController<br>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
+        <h1 id="喜报基础架构"><a href="#喜报基础架构" class="headerlink" title="喜报基础架构"></a>喜报基础架构</h1><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319.png" alt="180319"></p>
+<h2 id="基础控制器"><a href="#基础控制器" class="headerlink" title="基础控制器"></a>基础控制器</h2><p>###RootViewController###<br>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
 <ul>
 <li>用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。</li>
 <li>设置页面基础属性，背景颜色，统一所有页面样式</li>
 <li>设置NavBar，设置Title，按钮信息</li>
 <li>基础方法，包含延时执行，获取当前页面信息等</li>
 </ul>
-<p>###LoginViewController<br>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
+<p>###LoginViewController###<br>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
 <p>在3.0版本中增加了启动显示公司信息功能，这个功能在AppDelegate的时候，已经开始获取存在NSUserDefaults里面的用户信息，创建ViewController将公司信息展示，同时异步去进行组件的注册，当所有的组件注册完成的时候，在进入到LoginViewController,这个时候在将创建的公司信息视图再次创建一次放在LoginViewController的View上，异步进行获取版本信息和自动登录，这样创造启动页面一直显示公司信息的假象。<br><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180319/180319001.png" alt="180319001"></p>
 <p>###RootTableViewController<br>所有包含下拉刷新的页面均继承此View。子视图负责实现业务逻辑即可。</p>
 <ul>
