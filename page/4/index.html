@@ -164,6 +164,148 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/" class="archive-article-date">
+  	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIDatePicker-日期选择器"><a href="#UIDatePicker-日期选择器" class="headerlink" title="UIDatePicker 日期选择器"></a>UIDatePicker 日期选择器</h1><h2 id="1-Locale"><a href="#1-Locale" class="headerlink" title="1.    Locale"></a>1.    Locale</h2><p>设置DatePicker的地区,即设置DatePicker显示的语言。</p>
+<pre><code>// 1.跟踪所有可用的地区，取出想要的地区
+    NSLog(@&quot;%@&quot;, [NSLocale availableLocaleIdentifiers]);
+
+// 2. 设置日期选择控件的地区
+[datePicker setLocale:[[NSLocale
+alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
+</code></pre><p>效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/1.png" alt="1"></p>
+<pre><code>// 2) 设置日期选择控件的地区
+[datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
+</code></pre><p>效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/2.png" alt="2"> </p>
+<h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
+<pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
+</code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
+<pre><code>默认为设置为：[datePicker setTimeZone:[NSTimeZone defaultTimeZone]];
+</code></pre><h2 id="4-date"><a href="#4-date" class="headerlink" title="4.    date"></a>4.    date</h2><p>设置DatePicker的日期。</p>
+<pre><code>默认设置为: [datePicker setDate:[NSDate date]];
+</code></pre><h2 id="5-minimumDate"><a href="#5-minimumDate" class="headerlink" title="5.    minimumDate"></a>5.    minimumDate</h2><p>设置DatePicker的允许的最小日期。</p>
+<h2 id="6-maximumDate"><a href="#6-maximumDate" class="headerlink" title="6.    maximumDate"></a>6.    maximumDate</h2><p>设置DatePicker的允许的最大日期。</p>
+<h2 id="7-countDownDuration"><a href="#7-countDownDuration" class="headerlink" title="7.    countDownDuration"></a>7.    countDownDuration</h2><p>设置DatePicker的倒计时间.</p>
+<pre><code>// 1) 设置日期选择的模
+[self.datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
+
+// 2) 设置倒计时的时长
+// 注意：设置倒计时时长需要在确定模式之后指定
+// 倒计时的时长，以秒为单位
+[self.datePicker setCountDownDuration:10 * 60];
+</code></pre><p>效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/3.png" alt="3"></p>
+<h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
+<pre><code>// 设置分钟间隔
+    datePicker.minuteInterval = 15;
+</code></pre><h2 id="9-datePickerMode"><a href="#9-datePickerMode" class="headerlink" title="9.    datePickerMode"></a>9.    datePickerMode</h2><p>9.1    </p>
+<pre><code>UIDatePickerModeTime,  // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
+显示小时，分钟和AM/PM,这个的名称是根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeTime];
+</code></pre><p>效果图：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/4.png" alt="4"> </p>
+<p>9.2    </p>
+<pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
+显示年月日，名称根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeDate];
+</code></pre><p>效果图： </p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/5.png" alt="5"></p>
+<p>9.3 默认是显示这种模式</p>
+<pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
+显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
+</code></pre><p>效果图：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/6.png" alt="6"></p>
+<p> 9.4  </p>
+<pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
+显示小时和分钟
+[datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/7.png" alt="7"></p>
+<h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
+<pre><code>// 不用设置宽高，因为它的宽高是固定的
+UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+</code></pre><p>10.2常用设置</p>
+<pre><code>// 设置区域为中国简体中文
+datePicker.locale = [[NSLocale alloc] 
+                            initWithLocaleIdentifier:@&quot;zh_CN&quot;];
+// 设置picker的显示模式：只显示日期
+datePicker.datePickerMode = UIDatePickerModeDate;
+</code></pre><p>10.3UIDatePicker需要监听值的改变</p>
+<pre><code>[datePicker addTarget:self action:@selector(dateChange:) 
+forControlEvents:UIControlEventValueChanged];
+</code></pre><p>11.UIDatePicker使用教程二。</p>
+<p>11.1日期范围</p>
+<p>你可以通过设置mininumDate 和 maxinumDate 属性，来指定使用的日期范围。如果用户试图滚动到超出这一范围的日期，表盘会回滚到最近的有效日期。两个方法都需要NSDate 对象作参数：</p>
+<pre><code>NSDate* minDate = [[NSDate alloc]initWithString:@&quot;1900-01-01 00:00:00 -0500&quot;];  
+NSDate* maxDate = [[NSDate alloc]initWithString:@&quot;2099-01-01 00:00:00 -0500&quot;];           
+datePicker.minimumDate = minDate;  
+datePicker.maximumDate = maxDate;
+</code></pre><p>11.2 如果两个日期范围属性中任何一个未被设置，则默认行为将会允许用户选择过去或未来的任意日期。这在某些情况下很有用处，比如，当选择生日时，可以是过去的任意日期，但终止与当前日期。如果你希望设置默认显示的日期，可以使用date属性：</p>
+<pre><code>datePicker.date = minDate;  
+</code></pre><p>11.3 此外，你还可以用 setDate 方法。如果选择了使用动画，则表盘会滚动到你指定的日期：</p>
+<pre><code>[ datePicker setDate:maxDate animated:YES];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2048,394 +2190,6 @@ NSLog(@&quot;filename:%@&quot;,filename);
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch 类-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-03</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/" class="archive-article-date">
-  	<time datetime="2016-04-22T12:21:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps：接着上次继续，上次没有介绍Cocoa Touch中类，本次接着介绍。</em></p>
-<h1 id="Cocoa-Touch中的类"><a href="#Cocoa-Touch中的类" class="headerlink" title="Cocoa Touch中的类"></a>Cocoa Touch中的类</h1><h2 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h2><blockquote>
-<ul>
-<li>根类（NSObject）        根类是所有类的子类。几乎所有Objective-C类都是从它派生而来的。</li>
-<li>应用程序类（NSApplication）    为iOS程序运行期间的控制和协作工作提供支持。通过[UIApplication sharedApplication]来获取单例指针</li>
-<li>窗口类（UIWindow）    UIWindow提供了一个用于管理和显示视图的容器，主要功能有提供一个区域来显示视图和将事件分发给视图。当接收到一个触摸事件的时候，是从底层开始一直往视图层寻找可以执行的对象。</li>
-<li>视图（UIView）    UIView类定义了一个矩形区域，并管理该区域内所有的屏幕显示。</li>
-</ul>
-</blockquote>
-<hr>
-<pre><code>// 从父控件中移除一个控件
-- (void)removeFromSuperview;
-
-// 添加一个子控件(可以将子控件插入到subviews数组中index这个位置)
-- (void)insertSubview:(UIView *)view atIndex:(NSInteger)index;
-
-// 交换subviews数组中所存放子控件的位置
-- (void)exchangeSubviewAtIndex:(NSInteger)index1 withSubviewAtIndex:(NSInteger)index2;
-
-// 添加一个子控件(新添加的控件默认都在subviews数组的后面, 新添加的控件默认都显示在最上面\最顶部)
-- (void)addSubview:(UIView *)view;
-
-// 添加一个子控件view(被挡在siblingSubview的下面)
-- (void)insertSubview:(UIView *)view belowSubview:(UIView *)siblingSubview;
-
-// 添加一个子控件view(盖在siblingSubview的上面)
-- (void)insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview;
-
-// 将某个子控件拉到最上面(最顶部)来显示
-- (void)bringSubviewToFront:(UIView *)view;
-
-// 将某个子控件拉到最下面(最底部)来显示
-- (void)sendSubviewToBack:(UIView *)view;
-
-/**系统自动调用(留给子类去实现)**/
-- (void)didAddSubview:(UIView *)subview;
-- (void)willRemoveSubview:(UIView *)subview;
-
-- (void)willMoveToSuperview:(UIView *)newSuperview;
-- (void)didMoveToSuperview;
-- (void)willMoveToWindow:(UIWindow *)newWindow;
-- (void)didMoveToWindow;
-/**系统自动调用**/
-
-// 是不是view的子控件或者子控件的子控件(是否为view的后代)
-- (BOOL)isDescendantOfView:(UIView *)view;  // returns YES for self.
-
-// 通过tag获得对应的子控件(也可以或者子控件的子控件)
-- (UIView *)viewWithTag:(NSInteger)tag;     // recursive search. includes self
-
-/**系统自动调用(留给子类去实现)**/
-// 控件的frame发生改变的时候就会调用,一般在这里重写布局子控件的位置和尺寸
-// 重写了这个写方法后,一定调用[super layoutSubviews];
-- (void)layoutSubviews;
-</code></pre><blockquote>
-<ul>
-<li>响应者（UIResponder）        表示一个可以接收事件的对象</li>
-<li>屏幕控件（UIControl）        由UIView派生而来，几乎是所有具有触摸效果的控件的父类</li>
-<li>视图控制器（UIViewController）    用于显示view的界面，同事包含view加载、卸载事件的重定义功能。</li>
-</ul>
-</blockquote>
-<hr>
-<pre><code>/**
- *  view加载完毕
- */
-- (void)viewDidLoad
-
-/**
- *  view即将显示到window上
- */
-- (void)viewWillAppear:(BOOL)animated
-
-/**
- *  view显示完毕(已经显示到窗口)
- */
-- (void)viewDidAppear:(BOOL)animated
-
-/**
- *  view即将从window上移除(即将看不见)
- */
-- (void)viewWillDisappear:(BOOL)animated
-
-/**
- *  view从window上完全移除(完全看不见)
- */
-- (void)viewDidDisappear:(BOOL)animated
-
-/**
-*  view即将销毁的时候调用
-*/
-- (void)viewWillUnload
-
-/**
- *  view销毁完毕的时候调用
- */
-- (void)viewDidUnload
-
-/**
- *  当接收到内存警告的时候
- */
-- (void)didReceiveMemoryWarning
-</code></pre><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p><em>ps：我说前面基本类型怎么没有讲，原来放到这里了。</em></p>
-<h2 id="NSString-NSMutableString-字符串类型"><a href="#NSString-NSMutableString-字符串类型" class="headerlink" title="NSString/NSMutableString 字符串类型"></a>NSString/NSMutableString 字符串类型</h2><p><strong>NSString的一些用法</strong></p>
-<pre><code>//1.int类型换换成字符串
-int a = 10;
-NSString * str1 = [NSString stringWithFormat:@&quot;%d&quot;,a];
-NSLog(@&quot;str1 %@&quot;,str1);
-
-//2.float -&gt; NSString
-float f = 2.4;
-NSString * str3 = [NSString stringWithFormat:@&quot;%.1f&quot;,f];
-NSLog(@&quot;str3 %@&quot;,str3);
-
-//3.double - &gt;NSstring
-double d = 65.9898;
-NSString * str4 = [NSString stringWithFormat:@&quot;%.4f&quot;,d];
-NSLog(@&quot;str4 %@&quot;,str4);
-
-//4.char - &gt; NSString
-char c = &apos;c&apos;;
-NSString * str5 = [NSString stringWithFormat:@&quot;%c&quot;,c];
-NSLog(@&quot;str5 %@&quot;,str5);
-
-//5.NSString -&gt; int
-NSString * str6 = @&quot;1&quot;;
-int i1 = [str6 intValue];
-NSLog(@&quot;i1 %d&quot;,i1);
-
-//5.NSString -&gt; float
-NSString * str7 = @&quot;9.8&quot;;
-float f1 = [str7 floatValue];
-NSLog(@&quot;f1 %.1f&quot;,f1);
-
-//6.NSString -&gt; double
-NSString * str8 = @&quot;8.88&quot;;
-double d1 = [str8 doubleValue];
-NSLog(@&quot;d1 %.2f&quot;,d1);
-
-//注意:当你要把字符串转换成某种基本数据类型的时候,一定要确定你要转化你的数据是正确
-NSString * str9 = @&quot;i386&quot;;
-int i2 = [str9 intValue];
-NSLog(@&quot;is %d&quot;,i2);
-
-//7.将字符串中的字母转换成大写
-NSString * str10 = @&quot;china&quot;;
-NSString * tmpStr1 = [str10 uppercaseString];
-NSLog(@&quot;tmpStr1 %@ str10 %@&quot;,tmpStr1,str10);
-
-//8.将字符中的字母转换成小写
-NSString * str11 = @&quot;CHINA&quot;;
-NSString * tmpStr2 = [str11 lowercaseString];
-NSLog(@&quot;tmpStr2 %@&quot;,tmpStr2);
-
-//9.将首字母大写
-NSString * str12 = @&quot;china&quot;;
-NSString * tmpStr3 = [str12 capitalizedString];
-NSLog(@&quot;tmpStr3  %@&quot;,tmpStr3);
-
-10.定义一个字符串a, 截取a 的某一个部分，复制给b, b必须是int型
-NSString *a = @&quot;1.2.30&quot;;
-int  b= [[a substringWithRange:NSMakeRange(4,2)] intValue];
-NSLog(@&quot;a:%@  \n&quot;,a  );
-NSLog(@&quot;b:%d&quot;,b  );
-解析如下：substringWithRange: 专门截取字符串的一块肉
-NSMakeRange(4,2)    从第4个字符开始截取，长度为2个字符，（字符串都是从第0个字符开始数的哦～！）
-b = [a intValue]; 将 a 转换为 整数型
-b = [a floatValue];   将 a 转换为 小数型
-b = [a boolValue]; 将 a 转换为 布尔型（true /  false）
-b = [a integerValue]; 将 a 转换为 整数型
-b = [a longLongValue]; 将 a 转换为 长整型
-
-11。 字符串截取到第n位  （substringToIndex: n）(第n 位不算再内)
-- (void)viewDidLoad
-{
-    NSString  *a = @&quot;i like long dress&quot;;
-    NSString *b = [a substringToIndex:4];
-    NSLog(@&quot;\n b: %@&quot;,b);
-}
-
-12。字符串从第n 位开始截取,直到最后 （substringFromIndex:n）（包括第 n 位）
-- (void)viewDidLoad
-{
-    NSString  *a = @&quot;i like long dress&quot;;
-    NSString *b = [a substringFromIndex:4];
-    NSLog(@&quot;\n b: %@&quot;,b);
-}
-</code></pre><h2 id="NSArray-NSMutableArray-数组"><a href="#NSArray-NSMutableArray-数组" class="headerlink" title="NSArray/NSMutableArray    数组"></a>NSArray/NSMutableArray    数组</h2><pre><code>//创建数组对象，nsarray不可变数组
-//c语言的数组可以存放任何类型的数据，同一个数组只能有同一种数据类型
-//oc语言的数组只能存放对象，可以存放任意对象
-// [nsnull null] == 空对象
-//nsarray *arr = [[nsarray alloc] initwithobjects:@&quot;123&quot;,@&quot;345&quot;,@&quot;abc&quot;, nil];
-nsarray *arr1 = @[@&quot;1 2 3&quot;, @&quot;345&quot;, [nsnull null], @&quot;789&quot;];
-nsarray *arr3 = [[nsarray alloc] initwitharray:arr1];
-nslog(@&quot;arr = %@&quot;,arr3);
-
-//将c数组转换为oc数组对象
-//oc不允许将nil插入到数组中,因为nil作用是数组的结束标记
-NSString *carr[10] = {@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;};
-NSArray *arr4 = [[NSArray alloc] initWithObjects:carr count:2];
-NSLog(@&quot;arr4 = %@&quot;,arr4);
-//获取元素个数
-NSUInteger count = [arr4 count];
-NSLog(@&quot;count = %ld&quot;,count);
-//获取指定下标元素
-NSLog(@&quot;%@&quot;,[arr3 objectAtIndex:1]);
-//获取第一个元素或者最后一个元素
-id arrf = [arr3 firstObject];
-id arrl = [arr3 lastObject];
-NSLog(@&quot;%@ %@&quot;,arrf,arrl);
-//获取子集
-NSArray *arr2 = @[@&quot;111&quot;, @&quot;222&quot;, @&quot;333&quot;, @&quot;444&quot;, @&quot;555&quot;, @&quot;666&quot;];
-
-//取出连续范围的元素作为子集内容
-NSArray *sub1 = [arr2 subarrayWithRange:NSMakeRange(1, 3)];
-
-NSLog(@&quot;sub1 = %@&quot;, sub1);
-//获取任意元素作为子集
-//1.列出所需要元素的下标清单
-NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
-//1-1.将要获取元素的下标写入清单
-for (NSInteger i = 0; i &lt; [arr2 count]; i++)
-{
-if (i % 2 != 0)
-{
-[indexs addIndex:i];
-}
-}
-
-//2.将清单交给数组
-//id obj =[arr2 objectAtIndex:0]; //获取单个元素,返回单个元素
-NSArray *sub2 = [arr2 objectsAtIndexes:indexs];//获取下标清单里的所有元素,返回一个元素集合(数组)
-
-NSLog(@&quot;sub2 = %@&quot;, sub2);
-
-//获取最长字符串和最小字符串
-//快速枚举
-NSArray *arr5 = @[@&quot;123456789&quot;, @&quot;222&quot;, @&quot;333&quot;, @&quot;errr&quot;, @&quot;444&quot;, @&quot;5&quot;, @&quot;666&quot;];
-NSInteger maxLength = [arr5[0] length];
-NSInteger minLength = [arr5[0] length];
-NSString *maxString = nil;
-NSString *minString = nil;
-
-for (id obj in arr5) {
-
-if (maxLength &lt;= [obj length]) {
-
-maxLength = [obj length];
-maxString = obj;
-}
-
-if (minLength &gt;= [obj length]) {
-
-minLength = [obj length];
-minString = obj;
-}
-}
-NSLog(@&quot;maxString = %@, minString = %@&quot;,maxString,minString);
-#if 0
-//创建可变数组对象
-NSMutableArray *arr1 = [[NSMutableArray alloc] initWithCapacity:30];
-NSMutableArray *arr2 = [NSMutableArray arrayWithCapacity:30];
-
-//添加元素
-[arr1 addObject:@&quot;123&quot;];
-[arr1 addObject:@&quot;456&quot;];
-
-[arr2 addObjectsFromArray:arr1];
-[arr2 addObject:@&quot;789&quot;];
-[arr2 addObject:@&quot;789&quot;];
-[arr2 addObject:@&quot;789&quot;];
-
-NSLog(@&quot;arr1 = %@&quot;,arr1);
-NSLog(@&quot;arr2 = %@&quot;,arr2);
-
-//插入元素
-//插入下标的范围: 0&lt;=index&lt;=count
-[arr1 insertObject:@&quot;aaa&quot; atIndex:1];
-[arr1 insertObject:@&quot;bbb&quot; atIndex:[arr1 count]];
-NSLog(@&quot;arr1 = %@&quot;,arr1);
-
-//删除
-[arr2 removeAllObjects];//删除所有元素
-[arr2 removeLastObject];//删除最后一个元素
-[arr2 removeObject:@&quot;789&quot;];//删除指定对象，会将所有对象删除
-[arr2 removeObject:@&quot;789&quot; inRange:NSMakeRange(1, 2)];//删除指定范围中的指定对象
-[arr2 removeObjectAtIndex:0];//删除指定下标的元素
-[arr2 removeObjectsInRange:NSMakeRange(2, 2)];//删除指定范围中得元素
-[arr2 removeObjectIdenticalTo:@&quot;789&quot;];
-[arr2 removeObjectIdenticalTo:@&quot;789&quot; inRange:NSMakeRange(2, 1)];
-//如果要删除不连续的元素，则先把要删除的元素放在一个清单中，然后再删除该清单
-//比如要删下标为偶数的
-
-NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
-
-for (int i = 0; i &lt; [arr2 count]; i++) {
-
-if (i % 2 == 0) {
-
-[indexs addIndex:i];
-}
-
-}
-//删除清单中得元素
-[arr2 removeObjectsAtIndexes:indexs];
-
-
-//修改数组中得内容
-[arr2 replaceObjectAtIndex:2 withObject:@&quot;aaa&quot;];
-NSArray *arr = @[@&quot;qqqq&quot;,@&quot;www&quot;,@&quot;ee&quot;];
-[arr2 replaceObjectsAtIndexes:indexs withObjects:arr];
-// qq, 789, ww, 456, ee
-[arr2 replaceObjectsInRange:NSMakeRange(1, 3) withObjectsFromArray:arr];// qq, qq, ww, ee, ee,在指定范围内，修改数组中得内容。
-
-//交换数组中得内容
-[arr2 exchangeObjectAtIndex:1 withObjectAtIndex:3];
-//用oc对c语言中得数组进行排序
-for (int i = 0; i &lt; [arr2 count]; ++i) {
-
-    for (int i = 0; i &lt; [arr2 count]; ++i) {
-        for (int j = i + 1; j &lt; [arr2 count]; ++j) {
-            if ([arr2[i] length] &gt; [arr2[j] length]) {
-                [arr2 exchangeObjectAtIndex:i withObjectAtIndex:j];
-            }
-        }
-    }
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/">展开全文 >></a>
         </p>
       
 

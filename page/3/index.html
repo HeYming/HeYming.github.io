@@ -164,6 +164,98 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/" class="archive-article-date">
+  	<time datetime="2016-05-05T14:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIToolBar-工具栏"><a href="#UIToolBar-工具栏" class="headerlink" title="UIToolBar 工具栏"></a>UIToolBar 工具栏</h1><p><em>ps：感觉这个没啥好写的，都是使用的方法，属性和代理，就直接找DEMO写上去了</em></p>
+<pre><code>//创建toolbar
+UIToolbar *toolBar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 420.0f, 320.0f, 40.0f) ] autorelease];
+
+//创建barbuttonitem
+UIBarButtonItem *item1 = [[[UIBarButtonItem alloc] initWithTitle:@&quot;收藏&quot; style:UIBarButtonItemStyleBordered target:self action:@selector(test:)] autorelease];
+
+//创建barbuttonitem
+UIBarButtonItem *item2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:nil] autorelease];
+
+//创建一个segmentController
+UISegmentedControl *seg = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@&quot;牛扒&quot;, @&quot;排骨&quot;, nil] ] autorelease];
+
+//设置style
+[seg setSegmentedControlStyle:UISegmentedControlSegmentCenter];
+
+[seg addTarget:self action:@selector(segmentControllerItem:) forControlEvents:UIControlEventValueChanged];
+
+//创建一个内容是view的uibarbuttonitem
+UIBarButtonItem *itemSeg = [[[UIBarButtonItem alloc] initWithCustomView:seg] autorelease];
+
+//创建barbuttonitem,样式是flexible,这个种barbuttonitem用于两个barbuttonitem之间
+//调整两个item之间的距离.flexible表示距离是动态的,fixed表示是固定的
+UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
+
+//把item添加到toolbar里
+[toolBar setItems:[NSArray arrayWithObjects:item1,flexible,itemSeg,flexible,item2, nil] animated:YES];
+
+//把toolbar添加到view上
+[self.view addSubview:toolBar];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1575,148 +1667,6 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/" class="archive-article-date">
-  	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIDatePicker-日期选择器"><a href="#UIDatePicker-日期选择器" class="headerlink" title="UIDatePicker 日期选择器"></a>UIDatePicker 日期选择器</h1><h2 id="1-Locale"><a href="#1-Locale" class="headerlink" title="1.    Locale"></a>1.    Locale</h2><p>设置DatePicker的地区,即设置DatePicker显示的语言。</p>
-<pre><code>// 1.跟踪所有可用的地区，取出想要的地区
-    NSLog(@&quot;%@&quot;, [NSLocale availableLocaleIdentifiers]);
-
-// 2. 设置日期选择控件的地区
-[datePicker setLocale:[[NSLocale
-alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/1.png" alt="1"></p>
-<pre><code>// 2) 设置日期选择控件的地区
-[datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/2.png" alt="2"> </p>
-<h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
-<pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
-</code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
-<pre><code>默认为设置为：[datePicker setTimeZone:[NSTimeZone defaultTimeZone]];
-</code></pre><h2 id="4-date"><a href="#4-date" class="headerlink" title="4.    date"></a>4.    date</h2><p>设置DatePicker的日期。</p>
-<pre><code>默认设置为: [datePicker setDate:[NSDate date]];
-</code></pre><h2 id="5-minimumDate"><a href="#5-minimumDate" class="headerlink" title="5.    minimumDate"></a>5.    minimumDate</h2><p>设置DatePicker的允许的最小日期。</p>
-<h2 id="6-maximumDate"><a href="#6-maximumDate" class="headerlink" title="6.    maximumDate"></a>6.    maximumDate</h2><p>设置DatePicker的允许的最大日期。</p>
-<h2 id="7-countDownDuration"><a href="#7-countDownDuration" class="headerlink" title="7.    countDownDuration"></a>7.    countDownDuration</h2><p>设置DatePicker的倒计时间.</p>
-<pre><code>// 1) 设置日期选择的模
-[self.datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-
-// 2) 设置倒计时的时长
-// 注意：设置倒计时时长需要在确定模式之后指定
-// 倒计时的时长，以秒为单位
-[self.datePicker setCountDownDuration:10 * 60];
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/3.png" alt="3"></p>
-<h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
-<pre><code>// 设置分钟间隔
-    datePicker.minuteInterval = 15;
-</code></pre><h2 id="9-datePickerMode"><a href="#9-datePickerMode" class="headerlink" title="9.    datePickerMode"></a>9.    datePickerMode</h2><p>9.1    </p>
-<pre><code>UIDatePickerModeTime,  // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
-显示小时，分钟和AM/PM,这个的名称是根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeTime];
-</code></pre><p>效果图：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/4.png" alt="4"> </p>
-<p>9.2    </p>
-<pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
-显示年月日，名称根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeDate];
-</code></pre><p>效果图： </p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/5.png" alt="5"></p>
-<p>9.3 默认是显示这种模式</p>
-<pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
-显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
-</code></pre><p>效果图：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/6.png" alt="6"></p>
-<p> 9.4  </p>
-<pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
-显示小时和分钟
-[datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042701/7.png" alt="7"></p>
-<h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
-<pre><code>// 不用设置宽高，因为它的宽高是固定的
-UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-</code></pre><p>10.2常用设置</p>
-<pre><code>// 设置区域为中国简体中文
-datePicker.locale = [[NSLocale alloc] 
-                            initWithLocaleIdentifier:@&quot;zh_CN&quot;];
-// 设置picker的显示模式：只显示日期
-datePicker.datePickerMode = UIDatePickerModeDate;
-</code></pre><p>10.3UIDatePicker需要监听值的改变</p>
-<pre><code>[datePicker addTarget:self action:@selector(dateChange:) 
-forControlEvents:UIControlEventValueChanged];
-</code></pre><p>11.UIDatePicker使用教程二。</p>
-<p>11.1日期范围</p>
-<p>你可以通过设置mininumDate 和 maxinumDate 属性，来指定使用的日期范围。如果用户试图滚动到超出这一范围的日期，表盘会回滚到最近的有效日期。两个方法都需要NSDate 对象作参数：</p>
-<pre><code>NSDate* minDate = [[NSDate alloc]initWithString:@&quot;1900-01-01 00:00:00 -0500&quot;];  
-NSDate* maxDate = [[NSDate alloc]initWithString:@&quot;2099-01-01 00:00:00 -0500&quot;];           
-datePicker.minimumDate = minDate;  
-datePicker.maximumDate = maxDate;
-</code></pre><p>11.2 如果两个日期范围属性中任何一个未被设置，则默认行为将会允许用户选择过去或未来的任意日期。这在某些情况下很有用处，比如，当选择生日时，可以是过去的任意日期，但终止与当前日期。如果你希望设置默认显示的日期，可以使用date属性：</p>
-<pre><code>datePicker.date = minDate;  
-</code></pre><p>11.3 此外，你还可以用 setDate 方法。如果选择了使用动画，则表盘会滚动到你指定的日期：</p>
-<pre><code>[ datePicker setDate:maxDate animated:YES];
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
         </p>
       
 

@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>小豆子的博客</title>
+  <title>项目页面创建优化过程 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小豆子的博客">
-<meta property="og:url" content="http://yoursite.com/page/2/index.html">
+  <meta name="description" content="项目页面创建优化过程 1.0版本我们的项目在最早的版本1.0时候，页面比较简单，当时工期紧张，急着上线，  创建页面 所有需要显示的数据均为后台返回的数组集合，最初的时候，界面样式来回变动，我们采用了最简单的方式，循环显示数组，用UILable创建标题，用UITextField创建填写框，其他特殊的全部单独处理。这样页面代码很多，也较为顺利的做出第一个版本。 数据处理 这个阶段后台数据还没有全部固">
+<meta name="keywords" content="Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目页面创建优化过程">
+<meta property="og:url" content="http://yoursite.com/2018/03/20/项目页面创建优化过程/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:description" content="项目页面创建优化过程 1.0版本我们的项目在最早的版本1.0时候，页面比较简单，当时工期紧张，急着上线，  创建页面 所有需要显示的数据均为后台返回的数组集合，最初的时候，界面样式来回变动，我们采用了最简单的方式，循环显示数组，用UILable创建标题，用UITextField创建填写框，其他特殊的全部单独处理。这样页面代码很多，也较为顺利的做出第一个版本。 数据处理 这个阶段后台数据还没有全部固">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320001.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320002.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320003.png">
+<meta property="og:updated_time" content="2018-03-21T05:24:01.768Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
+<meta name="twitter:title" content="项目页面创建优化过程">
+<meta name="twitter:description" content="项目页面创建优化过程 1.0版本我们的项目在最早的版本1.0时候，页面比较简单，当时工期紧张，急着上线，  创建页面 所有需要显示的数据均为后台返回的数组集合，最初的时候，界面样式来回变动，我们采用了最简单的方式，循环显示数组，用UILable创建标题，用UITextField创建填写框，其他特殊的全部单独处理。这样页面代码很多，也较为顺利的做出第一个版本。 数据处理 这个阶段后台数据还没有全部固">
+<meta name="twitter:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -162,50 +169,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-iOS开发指南-Objective—C基础-界面旋转-33" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-项目页面创建优化过程" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/">iOS开发指南-Objective—C基础-界面旋转-33</a>
+    <h1 class="article-title" itemprop="name">
+      项目页面创建优化过程
     </h1>
   
 
         
-        <a href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/" class="archive-article-date">
-  	<time datetime="2016-05-15T14:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
+        <a href="/2018/03/20/项目页面创建优化过程/" class="archive-article-date">
+  	<time datetime="2018-03-20T10:43:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-20</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="界面旋转基础"><a href="#界面旋转基础" class="headerlink" title="界面旋转基础"></a>界面旋转基础</h1><p><em>ps：本章开始就已经结束了ui控件的学习，开始其他的知识的学习</em></p>
-<p>#1、启动界面旋转</p>
-<p>##1.1 全局设置是否可以旋转</p>
-<pre><code>- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
-}
-</code></pre><p>##1.2 当前控制器设置旋转</p>
-<pre><code>-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
-    return YES;
-}
-</code></pre><p>#2、页面旋转调用</p>
-<pre><code>-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
-
-}
-</code></pre><p>每次页面旋转的时候就会调用这个方法，在该方法内写页面旋转后的逻辑。<br>如果用的是Storyboard的话，可以直接将orientation属性修改为landscape来查看效果，但是记得看完后改回portrait，否则默认进入就是横屏。</p>
-<p>本章内容不多，多数页面中，横屏均为单独设计，此处可以根据情况来进行采用适当的方法。</p>
+        <h1 id="项目页面创建优化过程"><a href="#项目页面创建优化过程" class="headerlink" title="项目页面创建优化过程"></a>项目页面创建优化过程</h1><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320.png" alt="180320"></p>
+<h2 id="1-0版本"><a href="#1-0版本" class="headerlink" title="1.0版本"></a>1.0版本</h2><p>我们的项目在最早的版本1.0时候，页面比较简单，当时工期紧张，急着上线，</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320001.png" alt="180320001"></p>
+<p><strong>创建页面</strong></p>
+<p>所有需要显示的数据均为后台返回的数组集合，最初的时候，界面样式来回变动，我们采用了最简单的方式，循环显示数组，用UILable创建标题，用UITextField创建填写框，其他特殊的全部单独处理。这样页面代码很多，也较为顺利的做出第一个版本。</p>
+<p><strong>数据处理</strong></p>
+<p>这个阶段后台数据还没有全部固定成型，我们直接解析返回的JSON，转换为字典并直接取值，这种方式很容易出现返回错误，但是上线后后台更容易修复问题。</p>
+<p><strong>数据校验</strong></p>
+<p>初期版本较为原始，采用的是循环创建数组，对比对应的控件取值进行非空判断，由于前期字段并不是特别多，处理好每一个控件也能基本完成需求。</p>
+<p><strong>表单提交</strong></p>
+<p>再次循环创建数组，遍历控件将控件值拼接成字典转换为JSON传给后台。</p>
+<p>1.0版本的时候，所有的方法都用的很基础。当版本出来后有了使用者，这个时候就开始迭代更新，在进行了四次版本迭代后，基本的数据样式得到了固定，这个时候准备2.0版本的开发。</p>
+<h2 id="2-0版本"><a href="#2-0版本" class="headerlink" title="2.0版本"></a>2.0版本</h2><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320002.png" alt="180320002"></p>
+<p>在2.0版本的时候，新的界面样式风格较为统一，且数据返回已经固定格式，所以我们在开发的时候进行了一些优化。</p>
+<p><strong>创建页面</strong></p>
+<p>此时数据样式已经基本统一，我们拆分存在差异的样式，将不同样式的单行进行封装，只需要传入创建Model，选择对应的样式，就可以直接返回单行View。这个时候用Masonry做整个表单的自动布局，虽然字段更多，但显示已经没有问题。</p>
+<p><strong>数据处理</strong></p>
+<p>这个阶段返回数据格式已经基本固定，将展示数组内字典转为Model，返回的其他内容均转换为Model。</p>
+<p><strong>数据校验</strong></p>
+<p>这个时候由于提交格式已经固定，先创建提交字典，在对提交字典进行校验。省去一次拼接过程。</p>
+<p><strong>表单提交</strong></p>
+<p>创建提交字典，先把所有的key添加进去，在循环创建数组添加Value，经过校验后转换为Model提交。</p>
+<p>2.0版本主要优化的页面创建，数据的交互，后面重心均放在版本迭代，小功能的增加中。</p>
+<h2 id="3-0版本"><a href="#3-0版本" class="headerlink" title="3.0版本"></a>3.0版本</h2><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180320/180320003.png" alt="180320003"></p>
+<p>当2.0版本更新了52个版本后，迎来了3.0版本。3.0版本新增了多个表单流程，这个时候整个页面的数据格式，样式已经完全固定下来，可以开始模块化开发了。</p>
+<p><strong>创建页面</strong></p>
+<p>到3.0版本的时候，所有表单样式已经完全固定，数据格式也已经固定下来，这个时候，将页面拆分为四个模块。</p>
+<ol>
+<li>个人信息模块，所有的个人信息均在这一个模块内显示，模块可以自行校验数据，区别显示与不显示内容，内部自动布局。</li>
+<li>表单内容模块，将数据Model跟当前单行View封装在一起，当前Model所有内容均在当前模块内完成。</li>
+<li>自定义模块，只需要传入创建Model，取出结果Model，其他的都是模块处理。</li>
+<li>按钮模块，只需要传入当前表单状态，自动创建对应的表单按钮并进行自动布局。</li>
+</ol>
+<p>这个时候创建表单变得简单起来。</p>
+<p><strong>数据处理</strong></p>
+<p>这个时候直接将数据拆分为对应的模块数据。表单内容直接创建模型，包含数据Model，视图View等信息。预留校验数组。</p>
+<p><strong>数据校验</strong></p>
+<p>拿到提交Model，循环校验数组校验Model值，做到最小数据量校验。</p>
+<p><strong>表单提交</strong></p>
+<p>创建提交Model，创建的时候进行赋值，进行校验后转Json提交。</p>
 
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -218,1272 +265,123 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
       		
 		</ul>
 	</div>
 
       
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPopoverController-分割视图控制器"><a href="#UIPopoverController-分割视图控制器" class="headerlink" title="UIPopoverController 分割视图控制器"></a>UIPopoverController 分割视图控制器</h1><p><em>ps:本章节内容只用于ipad，我也没有开发过ipad的应用程序，所以摘抄了网上的一篇文章，来源<a href="https://yq.aliyun.com/articles/41385" target="_blank" rel="external">https://yq.aliyun.com/articles/41385</a></em></p>
-<p>#1、概述</p>
-<p>是iPad开发中常见的一种控制器（在iPhone上不允许使用），跟其他控制器不一样的是，它直接继承自NSObject，并非继承自UIViewController，它只占用部分屏幕空间来呈现信息，而且显示在屏幕的最前面。</p>
-<p>#2、使用步骤</p>
-<p>要想显示一个UIPopoverController，需要经过下列步骤：</p>
-<p>第一步：设置内容控制器</p>
-<p>由于UIPopoverController直接继承自NSObject，不具备可视化的能力。因此UIPopoverController上面的内容必须由另外一个继承自UIViewController的控制器来提供，这个控制器称为“内容控制器”。</p>
-<p>设置内容控制器有3种方法：</p>
-<p>（1）在初始化UIPopoverController的时候传入一个内容控制器：</p>
-<pre><code>- (id)initWithContentViewController:(UIViewController *)viewController;
-</code></pre><p>（2）@property (nonatomic, retain) UIViewController</p>
-<p>*contentViewController;</p>
-<p>（3）- (void)setContentViewController:</p>
-<pre><code>(UIViewController *)viewController animated:(BOOL)animated;
-</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
-<p>第二步：设置内容的尺寸</p>
-<p>即设置显示出来占据多少屏幕空间。</p>
-<p>设置内容的尺寸有2种方法：</p>
-<pre><code>（1）@property (nonatomic) CGSize popoverContentSize;
-
-（2）- (void)setPopoverContentSize:(CGSize)size animated:
-
- (BOOL)animated;
-</code></pre><p>以上方法和属性都是UIPopoverController的。</p>
-<p>也可以在UIPopoverController的ContentViewController（内容控制器）的viewDidLoad方法中设置popoverContentSize来设置其显示在UIPopoverController中的大小。</p>
-<p>第三步：设置显示的位置</p>
-<p>即设置从哪个地方冒出来。</p>
-<p>设置显示的位置有2种方法：</p>
-<p>（1）围绕着一个UIBarButtonItem显示（箭头指定那个UIBarButtonItem）</p>
-<pre><code>- (void)PopoverFromBarButtonItem:(UIBarButtonItem *)item permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
-</code></pre><p>item ：围绕着哪个UIBarButtonItem显示</p>
-<p>arrowDirections ：箭头的方向</p>
-<p>animated ：是否通过动画显示出来</p>
-<p>（2）围绕着某一块特定区域显示（箭头指定那块特定区域）</p>
-<pre><code>- (void)presentPopoverFromRect:(CGRect)rect inView:(UIView *)view permittedArrowDirections:(UIPopoverArrowDirection)arrowDirections animated:(BOOL)animated;
-</code></pre><p>rect ：指定箭头所指区域的矩形框范围（位置和尺寸）</p>
-<p>view ：rect参数是以view的左上角为坐标原点（0，0）</p>
-<p>arrowDirections ：箭头的方向</p>
-<p>animated ：是否通过动画显示出来</p>
-<p>#3、rect和view参数</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160512/1.png" alt="1"></p>
-<p>#4、设置显示的位置</p>
-<p>如果想让箭头指向某一个UIView的做法有2种做法，比如指向一个button。</p>
-<p>方法1：</p>
-<pre><code>[popover presentPopoverFromRect:button.bounds inView:button permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
-</code></pre><p>方法2：</p>
-<pre><code>[popover presentPopoverFromRect:button.frame
-
-inView:button.superview permittedArrowDirections:
-
-UIPopoverArrowDirectionDown animated:YES];
-</code></pre><p>#5、常见报错</p>
-<p>在popover的使用过程中，经常会遇到这个错误：</p>
-<pre><code>-[UIPopoverController dealloc] reached while popover is still visible.
-</code></pre><p>错误的大体意思是：popover在仍旧可见的时候被销毁了（调用了dealloc）。</p>
-<p>从错误可以得出的结论：</p>
-<p>（1）当popover仍旧可见的时候，不准销毁popover对象</p>
-<p>（2）在销毁popover对象之前，一定先让popover消失（不可见）</p>
-<p>例如：</p>
-<pre><code>-(IBAction)menuClick:(UIBarButtonItem *)sender {
-
-//创建内容控制器
-
-UIViewController *vc = [[UIVeiwController alloc] init];
-
-vc.view.backgroundColor = [UIColor redColor];
-
-UINavigationController *nav = [[UINavigationController alloc] initWithRootController:vc];
-
-//创建popover
-
-UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContentViewController:nav];
-
-//可以不设置尺寸，会有一个默认的尺寸320x480
-
-//设置显示到那个位置
-
-[titlePopover presentPopoverFromBarButtonItem:sender permittedArrowDirectionAny animated:YES];
-
-}
-</code></pre><p>上面代码就会报这个错误，因为在ARC模式下，当执行到最后一句时，titlePopover就会被系统回收，但此时titlePopover仍然显示在屏幕上，所以会报上面错误。解决办法是创建一个属性：</p>
-<pre><code>@property (nonatomic, strong) UIPopoverController *titlePopover;
-</code></pre><p>把上面代码红色部分全部改成self.titlePopover</p>
-<p>6、通过内容控制器设置内容尺寸</p>
-<p>内容控制器可以自行设置自己在popover中显示的尺寸：</p>
-<p>在iOS 7之前：</p>
-<pre><code>@property (nonatomic,readwrite) CGSize contentSizeForViewInPopover;
-</code></pre><p>从iOS 7开始：</p>
-<pre><code>@property (nonatomic) CGSize preferredContentSize;
-</code></pre><p>以上属性都是UIViewController的</p>
-<p>7、常用属性</p>
-<p>代理对象：</p>
-<pre><code>@property (nonatomic, assign) id &lt;UIPopoverControllerDelegate&gt; delegate;
-</code></pre><p>是否可见：</p>
-<pre><code>@property (nonatomic, readonly, getter=isPopoverVisible) BOOL popoverVisible;
-</code></pre><p>箭头方向：</p>
-<pre><code>@property (nonatomic, readonly) UIPopoverArrowDirection popoverArrowDirection;
-</code></pre><p>关闭popover（让popover消失）：</p>
-<pre><code>- (void)dismissPopoverAnimated:(BOOL)animated;
-</code></pre><p>#8、防止点击UIPopoverController区域外消失</p>
-<p>默认情况下：</p>
-<p>（1）只要UIPopoverController显示在屏幕上，UIPopoverController背后的所有控件默认是不能跟用户进行正常交互的</p>
-<p>（2）点击UIPopoverController区域外的控件，UIPopoverController默认会消失</p>
-<p>要想点击UIPopoverController区域外的控件时不让UIPopoverController消失，解决办法是设置passthroughViews属性：</p>
-<p>@property (nonatomic, copy) NSArray *passthroughViews;</p>
-<p>这个属性是设置当UIPopoverController显示出来时，哪些控件可以继续跟用户进行正常交互。这样的话，点击区域外的控件就不会让UIPopoverController消失了</p>
-<p>#9、如何iPhone中实现popover的效果</p>
-<p>UIPopoverController这个类是只能用在iPad中的，要想在iPhone中实现popover效果，必须得自定义view，可以参考：</p>
-<p><a href="http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000" target="_blank" rel="external">http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000</a></p>
-<p><a href="http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000" target="_blank" rel="external">http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
         		</li>
       		
 		</ul>
 	</div>
 
+
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">展开全文 >></a>
-        </p>
-      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
 
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/03/20/项目页面创建优化过程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
   
-    <article id="post-iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/">iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31</a>
-    </h1>
   
-
-        
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#多场景故事板</p>
-<p>#1、多场景故事板基础</p>
-<p><strong>专业术语</strong></p>
-<ul>
-<li>视图控制器 view controller </li>
-</ul>
-<p>负责管理用户与其iOS设备交互的类。</p>
-<ul>
-<li>视图 view</li>
-</ul>
-<p>用户在屏幕上看到的布局</p>
-<ul>
-<li>场景 scene</li>
-</ul>
-<p>视图控制器与视图的独特结合。</p>
-<ul>
-<li>切换    sugue</li>
-</ul>
-<p>切换是场景间的过度</p>
-<ul>
-<li>模态视图 modal view </li>
-</ul>
-<p>在需要进行用户交互的时候，通过模态视图显示在另一个视图上。</p>
-<ul>
-<li>关系 relationship </li>
-</ul>
-<p>类似于切换，用户某些类型的视图控制器，</p>
-<ul>
-<li>故事版    Storyboard</li>
-</ul>
-<p>包含项目中场景、切换和关系的定义的文件</p>
-<p>#2、创建多场景项目</p>
-<ol>
-<li>在故事版中添加场景</li>
-</ol>
-<p>打开故事版，在搜索框内搜索view controller ，将view Controller 拖拽到interface builder 编辑器的空白区域。</p>
-<ol>
-<li>给场景命名</li>
-</ol>
-<p>在identity inspector的identity部分，在label中输入场景名。</p>
-<ol>
-<li>添加提供支持的控制器</li>
-</ol>
-<p>选择view后可以点击坐下小的+号来新增文件，也可以直接选择class进行指定一个现有的控制器</p>
-<ol>
-<li>使用#import 来共享属性和方法</li>
-</ol>
-<p>如果view中的控件拖入到.h文件中，其他控制器通过引用就可以调取该文件的属性</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
+    <a href="/2018/03/19/喜报基础架构/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">喜报基础架构</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/">iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UITabBarController-选项卡栏控制器"><a href="#UITabBarController-选项卡栏控制器" class="headerlink" title="UITabBarController 选项卡栏控制器"></a>UITabBarController 选项卡栏控制器</h1><p>#1.UITabBarController</p>
-<p>UITabBarController通常作为整个程序的rootViewController，而且不能添加到别的 container viewController中。</p>
-<p>使用步骤：</p>
-<p>（1）初始化UITabBarController</p>
-<p>（2）设置UIWindow的rootViewController为UITabBarController</p>
-<p>（3）创建相应的子控制器（viewcontroller）</p>
-<p>（4）把子控制器添加到UITabBarController</p>
-<p>selectedIndex属性可用于设置当前被选中的为哪个viewcontroller</p>
-<p>可通过代理使tabbarcontroller的某一个viewcontroller不可用，即不可点击，示例代码：</p>
-<pre><code>- (BOOL)tabBarController:(UITabBarController*)tabBarController shouldSelectViewController:(UIViewController*)viewController {
-
-if([tabBarController.viewControllersindexOfObject:viewController] ==1) {
-
-returnNO;
-
-}
-
-returnYES;
-
-}
-</code></pre><p>#2.UITabbar</p>
-<p>UITabBar上面显示的每一个Tab都对应着一个ViewController，我们可以通过设置 viewcontroller.tabBarItem属性来改变tabbar上对应的tab显示内容。否则系统将会根据viewController的 title自动创建一个，该tabBarItem只显示文字，没有图像。当我们自己创建UITabBarItem的时候，我们可以显示的指定显示的图像和 对应的文字描述。当然还可以通过</p>
-<p>设置背景颜色</p>
-<pre><code>[tabVC.tabBar setBarTintColor:[UIColor grayColor]];
-</code></pre><p>设置选中item颜色:</p>
-<pre><code>[tabVC.tabBarsetTintColor:[UIColorcolorWithRed:170/255.0green:0/255.0blue:0/255.0alpha:1.0]];
-</code></pre><p>注意（未验证）：</p>
-<p>UITabBar自己有一些方法是可以改变自身状态，但是对于UITabBarController自带的tabBar，我们不能直接去修改其状态。任何直接修改tabBar的操作将会抛出异常</p>
-<pre><code>uitabbaritem的titlePositionAdjustment属性可设置title的偏移量，示例代码：
-
-[newsVC.tabBarItemsetTitlePositionAdjustment:UIOffsetMake(0, -3)];
-
-UIBarItem的imageInsets属性可设置image的偏移量，示例代码：
-
-[newsVC.tabBarItemsetImageInsets:UIEdgeInsetsMake(20,0,0,0)];
-</code></pre><p>UITabBar的默认高度为49</p>
-<p>UITabBarController的tabBar.frame属性可任意修改tabbar的宽度和位置，但高度修改不生效。而且此时tabbarcontroller控制下的view controller的view也是按照tabor的默认尺寸和位置进行适配，如果要修改tabor的frame还需要手动对其控制下的view controller进行适配。</p>
-<p>#3.UITabbarItem</p>
-<p>tabbaritem可分别设置image和selectedImage属性，用来显示选中和未选中时显示的图片</p>
-<p>UIBarItem的图片处理方案：</p>
-<p>1.(默认)使用系统的图片渲染处理，即时图片本身有颜色也将对最终显示结果无任何影响，此时可改变渲染的颜色</p>
-<p>2.使用图片本身的颜色，此时需修改UIImage的renderingMode（只读）属性。示例代码：</p>
-<pre><code>newsVC.tabBarItem.image        = [UIImage imageNamed:@&quot;picture&quot;];
-
-newsVC.tabBarItem.selectedImage= [UIImageimageNamed:@&quot;icon87&quot;];
-
-newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-</code></pre><p>注：未被选中状态的图片默认会被渲染成灰色，但也使用与以上属性（可设为显示某一张图片的原色）</p>
-<p><em>ps:原文链接：<a href="http://www.jianshu.com/p/d138faa563cb" target="_blank" rel="external">http://www.jianshu.com/p/d138faa563cb</a></em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#UINavigationController（导航控制器）</p>
-<p>导航控制器遵循栈原则，先进后出，后进先出。所以一定要熟悉这个原则，便于push和pop。</p>
-<p>#1、基本概念</p>
-<p>##1）继承于UIViewControler</p>
-<p>##2）相当于一个容器用来管理有层级关系的控制器</p>
-<p>##3）采用栈的方式管理所有controller,每个controller管理各自的试图。</p>
-<p>   栈：系统连续分配的内存</p>
-<p>   向栈中添加一个对象的操作称为入栈</p>
-<p>   在栈中删除一个对象的操作称为出栈</p>
-<p>   第一个入栈的对象叫做基栈</p>
-<p>   最后一个入栈的对象，叫做栈顶</p>
-<p>   当前显示的试图控制器，即为栈顶。</p>
-<p>   对象出栈、入栈的方式：后进先出，先进后出</p>
-<p>##4）提供返回上一级controller的默认button和方法</p>
-<p>##5）创建时要给导航控制器设置根控制器</p>
-<p>#2、结构,包含三个部分</p>
-<p>##1）navigationBar   导航栏</p>
-<p>###1、基本概念</p>
-<ol>
-<li><p>和导航控制器一样，是一个容器，用来显示导航栏上的试图，</p>
-</li>
-<li><p>竖屏44 横屏32</p>
-</li>
-</ol>
-<p>###2、配置外观</p>
-<ol>
-<li><p>设置导航栏样式</p>
-<p> self.navigationController.navigationBar.barStyle = UIBarStyleBlack;</p>
-<p> 例如：self.navigationController.navigationBar.barStyle =  UIBarStyleBlack;//黑色</p>
-</li>
-<li><p>设置导航栏是否透明，设为不透明能够屏蔽导航栏对试图frame的影响</p>
-<p> self.navigationController.navigationBar.translucent = NO;//NO代表不透明</p>
-</li>
-</ol>
-<ul>
-<li>配置背景颜色</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.navigationController.navigationBar.barTintColor = [UIColor magentaColor];//tint |tɪnt|色彩</div></pre></td></tr></table></figure>
-<ul>
-<li>配置背景图片</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.navigationController.navigationBar setBackgroundImage: forBarMetrics:</div></pre></td></tr></table></figure>
-<ul>
-<li><p>改变导航栏上默认按钮颜色</p>
-<p>  self.navigationBar.tintColor</p>
-</li>
-</ul>
-<ol>
-<li>配置内容</li>
-</ol>
-<ul>
-<li><p>每个controller都有专属的navigationItem</p>
-</li>
-<li><p>通过配置不同控制器的navigationItem让不同控制器的导航栏显示不同的内容</p>
-</li>
-<li><p>navigationItem的常用属性</p>
-<p> leftBarButtonItem<br> rightBarButtonItem<br> backBarButtonItem<br> title<br> titleView</p>
-</li>
-<li><p>backBarButtonItem是由上一层控制器控制的</p>
-</li>
-<li><p>导航栏的prompt属性，通过navigationItem来设置，其主要作用是用于提示用户。比如，用户正在请求网络数据时，提示用户数据正在加载。待加载完成后可以将它的值设置为nil，取消显示。</p>
-</li>
-</ul>
-<ol>
-<li>具体的代码做法</li>
-</ol>
-<p>给控制器设置标题 </p>
-<p>self.stitle = @”测试”;</p>
-<p>self.navigationItem.title = @”测试”;</p>
-<ul>
-<li>重新设置导航栏的标题样式</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeContactAdd];</div><div class="line">[btn1 addTarget:self action:@selector(clickTitle) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">self.navigationItem.titleView = btn1;</div></pre></td></tr></table></figure>
-<ul>
-<li>给导航设置右边的barbuttonItem</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];</div><div class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *style1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(clickReigter)];</div></pre></td></tr></table></figure>
-<ul>
-<li>给右边设置多个barbuttonitem<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">self.navigationItem.rightBarButtonItems = @[reginBarButtonItem,style1];</div><div class="line">//self.navigationItem.leftBarButtonItems =@[reginBarButtonItem,style1];</div><div class="line"></div><div class="line">self.navigationItem.prompt = @&quot;正在努力帮你加载&quot;;//增加一个提示（prompt提示）</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<ol>
-<li>UINavigationBar上面设置的button分类（请认真分析）</li>
-</ol>
-<ul>
-<li>添加系统自己的button（其他的控制器界面都会显示）</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.navigationBar addSubview:rigisterBtn];//设置的BarButton在每一个界面都会显示</div></pre></td></tr></table></figure>
-<ul>
-<li>添加自己当前控制器界面的BarButton（例如，登录页面右上角的注册按钮）</li>
-</ul>
-<ul>
-<li><p>（1）self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:rigisterBtn];</p>
-</li>
-<li><p>（2）添加系统的BarButton（也只有当前系统有这个button）</p>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];//刷新</div><div class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;（刷新按钮）</div></pre></td></tr></table></figure>
-<ul>
-<li>（3）设置多个按钮，按照数组的方式排列在导航栏上（例如在导航栏上添加刷新和返回按钮）</li>
-</ul>
-<ol>
-<li>导航栏的出现和隐藏方法(可以设置在界面转换的方法里面)</li>
-</ol>
-<ul>
-<li>让第二个控制器显示的时候，将导航栏隐藏</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> - (void)viewDidAppear:(BOOL)animated&#123;</div><div class="line">  [super viewDidAppear:animated];</div><div class="line">  [self.navigationController setNavigationBarHidden:YES animated:YES ];</div><div class="line">  或者 self.navigationBarHidden= YES；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>当第二个控制器消失的时候，不隐藏导航栏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidDisappear:(BOOL)animated&#123;</div><div class="line">[super viewDidDisappear:animated];</div><div class="line">[self.navigationController setNavigationBarHidden:NO animated:NO];</div><div class="line"> 或者 self.navigationBarHidden= NO;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ol>
-<li><p>重新设置导航栏的返回按钮 继承解决都返回的问题(新建一个类，父类还是UIViewController)（定义一个类让所有的控制器都遵守协议，都设置为返回样式，否则进入界面会成为主题放在导航栏的左边）</p>
-<p>重新设置导航栏的返回按钮   继承解决都返回的问题</p>
-</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *customBackItem = [[UIBarButtonItem alloc]initWithTitle:@&quot;返回&quot; style:UIBarButtonItemStylePlain target:self </div><div class="line">self.navigationItem.backBarButtonItem = customBackItem;</div></pre></td></tr></table></figure>
-<p>##2) 内容视图</p>
-<p>##3）toolBar，因为不常用，默认是隐藏的 / 工具栏</p>
-<p>#3、常用属性和方法</p>
-<h2 id="属性"><a href="#属性" class="headerlink" title="属性"></a>属性</h2><h3 id="1）获取到在栈中最顶层的试图控制器-1和2其实一样"><a href="#1）获取到在栈中最顶层的试图控制器-1和2其实一样" class="headerlink" title="1）获取到在栈中最顶层的试图控制器 //1和2其实一样"></a>1）获取到在栈中最顶层的试图控制器 //1和2其实一样</h3><pre><code>topViewController
-
-例如  id topViewController = self.navigationController.topViewController;
-</code></pre><h3 id="2）获取到在栈中当前显示的试图控制器"><a href="#2）获取到在栈中当前显示的试图控制器" class="headerlink" title="2）获取到在栈中当前显示的试图控制器"></a>2）获取到在栈中当前显示的试图控制器</h3><pre><code>visibleViewController
- 例如（2）id visibleViewController = self.navigationController.visibleViewController;
-</code></pre><h3 id="3）在栈中当前有的试图控制器-返回一个数组栈中有的控制器"><a href="#3）在栈中当前有的试图控制器-返回一个数组栈中有的控制器" class="headerlink" title="3）在栈中当前有的试图控制器 //返回一个数组栈中有的控制器"></a>3）在栈中当前有的试图控制器 //返回一个数组栈中有的控制器</h3><pre><code>viewControllers
- 例如：id viewControllersr = self.navigationController.viewControllers;
-</code></pre><h3 id="4）隐藏导航栏"><a href="#4）隐藏导航栏" class="headerlink" title="4）隐藏导航栏"></a>4）隐藏导航栏</h3><pre><code>navigationBarHidden
-
-  例如  self.navigationController.navigationBarHidden = YES;//YES确定隐藏
-</code></pre><h3 id="5）获取到导航栏"><a href="#5）获取到导航栏" class="headerlink" title="5）获取到导航栏"></a>5）获取到导航栏</h3><pre><code>navigationBar
-</code></pre><p>例如： id navigationBar = self.navigationController.navigationBar;</p>
-<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="1）初始化一个根视图控制器，在栈的最底层"><a href="#1）初始化一个根视图控制器，在栈的最底层" class="headerlink" title="1）初始化一个根视图控制器，在栈的最底层"></a>1）初始化一个根视图控制器，在栈的最底层</h3><pre><code>initWithRootViewController:(UIViewController *)rootViewController;
-</code></pre><h3 id="2）往栈中压入一个新的控制器"><a href="#2）往栈中压入一个新的控制器" class="headerlink" title="2）往栈中压入一个新的控制器"></a>2）往栈中压入一个新的控制器</h3><pre><code>pushViewController:(UIViewController *)viewController animated:(BOOL)animated;
-
-例如：[self.navigationController pushViewController:twoViewController animated:YES];
-</code></pre><h3 id="3）移除栈顶的一个控制器（返回上一个控制器也就是自己出栈）"><a href="#3）移除栈顶的一个控制器（返回上一个控制器也就是自己出栈）" class="headerlink" title="3）移除栈顶的一个控制器（返回上一个控制器也就是自己出栈）"></a>3）移除栈顶的一个控制器（返回上一个控制器也就是自己出栈）</h3><pre><code>- (UIViewController *)popViewControllerAnimated:(BOOL)animated;
-</code></pre><p>例如：[self.navigationController popViewControllerAnimated:YES];</p>
-<h3 id="4）弹出到指定的视图控制器中，返回的数组代表要出栈中移除的对象"><a href="#4）弹出到指定的视图控制器中，返回的数组代表要出栈中移除的对象" class="headerlink" title="4）弹出到指定的视图控制器中，返回的数组代表要出栈中移除的对象"></a>4）弹出到指定的视图控制器中，返回的数组代表要出栈中移除的对象</h3><pre><code>- (NSArray *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated;
-
-NSArray *arrayViewController = self.navigationController.viewControllers;
-
-[self.navigationController popToViewController:arrayViewController[1] animated:YES];
-</code></pre><h3 id="5）回到根视图控制器"><a href="#5）回到根视图控制器" class="headerlink" title="5）回到根视图控制器"></a>5）回到根视图控制器</h3><pre><code>- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated;
-    例如：[self.navigationController popToRootViewControllerAnimated:YES];//回老家
-</code></pre><p><em>ps文／lerveinitial 原文链接：<a href="http://www.jianshu.com/p/77fcc26b8694" target="_blank" rel="external">http://www.jianshu.com/p/77fcc26b8694</a></em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIView-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">iOS开发指南-Objective—C基础-Interface-Builder-UIView-28</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>UIView 基础视图</p>
-<p>#1.alpha</p>
-<p>设置视图的透明度.默认为1.</p>
-<pre><code>// 完全透明
-view.alpha = 0;
-// 不透明
-view.alpha = 1;
-</code></pre><p>#2.clipsToBounds</p>
-<pre><code>// 默认是NO，当设置为yes时，超出当前视图的尺寸的内容和子视图不会显示。
-view.clipsToBounds = YES;
-</code></pre><p>#3.hidden</p>
-<pre><code>// 默认是NO，当设置为yes，视图就看不见了。
-view.hidden = YES;
-</code></pre><p>#4.userInteractionEnabled</p>
-<pre><code>// 默认为YES，如果设置为No，view就不能和用户交互了。（即不能响应事件）
-view.userInteractionEnabled = NO;
-</code></pre><p>#5. tag</p>
-<pre><code>// 默认为0，用来标记视图的
-view.tag = 0;
-</code></pre><p>#6. exclusiveTouch</p>
-<p>默认为No<br>exclusiveTouch的意义在于：如果当前设置了exclusiveTouch的UIView是整个触摸事件的第一响应者，那么到你所有的手指离开屏幕前其他的UIView是无法接受到整个事件周期内所有的触摸事件。</p>
-<p>#7.CGRect frame</p>
-<p>1&gt; 表示控件的位置和尺寸（以父控件的左上角为坐标原点（0, 0））<br>2&gt; 修改这个属性，可以调整控件的位置和尺寸</p>
-<p>#8.CGPoint center</p>
-<p>1&gt; 表示控件的中点（以父控件的左上角为坐标原点）<br>2&gt; 修改这个属性，可以调整控件的位置</p>
-<p>#9.CGRect bounds</p>
-<p>1&gt; 表示控件的位置和尺寸（以自己的左上角位坐标原点，位置永远是(0, 0)）<br>2&gt; 修改这个属性，只能调整控件的尺寸</p>
-<p>#10.CGAffineTransform transform</p>
-<p>1&gt; 表示控件的形变状态（旋转角度、缩放比例）<br>2&gt; 创建CGAffineTransform的函数</p>
-<pre><code>* CGAffineTransformMakeScale(CGFloat sx, CGFloat sy)
-</code></pre><p>创建一个x、y方向的缩放比例分别为sx、sy的形变值</p>
-<pre><code>* CGAffineTransformMakeRotation(CGFloat angle)
-</code></pre><p>创建一个旋转角度为angle的形变值</p>
-<pre><code>* CGAffineTransformScale(CGAffineTransform t, CGFloat sx, CGFloat sy)
-</code></pre><p>在形变值t的基础上，再进行缩放，x、y方向的缩放比例分别为sx、sy，然后返回一个新的形变值</p>
-<pre><code>* CGAffineTransformRotate(CGAffineTransform t, CGFloat angle)
-</code></pre><p>在形变值t的基础上，再进行旋转，旋转角度为angle，然后返回一个新的形变值</p>
-<p>#11.superview </p>
-<p>返回当前视图的父视图。（只读）</p>
-<p>#12.window</p>
-<p>返回当前视图的窗口。（窗口）</p>
-<p>获取根视图的superview和window时，需要注意，在viewdidload中是获取不到的，viewdidload只是视图加载完成，并没有添加到窗口中，因此需要在viewDidAppear方法中才能获取到。那时候视图才被添加到窗口中。</p>
-<pre><code>- (void)viewDidLoad
-{
-    [super viewDidLoad]; 
-    NSLog(@&quot;%@&quot;,self.view.superview); // 没有值
-    NSLog(@&quot;%@&quot;, self.view.window); // 没有值
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@&quot;%@&quot;,self.view.superview); // 有值
-    NSLog(@&quot;%@&quot;, self.view.window);  // 有值
-}
-</code></pre><p>#13.autoresizesSubviews</p>
-<p>默认为YES，表示当父视图尺寸改变时，子视图也会随着改变。</p>
-<p>#14.autoresizingMask</p>
-<p>默认为UIViewAutoresizingNone,不会自动伸缩。</p>
-<p>#15.contentMode</p>
-<p>设置内容模式。<br>UIViewContentModeScaleToFill  不按照原宽高比例（长和宽不等比例增长）以任意比例填充。这样视图不会有空白，且内容可以全部显示。<br>UIViewContentModeAspectToFill  按照原长宽比例填充，不完全显示全部内容。这样内容可能溢出，但整个视图不会留有空白。<br>UIViewContentModeAspectToFit   按照原长宽比例（长和宽等比例增长），完全显示全部内容。这样容易照成左右或者上下留有空白。</p>
-<p>#16.backgroundColor</p>
-<p>默认是nil。</p>
-<pre><code>// 设置背景颜色为红色
-self.view.backgroundColor = [UIColor redColor];
-</code></pre><p>#17.UIView常用添加子视图方法</p>
-<pre><code>//加一个视图到一个视图里面  
-addSubview:  
-//将一个视图移到前面  
-bringSubviewToFront:  
-//将一个视图推送到背后  
-sendSubviewToBack:  
-//把视图移除  
-removeFromSuperview  
-//插入视图 并指定索引  
-insertSubview:atIndex:  
-//插入视图在某个视图之上  
-insertSubview:aboveSubview:  
-//插入视图在某个视图之下  
-insertSubview:belowSubview:  
-//交换两个位置索引的视图  
-exchangeSubviewAtIndex:withSubviewAtIndex:  
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/" class="archive-article-date">
-  	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UISearchBar-检索条"><a href="#UISearchBar-检索条" class="headerlink" title="UISearchBar 检索条"></a>UISearchBar 检索条</h1><p><em>ps:这本书已经写了一半的，其中很多内容比较繁琐，我都是在网上找的方法进行复制，其中有很多表格就不写了，毕竟还有Google，本文内容来自<a href="http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral</a>,作者:FlyElephant</em></p>
-<p>#UISearchBar和UISearchDisplayController</p>
-<p>是网上最常见的也算是最简单的，也有使用Searh Bar Search Display Controller的控件的，本文就简单的使用Search Bar和UITableView实现搜索Demo的,最上面的就是搜索栏，之前的就是TableView:</p>
-<p>为了实现搜索需要声明委托UISearchBarDelegate,UISearchDisplayDelegate,其中搜索主要使用的就是UISearchDisplayDelegate，具体代码实现过程:</p>
-<p>##声明字段:</p>
-<pre><code>@property (strong,nonatomic) NSMutableArray  *dataList;
-
-@property (strong,nonatomic) NSMutableArray  *searchList;
-</code></pre><p>##初始化数据:</p>
-<pre><code>self.dataList=[NSMutableArray arrayWithCapacity:100];
-
-for (NSInteger i=0; i&lt;100; i++) {
-    [self.dataList addObject:[NSString stringWithFormat:@&quot;%ld-FlyElephant&quot;,(long)i]];
-}
-</code></pre><p>##设置区域:</p>
-<pre><code>//设置区域
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-</code></pre><p>　<br>设置区域的行数(重点),这个就是使用委托之后需要需要判断是一下是否是需要使用Search之后的视图:</p>
-<pre><code>-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return [self.searchList count];
-        }else{
-            return [self.dataList count];
-    }
-}
-</code></pre><p>　<br>同样的返回单元格也有两种情况，一种是初始化数据，一种是过滤之后的数据视图:</p>
-<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@&quot;cellFlag&quot;;
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
-        [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
-        [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
-
-    return cell;
-}
-</code></pre><p>UISearchBarDelegate中的开始和结束的事件:</p>
-<pre><code>- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    NSLog(@&quot;搜索Begin&quot;);
-    return YES;
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    NSLog(@&quot;搜索End&quot;);
-    return YES;
-}
-</code></pre><p>搜索时过滤数据:</p>
-<pre><code>- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
-    // 谓词的包含语法,之前文章介绍过http://www.cnblogs.com/xiaofeixiang/
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
-
-    if (self.searchList!= nil) {
-        [self.searchList removeAllObjects];
-    }
-    //过滤数据
-    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
-    //刷新表格
-    return YES;
-}
-</code></pre><p>UISearchController实现搜索</p>
-<p>UISeachBar通过UISearchDisplayDelegate实现上面的效果是没有问题的，网上也有很多类似的实现效果，不过是警告的，信息如下: ‘searchDisplayController’ is deprecated: first deprecated in iOS 8.0,这么明显一个警告总不能视而不见吧，在StackOverFlow中发现UISearchDisplayController is deprecated in IOS8.0, and recommended to use UISearchController instead，也就是说iOS 8.0不推荐UISearchDisplayController,也就是不推荐使用UISearchDisplayDelegate，但是可以通过UISearchController实现UISearchResultsUpdating这个委托实现上面的效果；</p>
-<p>视图中中需要声明UISearchResultsUpdating:</p>
-<pre><code>@interface ViewController : UITableViewController&lt;UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchResultsUpdating&gt;
-</code></pre><p>@end<br>　属性声明:</p>
-<pre><code>@property (nonatomic, strong) UISearchController *searchController;
-</code></pre><p>　<br>需要自己初始化一下UISearchController:</p>
-<pre><code>_searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-
-_searchController.searchResultsUpdater = self;
-
-_searchController.dimsBackgroundDuringPresentation = NO;
-
-_searchController.hidesNavigationBarDuringPresentation = NO;
-
-_searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-
-self.tableView.tableHeaderView = self.searchController.searchBar;
-</code></pre><p>之前是通过判断搜索时候的TableView，不过现在直接使用self.searchController.active进行判断即可，也就是</p>
-<p>UISearchController的active属性:</p>
-<pre><code>//设置区域的行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-    if (self.searchController.active) {
-        return [self.searchList count];
-    }else{
-        return [self.dataList count];
-    }
-
-}
-
-//返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@&quot;cellFlag&quot;;
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (self.searchController.active) {
-        [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
-        [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
-    return cell;
-}
-</code></pre><p>　具体调用的时候使用的方法也发生了改变，这个时候使用updateSearchResultsForSearchController进行结果过滤:</p>
-<pre><code>-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-
-    NSString *searchString = [self.searchController.searchBar text];
-
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
-
-    if (self.searchList!= nil) {
-        [self.searchList removeAllObjects];
-    }
-    //过滤数据
-    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
-    //刷新表格
-
-    [self.tableView reloadData];
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/">iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIProgressView-进度条"><a href="#UIProgressView-进度条" class="headerlink" title="UIProgressView 进度条"></a>UIProgressView 进度条</h1><p>##初始化一个进度条：</p>
-<pre><code>- (instancetype)initWithProgressViewStyle:(UIProgressViewStyle)style;
-</code></pre><p>注意：<br>1.用这个方式初始化的进度条系统会默认给一个长度。</p>
-<p>2.进度条的长度可以通过frame来设置，但是只有前三个参数有效。</p>
-<p>3.风格枚举如下：</p>
-<pre><code>typedef NS_ENUM(NSInteger, UIProgressViewStyle) {
-    UIProgressViewStyleDefault,     // 普通样式
-    UIProgressViewStyleBar,         // 用于工具条的样式
-};
-</code></pre><p>##设置进度条风格样式</p>
-<pre><code>@property(nonatomic) UIProgressViewStyle progressViewStyle; 
-</code></pre><p>##设置进度条进度(0.0-1.0之间，默认为0.0)</p>
-<pre><code>@property(nonatomic) float progress;
-</code></pre><p>##设置已走过进度的进度条颜色</p>
-<pre><code>@property(nonatomic, retain) UIColor* progressTintColor;
-</code></pre><p>##设置未走过进度的进度条颜色</p>
-<pre><code>@property(nonatomic, retain) UIColor* trackTintColor;
-</code></pre><p>##设置进度条已走过进度的背景图案和为走过进度的背景图案(IOS7后好像没有效果了)</p>
-<pre><code>@property(nonatomic, retain) UIImage* progressImage;
-
-@property(nonatomic, retain) UIImage* trackImage;
-</code></pre><p>##设置进度条进度和是否动画显示(动画显示会平滑过渡)</p>
-<pre><code>- (void)setProgress:(float)progress animated:(BOOL)animated;
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIActivityIndicatorView-活动指示器"><a href="#UIActivityIndicatorView-活动指示器" class="headerlink" title="UIActivityIndicatorView 活动指示器"></a>UIActivityIndicatorView 活动指示器</h1><p><em>ps:之前好像从来没有用过这个玩意</em></p>
-<p>##1.    activityIndicatorViewStyle 设置指示器的样式</p>
-<ul>
-<li>UIActivityIndicatorViewStyleWhiteLarge  </li>
-</ul>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16050901/21.png" alt="1"></p>
-<ul>
-<li>UIActivityIndicatorViewStyleWhite   (默认样式)</li>
-</ul>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16050901/22.png" alt="1"></p>
-<ul>
-<li>UIActivityIndicatorViewStyleGray    </li>
-</ul>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16050901/23.png" alt="1"></p>
-<p>##2.hidesWhenStopped </p>
-<p>当停止动画的时候，是否隐藏。默认为YES。</p>
-<p>##3. 实例化指示器对象，根据样式设置尺寸，不需要手动设置。</p>
-<pre><code>-(id)initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyle)style;
-</code></pre><p>##4.开启动画 </p>
-<pre><code>- (void)startAnimating;
-</code></pre><p>##5.关闭动画</p>
-<pre><code>- (void)stopAnimating;
-</code></pre><p>##6.是否在动画</p>
-<pre><code>- (BOOL)isAnimating;
-</code></pre><p>##7. UIActivityIndicatorView使用注意</p>
-<p>###7.1初始化的时候不需要设置尺寸，设置尺寸也没有效果。</p>
-<p>###7.2 必须调用startAnimating才会显示UIActivityIndicatorView</p>
-<pre><code>// 初始化指示器
-UIActivityIndicatorView *indicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-// 设置指示器位置
-indicator.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame.size.height * 0.5);
-// 开启动画，必须调用，否则无法显示
-[indicator startAnimating];
-
-[self.view addSubview:indicator];
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPickerView-选择器视图"><a href="#UIPickerView-选择器视图" class="headerlink" title="UIPickerView 选择器视图"></a>UIPickerView 选择器视图</h1><p>#1.属性</p>
-<p>##1.    numberOfComponents：返回UIPickerView当前的列数</p>
-<pre><code>NSInteger num = _pickerView.numberOfComponents;
-NSLog( @&quot;%d&quot;, num);
-</code></pre><p>##2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</p>
-<pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
-NSLog(@&quot;%d&quot;,numInCp);
-</code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
-<pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
-NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/1.png" alt="1"></p>
-<p>#2.    delegate：</p>
-<p>##2.0 设置UIPickerView代理</p>
-<pre><code>_pickerView.delegate = self;
-</code></pre><p>##2.1 设置UIPickView每行显示的内容</p>
-<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return @&quot;showData&quot;;
-}
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/2.png" alt="2"></p>
-<p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
-<pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UIView *myView=[[UIView alloc]init];
-    myView.backgroundColor = [UIColor redColor];
-    return myView;
-}
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/3.png" alt="3"></p>
-<p>#3.    dataSource：数据源</p>
-<p>##1.设置每列显示3行</p>
-<pre><code>// pragma mark  - dataSource method
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 3;
-}
-// 设置显示2列
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2; 
-</code></pre><p>}</p>
-<p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
-<pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/4.png" alt="4"></p>
-<p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
-<pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-</code></pre><p>##4. 返回第component列每一行的高度</p>
-<pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-</code></pre><p>##5.刷新某一列的数据</p>
-<p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
-<pre><code>[pickerView reloadComponent:1];
-</code></pre><p>##6. 刷新所有列的数据 </p>
-<pre><code>- (void)reloadAllComponents;
-</code></pre><p>##7. 返回选中的是第component列的第几行。</p>
-<pre><code>- (NSInteger)selectedRowInComponent:(NSInteger)component;                                   
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="项目页面创建优化过程" data-title="项目页面创建优化过程" data-url="http://yoursite.com/2018/03/20/项目页面创建优化过程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"小豆子的博客"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
 
   
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -1506,8 +404,8 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
