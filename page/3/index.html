@@ -164,6 +164,124 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/" class="archive-article-date">
+  	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIPickerView-选择器视图"><a href="#UIPickerView-选择器视图" class="headerlink" title="UIPickerView 选择器视图"></a>UIPickerView 选择器视图</h1><p>#1.属性</p>
+<p>##1.    numberOfComponents：返回UIPickerView当前的列数</p>
+<pre><code>NSInteger num = _pickerView.numberOfComponents;
+NSLog( @&quot;%d&quot;, num);
+</code></pre><p>##2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</p>
+<pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
+NSLog(@&quot;%d&quot;,numInCp);
+</code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
+<pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
+NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
+</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/1.png" alt="1"></p>
+<p>#2.    delegate：</p>
+<p>##2.0 设置UIPickerView代理</p>
+<pre><code>_pickerView.delegate = self;
+</code></pre><p>##2.1 设置UIPickView每行显示的内容</p>
+<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return @&quot;showData&quot;;
+}
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/2.png" alt="2"></p>
+<p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
+<pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *myView=[[UIView alloc]init];
+    myView.backgroundColor = [UIColor redColor];
+    return myView;
+}
+</code></pre><p>效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/3.png" alt="3"></p>
+<p>#3.    dataSource：数据源</p>
+<p>##1.设置每列显示3行</p>
+<pre><code>// pragma mark  - dataSource method
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return 3;
+}
+// 设置显示2列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2; 
+</code></pre><p>}</p>
+<p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
+<pre><code>_pickerView.showsSelectionIndicator = NO;
+</code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/4.png" alt="4"></p>
+<p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
+<pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+</code></pre><p>##4. 返回第component列每一行的高度</p>
+<pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
+</code></pre><p>##5.刷新某一列的数据</p>
+<p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
+<pre><code>[pickerView reloadComponent:1];
+</code></pre><p>##6. 刷新所有列的数据 </p>
+<pre><code>- (void)reloadAllComponents;
+</code></pre><p>##7. 返回选中的是第component列的第几行。</p>
+<pre><code>- (NSInteger)selectedRowInComponent:(NSInteger)component;                                   
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1557,116 +1675,6 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/" class="archive-article-date">
-  	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPicker-选择器"><a href="#UIPicker-选择器" class="headerlink" title="UIPicker 选择器"></a>UIPicker 选择器</h1><h2 id="1-numberOfComponents：返回UIPickerView当前的列数"><a href="#1-numberOfComponents：返回UIPickerView当前的列数" class="headerlink" title="1.    numberOfComponents：返回UIPickerView当前的列数"></a>1.    numberOfComponents：返回UIPickerView当前的列数</h2><pre><code>NSInteger num = _pickerView.numberOfComponents;
-NSLog( @&quot;%d&quot;, num);
-</code></pre><h2 id="2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。"><a href="#2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。" class="headerlink" title="2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。"></a>2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</h2><pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
-NSLog(@&quot;%d&quot;,numInCp);
-</code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
-NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/1.png" alt="1"></p>
-<h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
-<pre><code>_pickerView.delegate = self;
-// 设置UIPickView每行显示的内容
-</code></pre><p>###4.1</p>
-<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return @&quot;showData&quot;;
-}
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/2.png" alt="2"></p>
-<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
-
-// 返回一个视图，用来设置pickerView的每行显示的内容。
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UIView *myView=[[UIView alloc]init];
-    myView.backgroundColor = [UIColor redColor];
-    return myView;
-}
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/3.png" alt="3"></p>
-<h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
-// 设置每列显示3行
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 3;
-}
-// 设置显示2列
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2; 
-}
-</code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/4.png" alt="4"></p>
-<p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-</code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
-<h2 id="8-返回第component列每一行的高度"><a href="#8-返回第component列每一行的高度" class="headerlink" title="8. 返回第component列每一行的高度"></a>8. 返回第component列每一行的高度</h2><pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-</code></pre><h2 id="9-刷新某一列的数据"><a href="#9-刷新某一列的数据" class="headerlink" title="9.刷新某一列的数据"></a>9.刷新某一列的数据</h2><p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
-<pre><code>[pickerView reloadComponent:1];
-</code></pre><h2 id="10-刷新所有列的数据"><a href="#10-刷新所有列的数据" class="headerlink" title="10. 刷新所有列的数据 "></a>10. 刷新所有列的数据 </h2><pre><code>- (void)reloadAllComponents;
-</code></pre><h2 id="11-返回选中的是第component列的第几行。"><a href="#11-返回选中的是第component列的第几行。" class="headerlink" title="11. 返回选中的是第component列的第几行。"></a>11. 返回选中的是第component列的第几行。</h2><pre><code>-(NSInteger)selectedRowInComponent:(NSInteger)component;                                   
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
         </p>
       
 

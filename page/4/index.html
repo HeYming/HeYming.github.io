@@ -164,6 +164,116 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/" class="archive-article-date">
+  	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIPicker-选择器"><a href="#UIPicker-选择器" class="headerlink" title="UIPicker 选择器"></a>UIPicker 选择器</h1><h2 id="1-numberOfComponents：返回UIPickerView当前的列数"><a href="#1-numberOfComponents：返回UIPickerView当前的列数" class="headerlink" title="1.    numberOfComponents：返回UIPickerView当前的列数"></a>1.    numberOfComponents：返回UIPickerView当前的列数</h2><pre><code>NSInteger num = _pickerView.numberOfComponents;
+NSLog( @&quot;%d&quot;, num);
+</code></pre><h2 id="2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。"><a href="#2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。" class="headerlink" title="2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。"></a>2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</h2><pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
+NSLog(@&quot;%d&quot;,numInCp);
+</code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
+NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/1.png" alt="1"></p>
+<h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
+<pre><code>_pickerView.delegate = self;
+// 设置UIPickView每行显示的内容
+</code></pre><p>###4.1</p>
+<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return @&quot;showData&quot;;
+}
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/2.png" alt="2"></p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
+
+// 返回一个视图，用来设置pickerView的每行显示的内容。
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+{
+    UIView *myView=[[UIView alloc]init];
+    myView.backgroundColor = [UIColor redColor];
+    return myView;
+}
+</code></pre><p>效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/3.png" alt="3"></p>
+<h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
+// 设置每列显示3行
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return 3;
+}
+// 设置显示2列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 2; 
+}
+</code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
+</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/16042702/4.png" alt="4"></p>
+<p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
+<h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+</code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
+<h2 id="8-返回第component列每一行的高度"><a href="#8-返回第component列每一行的高度" class="headerlink" title="8. 返回第component列每一行的高度"></a>8. 返回第component列每一行的高度</h2><pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
+</code></pre><h2 id="9-刷新某一列的数据"><a href="#9-刷新某一列的数据" class="headerlink" title="9.刷新某一列的数据"></a>9.刷新某一列的数据</h2><p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
+<pre><code>[pickerView reloadComponent:1];
+</code></pre><h2 id="10-刷新所有列的数据"><a href="#10-刷新所有列的数据" class="headerlink" title="10. 刷新所有列的数据 "></a>10. 刷新所有列的数据 </h2><pre><code>- (void)reloadAllComponents;
+</code></pre><h2 id="11-返回选中的是第component列的第几行。"><a href="#11-返回选中的是第component列的第几行。" class="headerlink" title="11. 返回选中的是第component列的第几行。"></a>11. 返回选中的是第component列的第几行。</h2><pre><code>-(NSInteger)selectedRowInComponent:(NSInteger)component;                                   
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1474,722 +1584,6 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-类-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-04</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/" class="archive-article-date">
-  	<time datetime="2016-04-25T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps:写这么多基础类的方法，其实就是以后方便查找和调用。</em></p>
-<h2 id="NSNumber-数字"><a href="#NSNumber-数字" class="headerlink" title="NSNumber 数字"></a>NSNumber 数字</h2><p>如果需要整形，可以使用C语言数据类型int来存储，浮点数类型可以用float来存储，NSNumber主要用来将C语言的数字对象转换为OC对象，方便存入字典和数组。</p>
-<h2 id="NSDate-日期"><a href="#NSDate-日期" class="headerlink" title="NSDate 日期"></a>NSDate 日期</h2><hr>
-<pre><code>//初始化时间段
-NSDate *date = [NSDate date];
-//获取当前时区
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//以秒为单位返回当前应用程序与世界标准时间（格林威尼时间）的时差
-NSInteger interval = [zone secondsFromGMTForDate: date];
-//补充时差后为当前时间
-NSDate *localeDate = [date  dateByAddingTimeInterval: interval]
-
-NSString *dateStr=@&quot;2013-08-13 20:28:40&quot;;
-//格式化
-NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;];
-NSDate *fromdate=[dateFormatter dateFromString:dateStr];
-//时区
-NSTimeZone *fromzone = [NSTimeZone systemTimeZone];
-//同例1
-NSInteger frominterval = [fromzone secondsFromGMTForDate: fromdate];
-NSDate *fromDate = [fromdate  dateByAddingTimeInterval: frominterval];
-NSLog(@&quot;fromdate=%@&quot;,fromDate);
-
-//将NSDate转为NSString
-NSString *strTime = [fromDate description];
-//如果直接将NSDate格式化
-NSDate  *recv = [NSDate dateFromString:recvTime withFormat:@&quot;yyyy-MM-dd HH:mm:ss Z&quot;];
-
-double intervalTime = [fromDate timeIntervalSinceReferenceDate] - [localeDate timeIntervalSinceReferenceDate];
-
-long lTime = (long)intervalTime;
-NSInteger iSeconds = lTime % 60;
-NSInteger iMinutes = (lTime / 60) % 60;
-NSInteger iHours = (lTime / 3600)$;
-NSInteger iDays = lTime/60/60/24;
-NSInteger iMonth = lTime/60/60/24/12;
-NSInteger iYears = lTime/60/60/24/384;
-
-NSLog(@&quot;相差M年d月 或者 d日d时d分d秒&quot;, iYears,iMonth,iDays,iHours,iMinutes,iSeconds);
-
-//与otherDate比较，相同返回YES
-(BOOL)isEqualToDate:(NSDate *)otherDate;
-
-//与anotherDate比较，返回较早的那个日期
-(NSDate *)earlierDate:(NSDate *)anotherDate;
-
-//与anotherDate比较，返回较晚的那个日期
-(NSDate *)laterDate:(NSDate *)anotherDate;
-
-//该方法用于排序时调用
-(NSComparisonResult)compare:(NSDate *)other;
-
-//. 当实例保存的日期值与anotherDate相同时返回NSOrderedSame
-//. 当实例保存的日期值晚于anotherDate时返回NSOrderedDescending
-//. 当实例保存的日期值早于anotherDate时返回NSOrderedAscending
-
-NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-
-NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-
-NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-
-NSDateComponents *comps  = [calendar components:unitFlags fromDate:date];
-
-int year = [comps year];
-int month = [comps month];
-int day = [comps day];
-int hour = [comps hour];
-int min = [comps minute];
-int sec = [comps second];
-
-NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-[dateFormatter setDateFormat:@&quot;a&quot;];
-NSString *AMPMtext = [dateFormatter stringFromDate:[NSDate date]];
-[dateFormatter release];
-if ([AMPMtext isEqualToString:@&quot;&quot;]){
-    NSLog(@&quot;24小时制&quot;);
-}
-else {
-    NSLog(@&quot;12小时制&quot;);
-}
-
-NSDate和NSString的转换
-
-用于uidate，picker。。
-
-+(NSDate * ) convertDateFromString:(NSString*)uiDate
-{
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    [formatter setDateFormat:@&quot;yyyy年MM月dd日&quot;];
-    NSDate *date=[formatter dateFromString:uiDate];
-    return date;
-}
-
-输入的日期字符串形如：@&quot;1992-05-21 13:08:08&quot;
-- (NSDate *)dateFromString:(NSString *)dateString{
-NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
-[dateFormatter setDateFormat: @&quot;yyyy-MM-dd HH:mm:ss&quot;];
-
-
-NSDate *destDate= [dateFormatter dateFromString:dateString];
-
-
-[dateFormatter release];
-return destDate;
-}
-
-- (NSString *)stringFromDate:(NSDate *)date{
-NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
-
-//zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
-
-[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss zzz&quot;];
-
-NSString *destDateString = [dateFormatter stringFromDate:date];
-
-
-[dateFormatter release];
-return destDateString;
-}
-
-- (IBAction)handleDidPressBtn1{
-NSLog(@&quot;%@/n&quot;, [selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]);
-NSLog(@&quot;%@/n&quot;, [selfstringFromDate:[selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]]);
-}
-
-输出结果如下：
-2011-08-09 04:02:01 +0000
-2011-08-09 12:02:01 GMT+08:00
-</code></pre><h2 id="NSURL-URL"><a href="#NSURL-URL" class="headerlink" title="NSURL URL"></a>NSURL URL</h2><p>可以用于管理和提取连接地址信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[myUrl host]</div></pre></td></tr></table></figure>
-<h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><hr>
-<pre><code>NSString
-*******************************************************************************************/
-//一、NSString    
-/*----------------创建字符串的方法----------------*/
-
-//1、创建常量字符串。
-NSString *astring = @&quot;This is a String!&quot;;
-
-
-//2、创建空字符串，给予赋值。
-
-NSString *astring = [[NSString alloc] init];
-astring = @&quot;This is a String!&quot;;
-[astring release];
-NSLog(@&quot;astring:%@&quot;,astring);
-//
-
-NSString *astring = [[NSString alloc] init];
-NSLog(@&quot;0x%.8x&quot;, astring);
-astring=@&quot;This is a String!&quot;;
-NSLog(@&quot;0x%.8x&quot;, astring);
-[astring release];
-NSLog(@&quot;astring:%@&quot;,astring);
-
-
-
-
-//3、在以上方法中，提升速度:initWithString方法
-
-NSString *astring = [[NSString alloc] initWithString:@&quot;This is a String!&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//4、用标准c创建字符串:initWithCString方法
-
-char *Cstring = &quot;This is a String!&quot;;
-NSString *astring = [[NSString alloc] initWithCString:Cstring];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//5、创建格式化字符串:占位符（由一个%加一个字符组成）
-
-int i = 1;
-int j = 2;
-NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@&quot;%d.This is %i string!&quot;,i,j]];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//6、创建临时字符串
-
-NSString *astring;
-astring = [NSString stringWithCString:&quot;This is a temporary string&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-
-
-/*----------------从文件读取字符串:initWithContentsOfFile方法----------------*/    
-
-NSString *path = @&quot;astring.text&quot;;
-NSString *astring = [[NSString alloc] initWithContentsOfFile:path];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-/*----------------写字符串到文件:writeToFile方法----------------*/    
-
-
-NSString *astring = [[NSString alloc] initWithString:@&quot;This is a String!&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-NSString *path = @&quot;astring.text&quot;;    
-[astring writeToFile: path atomically: YES];
-[astring release];    
-
-
-/*----------------比较两个字符串----------------*/        
-
-//用C比较:strcmp函数
-
-char string1[] = &quot;string!&quot;;
-char string2[] = &quot;string!&quot;;
-if(strcmp(string1, string2) = = 0)
-{
-NSLog(@&quot;1&quot;);
-}
-
-//isEqualToString方法    
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 isEqualToString:astring02];
-NSLog(@&quot;result:%d&quot;,result);
-
-//compare方法(comparer返回的三种值)    
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;    
-BOOL result = [astring01 compare:astring02] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);    
-//NSOrderedSame判断两者内容是否相同
-
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;this is a String!&quot;;
-BOOL result = [astring01 compare:astring02] = = NSOrderedAscending;    
-NSLog(@&quot;result:%d&quot;,result);
-//NSOrderedAscending判断两对象值的大小(按字母顺序进行比较，astring02大于astring01为真)
-
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 compare:astring02] = = NSOrderedDescending;    
-NSLog(@&quot;result:%d&quot;,result);     
-//NSOrderedDescending判断两对象值的大小(按字母顺序进行比较，astring02小于astring01为真)
-
-//不考虑大小写比较字符串1
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 caseInsensitiveCompare:astring02] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);     
-//NSOrderedDescending判断两对象值的大小(按字母顺序进行比较，astring02小于astring01为真)
-
-//不考虑大小写比较字符串2
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 compare:astring02
-options:NSCaseInsensitiveSearch | NSNumericSearch] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);     
-
-//NSCaseInsensitiveSearch:不区分大小写比较 NSLiteralSearch:进行完全比较，区分大小写 NSNumericSearch:比较字符串的字符个数，而不是字符值。
-
-
-/*----------------改变字符串的大小写----------------*/    
-
-NSString *string1 = @&quot;A String&quot;; 
-NSString *string2 = @&quot;String&quot;; 
-NSLog(@&quot;string1:%@&quot;,[string1 uppercaseString]);//大写
-NSLog(@&quot;string2:%@&quot;,[string2 lowercaseString]);//小写
-NSLog(@&quot;string2:%@&quot;,[string2 capitalizedString]);//首字母大小
-
-
-/*----------------在串中搜索子串----------------*/        
-
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = @&quot;string&quot;;
-NSRange range = [string1 rangeOfString:string2];
-int location = range.location;
-int leight = range.length;
-NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@&quot;Location:%i,Leight:%i&quot;,location,leight]];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-/*----------------抽取子串 ----------------*/        
-
-//-substringToIndex: 从字符串的开头一直截取到指定的位置，但不包括该位置的字符
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringToIndex:3];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-//-substringFromIndex: 以指定位置开始（包括指定位置的字符），并包括之后的全部字符
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringFromIndex:3];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-//-substringWithRange: //按照所给出的位置，长度，任意地从字符串中截取子串
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringWithRange:NSMakeRange(0, 4)];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-
-//扩展路径
-
-NSString *Path = @&quot;~/NSData.txt&quot;;
-NSString *absolutePath = [Path stringByExpandingTildeInPath];
-NSLog(@&quot;absolutePath:%@&quot;,absolutePath);
-NSLog(@&quot;Path:%@&quot;,[absolutePath stringByAbbreviatingWithTildeInPath]);
-
-//文件扩展名
-NSString *Path = @&quot;~/NSData.txt&quot;;
-NSLog(@&quot;Extension:%@&quot;,[Path pathExtension]);
-
-/*******************************************************************************************
-NSMutableString
-*******************************************************************************************/    
-
-/*---------------给字符串分配容量----------------*/
-//stringWithCapacity:
-NSMutableString *String;
-String = [NSMutableString stringWithCapacity:40];
-
-
-/*---------------在已有字符串后面添加字符----------------*/    
-
-//appendString: and appendFormat:
-
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-//[String1 appendString:@&quot;, I will be adding some character&quot;];
-[String1 appendFormat:[NSString stringWithFormat:@&quot;, I will be adding some character&quot;]];
-NSLog(@&quot;String1:%@&quot;,String1);
-*/
-
-
-/*--------在已有字符串中按照所给出范围和长度删除字符------*/    
-/*
-//deleteCharactersInRange:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 deleteCharactersInRange:NSMakeRange(0, 5)];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------在已有字符串后面在所指定的位置中插入给出的字符串------*/
-
-//-insertString: atIndex:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 insertString:@&quot;Hi! &quot; atIndex:0];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------将已有的空符串换成其它的字符串------*/
-
-//-setString:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 setString:@&quot;Hello Word!&quot;];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------按照所给出的范围，和字符串替换的原有的字符------*/
-
-//-setString:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 replaceCharactersInRange:NSMakeRange(0, 4) withString:@&quot;That&quot;];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*-------------判断字符串内是否还包含别的字符串(前缀，后缀)-------------*/
-//01：检查字符串是否以另一个字符串开头- (BOOL) hasPrefix: (NSString *) aString;
-NSString *String1 = @&quot;NSStringInformation.txt&quot;;
-[String1 hasPrefix:@&quot;NSString&quot;] = = 1 ?  NSLog(@&quot;YES&quot;) : NSLog(@&quot;NO&quot;);
-[String1 hasSuffix:@&quot;.txt&quot;] = = 1 ?  NSLog(@&quot;YES&quot;) : NSLog(@&quot;NO&quot;);
-
-//02：查找字符串某处是否包含其它字符串 - (NSRange) rangeOfString: (NSString *) aString，这一点前面在串中搜索子串用到过;
-
-
-
-/*******************************************************************************************
-NSArray
-*******************************************************************************************/
-
-/*---------------------------创建数组------------------------------*/
-//NSArray *array = [[NSArray alloc] initWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,@&quot;Four&quot;,nil];
-
-self.dataArray = array;
-[array release];
-
-//- (unsigned) Count;数组所包含对象个数；
-NSLog(@&quot;self.dataArray cound:%d&quot;,[self.dataArray count]);
-
-//- (id) objectAtIndex: (unsigned int) index;获取指定索引处的对象;
-NSLog(@&quot;self.dataArray cound 2:%@&quot;,[self.dataArray objectAtIndex:2]);
-
-
-/*--------------------------从一个数组拷贝数据到另一数组(可变数级)----------------------------*/    
-
-//arrayWithArray:
-//NSArray *array1 = [[NSArray alloc] init];
-NSMutableArray *MutableArray = [[NSMutableArray alloc] init];
-NSArray *array = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,nil];
-NSLog(@&quot;array:%@&quot;,array);
-MutableArray = [NSMutableArray arrayWithArray:array];
-NSLog(@&quot;MutableArray:%@&quot;,MutableArray);
-
-array1 = [NSArray arrayWithArray:array];
-NSLog(@&quot;array1:%@&quot;,array1);
-
-
-//Copy
-
-//id obj;
-NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];
-
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-for(int i = 0; i &lt; [oldArray count]; i++)
-{        
-obj = [[oldArray objectAtIndex:i] copy];
-[newArray addObject: obj];
-}
-//     
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];
-
-
-//快速枚举
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-
-for(id obj in oldArray)
-{
-[newArray addObject: obj];
-}
-//     
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];    
-
-
-//Deep copy
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);    
-newArray = (NSMutableArray*)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFPropertyListRef)oldArray, kCFPropertyListMutableContainers);
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];    
-
-
-//Copy and sort
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;b&quot;,@&quot;a&quot;,@&quot;e&quot;,@&quot;d&quot;,@&quot;c&quot;,@&quot;f&quot;,@&quot;h&quot;,@&quot;g&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-NSEnumerator *enumerator;
-enumerator = [oldArray objectEnumerator];
-id obj;
-while(obj = [enumerator nextObject])
-{
-[newArray addObject: obj];
-}
-[newArray sortUsingSelector:@selector(compare:)];
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];
-
-
-
-/*---------------------------切分数组------------------------------*/
-
-//从字符串分割到数组－ componentsSeparatedByString:
-NSString *string = [[NSString alloc] initWithString:@&quot;One,Two,Three,Four&quot;];
-NSLog(@&quot;string:%@&quot;,string);    
-NSArray *array = [string componentsSeparatedByString:@&quot;,&quot;];
-NSLog(@&quot;array:%@&quot;,array);
-[string release];
-
-
-//从数组合并元素到字符串- componentsJoinedByString:
-NSArray *array = [[NSArray alloc] initWithObjects:@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,@&quot;Four&quot;,nil];
-NSString *string = [array componentsJoinedByString:@&quot;,&quot;];
-NSLog(@&quot;string:%@&quot;,string);
-
-
-
-/*******************************************************************************************
-NSMutableArray
-*******************************************************************************************/
-/*---------------给数组分配容量----------------*/
-//NSArray *array;
-array = [NSMutableArray arrayWithCapacity:20];
-
-
-
-/*--------------在数组末尾添加对象----------------*/
-//- (void) addObject: (id) anObject;
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-[array addObject:@&quot;Four&quot;];
-NSLog(@&quot;array:%@&quot;,array);
-
-
-
-/*--------------删除数组中指定索引处对象----------------*/    
-//-(void) removeObjectAtIndex: (unsigned) index;    
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-[array removeObjectAtIndex:1];
-NSLog(@&quot;array:%@&quot;,array);
-
-
-
-/*-------------数组枚举---------------*/    
-//- (NSEnumerator *)objectEnumerator;从前向后
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-NSEnumerator *enumerator;
-enumerator = [array objectEnumerator];
-
-id thingie;
-while (thingie = [enumerator nextObject]) {
-NSLog(@&quot;thingie:%@&quot;,thingie);
-}
-
-
-//- (NSEnumerator *)reverseObjectEnumerator;从后向前
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-NSEnumerator *enumerator;
-enumerator = [array reverseObjectEnumerator];
-
-id object;
-while (object = [enumerator nextObject]) {
-NSLog(@&quot;object:%@&quot;,object);
-}
-
-
-//快速枚举
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-for(NSString *string in array)
-{
-NSLog(@&quot;string:%@&quot;,string);
-}
-
-
-
-/*******************************************************************************************
-NSDictionary
-*******************************************************************************************/
-
-/*------------------------------------创建字典------------------------------------*/
-//- (id) initWithObjectsAndKeys;
-
-//NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@&quot;One&quot;,@&quot;1&quot;,@&quot;Two&quot;,@&quot;2&quot;,@&quot;Three&quot;,@&quot;3&quot;,nil];
-NSString *string = [dictionary objectForKey:@&quot;One&quot;];
-NSLog(@&quot;string:%@&quot;,string);
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-[dictionary release];
-
-
-/*******************************************************************************************
-NSMutableDictionary
-*******************************************************************************************/
-
-/*------------------------------------创建可变字典------------------------------------*/    
-//创建
-NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-
-//添加字典
-[dictionary setObject:@&quot;One&quot; forKey:@&quot;1&quot;];
-[dictionary setObject:@&quot;Two&quot; forKey:@&quot;2&quot;];
-[dictionary setObject:@&quot;Three&quot; forKey:@&quot;3&quot;];
-[dictionary setObject:@&quot;Four&quot; forKey:@&quot;4&quot;];
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-
-//删除指定的字典
-[dictionary removeObjectForKey:@&quot;3&quot;];
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-
-
-/*******************************************************************************************
-NSValue（对任何对象进行包装）
-*******************************************************************************************/
-
-/*--------------------------------将NSRect放入NSArray中------------------------------------*/    
-//将NSRect放入NSArray中
-NSMutableArray *array = [[NSMutableArray alloc] init];
-NSValue *value;
-CGRect rect = CGRectMake(0, 0, 320, 480);    
-value = [NSValue valueWithBytes:&amp;rect objCType:@encode(CGRect)];
-[array addObject:value];
-NSLog(@&quot;array:%@&quot;,array);
-
-//从Array中提取
-value = [array objectAtIndex:0];
-[value getValue:&amp;rect];
-NSLog(@&quot;value:%@&quot;,value);
-
-
-/*******************************************************************************************
-从目录搜索扩展名为jpg的文件
-*******************************************************************************************/
-
-//NSFileManager *fileManager = [NSFileManager defaultManager];
-NSString *home;
-home = @&quot;../Users/&quot;;
-
-NSDirectoryEnumerator *direnum;
-direnum = [fileManager enumeratorAtPath: home];
-
-NSMutableArray *files = [[NSMutableArray alloc] init];
-
-//枚举
-NSString *filename;
-while (filename = [direnum nextObject]) {
-if([[filename pathExtension] hasSuffix:@&quot;jpg&quot;]){
-[files addObject:filename];
-}
-}
-
-//快速枚举
-//for(NSString *filename in direnum)
-//{
-//    if([[filename pathExtension] isEqualToString:@&quot;jpg&quot;]){
-//        [files addObject:filename];
-//    }
-//}
-NSLog(@&quot;files:%@&quot;,files);
-
-//枚举
-NSEnumerator *filenum;
-filenum = [files objectEnumerator];
-while (filename = [filenum nextObject]) {
-NSLog(@&quot;filename:%@&quot;,filename);
-}
-
-//快速枚举
-//for(id object in files)
-//{
-//    NSLog(@&quot;object:%@&quot;,object);
-//}
-</code></pre><p><em>ps:终于讲完了基础类型，为嘛感觉少了NSInteger类型</em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/">展开全文 >></a>
         </p>
       
 

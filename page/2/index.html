@@ -164,6 +164,133 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-图形处理-34" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/">iOS开发指南-Objective—C基础-图形处理-34</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/" class="archive-article-date">
+  	<time datetime="2016-05-17T14:22:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="图形处理"><a href="#图形处理" class="headerlink" title="图形处理"></a>图形处理</h1><p><em>ps：本章节后面开始深入讲解cocoa touch内部机制，很多内容我并不熟悉，共同学习。本文多数来自MJ的教程</em></p>
+<p><strong>简单的介绍</strong></p>
+<p>为了便于搭建美观的UI界面，iOS提供了UIKit框架，里面有各种各样的UI控件<br>UILabel：显示文字<br>UIImageView：显示图片<br>UIButton：同时显示图片和文字（能点击）<br>… …</p>
+<p>利用UIKit框架提供的控件，拼拼凑凑，能搭建和现实一些简单、常见的UI界面</p>
+<p>但是，有些UI界面极其复杂、而且比较个性化，用普通的UI控件无法实现，这时可以利用Quartz2D技术将控件内部的结构画出来，自定义控件的样子</p>
+<p>其实，iOS中大部分控件的内容都是通过Quartz2D画出来的</p>
+<p>因此，Quartz2D在iOS开发中很重要的一个价值是：自定义view（自定义UI控件）</p>
+<p>图形上下文（Graphics Context）：是一个CGContextRef类型的数据</p>
+<p>图形上下文的作用<br>保存绘图信息、绘图状态<br>决定绘制的输出目标（绘制到什么地方去？）<br>（输出目标可以是PDF文件、Bitmap或者显示器的窗口上）</p>
+<p>相同的一套绘图序列，指定不同的Graphics Context，就可将相同的图像绘制到不同的目标上</p>
+<p><strong>UIView是个窗口，它内部的东西是CALayer绘制出来的。</strong></p>
+<p>所以 如果要实现一些自定义的UIView 就需要在CALayer中进行绘制。</p>
+<h2 id="自定义View"><a href="#自定义View" class="headerlink" title="自定义View"></a>自定义View</h2><p>自定义view的步骤<br>新建一个类，继承自UIView<br>实现- (void)drawRect:(CGRect)rect方法，然后在这个方法中<br>取得跟当前view相关联的图形上下文<br>绘制相应的图形内容<br>利用图形上下文将绘制的所有内容渲染显示到view上面</p>
+<p>为什么要实现drawRect:方法才能绘图到view上？</p>
+<pre><code>因为在drawRect:方法中才能取得跟view相关联的图形上下文
+</code></pre><p>drawRect:方法在什么时候被调用？</p>
+<pre><code>当view第一次显示到屏幕上时（被加到UIWindow上显示出来）
+调用view的setNeedsDisplay或者setNeedsDisplayInRect:时
+</code></pre><p><em>Quartz2D的API是纯C语言的，Quartz2D的API来自于Core Graphics框架数据类型和函数基本都以CG作为前缀<br>CGContextRef<br>CGPathRef<br>CGContextStrokePath(ctx);</em></p>
+<ol>
+<li>获得图形上下文</li>
+</ol>
+<p>CGContextRef ctx = UIGraphicsGetCurrentContext();</p>
+<ol>
+<li>拼接路径（下面代码是搞一条线段）</li>
+</ol>
+<p>CGContextMoveToPoint(ctx, 10, 10);<br>CGContextAddLineToPoint(ctx, 100, 100);</p>
+<ol>
+<li>绘制路径</li>
+</ol>
+<p>CGContextStrokePath(ctx); // CGContextFillPath(ctx);</p>
+<p><strong>常用拼接路径</strong></p>
+<pre><code>新建一个起点
+void CGContextMoveToPoint(CGContextRef c, CGFloat x, CGFloat y)
+
+添加新的线段到某个点
+void CGContextAddLineToPoint(CGContextRef c, CGFloat x, CGFloat y)
+
+添加一个矩形
+void CGContextAddRect(CGContextRef c, CGRect rect)
+
+添加一个椭圆
+void CGContextAddEllipseInRect(CGContextRef context, CGRect rect)
+
+添加一个圆弧
+void CGContextAddArc(CGContextRef c, CGFloat x, CGFloat y,
+  CGFloat radius, CGFloat startAngle, CGFloat endAngle, int clockwise)
+
+Mode参数决定绘制的模式
+void CGContextDrawPath(CGContextRef c, CGPathDrawingMode mode)
+
+绘制空心路径
+void CGContextStrokePath(CGContextRef c)
+
+绘制实心路径
+void CGContextFillPath(CGContextRef c)
+
+提示：一般以CGContextDraw、CGContextStroke、CGContextFill开头的函数，都是用来绘制路径的
+
+将当前的上下文copy一份,保存到栈顶(那个栈叫做”图形上下文栈”)
+void CGContextSaveGState(CGContextRef c)
+
+将栈顶的上下文出栈,替换掉当前的上下文
+void CGContextRestoreGState(CGContextRef c)
+</code></pre><p><strong>ps：这个文章偏于零散，知识并未统一。后面我会再次进行处理</strong></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-界面旋转-33" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1348,124 +1475,6 @@ indicator.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPickerView-选择器视图"><a href="#UIPickerView-选择器视图" class="headerlink" title="UIPickerView 选择器视图"></a>UIPickerView 选择器视图</h1><p>#1.属性</p>
-<p>##1.    numberOfComponents：返回UIPickerView当前的列数</p>
-<pre><code>NSInteger num = _pickerView.numberOfComponents;
-NSLog( @&quot;%d&quot;, num);
-</code></pre><p>##2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</p>
-<pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
-NSLog(@&quot;%d&quot;,numInCp);
-</code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
-<pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
-NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/1.png" alt="1"></p>
-<p>#2.    delegate：</p>
-<p>##2.0 设置UIPickerView代理</p>
-<pre><code>_pickerView.delegate = self;
-</code></pre><p>##2.1 设置UIPickView每行显示的内容</p>
-<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return @&quot;showData&quot;;
-}
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/2.png" alt="2"></p>
-<p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
-<pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
-    UIView *myView=[[UIView alloc]init];
-    myView.backgroundColor = [UIColor redColor];
-    return myView;
-}
-</code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/3.png" alt="3"></p>
-<p>#3.    dataSource：数据源</p>
-<p>##1.设置每列显示3行</p>
-<pre><code>// pragma mark  - dataSource method
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return 3;
-}
-// 设置显示2列
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2; 
-</code></pre><p>}</p>
-<p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
-<pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160509/4.png" alt="4"></p>
-<p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
-<pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-</code></pre><p>##4. 返回第component列每一行的高度</p>
-<pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-</code></pre><p>##5.刷新某一列的数据</p>
-<p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
-<pre><code>[pickerView reloadComponent:1];
-</code></pre><p>##6. 刷新所有列的数据 </p>
-<pre><code>- (void)reloadAllComponents;
-</code></pre><p>##7. 返回选中的是第component列的第几行。</p>
-<pre><code>- (NSInteger)selectedRowInComponent:(NSInteger)component;                                   
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">展开全文 >></a>
         </p>
       
 

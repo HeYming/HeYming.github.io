@@ -6,17 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Objective-C | 小豆子的博客</title>
+  <title>开发中关于UINavigationController注意事项 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小豆子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Objective-C/page/2/index.html">
+  <meta name="description" content="开发中关于UINavigationController注意事项项目开发中，UINavigationController属于我们最常用的类之一，目前喜报项目中几乎全部的跳转都是用UINavigationController来进行的。让我们来看一下他的基本构造  UINavigationControllerUINavigationController属于UIViewController的扩展类，所以我">
+<meta name="keywords" content="Objective-C">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发中关于UINavigationController注意事项">
+<meta property="og:url" content="http://yoursite.com/2018/03/27/开发中关于UINavigationController注意事项/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:description" content="开发中关于UINavigationController注意事项项目开发中，UINavigationController属于我们最常用的类之一，目前喜报项目中几乎全部的跳转都是用UINavigationController来进行的。让我们来看一下他的基本构造  UINavigationControllerUINavigationController属于UIViewController的扩展类，所以我">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327001.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327002.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327003.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327004.png">
+<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327005.png">
+<meta property="og:updated_time" content="2018-03-28T08:07:10.359Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
+<meta name="twitter:title" content="开发中关于UINavigationController注意事项">
+<meta name="twitter:description" content="开发中关于UINavigationController注意事项项目开发中，UINavigationController属于我们最常用的类之一，目前喜报项目中几乎全部的跳转都是用UINavigationController来进行的。让我们来看一下他的基本构造  UINavigationControllerUINavigationController属于UIViewController的扩展类，所以我">
+<meta name="twitter:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327001.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -162,36 +170,75 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-开发中关于UINavigationController注意事项" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      开发中关于UINavigationController注意事项
+    </h1>
+  
+
+        
+        <a href="/2018/03/27/开发中关于UINavigationController注意事项/" class="archive-article-date">
+  	<time datetime="2018-03-27T06:47:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-27</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="开发中关于UINavigationController注意事项"><a href="#开发中关于UINavigationController注意事项" class="headerlink" title="开发中关于UINavigationController注意事项"></a>开发中关于UINavigationController注意事项</h1><p>项目开发中，UINavigationController属于我们最常用的类之一，目前喜报项目中几乎全部的跳转都是用UINavigationController来进行的。<br>让我们来看一下他的基本构造</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327001.png" alt="180327"></p>
+<h2 id="UINavigationController"><a href="#UINavigationController" class="headerlink" title="UINavigationController"></a>UINavigationController</h2><p>UINavigationController属于UIViewController的扩展类，所以我们才能在页面进行调用self.navigationController的调用。<br>UINavigationController最开始要进行设置RootViewController，否则是无法通过self.navigationController进行Push操作跳转的。<br>UINavigationController的child采用了栈区数据结构，先进后出。RootViewController在栈区的对底层不会被销毁，每当push一个页面后，都会叠加在RootViewController上面，可以在Child中查看到。当pop的时候，实际上就是销毁需要pop页面之后的所有控制器。将pop页面放在最前面进行显示，当只有RootViewController的时候是不能进行pop操作的。</p>
+<h2 id="UINavigationBar"><a href="#UINavigationBar" class="headerlink" title="UINavigationBar"></a>UINavigationBar</h2><p>基础设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//设置UINavigationBar背景颜色</div><div class="line">[self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];</div></pre></td></tr></table></figure>
+<p>其他设置<br>使用KVO来设置对应属性</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.navigationBar setValue:@&quot;&quot; forKey:@&quot;&quot;];</div></pre></td></tr></table></figure>
+<h2 id="UINavigationItem"><a href="#UINavigationItem" class="headerlink" title="UINavigationItem"></a>UINavigationItem</h2><p>显示在UINavigationBar上面的都属于这个控件下的内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//设置标题</div><div class="line">[self.navigationItem setTitle:@&quot;title&quot;];</div><div class="line"></div><div class="line">//自定义中间样式</div><div class="line">UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 50, 44)];</div><div class="line">view.backgroundColor = [UIColor redColor];</div><div class="line">[self.navigationItem setTitleView:view];</div><div class="line">//自定义左侧按钮</div><div class="line">UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 40, 40)];</div><div class="line">[self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:btn]];</div></pre></td></tr></table></figure>
+<h1 id="其他操作"><a href="#其他操作" class="headerlink" title="其他操作"></a>其他操作</h1><p>当发现现有的属性无法完成设置的时候，这个时候需要些其他操作。<br>假如Bar需要设置为黑色，这个时候默认标题也是黑色就会看起来比较模糊。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//设置背景色为黑色</div><div class="line">[self.navigationController.navigationBar setBarTintColor:[UIColor blackColor]];</div><div class="line">//设置标题</div><div class="line">[self.navigationItem setTitle:@&quot;title测试&quot;];</div></pre></td></tr></table></figure>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327002.png" alt="180327002"></p>
+<p>设个时候需要设置标题字体为白色。发现Item没有针对设置字体颜色的方法。这个时候就需要在bar中设置字体为白色</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.navigationBar setTitleTextAttributes:@&#123;NSForegroundColorAttributeName:[UIColor whiteColor]&#125;];</div></pre></td></tr></table></figure>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327003.png" alt="180327003"></p>
+<p>这个时候如果再想改变字体大小的话，可以在这个方法中一并修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.navigationBar setTitleTextAttributes:@&#123;NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:21.0f]&#125;];</div></pre></td></tr></table></figure>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327004.png" alt="180327004"></p>
+<p>如果这些设置还是无法满足需求的话，建议直接将系统的Bar隐藏，自己在新建一个Bar，自定义样式</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/180327/180327005.png" alt="180327005"></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/">iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -199,408 +246,123 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/">iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/03/27/开发中关于UINavigationController注意事项/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29</a>
-    </h1>
+  
+    <a href="/2018/03/20/项目页面创建优化过程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">项目页面创建优化过程</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  <div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="开发中关于UINavigationController注意事项" data-title="开发中关于UINavigationController注意事项" data-url="http://yoursite.com/2018/03/27/开发中关于UINavigationController注意事项/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"小豆子的博客"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">iOS开发指南-Objective—C基础-Interface-Builder-UIView-28</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/" class="archive-article-date">
-  	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/">iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/" class="archive-article-date">
-  	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/" class="archive-article-date">
-  	<time datetime="2016-05-05T14:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
-  	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Objective-C/">&laquo; Prev</a><a class="page-number" href="/tags/Objective-C/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/Objective-C/page/3/">3</a><a class="page-number" href="/tags/Objective-C/page/4/">4</a><a class="page-number" href="/tags/Objective-C/page/5/">5</a><a class="extend next" rel="next" href="/tags/Objective-C/page/3/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -624,9 +386,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
