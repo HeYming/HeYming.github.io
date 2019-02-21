@@ -15,19 +15,19 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="UIAlterView 提醒视图1.Title获取或设置UIAlertView上的标题。 2.Message获取或设置UIAlertView上的消息 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&amp;quot;Title&amp;quot; message:@&amp;quot;message&amp;quot; delegate:self can">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/1.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/2.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/3.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/4.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/5.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/6.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/7.png">
-<meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/8.png">
-<meta property="og:updated_time" content="2017-06-01T13:53:57.000Z">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/1.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/2.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/3.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/4.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/5.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/6.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/7.png">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/8.png">
+<meta property="og:updated_time" content="2019-02-21T06:35:52.525Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21">
 <meta name="twitter:description" content="UIAlterView 提醒视图1.Title获取或设置UIAlertView上的标题。 2.Message获取或设置UIAlertView上的消息 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&amp;quot;Title&amp;quot; message:@&amp;quot;message&amp;quot; delegate:self can">
-<meta name="twitter:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/1.png">
+<meta name="twitter:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160504/1.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -56,7 +56,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://7xt76f.com2.z0.glb.clouddn.com/image/jpg/head.jpg" class="js-avatar">
+			<img src="http://pn9h2rml9.bkt.clouddn.com/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">小豆子</a></h1>
@@ -118,7 +118,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://7xt76f.com2.z0.glb.clouddn.com/image/jpg/head.jpg" class="js-avatar">
+				<img src="http://pn9h2rml9.bkt.clouddn.com/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">小豆子</h1>
@@ -200,12 +200,12 @@ alertView.title = @&quot;T&quot;;
 alertView.message = @&quot;M&quot;;
 
 [alertView show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/1.png" alt="1"></p>
+</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/1.png" alt="1"></p>
 <h2 id="3-numberOfButtons-只读"><a href="#3-numberOfButtons-只读" class="headerlink" title="3.numberOfButtons (只读)"></a>3.numberOfButtons (只读)</h2><p>返回UIAlertView上有多少按钮.</p>
 <pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
     NSLog(@&quot;%d&quot;,alertView.numberOfButtons);
 [alertView show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/2.png" alt="2"></p>
+</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/2.png" alt="2"></p>
 <h2 id="4-cancelButtonIndex"><a href="#4-cancelButtonIndex" class="headerlink" title="4.cancelButtonIndex"></a>4.cancelButtonIndex</h2><pre><code>   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;提示&quot;
                                                                   message:@&quot;请选择一个按钮：&quot;
                                                                  delegate:nil
@@ -214,7 +214,7 @@ alertView.message = @&quot;M&quot;;
    [alert show];
 NSLog(@&quot;UIAlertView中取消按钮的角标是%d&quot;,alert.cancelButtonIndex);
 </code></pre><p>效果：</p>
-<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/3.png" alt="3"></p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/3.png" alt="3"></p>
 <p>注意不要认为取消按钮的角标是4，“取消”，“按钮一”，“按钮二”，“按钮三”的索引buttonIndex分别是0，1，2，3</p>
 <h2 id="5-alertViewStyle"><a href="#5-alertViewStyle" class="headerlink" title="5. alertViewStyle"></a>5. alertViewStyle</h2><p>###5.1 UIAlertViewStyleLoginAndPasswordInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
@@ -223,7 +223,7 @@ alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p> <img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/4.png" alt="4"></p>
+</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/4.png" alt="4"></p>
 <p>###5.2 UIAlertViewStylePlainTextInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
 
@@ -231,7 +231,7 @@ alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/5.png" alt="5"></p>
+</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/5.png" alt="5"></p>
 <p>###5.3UIAlertViewStyleSecureTextInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
 
@@ -239,7 +239,7 @@ alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/6.png" alt="6"></p>
+</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/6.png" alt="6"></p>
 <h2 id="6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex"><a href="#6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex" class="headerlink" title="6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex"></a>6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</h2><p>返回textFieldIndex角标对应的文本框。<br>取出文本框文字  </p>
 <pre><code>[alert textFieldAtIndex:0].text
 </code></pre><h2 id="7-手动的取消对话框"><a href="#7-手动的取消对话框" class="headerlink" title="7.手动的取消对话框"></a>7.手动的取消对话框</h2><pre><code>[alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -265,7 +265,7 @@ UIActivityIndicatorView*activeView = [[UIActivityIndicatorView alloc]initWithAct
 activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.size.height - 40.0f);  
 [activeView startAnimating];  
 [alert addSubview:activeView];
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/7.png" alt="7"></p>
+</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/7.png" alt="7"></p>
 <h2 id="11-UIAlertView小例子"><a href="#11-UIAlertView小例子" class="headerlink" title="11. UIAlertView小例子"></a>11. UIAlertView小例子</h2><p>  UIAlertView默认情况下所有的text是居中对齐的。 那如果需要将文本向左对齐或者添加其他控件比如输入框时该怎么办呢？ 不用担心， iPhone SDK还是很灵活的， 有很多delegate消息供调用程序使用。 所要做的就是在</p>
 <pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView
 </code></pre><p>中按照自己的需要修改或添加即可， 比如需要将消息文本左对齐，下面的代码即可实现:</p>
@@ -280,7 +280,7 @@ activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.siz
             }
       }
 }
-</code></pre><p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image/160504/8.png" alt="8"></p>
+</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/8.png" alt="8"></p>
 
       
 
