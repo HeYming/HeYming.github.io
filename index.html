@@ -164,6 +164,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-从零搭建通用项目-扩展框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/08/27/从零搭建通用项目-扩展框架/">从零搭建通用项目-扩展框架</a>
+    </h1>
+  
+
+        
+        <a href="/2019/08/27/从零搭建通用项目-扩展框架/" class="archive-article-date">
+  	<time datetime="2019-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/08/27/从零搭建通用项目-扩展框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-从零搭建通用项目-基础框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/07/22/从零搭建通用项目-基础框架/">从零搭建通用项目-基础框架</a>
+    </h1>
+  
+
+        
+        <a href="/2018/07/22/从零搭建通用项目-基础框架/" class="archive-article-date">
+  	<time datetime="2018-07-22T01:51:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="从零搭建通用项目-基础框架"><a href="#从零搭建通用项目-基础框架" class="headerlink" title="从零搭建通用项目-基础框架"></a>从零搭建通用项目-基础框架</h1><p>前言：由于公司项目众多，每次新项目开始都从零搭建项目既费时，又效率低下。这个时候就需要搭建一个通用项目框架，当有新的项目的时候，只用修改部分页面就能完成快速开发。</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png" alt="项目搭建"><br>我个人认为搭建通用项目框架基本分为三大类：</p>
+<ol>
+<li>基础框架</li>
+<li>扩展框架</li>
+<li>定制框架</li>
+</ol>
+<p>先来聊聊基础框架都需要些什么。</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png" alt="项目基础架构"></p>
+<h1 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h1><p>在AppDelegate中，尽可能的少放耗时的操作，这样可以加快APP的启动速度。<br>注册Window的RootViewController，后面如果需要切换视图，只在这个Window中切换，避免造成混乱。<br>注册第三方服务组件。</p>
+<h1 id="LoadViewController"><a href="#LoadViewController" class="headerlink" title="LoadViewController"></a>LoadViewController</h1><p>AppDelegate的RootViewController设置LoadViewController为根控制器。<br>这个页面再来显示加载广告、启动页、自动登录等功能。<br>在由这个页面来决定跳转到登录还是进入首页</p>
+<h1 id="RootViewController"><a href="#RootViewController" class="headerlink" title="RootViewController"></a>RootViewController</h1><p>所有ViewController的根视图。<br>放设置Navigation、通用样式等方法。<br>根据业务需求增加所需要的方法。</p>
+<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>这个就不需要怎么讲了。所有文件列表按照MVC来进行创建。<br><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/1.png" alt="1"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/07/22/从零搭建通用项目-基础框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-开发中关于UINavigationController注意事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -885,261 +1014,6 @@
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-视图和图层-36" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/">iOS开发指南-Objective—C基础-视图和图层-36</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/" class="archive-article-date">
-  	<time datetime="2016-06-29T14:26:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="视图和图层"><a href="#视图和图层" class="headerlink" title="视图和图层"></a>视图和图层</h1><p>每一个视图UIView都是由图层CALayer进行绘制而成，图层没有对应的视图属性，但是视图是图层的委托。在默认的情况下，当UIView被实例化后，他的图层是CALayer的一个实例。如果想为UIView添加子类并且想要你的子类的图层是CALayer子类的实例，那么需要实现UIView子类的layerClass类的方法。</p>
-<p>下面一个案例来解释下。</p>
-<p>###创建第一个图层并添加在根视图图层上</p>
-<pre><code>CALayer* lay1 = [[CALayer alloc] init];
-lay1.frame = CGRectMake(113, 111, 132, 194);
-lay1.backgroundColor = [[UIColor colorWithRed:1 green:.4 blue:1 alpha:1] CGColor];
-[self.window.layer addSublayer:lay1];
-</code></pre><p>###创建第二个图层添加在第一个图层上</p>
-<pre><code>CALayer* lay2 = [[CALayer alloc] init];
-lay2.backgroundColor = [[UIColor colorWithRed:.5 green:1 blue:0 alpha:1] CGColor];
-lay2.frame = CGRectMake(41, 56, 132, 194);
-[lay1 addSublayer:lay2];
-</code></pre><p>###创建第三个图层添加在根视图图层上 </p>
-<pre><code>CALayer* lay3 = [[CALayer alloc] init];
-lay3.backgroundColor = [[UIColor colorWithRed:1 green:0 blue:0 alpha:1] CGColor];
-lay3.frame = CGRectMake(43, 197, 160, 230);
-[self.window.layer addSublayer:lay3];
-</code></pre><p>上面个案例可以看出，CALayer跟UIView相似的地方就是可以叠加图层，创建第一个图层后图层在最下面，第二个图层覆盖在第一个图层上面，形成一个新的第一图层，第三图层覆盖在第一图层上面。<br>还有更关于CALayer画形状的案例，我就直接放在下面。估计我这个公司百分之九十九是不会用到这个了。</p>
-<pre><code>// 裁剪区域三角孔背景
-CGContextMoveToPoint(con, 10, 100);
-CGContextAddLineToPoint(con, 20, 90);
-CGContextAddLineToPoint(con, 30, 100);
-CGContextClosePath(con);
-CGContextAddRect(con, CGRectMake(0,0,40,100));
-CGContextEOClip(con);    
-
-
-// 画一个黑色（默认）垂直线，箭头轴
-CGContextMoveToPoint(con, 20, 100);
-CGContextAddLineToPoint(con, 20, 19);
-CGContextSetLineWidth(con, 20);
-CGContextStrokePath(con);
-
-// 画一个三角形图案，箭头的指向
-CGColorSpaceRef sp = CGColorSpaceCreatePattern(NULL);
-CGContextSetFillColorSpace (con, sp);
-CGColorSpaceRelease (sp);
-CGPatternCallbacks callback = {
-    0, &amp;drawStripes, NULL
-};
-CGAffineTransform tr = CGAffineTransformIdentity;
-CGPatternRef patt = CGPatternCreate(NULL,
-                                    CGRectMake(0,0,4,4),
-                                    tr,
-                                    4, 4, 
-                                    kCGPatternTilingConstantSpacingMinimalDistortion,
-                                    true,
-                                    &amp;callback);
-CGFloat alph = 1.0;
-CGContextSetFillPattern(con, patt, &amp;alph);
-CGPatternRelease(patt);
-CGContextMoveToPoint(con, 0, 25);
-CGContextAddLineToPoint(con, 20, 0);
-CGContextAddLineToPoint(con, 40, 25);
-CGContextFillPath(con);
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-UIView继承-35" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/">iOS开发指南-Objective—C基础-UIView继承-35</a>
-    </h1>
-  
-
-        
-        <a href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/" class="archive-article-date">
-  	<time datetime="2016-06-05T14:49:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIView继承"><a href="#UIView继承" class="headerlink" title="UIView继承"></a>UIView继承</h1><p><em>ps:最近有点懒惰啊，继续吧，前面写的UIView我确实还没有看懂，不过后面我又细细的看了一遍，现在写下这篇文章。</em></p>
-<h1 id="实战-在屏幕中绘制一个三角形"><a href="#实战-在屏幕中绘制一个三角形" class="headerlink" title="实战-在屏幕中绘制一个三角形"></a>实战-在屏幕中绘制一个三角形</h1><p>直接开始讲解如何扩展一个UIView，<strong>之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展</strong>。</p>
-<p>###创建一个类基于UIView</p>
-<pre><code>@interface TestView : UIView
-{
-    CGPoint firstPoint;
-    CGPoint secondPoint;
-    CGPoint thirdPoint;
-    NSMutableArray *pointArray;
-}
-
-@end
-</code></pre><p>在.m文件中实现</p>
-<pre><code>- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // 初始化代码
-        self.backgroundColor = [UIColor whiteColor];
-        pointArray = [[NSMutableArray alloc]initWithCapacity:3];
-        UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
-        label.text = @&quot;任意点击屏幕内的三点以确定一个三角形&quot;;
-        [self addSubview:label];
-        [label release];
-    }
-    return self;
-}
-
-//如果执行了自定义绘制，则只覆盖drawrect：。
-
-//一个空的实现产生不利的影响会表现在动画。
-- (void)drawRect:(CGRect)rect
-{
-    // 绘制代码
-    CGContextRef context = UIGraphicsGetCurrentContext();
-
-    CGContextSetRGBStrokeColor(context, 0.5, 0.5, 0.5, 1.0);
-    // 绘制更加明显的线条
-    CGContextSetLineWidth(context, 2.0);
-
-    // 画一条连接起来的线条
-    CGPoint addLines[] =
-    {
-        firstPoint,secondPoint,thirdPoint,firstPoint,
-    };
-    CGContextAddLines(context, addLines, sizeof(addLines)/sizeof(addLines[0]));
-    CGContextStrokePath(context);
-
-}
-</code></pre><p>监听触摸</p>
-<pre><code>- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    UITouch * touch = [touches anyObject]; 
-    CGPoint point = [touch locationInView:self];
-    [pointArray addObject:[NSValue valueWithCGPoint:point]];
-    if (pointArray.count &gt; 3) {
-        [pointArray removeObjectAtIndex:0];
-    }
-    if (pointArray.count==3) {
-        firstPoint = [[pointArray objectAtIndex:0]CGPointValue];
-        secondPoint = [[pointArray objectAtIndex:1]CGPointValue];
-        thirdPoint = [[pointArray objectAtIndex:2]CGPointValue];
-    }
-    NSLog(@&quot;%@&quot;,[NSString stringWithFormat:@&quot;1:%f/%f\n2:%f/%f\n3:%f/%f&quot;,firstPoint.x,firstPoint.y,secondPoint.x,secondPoint.y,thirdPoint.x,thirdPoint.y]);
-    //调用drawRect方法
-    [self setNeedsDisplay];
-}
-</code></pre><p>在控制器中 加入下面语句就可以调用了</p>
-<pre><code>- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // 加载试图
-    TestView *view = [[TestView alloc]initWithFrame:self.view.frame];
-    self.view = view;
-}
-</code></pre><p>基本上的调用就是这样。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1240,11 +1114,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -164,6 +164,253 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/">iOS开发指南-Objective—C基础-Cocoa-Touch UIButton -06</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/" class="archive-article-date">
+  	<time datetime="2016-04-25T14:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##UIButton 按钮</p>
+<h4 id="1-UIButton状态"><a href="#1-UIButton状态" class="headerlink" title="1.UIButton状态:"></a>1.UIButton状态:</h4><hr>
+<pre><code>UIControlStateNormal          // 正常状态   
+UIControlStateHighlighted     // 高亮状态   
+UIControlStateDisabled        // 禁用状态    
+UIControlStateSelected        // 选中状态    
+UIControlStateApplication     //     
+UIControlStateReserved        // 保留状态
+</code></pre><h4 id="2-Uibutton类型："><a href="#2-Uibutton类型：" class="headerlink" title="2.Uibutton类型："></a>2.Uibutton类型：</h4><p>UIButtonTypeCustom            //自定义类型</p>
+<p> 添加图片： <img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F2.jpg" alt="2">   灰色背景颜色： <img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F3.jpg" alt="3"></p>
+<p>UIButtonTypeRoundedRect       //圆角类型</p>
+<p> <img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F4.jpg" alt="4"></p>
+<p>UIButtonTypeDetailDisclosure   //细节展示按钮<br><img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F5.jpg" alt="5"></p>
+<p>UIButtonTypeInfoLight          //浅色背景的信息按钮</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F6.jpg" alt="6"></p>
+<p>UIButtonTypeInfoDark           //暗色背景的信息按钮</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F7.jpg" alt="7"></p>
+<p>UIButtonTypeContactAdd         // 添加按钮</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image%2F160425%2F8.jpg" alt="8"></p>
+<h4 id="3-UIButton常用属性"><a href="#3-UIButton常用属性" class="headerlink" title="3.UIButton常用属性"></a>3.UIButton常用属性</h4><p>给按钮设置文字时，苹果文档说明，不能使用label对象设置文字的颜色或者阴影颜色，相反必须使用</p>
+<pre><code>setTitleColor:forState: and setTitleShadowColor:forState:这两个方法才能修改这些值。
+</code></pre><p>设置按钮中其他属性依次类推。。。。</p>
+<hr>
+<pre><code>//设置对应状态的标题内容default is nil. title is assumed to be single line
+- (void)setTitle:(NSString *)title forState:(UIControlState)state;  
+//设置对应状态的标题颜色           
+- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;   
+//设置对应状态的标题阴影颜色            
+- (void)setTitleShadowColor:(UIColor *)color forState:(UIControlState)state;          
+//设置对应状态的按钮的图片
+- (void)setImage:(UIImage *)image forState:(UIControlState)state;        
+//设置对应状态的按钮背景图片
+- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state;
+
+添加事件
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+</code></pre><p>这些事件都是基于触摸、基于值、基于编辑。有如下事件会触发。<br>在点击按钮是按钮是凹下去，然后弹起才触发起事件，按钮的状态有： </p>
+<ul>
+<li>UIControlEventTouchDown      // 按下           </li>
+<li>UIControlEventTouchDownRepeat  多次按下   </li>
+<li>UIControlEventTouchUpInside // 在按钮及其一定外围内松开</li>
+<li>UIControlEventTouchUpOutside // 按钮外面松开  </li>
+</ul>
+<h4 id="4-adjustsImageWhenDisabled"><a href="#4-adjustsImageWhenDisabled" class="headerlink" title="4.adjustsImageWhenDisabled"></a>4.adjustsImageWhenDisabled</h4><p>当按钮禁用的情况下，图像的颜色会被画深一点，默认为YES。</p>
+<h4 id="5-adjustsImageWhenHighlighted"><a href="#5-adjustsImageWhenHighlighted" class="headerlink" title="5.adjustsImageWhenHighlighted"></a>5.adjustsImageWhenHighlighted</h4><p>当按钮高亮的情况下，图像的颜色会被画深一点，默认为YES。</p>
+<h4 id="6-showsTouchWhenHighlighted"><a href="#6-showsTouchWhenHighlighted" class="headerlink" title="6.showsTouchWhenHighlighted"></a>6.showsTouchWhenHighlighted</h4><pre><code>button.showsTouchWhenHighlighted=YES;点击时的闪光效果会被前景图片遮住中间部分；
+</code></pre><h4 id="7-contentEdgeInsets"><a href="#7-contentEdgeInsets" class="headerlink" title="7.contentEdgeInsets"></a>7.contentEdgeInsets</h4><p>设置按钮的内部内容（包含按钮图片和标题）离按钮边缘上下左右的距离。</p>
+<h4 id="8-按钮实例"><a href="#8-按钮实例" class="headerlink" title="8.按钮实例"></a>8.按钮实例</h4><pre><code>有些时候我们想让UIButton的title居左对齐，我们设置 
+btn.textLabel.textAlignment = UITextAlignmentLeft
+是没有作用的，我们需要设置 
+btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+但是问题又出来，此时文字会紧贴到左边框，我们可以设置 
+btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
+使文字距离左边框保持10个像素的距离。
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/">iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/" class="archive-article-date">
+  	<time datetime="2016-04-25T13:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="界面类"><a href="#界面类" class="headerlink" title="界面类"></a>界面类</h1><p><em>ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。</em></p>
+<h2 id="标签-UILable"><a href="#标签-UILable" class="headerlink" title="标签 UILable"></a>标签 UILable</h2><p><code>UILabel属性</code></p>
+<ul>
+<li>text：设置标签显示文本。 </li>
+<li>attributedText：设置标签属性文本。 </li>
+</ul>
+<p>Ios代码 </p>
+<hr>
+<pre><code>NSString *text = @&quot;first&quot;;  
+NSMutableAttributedString *textLabelStr = [[NSMutableAttributedString alloc] initWithString:text];  
+[textLabelStr setAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor],   
+ NSFontAttributeName : [UIFont systemFontOfSize:17]} range:NSMakeRange(11, 10)];
+label.attributedText = textLabelStr;  
+</code></pre><ul>
+<li>font：设置标签文本字体。默认是系统自带字体，大小为17。</li>
+</ul>
+<p>Ios代码 </p>
+<hr>
+<pre><code>label.font = [UIFont systemFontOfSize:17]
+label.font = [UIFont fontWithName:@&quot;Arial&quot; size:16];  
+Ios代码  
+label.textColor = [UIColor blueColor];
+</code></pre><ul>
+<li>textAlignment：设置标签文本对齐方式。 </li>
+</ul>
+<p>Ios代码 </p>
+<hr>
+<pre><code>label.textAlignment = NSTextAlignmentCenter;  
+</code></pre><ul>
+<li>lineBreakMode：设置标签文字过长时的显示方式,这个属性使用于label中文本的换行和截短。首先numberofLines必须设置为0，才有效果。</li>
+</ul>
+<p>Ios代码 </p>
+<hr>
+<pre><code>label.lineBreakMode = NSLineBreakByCharWrapping;以字符为显示单位显示，后面部分省略不显示。  
+label.lineBreakMode = NSLineBreakByClipping;剪切与文本宽度相同的内容长度，后半部分被删除。  
+label.lineBreakMode = NSLineBreakByTruncatingHead;前面部分文字以……方式省略，显示尾部文字内容。  
+label.lineBreakMode = NSLineBreakByTruncatingMiddle;中间的内容以……方式省略，显示头尾的文字内容。  
+label.lineBreakMode = NSLineBreakByTruncatingTail;结尾部分的内容以……方式省略，显示头的文字内容。  
+label.lineBreakMode = NSLineBreakByWordWrapping;以单词为显示单位显示，后面部分省略不显示。  
+比如：
+label.numberOfLines = 0
+label.lineBreakMode = NSLineBreakByTruncatingMiddle;
+</code></pre><p>实现效果：</p>
+<p><img src="http://7xt76f.com2.z0.glb.clouddn.com/image%2F160425%2F1.jpg" alt="1"></p>
+<ul>
+<li>enabled：设置文字内容是否可变。 </li>
+<li>adjustsFontSizeToFitWidth：文字内容自适应标签宽度。 </li>
+<li>adjustsLetterSpacingToFitWidth：根据字母的间隔自适应标签宽度，超出部分以……显示。 </li>
+<li>numberOfLines：标签最多显示行数。 </li>
+<li>minimumScaleFactor：设置最小字体，与minimumFontSize相同，minimumFontSize在IOS 6后不能使用。 </li>
+<li>highlightedTextColor：设置文本高亮显示颜色，与highlighted一起使用。 </li>
+<li>shadowColor：设置文本阴影颜色。 </li>
+<li>shadowColor：设置文本阴影与原文本的偏移量。label.shadowOffset = CGSizeMake(1.0, 5.0); </li>
+<li>userInteractionEnabled：设置标签是否忽略或移除用户交互。默认为NO。 </li>
+<li>preferredMaxLayoutWidth：优先选择标签布局的最大宽度。 </li>
+<li>baselineAdjustment：如果adjustsFontSizeToFitWidth属性设置为YES，这个属性就来控制文本基线的行为。</li>
+</ul>
+<p>Ios代码 </p>
+<hr>
+<pre><code>label4.baselineAdjustment = UIBaselineAdjustmentNone;  
+UIBaselineAdjustmentAlignBaselines=0，默认，文本最上端与中线对齐。  
+UIBaselineAdjustmentAlignCenters,   文本中线与label中线对齐。  
+UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
+</code></pre><ul>
+<li>backgroundColor 背景颜色</li>
+</ul>
+<p>ios代码：</p>
+<hr>
+<pre><code>清空背景颜色 label1.backgroundColor = [UIColor clearColor];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-类-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1791,11 +2038,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
