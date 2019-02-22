@@ -184,7 +184,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="从零搭建通用项目-定制框架"><a href="#从零搭建通用项目-定制框架" class="headerlink" title="从零搭建通用项目-定制框架"></a>从零搭建通用项目-定制框架</h1><p>这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/181112/3.png" alt="3"></p>
+<h2 id="UserModel"><a href="#UserModel" class="headerlink" title="UserModel"></a>UserModel</h2><p>用户模型是个绕不过去的东西，涉及登录注册就需要用到。</p>
+<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/181112/%E5%8D%95%E4%BE%8B.png" alt="单例"></p>
+<p>基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。</p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。<br>这里需要讲一下的就是配置文件中最好统一，并且只有一份。有许多第三方框架中有各自的配置文件，可以使用第三方框架的方法，如果自己定义的话，最好在定义名称的时候加上标识符，避免名称冲突。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这里主要就是各个项目不一样的地方在来进行定制开发，上面讲的这些都是可以通用的。</p>
+<p><a href="https://github.com/HeYming/KKSP" target="_blank" rel="external">https://github.com/HeYming/KKSP</a></p>
+<p>这是个Swift语言的快速开发框架，欢迎各位下载讨论。</p>
+
       
 
       
@@ -192,7 +201,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
