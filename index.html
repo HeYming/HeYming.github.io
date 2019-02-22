@@ -164,20 +164,20 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-从零搭建通用项目-扩展框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-从零搭建通用项目-定制框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/从零搭建通用项目-扩展框架/">从零搭建通用项目-扩展框架</a>
+      <a class="article-title" href="/2018/11/12/从零搭建通用项目-定制框架/">从零搭建通用项目-定制框架</a>
     </h1>
   
 
         
-        <a href="/2019/08/27/从零搭建通用项目-扩展框架/" class="archive-article-date">
-  	<time datetime="2019-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
+        <a href="/2018/11/12/从零搭建通用项目-定制框架/" class="archive-article-date">
+  	<time datetime="2018-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
 </a>
         
       </header>
@@ -196,7 +196,87 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/27/从零搭建通用项目-扩展框架/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/11/12/从零搭建通用项目-定制框架/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-从零搭建通用项目-扩展框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/08/27/从零搭建通用项目-扩展框架/">从零搭建通用项目-扩展框架</a>
+    </h1>
+  
+
+        
+        <a href="/2018/08/27/从零搭建通用项目-扩展框架/" class="archive-article-date">
+  	<time datetime="2018-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="从零搭建通用项目-扩展框架"><a href="#从零搭建通用项目-扩展框架" class="headerlink" title="从零搭建通用项目-扩展框架"></a>从零搭建通用项目-扩展框架</h1><p>上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。<br><img src="http://pn9h2rml9.bkt.clouddn.com/image/180827/2.png" alt="2"></p>
+<p>我大致分为三类：</p>
+<ol>
+<li>视图类</li>
+<li>网络类</li>
+<li>功能类</li>
+</ol>
+<h2 id="视图类"><a href="#视图类" class="headerlink" title="视图类"></a>视图类</h2><p>基础样式扩展：<br>TabBarController扩展ESTabBarController<br>其他视图扩展按照需求去找类似的开源框架<br>自动布局：<br>Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。<br>专用视图扩展：<br>HUD的扩展，OC中用的最多的就是MBProgressHUD这个框架，也有很多其他类型的，找个适合当前项目的。</p>
+<h2 id="网络类"><a href="#网络类" class="headerlink" title="网络类"></a>网络类</h2><p>网络请求：<br>AFNetworking，这个应该是必备的，先封装网络请求，在根据当前业务再次封装适合当前项目使用的方法。</p>
+<p>网络图片缓存：<br>SDWebImage，这个就直接集成在项目中，不需要在进行封装，使用时直接调用。</p>
+<p>功能类：<br>数据处理：<br>JSON序列化，这个有很多种选择，我选择的是MJExtension，他支持混合类型的序列化，比较符合我的需求。<br>页面扩展：<br>MJRefresh，下拉刷新，这个也是几乎必备<br>功能扩展：<br>这里我推荐BlocksKit，这个只能用于OC，比较遗憾。这个框架封装了大部分系统原生的代理和通知，用block的形式来代替代理和通知。前期开发中这个绝对是省时省力的利器。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/27/从零搭建通用项目-扩展框架/">展开全文 >></a>
         </p>
       
 
@@ -944,76 +1024,6 @@
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-UIImageView动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">iOS开发指南-Objective—C基础-UIImageView动画</a>
-    </h1>
-  
-
-        
-        <a href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/" class="archive-article-date">
-  	<time datetime="2016-08-15T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="iOS开发指南-Objective—C基础-UIImageView动画"><a href="#iOS开发指南-Objective—C基础-UIImageView动画" class="headerlink" title="iOS开发指南-Objective—C基础-UIImageView动画"></a>iOS开发指南-Objective—C基础-UIImageView动画</h2><p>UIImageView来实现动画效果，相对比较简单，基本需要设置下列属性：</p>
-<p>animationDuration 属性：指定多长时间运行一次动画循环。</p>
-<p>animationImages 属性：识别图像的NSArray，以加载到UIImageView中。</p>
-<p>animationRepeatCount 属性：指定运行多少次动画循环。</p>
-<p>image 属性：识别单个图像，以加载到UIImageView中。</p>
-<p>startAnimating 方法：开启动画。</p>
-<p>stopAnimating 方法：停止动画。</p>
-<p>这些属性设置后调用startAnimating方法就开始轮播图片，如果想一直轮播就把循环设置为0，这样在没有接收到stopAnimating方法前是不会停止动画的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1114,11 +1124,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
              
               <li class="article-tag-list-item">

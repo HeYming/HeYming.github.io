@@ -8,16 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>从零搭建通用项目-扩展框架 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
+  <meta name="description" content="从零搭建通用项目-扩展框架上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。 我大致分为三类：  视图类 网络类 功能类  视图类基础样式扩展：TabBarController扩展ESTabBarController其他视图扩展按照需求去找类似的开源框架自动布局：Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。专用视图扩">
+<meta name="keywords" content="Objective-C">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从零搭建通用项目-扩展框架">
-<meta property="og:url" content="http://yoursite.com/2019/08/27/从零搭建通用项目-扩展框架/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/08/27/从零搭建通用项目-扩展框架/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
-<meta property="og:updated_time" content="2019-02-22T03:07:26.427Z">
+<meta property="og:description" content="从零搭建通用项目-扩展框架上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。 我大致分为三类：  视图类 网络类 功能类  视图类基础样式扩展：TabBarController扩展ESTabBarController其他视图扩展按照需求去找类似的开源框架自动布局：Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。专用视图扩">
+<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/180827/2.png">
+<meta property="og:updated_time" content="2019-02-22T07:11:29.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零搭建通用项目-扩展框架">
-<meta name="twitter:description" content="我的征程是星辰大海">
+<meta name="twitter:description" content="从零搭建通用项目-扩展框架上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。 我大致分为三类：  视图类 网络类 功能类  视图类基础样式扩展：TabBarController扩展ESTabBarController其他视图扩展按照需求去找类似的开源框架自动布局：Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。专用视图扩">
+<meta name="twitter:image" content="http://pn9h2rml9.bkt.clouddn.com/image/180827/2.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -175,15 +178,26 @@
   
 
         
-        <a href="/2019/08/27/从零搭建通用项目-扩展框架/" class="archive-article-date">
-  	<time datetime="2019-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
+        <a href="/2018/08/27/从零搭建通用项目-扩展框架/" class="archive-article-date">
+  	<time datetime="2018-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="从零搭建通用项目-扩展框架"><a href="#从零搭建通用项目-扩展框架" class="headerlink" title="从零搭建通用项目-扩展框架"></a>从零搭建通用项目-扩展框架</h1><p>上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。<br><img src="http://pn9h2rml9.bkt.clouddn.com/image/180827/2.png" alt="2"></p>
+<p>我大致分为三类：</p>
+<ol>
+<li>视图类</li>
+<li>网络类</li>
+<li>功能类</li>
+</ol>
+<h2 id="视图类"><a href="#视图类" class="headerlink" title="视图类"></a>视图类</h2><p>基础样式扩展：<br>TabBarController扩展ESTabBarController<br>其他视图扩展按照需求去找类似的开源框架<br>自动布局：<br>Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。<br>专用视图扩展：<br>HUD的扩展，OC中用的最多的就是MBProgressHUD这个框架，也有很多其他类型的，找个适合当前项目的。</p>
+<h2 id="网络类"><a href="#网络类" class="headerlink" title="网络类"></a>网络类</h2><p>网络请求：<br>AFNetworking，这个应该是必备的，先封装网络请求，在根据当前业务再次封装适合当前项目使用的方法。</p>
+<p>网络图片缓存：<br>SDWebImage，这个就直接集成在项目中，不需要在进行封装，使用时直接调用。</p>
+<p>功能类：<br>数据处理：<br>JSON序列化，这个有很多种选择，我选择的是MJExtension，他支持混合类型的序列化，比较符合我的需求。<br>页面扩展：<br>MJRefresh，下拉刷新，这个也是几乎必备<br>功能扩展：<br>这里我推荐BlocksKit，这个只能用于OC，比较遗憾。这个框架封装了大部分系统原生的代理和通知，用block的形式来代替代理和通知。前期开发中这个绝对是省时省力的利器。</p>
+
       
 
       
@@ -212,7 +226,29 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -262,7 +298,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/08/27/从零搭建通用项目-扩展框架/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/08/27/从零搭建通用项目-扩展框架/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -275,6 +311,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/11/12/从零搭建通用项目-定制框架/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          从零搭建通用项目-定制框架
+        
+      </div>
+    </a>
   
   
     <a href="/2018/07/22/从零搭建通用项目-基础框架/" id="article-nav-older" class="article-nav-link-wrap">
@@ -291,7 +336,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="从零搭建通用项目-扩展框架" data-title="从零搭建通用项目-扩展框架" data-url="http://yoursite.com/2019/08/27/从零搭建通用项目-扩展框架/"></div>
+	<div class="ds-thread" data-thread-key="从零搭建通用项目-扩展框架" data-title="从零搭建通用项目-扩展框架" data-url="http://yoursite.com/2018/08/27/从零搭建通用项目-扩展框架/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -410,11 +455,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
              
               <li class="article-tag-list-item">

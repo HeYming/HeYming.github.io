@@ -164,6 +164,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-UIImageView动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">iOS开发指南-Objective—C基础-UIImageView动画</a>
+    </h1>
+  
+
+        
+        <a href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/" class="archive-article-date">
+  	<time datetime="2016-08-15T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="iOS开发指南-Objective—C基础-UIImageView动画"><a href="#iOS开发指南-Objective—C基础-UIImageView动画" class="headerlink" title="iOS开发指南-Objective—C基础-UIImageView动画"></a>iOS开发指南-Objective—C基础-UIImageView动画</h2><p>UIImageView来实现动画效果，相对比较简单，基本需要设置下列属性：</p>
+<p>animationDuration 属性：指定多长时间运行一次动画循环。</p>
+<p>animationImages 属性：识别图像的NSArray，以加载到UIImageView中。</p>
+<p>animationRepeatCount 属性：指定运行多少次动画循环。</p>
+<p>image 属性：识别单个图像，以加载到UIImageView中。</p>
+<p>startAnimating 方法：开启动画。</p>
+<p>stopAnimating 方法：停止动画。</p>
+<p>这些属性设置后调用startAnimating方法就开始轮播图片，如果想一直轮播就把循环设置为0，这样在没有接收到stopAnimating方法前是不会停止动画的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-视图和图层-36" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1372,196 +1442,6 @@ exchangeSubviewAtIndex:withSubviewAtIndex:
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/" class="archive-article-date">
-  	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UISearchBar-检索条"><a href="#UISearchBar-检索条" class="headerlink" title="UISearchBar 检索条"></a>UISearchBar 检索条</h1><p><em>ps:这本书已经写了一半的，其中很多内容比较繁琐，我都是在网上找的方法进行复制，其中有很多表格就不写了，毕竟还有Google，本文内容来自<a href="http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral</a>,作者:FlyElephant</em></p>
-<p>#UISearchBar和UISearchDisplayController</p>
-<p>是网上最常见的也算是最简单的，也有使用Searh Bar Search Display Controller的控件的，本文就简单的使用Search Bar和UITableView实现搜索Demo的,最上面的就是搜索栏，之前的就是TableView:</p>
-<p>为了实现搜索需要声明委托UISearchBarDelegate,UISearchDisplayDelegate,其中搜索主要使用的就是UISearchDisplayDelegate，具体代码实现过程:</p>
-<p>##声明字段:</p>
-<pre><code>@property (strong,nonatomic) NSMutableArray  *dataList;
-
-@property (strong,nonatomic) NSMutableArray  *searchList;
-</code></pre><p>##初始化数据:</p>
-<pre><code>self.dataList=[NSMutableArray arrayWithCapacity:100];
-
-for (NSInteger i=0; i&lt;100; i++) {
-    [self.dataList addObject:[NSString stringWithFormat:@&quot;%ld-FlyElephant&quot;,(long)i]];
-}
-</code></pre><p>##设置区域:</p>
-<pre><code>//设置区域
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-</code></pre><p>　<br>设置区域的行数(重点),这个就是使用委托之后需要需要判断是一下是否是需要使用Search之后的视图:</p>
-<pre><code>-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
-            return [self.searchList count];
-        }else{
-            return [self.dataList count];
-    }
-}
-</code></pre><p>　<br>同样的返回单元格也有两种情况，一种是初始化数据，一种是过滤之后的数据视图:</p>
-<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@&quot;cellFlag&quot;;
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
-        [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
-        [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
-
-    return cell;
-}
-</code></pre><p>UISearchBarDelegate中的开始和结束的事件:</p>
-<pre><code>- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
-    NSLog(@&quot;搜索Begin&quot;);
-    return YES;
-}
-
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
-    NSLog(@&quot;搜索End&quot;);
-    return YES;
-}
-</code></pre><p>搜索时过滤数据:</p>
-<pre><code>- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
-    // 谓词的包含语法,之前文章介绍过http://www.cnblogs.com/xiaofeixiang/
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
-
-    if (self.searchList!= nil) {
-        [self.searchList removeAllObjects];
-    }
-    //过滤数据
-    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
-    //刷新表格
-    return YES;
-}
-</code></pre><p>UISearchController实现搜索</p>
-<p>UISeachBar通过UISearchDisplayDelegate实现上面的效果是没有问题的，网上也有很多类似的实现效果，不过是警告的，信息如下: ‘searchDisplayController’ is deprecated: first deprecated in iOS 8.0,这么明显一个警告总不能视而不见吧，在StackOverFlow中发现UISearchDisplayController is deprecated in IOS8.0, and recommended to use UISearchController instead，也就是说iOS 8.0不推荐UISearchDisplayController,也就是不推荐使用UISearchDisplayDelegate，但是可以通过UISearchController实现UISearchResultsUpdating这个委托实现上面的效果；</p>
-<p>视图中中需要声明UISearchResultsUpdating:</p>
-<pre><code>@interface ViewController : UITableViewController&lt;UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchResultsUpdating&gt;
-</code></pre><p>@end<br>　属性声明:</p>
-<pre><code>@property (nonatomic, strong) UISearchController *searchController;
-</code></pre><p>　<br>需要自己初始化一下UISearchController:</p>
-<pre><code>_searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-
-_searchController.searchResultsUpdater = self;
-
-_searchController.dimsBackgroundDuringPresentation = NO;
-
-_searchController.hidesNavigationBarDuringPresentation = NO;
-
-_searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
-
-self.tableView.tableHeaderView = self.searchController.searchBar;
-</code></pre><p>之前是通过判断搜索时候的TableView，不过现在直接使用self.searchController.active进行判断即可，也就是</p>
-<p>UISearchController的active属性:</p>
-<pre><code>//设置区域的行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-
-    if (self.searchController.active) {
-        return [self.searchList count];
-    }else{
-        return [self.dataList count];
-    }
-
-}
-
-//返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *flag=@&quot;cellFlag&quot;;
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (self.searchController.active) {
-        [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
-        [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
-    return cell;
-}
-</code></pre><p>　具体调用的时候使用的方法也发生了改变，这个时候使用updateSearchResultsForSearchController进行结果过滤:</p>
-<pre><code>-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-
-    NSString *searchString = [self.searchController.searchBar text];
-
-    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
-
-    if (self.searchList!= nil) {
-        [self.searchList removeAllObjects];
-    }
-    //过滤数据
-    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
-    //刷新表格
-
-    [self.tableView reloadData];
-}
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1662,11 +1542,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color3">入门</a>
               </li>
              
               <li class="article-tag-list-item">
