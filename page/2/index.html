@@ -164,6 +164,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Swift-KVC" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/01/Swift-KVC/">Swift-KVC</a>
+    </h1>
+  
+
+        
+        <a href="/2017/06/01/Swift-KVC/" class="archive-article-date">
+  	<time datetime="2017-06-01T13:39:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><em>ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理</em></p>
+<p>Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。<br>Swift兼容oc，自然也会有runtime的方法调用。<br>KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。</p>
+<h1 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h1><p>获取类列表<br>class_copyPropertyList<br>获取到UnsafeMutablePointer 类型的当前类的集合<br>property_getName<br>获取UnsafePointer 类型的当前类名称<br>String(utf8String:cName)<br>转换为String格式<br>setValuesForKeys<br>通过key给Value赋值</p>
+<h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>//如果是对象，可选<br>var name:String?<br>//基本属性不能可以选，否则无法用KVC设置属性<br>var age: Int?<br>//私有属性无法用KVC设置属性<br>private var title = “”</p>
+<h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><pre><code>class Person: NSObject {
+    //如果是对象，可选
+    var name:String?
+    //基本属性不能可以选，否则无法用KVC设置属性
+    var age: Int?
+    //私有属性无法用KVC设置属性
+    private var title = &quot;&quot;
+
+    //重载init方法
+    init(dict:[NSString:Any]) {
+        super.init()
+        setValuesForKeys(dict as [String : Any])
+    }
+
+    //重写 setValue方法
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+
+    }
+
+    //runtime 获取当前所有属性
+    class func propertyList() -&gt; [String]{
+        var count: UInt32 = 0
+        //获取类列表
+        let list = class_copyPropertyList(self, &amp;count)
+
+        for i in 0..&lt;Int(count) {
+            guard let pty = list?[i],
+                let cName = property_getName(pty),
+                let name = String(utf8String:cName)
+             else {
+                continue
+            }
+            print(name)
+        }
+
+        return [];
+    }
+
+    //对象销毁前自动调用
+    //用于释放 通知 和kvo
+    deinit {
+
+    }
+}
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/06/01/Swift-KVC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-UIImageView动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1284,150 +1390,6 @@ NSArray *arrayViewController = self.navigationController.viewControllers;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIView-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">iOS开发指南-Objective—C基础-Interface-Builder-UIView-28</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>UIView 基础视图</p>
-<p>#1.alpha</p>
-<p>设置视图的透明度.默认为1.</p>
-<pre><code>// 完全透明
-view.alpha = 0;
-// 不透明
-view.alpha = 1;
-</code></pre><p>#2.clipsToBounds</p>
-<pre><code>// 默认是NO，当设置为yes时，超出当前视图的尺寸的内容和子视图不会显示。
-view.clipsToBounds = YES;
-</code></pre><p>#3.hidden</p>
-<pre><code>// 默认是NO，当设置为yes，视图就看不见了。
-view.hidden = YES;
-</code></pre><p>#4.userInteractionEnabled</p>
-<pre><code>// 默认为YES，如果设置为No，view就不能和用户交互了。（即不能响应事件）
-view.userInteractionEnabled = NO;
-</code></pre><p>#5. tag</p>
-<pre><code>// 默认为0，用来标记视图的
-view.tag = 0;
-</code></pre><p>#6. exclusiveTouch</p>
-<p>默认为No<br>exclusiveTouch的意义在于：如果当前设置了exclusiveTouch的UIView是整个触摸事件的第一响应者，那么到你所有的手指离开屏幕前其他的UIView是无法接受到整个事件周期内所有的触摸事件。</p>
-<p>#7.CGRect frame</p>
-<p>1&gt; 表示控件的位置和尺寸（以父控件的左上角为坐标原点（0, 0））<br>2&gt; 修改这个属性，可以调整控件的位置和尺寸</p>
-<p>#8.CGPoint center</p>
-<p>1&gt; 表示控件的中点（以父控件的左上角为坐标原点）<br>2&gt; 修改这个属性，可以调整控件的位置</p>
-<p>#9.CGRect bounds</p>
-<p>1&gt; 表示控件的位置和尺寸（以自己的左上角位坐标原点，位置永远是(0, 0)）<br>2&gt; 修改这个属性，只能调整控件的尺寸</p>
-<p>#10.CGAffineTransform transform</p>
-<p>1&gt; 表示控件的形变状态（旋转角度、缩放比例）<br>2&gt; 创建CGAffineTransform的函数</p>
-<pre><code>* CGAffineTransformMakeScale(CGFloat sx, CGFloat sy)
-</code></pre><p>创建一个x、y方向的缩放比例分别为sx、sy的形变值</p>
-<pre><code>* CGAffineTransformMakeRotation(CGFloat angle)
-</code></pre><p>创建一个旋转角度为angle的形变值</p>
-<pre><code>* CGAffineTransformScale(CGAffineTransform t, CGFloat sx, CGFloat sy)
-</code></pre><p>在形变值t的基础上，再进行缩放，x、y方向的缩放比例分别为sx、sy，然后返回一个新的形变值</p>
-<pre><code>* CGAffineTransformRotate(CGAffineTransform t, CGFloat angle)
-</code></pre><p>在形变值t的基础上，再进行旋转，旋转角度为angle，然后返回一个新的形变值</p>
-<p>#11.superview </p>
-<p>返回当前视图的父视图。（只读）</p>
-<p>#12.window</p>
-<p>返回当前视图的窗口。（窗口）</p>
-<p>获取根视图的superview和window时，需要注意，在viewdidload中是获取不到的，viewdidload只是视图加载完成，并没有添加到窗口中，因此需要在viewDidAppear方法中才能获取到。那时候视图才被添加到窗口中。</p>
-<pre><code>- (void)viewDidLoad
-{
-    [super viewDidLoad]; 
-    NSLog(@&quot;%@&quot;,self.view.superview); // 没有值
-    NSLog(@&quot;%@&quot;, self.view.window); // 没有值
-}
-
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    NSLog(@&quot;%@&quot;,self.view.superview); // 有值
-    NSLog(@&quot;%@&quot;, self.view.window);  // 有值
-}
-</code></pre><p>#13.autoresizesSubviews</p>
-<p>默认为YES，表示当父视图尺寸改变时，子视图也会随着改变。</p>
-<p>#14.autoresizingMask</p>
-<p>默认为UIViewAutoresizingNone,不会自动伸缩。</p>
-<p>#15.contentMode</p>
-<p>设置内容模式。<br>UIViewContentModeScaleToFill  不按照原宽高比例（长和宽不等比例增长）以任意比例填充。这样视图不会有空白，且内容可以全部显示。<br>UIViewContentModeAspectToFill  按照原长宽比例填充，不完全显示全部内容。这样内容可能溢出，但整个视图不会留有空白。<br>UIViewContentModeAspectToFit   按照原长宽比例（长和宽等比例增长），完全显示全部内容。这样容易照成左右或者上下留有空白。</p>
-<p>#16.backgroundColor</p>
-<p>默认是nil。</p>
-<pre><code>// 设置背景颜色为红色
-self.view.backgroundColor = [UIColor redColor];
-</code></pre><p>#17.UIView常用添加子视图方法</p>
-<pre><code>//加一个视图到一个视图里面  
-addSubview:  
-//将一个视图移到前面  
-bringSubviewToFront:  
-//将一个视图推送到背后  
-sendSubviewToBack:  
-//把视图移除  
-removeFromSuperview  
-//插入视图 并指定索引  
-insertSubview:atIndex:  
-//插入视图在某个视图之上  
-insertSubview:aboveSubview:  
-//插入视图在某个视图之下  
-insertSubview:belowSubview:  
-//交换两个位置索引的视图  
-exchangeSubviewAtIndex:withSubviewAtIndex:  
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">展开全文 >></a>
         </p>
       
 
