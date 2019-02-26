@@ -15,14 +15,14 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/22/从零搭建通用项目-基础框架/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="从零搭建通用项目-基础框架前言：由于公司项目众多，每次新项目开始都从零搭建项目既费时，又效率低下。这个时候就需要搭建一个通用项目框架，当有新的项目的时候，只用修改部分页面就能完成快速开发。 简介我个人认为搭建通用项目框架基本分为三大类：  基础框架 扩展框架 定制框架  先来聊聊基础框架都需要些什么。  AppDelegate在AppDelegate中，尽可能的少放耗时的操作，这样可以加快APP的">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/190722/1.png">
-<meta property="og:updated_time" content="2019-02-22T03:00:20.275Z">
+<meta property="og:image" content="http://qn.heyim.xyz/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png">
+<meta property="og:image" content="http://qn.heyim.xyz/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="http://qn.heyim.xyz/image/190722/1.png">
+<meta property="og:updated_time" content="2019-02-26T09:28:17.118Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从零搭建通用项目-基础框架">
 <meta name="twitter:description" content="从零搭建通用项目-基础框架前言：由于公司项目众多，每次新项目开始都从零搭建项目既费时，又效率低下。这个时候就需要搭建一个通用项目框架，当有新的项目的时候，只用修改部分页面就能完成快速开发。 简介我个人认为搭建通用项目框架基本分为三大类：  基础框架 扩展框架 定制框架  先来聊聊基础框架都需要些什么。  AppDelegate在AppDelegate中，尽可能的少放耗时的操作，这样可以加快APP的">
-<meta name="twitter:image" content="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png">
+<meta name="twitter:image" content="http://qn.heyim.xyz/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -189,18 +189,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="从零搭建通用项目-基础框架"><a href="#从零搭建通用项目-基础框架" class="headerlink" title="从零搭建通用项目-基础框架"></a>从零搭建通用项目-基础框架</h1><p>前言：由于公司项目众多，每次新项目开始都从零搭建项目既费时，又效率低下。这个时候就需要搭建一个通用项目框架，当有新的项目的时候，只用修改部分页面就能完成快速开发。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png" alt="项目搭建"><br>我个人认为搭建通用项目框架基本分为三大类：</p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="http://qn.heyim.xyz/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png" alt="项目搭建"><br>我个人认为搭建通用项目框架基本分为三大类：</p>
 <ol>
 <li>基础框架</li>
 <li>扩展框架</li>
 <li>定制框架</li>
 </ol>
 <p>先来聊聊基础框架都需要些什么。</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png" alt="项目基础架构"></p>
+<p><img src="http://qn.heyim.xyz/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png" alt="项目基础架构"></p>
 <h1 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h1><p>在AppDelegate中，尽可能的少放耗时的操作，这样可以加快APP的启动速度。<br>注册Window的RootViewController，后面如果需要切换视图，只在这个Window中切换，避免造成混乱。<br>注册第三方服务组件。</p>
 <h1 id="LoadViewController"><a href="#LoadViewController" class="headerlink" title="LoadViewController"></a>LoadViewController</h1><p>AppDelegate的RootViewController设置LoadViewController为根控制器。<br>这个页面再来显示加载广告、启动页、自动登录等功能。<br>在由这个页面来决定跳转到登录还是进入首页</p>
 <h1 id="RootViewController"><a href="#RootViewController" class="headerlink" title="RootViewController"></a>RootViewController</h1><p>所有ViewController的根视图。<br>放设置Navigation、通用样式等方法。<br>根据业务需求增加所需要的方法。</p>
-<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>这个就不需要怎么讲了。所有文件列表按照MVC来进行创建。<br><img src="http://pn9h2rml9.bkt.clouddn.com/image/190722/1.png" alt="1"></p>
+<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>这个就不需要怎么讲了。所有文件列表按照MVC来进行创建。<br><img src="http://qn.heyim.xyz/image/190722/1.png" alt="1"></p>
 
       
 
@@ -423,11 +423,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">

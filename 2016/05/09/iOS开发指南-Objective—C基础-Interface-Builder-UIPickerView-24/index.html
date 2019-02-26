@@ -15,15 +15,15 @@
 <meta property="og:url" content="http://yoursite.com/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="UIPickerView 选择器视图#1.属性 ##1.    numberOfComponents：返回UIPickerView当前的列数 NSInteger num = _pickerView.numberOfComponents; NSLog( @&amp;quot;%d&amp;quot;, num); ##2. - (NSInteger)numberOfRowsInComponent:(NSIntege">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160509/1.png">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160509/2.png">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160509/3.png">
-<meta property="og:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160509/4.png">
-<meta property="og:updated_time" content="2019-02-21T06:35:29.734Z">
+<meta property="og:image" content="http://qn.heyim.xyz/image/160509/1.png">
+<meta property="og:image" content="http://qn.heyim.xyz/image/160509/2.png">
+<meta property="og:image" content="http://qn.heyim.xyz/image/160509/3.png">
+<meta property="og:image" content="http://qn.heyim.xyz/image/160509/4.png">
+<meta property="og:updated_time" content="2019-02-26T09:31:32.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24">
 <meta name="twitter:description" content="UIPickerView 选择器视图#1.属性 ##1.    numberOfComponents：返回UIPickerView当前的列数 NSInteger num = _pickerView.numberOfComponents; NSLog( @&amp;quot;%d&amp;quot;, num); ##2. - (NSInteger)numberOfRowsInComponent:(NSIntege">
-<meta name="twitter:image" content="http://pn9h2rml9.bkt.clouddn.com/image/160509/1.png">
+<meta name="twitter:image" content="http://qn.heyim.xyz/image/160509/1.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -199,7 +199,7 @@ NSLog(@&quot;%d&quot;,numInCp);
 </code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
 <pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
 NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/1.png" alt="1"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160509/1.png" alt="1"></p>
 <p>#2.    delegate：</p>
 <p>##2.0 设置UIPickerView代理</p>
 <pre><code>_pickerView.delegate = self;
@@ -208,7 +208,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 {
     return @&quot;showData&quot;;
 }
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160509/2.png" alt="2"></p>
 <p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
 <pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
@@ -217,7 +217,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return myView;
 }
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/160509/3.png" alt="3"></p>
 <p>#3.    dataSource：数据源</p>
 <p>##1.设置每列显示3行</p>
 <pre><code>// pragma mark  - dataSource method
@@ -233,7 +233,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 <p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
 <pre><code>_pickerView.showsSelectionIndicator = NO;
 </code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/4.png" alt="4"></p>
+<p><img src="http://qn.heyim.xyz/image/160509/4.png" alt="4"></p>
 <p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
 <pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 </code></pre><p>##4. 返回第component列每一行的高度</p>
@@ -460,11 +460,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">

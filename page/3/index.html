@@ -464,15 +464,15 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
 <ul>
 <li>UIActivityIndicatorViewStyleWhiteLarge  </li>
 </ul>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16050901/21.png" alt="1"></p>
+<p><img src="http://qn.heyim.xyz/image/16050901/21.png" alt="1"></p>
 <ul>
 <li>UIActivityIndicatorViewStyleWhite   (默认样式)</li>
 </ul>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16050901/22.png" alt="1"></p>
+<p><img src="http://qn.heyim.xyz/image/16050901/22.png" alt="1"></p>
 <ul>
 <li>UIActivityIndicatorViewStyleGray    </li>
 </ul>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16050901/23.png" alt="1"></p>
+<p><img src="http://qn.heyim.xyz/image/16050901/23.png" alt="1"></p>
 <p>##2.hidesWhenStopped </p>
 <p>当停止动画的时候，是否隐藏。默认为YES。</p>
 <p>##3. 实例化指示器对象，根据样式设置尺寸，不需要手动设置。</p>
@@ -566,7 +566,7 @@ NSLog(@&quot;%d&quot;,numInCp);
 </code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
 <pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
 NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/1.png" alt="1"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160509/1.png" alt="1"></p>
 <p>#2.    delegate：</p>
 <p>##2.0 设置UIPickerView代理</p>
 <pre><code>_pickerView.delegate = self;
@@ -575,7 +575,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 {
     return @&quot;showData&quot;;
 }
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160509/2.png" alt="2"></p>
 <p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
 <pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
 {
@@ -584,7 +584,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return myView;
 }
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/160509/3.png" alt="3"></p>
 <p>#3.    dataSource：数据源</p>
 <p>##1.设置每列显示3行</p>
 <pre><code>// pragma mark  - dataSource method
@@ -600,7 +600,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 <p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
 <pre><code>_pickerView.showsSelectionIndicator = NO;
 </code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160509/4.png" alt="4"></p>
+<p><img src="http://qn.heyim.xyz/image/160509/4.png" alt="4"></p>
 <p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
 <pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 </code></pre><p>##4. 返回第component列每一行的高度</p>
@@ -886,12 +886,12 @@ alertView.title = @&quot;T&quot;;
 alertView.message = @&quot;M&quot;;
 
 [alertView show];
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/1.png" alt="1"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160504/1.png" alt="1"></p>
 <h2 id="3-numberOfButtons-只读"><a href="#3-numberOfButtons-只读" class="headerlink" title="3.numberOfButtons (只读)"></a>3.numberOfButtons (只读)</h2><p>返回UIAlertView上有多少按钮.</p>
 <pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
     NSLog(@&quot;%d&quot;,alertView.numberOfButtons);
 [alertView show];
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/2.png" alt="2"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160504/2.png" alt="2"></p>
 <h2 id="4-cancelButtonIndex"><a href="#4-cancelButtonIndex" class="headerlink" title="4.cancelButtonIndex"></a>4.cancelButtonIndex</h2><pre><code>   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;提示&quot;
                                                                   message:@&quot;请选择一个按钮：&quot;
                                                                  delegate:nil
@@ -900,7 +900,7 @@ alertView.message = @&quot;M&quot;;
    [alert show];
 NSLog(@&quot;UIAlertView中取消按钮的角标是%d&quot;,alert.cancelButtonIndex);
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/160504/3.png" alt="3"></p>
 <p>注意不要认为取消按钮的角标是4，“取消”，“按钮一”，“按钮二”，“按钮三”的索引buttonIndex分别是0，1，2，3</p>
 <h2 id="5-alertViewStyle"><a href="#5-alertViewStyle" class="headerlink" title="5. alertViewStyle"></a>5. alertViewStyle</h2><p>###5.1 UIAlertViewStyleLoginAndPasswordInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
@@ -909,7 +909,7 @@ alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/4.png" alt="4"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160504/4.png" alt="4"></p>
 <p>###5.2 UIAlertViewStylePlainTextInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
 
@@ -917,7 +917,7 @@ alert.alertViewStyle = UIAlertViewStylePlainTextInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/5.png" alt="5"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160504/5.png" alt="5"></p>
 <p>###5.3UIAlertViewStyleSecureTextInput</p>
 <pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
 
@@ -925,7 +925,7 @@ alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
 
 // 弹出UIAlertView
  [alert show];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/6.png" alt="6"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160504/6.png" alt="6"></p>
 <h2 id="6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex"><a href="#6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex" class="headerlink" title="6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex"></a>6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</h2><p>返回textFieldIndex角标对应的文本框。<br>取出文本框文字  </p>
 <pre><code>[alert textFieldAtIndex:0].text
 </code></pre><h2 id="7-手动的取消对话框"><a href="#7-手动的取消对话框" class="headerlink" title="7.手动的取消对话框"></a>7.手动的取消对话框</h2><pre><code>[alert dismissWithClickedButtonIndex:0 animated:YES];
@@ -951,7 +951,7 @@ UIActivityIndicatorView*activeView = [[UIActivityIndicatorView alloc]initWithAct
 activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.size.height - 40.0f);  
 [activeView startAnimating];  
 [alert addSubview:activeView];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/7.png" alt="7"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160504/7.png" alt="7"></p>
 <h2 id="11-UIAlertView小例子"><a href="#11-UIAlertView小例子" class="headerlink" title="11. UIAlertView小例子"></a>11. UIAlertView小例子</h2><p>  UIAlertView默认情况下所有的text是居中对齐的。 那如果需要将文本向左对齐或者添加其他控件比如输入框时该怎么办呢？ 不用担心， iPhone SDK还是很灵活的， 有很多delegate消息供调用程序使用。 所要做的就是在</p>
 <pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView
 </code></pre><p>中按照自己的需要修改或添加即可， 比如需要将消息文本左对齐，下面的代码即可实现:</p>
@@ -966,7 +966,7 @@ activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.siz
             }
       }
 }
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160504/8.png" alt="8"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160504/8.png" alt="8"></p>
 
       
 
@@ -1662,11 +1662,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">

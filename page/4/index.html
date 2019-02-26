@@ -186,10 +186,10 @@
       
         <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于讲完这个章节，之前我也不是很懂Cocoa Touch 到底是干嘛的，其实Cocoa Touch简单的说就是为iOS运行和OC语言做一个连接，是iOS的核心框架。<br>后面还有本OC语法的书，就完全不涉及Cocoa Touch 的操作。</p>
 <p>我在iPhone上发现了一个文档，其中也有对iOS的核心和Cocoa Touch 的介绍。</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160428/1.jpg" alt="1"></p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160428/2.jpg" alt="2"></p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160428/3.jpg" alt="3"></p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160428/4.jpg" alt="4"></p>
+<p><img src="http://qn.heyim.xyz/image/160428/1.jpg" alt="1"></p>
+<p><img src="http://qn.heyim.xyz/image/160428/2.jpg" alt="2"></p>
+<p><img src="http://qn.heyim.xyz/image/160428/3.jpg" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/160428/4.jpg" alt="4"></p>
 <p>由于Cocoa Touch 是iOS的核心框架，所以就必须要学好并且掌握其中内容。</p>
 
       
@@ -685,7 +685,7 @@ NSLog( @&quot;%d&quot;, num);
 NSLog(@&quot;%d&quot;,numInCp);
 </code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
 NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042702/1.png" alt="1"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/1.png" alt="1"></p>
 <h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
 <pre><code>_pickerView.delegate = self;
 // 设置UIPickView每行显示的内容
@@ -694,7 +694,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 {
     return @&quot;showData&quot;;
 }
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042702/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/2.png" alt="2"></p>
 <h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
 
 // 返回一个视图，用来设置pickerView的每行显示的内容。
@@ -705,7 +705,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return myView;
 }
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042702/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/16042702/3.png" alt="3"></p>
 <h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
 // 设置每列显示3行
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -718,7 +718,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return 2; 
 }
 </code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042702/4.png" alt="4"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/4.png" alt="4"></p>
 <p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
 <h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 </code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
@@ -797,11 +797,11 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 [datePicker setLocale:[[NSLocale
 alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/1.png" alt="1"></p>
+<p><img src="http://qn.heyim.xyz/image/16042701/1.png" alt="1"></p>
 <pre><code>// 2) 设置日期选择控件的地区
 [datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/2.png" alt="2"> </p>
+<p><img src="http://qn.heyim.xyz/image/16042701/2.png" alt="2"> </p>
 <h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
 <pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
 </code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
@@ -819,7 +819,7 @@ alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 // 倒计时的时长，以秒为单位
 [self.datePicker setCountDownDuration:10 * 60];
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.xyz/image/16042701/3.png" alt="3"></p>
 <h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
 <pre><code>// 设置分钟间隔
     datePicker.minuteInterval = 15;
@@ -828,24 +828,24 @@ alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 显示小时，分钟和AM/PM,这个的名称是根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeTime];
 </code></pre><p>效果图：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/4.png" alt="4"> </p>
+<p><img src="http://qn.heyim.xyz/image/16042701/4.png" alt="4"> </p>
 <p>9.2    </p>
 <pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
 显示年月日，名称根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeDate];
 </code></pre><p>效果图： </p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/5.png" alt="5"></p>
+<p><img src="http://qn.heyim.xyz/image/16042701/5.png" alt="5"></p>
 <p>9.3 默认是显示这种模式</p>
 <pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
 显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
 </code></pre><p>效果图：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/6.png" alt="6"></p>
+<p><img src="http://qn.heyim.xyz/image/16042701/6.png" alt="6"></p>
 <p> 9.4  </p>
 <pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
 显示小时和分钟
 [datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042701/7.png" alt="7"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042701/7.png" alt="7"></p>
 <h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
 <pre><code>// 不用设置宽高，因为它的宽高是固定的
 UIDatePicker *datePicker = [[UIDatePicker alloc] init];
@@ -935,20 +935,20 @@ datePicker.maximumDate = maxDate;
 </code></pre><h2 id="2-font-设置textView中文字的字体"><a href="#2-font-设置textView中文字的字体" class="headerlink" title="2.    font:设置textView中文字的字体"></a>2.    font:设置textView中文字的字体</h2><pre><code>_textView.font = [UIFont fontWithName:@&quot;Arial&quot; size:18.0]; // 设置字体名字和字体大小
 </code></pre><h2 id="3-textColor-设置textView中文本的颜色"><a href="#3-textColor-设置textView中文本的颜色" class="headerlink" title="3.    textColor:设置textView中文本的颜色"></a>3.    textColor:设置textView中文本的颜色</h2><pre><code>_textView.textColor = [UIColor blackColor]; // 设置textview里面的字体颜色
 </code></pre><h2 id="4-textAlignment-设置textView的文本的排列方式"><a href="#4-textAlignment-设置textView的文本的排列方式" class="headerlink" title="4.    textAlignment:设置textView的文本的排列方式"></a>4.    textAlignment:设置textView的文本的排列方式</h2><pre><code>_textView.textAlignment = NSTextAlignmentCenter; // textView中的文本排列，默认靠左
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/1.png" alt="1"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/1.png" alt="1"></p>
 <h2 id="5-backgroundColor-设置textView的背景颜色"><a href="#5-backgroundColor-设置textView的背景颜色" class="headerlink" title="5.    backgroundColor:设置textView的背景颜色"></a>5.    backgroundColor:设置textView的背景颜色</h2><pre><code>_textView.backgroundColor = [UIColor grayColor]; // 设置浅灰色的背景色，默认为白色
 </code></pre><h2 id="6-delegate-设置代理"><a href="#6-delegate-设置代理" class="headerlink" title="6.    delegate:设置代理"></a>6.    delegate:设置代理</h2><pre><code>_textView.delegate = self; // 设置代理
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/2.png" alt="2"></p>
 <h2 id="7-editable-设置textView是否可被输入"><a href="#7-editable-设置textView是否可被输入" class="headerlink" title="7.    editable:设置textView是否可被输入"></a>7.    editable:设置textView是否可被输入</h2><pre><code>_textView.editable = NO; // textView是否可被输入，默认为YES
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/3.png" alt="3"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/3.png" alt="3"></p>
 <h2 id="8-attributedText-设置默认插入textView的文字"><a href="#8-attributedText-设置默认插入textView的文字" class="headerlink" title="8.    attributedText:设置默认插入textView的文字"></a>8.    attributedText:设置默认插入textView的文字</h2><pre><code>_textView.attributedText = [[NSAttributedString alloc]initWithString:@&quot;attributedText__-abc&quot;]; // 可以方便将文本插入到UITextView中。
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/4.png" alt="4"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/4.png" alt="4"></p>
 <h2 id="9-inputView-设置从底部弹出的视图"><a href="#9-inputView-设置从底部弹出的视图" class="headerlink" title="9.    inputView:设置从底部弹出的视图"></a>9.    inputView:设置从底部弹出的视图</h2><pre><code>_textView.inputView = [[UIDatePicker alloc]init]; // 弹出视图，默认为键盘
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/5.png" alt="5"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/5.png" alt="5"></p>
 <h2 id="10-inputAccessoryView-设置弹出视图上方的辅助视图"><a href="#10-inputAccessoryView-设置弹出视图上方的辅助视图" class="headerlink" title="10.    inputAccessoryView:设置弹出视图上方的辅助视图"></a>10.    inputAccessoryView:设置弹出视图上方的辅助视图</h2><pre><code>_textView.inputAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; // 弹出视图上方的辅助视图
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/6.png" alt="6"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/6.png" alt="6"></p>
 <h2 id="11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"><a href="#11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本" class="headerlink" title="11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"></a>11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本</h2><pre><code>_textView.clearsOnInsertion = YES; // clearsOnInsertion，默认为NO
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160427/7.png" alt="7"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/7.png" alt="7"></p>
 
       
 
@@ -1483,12 +1483,12 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 <p> 当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0</p>
 <hr>
 <pre><code>_slider.minimumValue = 10.0;
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/1.png" alt="1"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/1.png" alt="1"></p>
 <p>####2.    maximumValue : </p>
 <p>当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0</p>
 <hr>
 <pre><code>_slider.maximumValue = 100.0;
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/2.png" alt="2"></p>
 <p>####3.    continuous : </p>
 <p>如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES</p>
 <hr>
@@ -1497,27 +1497,27 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 <p>滑块条最小值处设置的图片，默认为nil</p>
 <hr>
 <pre><code>_slider.minimumValueImage = [UIImage imageNamed:@&quot;003.png&quot;];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/3.png" alt="3"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/3.png" alt="3"></p>
 <p>####5.    maximumValueImage，</p>
 <p>滑块条最大值处设置的图片,默认为nil</p>
 <hr>
 <pre><code>_slider.maximumValueImage = [UIImage imageNamed:@&quot;002.png&quot;];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/4.png" alt="4"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/4.png" alt="4"></p>
 <p>####6.minimumTrackTintColor : </p>
 <p>小于滑块当前值滑块条的颜色，默认为蓝色</p>
 <hr>
 <pre><code>_slider.minimumTrackTintColor = [UIColor redColor];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/5.png" alt="5"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/5.png" alt="5"></p>
 <p>####7.maximumTrackTintColor: </p>
 <p>大于滑块当前值滑块条的颜色，默认为白色</p>
 <hr>
 <pre><code>_slider.maximumTrackTintColor = [UIColor greenColor];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/6.png" alt="6"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/6.png" alt="6"></p>
 <p>####8.thumbTintColor : </p>
 <p>当前滑块的颜色，默认为白色</p>
 <hr>
 <pre><code>_slider.thumbTintColor = [UIColor yellowColor];
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/16042601/7.png" alt="7"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/7.png" alt="7"></p>
 <p>####9.currentMaximumTrackImage : </p>
 <p>滑块条最大值处设置的图片</p>
 <p>####10.currentMinimumTrackImage : </p>
@@ -1593,15 +1593,15 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 <pre><code>typedef NS_ENUM(NSInteger, UISegmentedControlStyle) {
 UISegmentedControlStylePlain,     // large plain 系统默认平板样式
 segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/1.png" alt="1"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160426/1.png" alt="1"></p>
 <hr>
 <pre><code>UISegmentedControlStyleBordered,  // large bordered 黑边样式
 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBordered;
-</code></pre><p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/2.png" alt="2"></p>
+</code></pre><p> <img src="http://qn.heyim.xyz/image/160426/2.png" alt="2"></p>
 <hr>
 <pre><code>UISegmentedControlStyleBar,       // small button/nav bar style. Tintable 条状样式
 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-</code></pre><p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/3.png" alt="3"></p>
+</code></pre><p><img src="http://qn.heyim.xyz/image/160426/3.png" alt="3"></p>
 <hr>
 <pre><code>UISegmentedControlStyleBezeled,   // DEPRECATED. Do not use this style. 这个类型不要使用,用了会报错喔。
 };
@@ -1614,18 +1614,18 @@ segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 segmentedControl.tintColor = [UIColor redColor];
 </code></pre><p>效果：</p>
-<p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/4.png" alt="4"></p>
+<p> <img src="http://qn.heyim.xyz/image/160426/4.png" alt="4"></p>
 <ul>
 <li>momentary 设置在点击后是否恢复原样    默认为NO</li>
 </ul>
 <hr>
 <pre><code>segmentedControl.momentary = No;
 </code></pre><p>点击之后效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/5.png" alt="5"></p>
+<p><img src="http://qn.heyim.xyz/image/160426/5.png" alt="5"></p>
 <hr>
 <pre><code>segmentedControl.momentary = YES;
 </code></pre><p>点击之后效果：</p>
-<p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/6.png" alt="6"></p>
+<p> <img src="http://qn.heyim.xyz/image/160426/6.png" alt="6"></p>
 <ul>
 <li><p>numberOfSegments(只读) 获取总选项数segmentedControl.numberOfSegments</p>
 </li>
@@ -1641,7 +1641,7 @@ segmentedControl.tintColor = [UIColor redColor];
 <pre><code>- (void)setTitle:(NSString *)title forSegmentAtIndex:(NSUInteger)segment;
 [segmentedControl setTitle:@&quot;two&quot; forSegmentAtIndex:1];//设置指定索引的题目
 </code></pre><p>效果：</p>
-<p> <img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/7.png" alt="7"></p>
+<p> <img src="http://qn.heyim.xyz/image/160426/7.png" alt="7"></p>
 <ul>
 <li>设置指定索引的图片</li>
 </ul>
@@ -1655,7 +1655,7 @@ segmentedControl.tintColor = [UIColor redColor];
 <pre><code>-(void)insertSegmentWithTitle:(NSString*)title atIndex:(NSUInteger)segment animated:(BOOL)animated;
 [segmentedControl insertSegmentWithTitle:@&quot;add&quot; atIndex:3 animated:NO];//在指定索引插入一个选项并设置题目
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/8.png" alt="8"></p>
+<p><img src="http://qn.heyim.xyz/image/160426/8.png" alt="8"></p>
 <ul>
 <li>在指定索引插入一个选项并设置图片</li>
 </ul>
@@ -1669,7 +1669,7 @@ segmentedControl.tintColor = [UIColor redColor];
 <pre><code>- (void)removeSegmentAtIndex:(NSUInteger)segment animated:(BOOL)animated;
 [segmentedControl removeSegmentAtIndex:0 animated:NO];//移除指定索引的选项
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/9.png" alt="9"></p>
+<p><img src="http://qn.heyim.xyz/image/160426/9.png" alt="9"></p>
 <ul>
 <li>移除所有选项</li>
 </ul>
@@ -1685,7 +1685,7 @@ segmentedControl.tintColor = [UIColor redColor];
 选项卡的宽度默认为0，此方法能够设置选项卡宽度。
 [segmentedControl setWidth:70.0 forSegmentAtIndex:2];//设置指定索引选项的宽度
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/10.png" alt="10"></p>
+<p><img src="http://qn.heyim.xyz/image/160426/10.png" alt="10"></p>
 <ul>
 <li>设置选项卡内部文字或者图片与默认位置的偏移量，默认位置在选项卡的中心。</li>
 </ul>
@@ -1694,7 +1694,7 @@ segmentedControl.tintColor = [UIColor redColor];
 [segmentedControl setContentOffset:CGSizeMake(10,0) forSegmentAtIndex:1];
 设置选项卡内部文字或者图片与默认位置的偏移量，默认位置在选项卡的中心。
 </code></pre><p>效果：</p>
-<p><img src="http://pn9h2rml9.bkt.clouddn.com/image/160426/11.png" alt="11"></p>
+<p><img src="http://qn.heyim.xyz/image/160426/11.png" alt="11"></p>
 <ul>
 <li>设置指定索引选项不可选</li>
 </ul>
@@ -1844,11 +1844,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
