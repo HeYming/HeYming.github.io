@@ -45,7 +45,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://pn9h2rml9.bkt.clouddn.com/image/jpg/head.jpg" class="js-avatar">
+			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">小豆子</a></h1>
@@ -107,7 +107,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://pn9h2rml9.bkt.clouddn.com/image/jpg/head.jpg" class="js-avatar">
+				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">小豆子</h1>
@@ -163,6 +163,113 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">iOS开发指南-Objective—C基础-Cocoa-Touch UISlider -09</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/" class="archive-article-date">
+  	<time datetime="2016-04-26T14:34:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UISlider-滑块"><a href="#UISlider-滑块" class="headerlink" title="UISlider 滑块"></a>UISlider 滑块</h2><p>####1.    minimumValue  :</p>
+<p> 当值可以改变时，滑块可以滑动到最小位置的值，默认为0.0</p>
+<hr>
+<pre><code>_slider.minimumValue = 10.0;
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/1.png" alt="1"></p>
+<p>####2.    maximumValue : </p>
+<p>当值可以改变时，滑块可以滑动到最大位置的值，默认为1.0</p>
+<hr>
+<pre><code>_slider.maximumValue = 100.0;
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/2.png" alt="2"></p>
+<p>####3.    continuous : </p>
+<p>如果设置YES，在拖动滑块的任何时候，滑块的值都会改变。默认设置为YES</p>
+<hr>
+<pre><code>[_slider setContinuous:NO]; // 在滑块滑动结束时才获取滑块的值
+</code></pre><p>####4.    minimumValueImage : </p>
+<p>滑块条最小值处设置的图片，默认为nil</p>
+<hr>
+<pre><code>_slider.minimumValueImage = [UIImage imageNamed:@&quot;003.png&quot;];
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/3.png" alt="3"></p>
+<p>####5.    maximumValueImage，</p>
+<p>滑块条最大值处设置的图片,默认为nil</p>
+<hr>
+<pre><code>_slider.maximumValueImage = [UIImage imageNamed:@&quot;002.png&quot;];
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/4.png" alt="4"></p>
+<p>####6.minimumTrackTintColor : </p>
+<p>小于滑块当前值滑块条的颜色，默认为蓝色</p>
+<hr>
+<pre><code>_slider.minimumTrackTintColor = [UIColor redColor];
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/5.png" alt="5"></p>
+<p>####7.maximumTrackTintColor: </p>
+<p>大于滑块当前值滑块条的颜色，默认为白色</p>
+<hr>
+<pre><code>_slider.maximumTrackTintColor = [UIColor greenColor];
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/6.png" alt="6"></p>
+<p>####8.thumbTintColor : </p>
+<p>当前滑块的颜色，默认为白色</p>
+<hr>
+<pre><code>_slider.thumbTintColor = [UIColor yellowColor];
+</code></pre><p><img src="http://qn.heyim.xyz/image/16042601/7.png" alt="7"></p>
+<p>####9.currentMaximumTrackImage : </p>
+<p>滑块条最大值处设置的图片</p>
+<p>####10.currentMinimumTrackImage : </p>
+<p>滑块条最小值处设置的图片</p>
+<p>####11.currentThumbImage: </p>
+<p>当前滑块的图片</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
   
     <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UISegmentedControl-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -2314,11 +2421,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
