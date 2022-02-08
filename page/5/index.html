@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://yoursite.com/page/5/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:locale">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -34,7 +34,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -48,7 +48,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -110,7 +110,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -171,12 +171,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">iOS开发指南-Objective—C基础-Cocoa-Touch UISlider -09</a>
+      <a class="article-title" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISlider-09/">iOS开发指南-Objective—C基础-Cocoa-Touch UISlider -09</a>
     </h1>
   
 
         
-        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/" class="archive-article-date">
+        <a href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISlider-09/" class="archive-article-date">
   	<time datetime="2016-04-26T14:34:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
 </a>
         
@@ -256,7 +256,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISlider-09/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISlider-09/">展开全文 >></a>
         </p>
       
 
@@ -278,12 +278,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISegmentedControl-08/">iOS开发指南-Objective—C基础-Cocoa-Touch UISegmentedControl -08</a>
+      <a class="article-title" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISegmentedControl-08/">iOS开发指南-Objective—C基础-Cocoa-Touch UISegmentedControl -08</a>
     </h1>
   
 
         
-        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISegmentedControl-08/" class="archive-article-date">
+        <a href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISegmentedControl-08/" class="archive-article-date">
   	<time datetime="2016-04-26T14:03:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
 </a>
         
@@ -295,7 +295,7 @@
 <li>segmentedControlStyle 设置segment的显示样式。</li>
 </ul>
 <hr>
-<pre><code>typedef NS_ENUM(NSInteger, UISegmentedControlStyle) {
+<pre><code>typedef NS_ENUM(NSInteger, UISegmentedControlStyle) &#123;
 UISegmentedControlStylePlain,     // large plain 系统默认平板样式
 segmentedControl.segmentedControlStyle = UISegmentedControlStylePlain;
 </code></pre><p><img src="http://qn.heyim.xyz/image/160426/1.png" alt="1"></p>
@@ -309,7 +309,7 @@ segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
 </code></pre><p><img src="http://qn.heyim.xyz/image/160426/3.png" alt="3"></p>
 <hr>
 <pre><code>UISegmentedControlStyleBezeled,   // DEPRECATED. Do not use this style. 这个类型不要使用,用了会报错喔。
-};
+&#125;;
 </code></pre><ul>
 <li>tintColor 渐变颜色</li>
 </ul>
@@ -438,7 +438,7 @@ segmentedControl.tintColor = [UIColor redColor];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISegmentedControl-08/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISegmentedControl-08/">展开全文 >></a>
         </p>
       
 
@@ -460,12 +460,12 @@ segmentedControl.tintColor = [UIColor redColor];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISwitch-07/">iOS开发指南-Objective—C基础-Cocoa-Touch UISwitch -07</a>
+      <a class="article-title" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISwitch-07/">iOS开发指南-Objective—C基础-Cocoa-Touch UISwitch -07</a>
     </h1>
   
 
         
-        <a href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISwitch-07/" class="archive-article-date">
+        <a href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISwitch-07/" class="archive-article-date">
   	<time datetime="2016-04-26T13:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
 </a>
         
@@ -536,7 +536,7 @@ segmentedControl.tintColor = [UIColor redColor];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/26/iOS开发指南-Objective—C基础-Cocoa-Touch-UISwitch-07/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UISwitch-07/">展开全文 >></a>
         </p>
       
 
@@ -558,12 +558,12 @@ segmentedControl.tintColor = [UIColor redColor];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/">iOS开发指南-Objective—C基础-Cocoa-Touch UIButton -06</a>
+      <a class="article-title" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIButton-06/">iOS开发指南-Objective—C基础-Cocoa-Touch UIButton -06</a>
     </h1>
   
 
         
-        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/" class="archive-article-date">
+        <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIButton-06/" class="archive-article-date">
   	<time datetime="2016-04-25T14:19:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
 </a>
         
@@ -592,40 +592,14 @@ UIControlStateReserved        // 保留状态
 <p><img src="http://qn.heyim.xyz/image%2F160425%2F8.jpg" alt="8"></p>
 <h4 id="3-UIButton常用属性"><a href="#3-UIButton常用属性" class="headerlink" title="3.UIButton常用属性"></a>3.UIButton常用属性</h4><p>给按钮设置文字时，苹果文档说明，不能使用label对象设置文字的颜色或者阴影颜色，相反必须使用</p>
 <pre><code>setTitleColor:forState: and setTitleShadowColor:forState:这两个方法才能修改这些值。
-</code></pre><p>设置按钮中其他属性依次类推。。。。</p>
-<hr>
-<pre><code>//设置对应状态的标题内容default is nil. title is assumed to be single line
-- (void)setTitle:(NSString *)title forState:(UIControlState)state;  
-//设置对应状态的标题颜色           
-- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;   
-//设置对应状态的标题阴影颜色            
-- (void)setTitleShadowColor:(UIColor *)color forState:(UIControlState)state;          
-//设置对应状态的按钮的图片
-- (void)setImage:(UIImage *)image forState:(UIControlState)state;        
-//设置对应状态的按钮背景图片
-- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state;
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"> 设置按钮中其他属性依次类推。。。。---------------</span><br><span class="line">		//设置对应状态的标题内容default is nil. title is assumed to be single line	- (void)setTitle:(NSString *)title forState:(UIControlState)state;  	//设置对应状态的标题颜色           	- (void)setTitleColor:(UIColor *)color forState:(UIControlState)state;   	//设置对应状态的标题阴影颜色            	- (void)setTitleShadowColor:(UIColor *)color forState:(UIControlState)state;          	//设置对应状态的按钮的图片	- (void)setImage:(UIImage *)image forState:(UIControlState)state;        	//设置对应状态的按钮背景图片	- (void)setBackgroundImage:(UIImage *)image forState:(UIControlState)state;		添加事件	- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;</span><br><span class="line">	这些事件都是基于触摸、基于值、基于编辑。有如下事件会触发。在点击按钮是按钮是凹下去，然后弹起才触发起事件，按钮的状态有： </span><br><span class="line">-	UIControlEventTouchDown      // 按下    	   -	UIControlEventTouchDownRepeat  多次按下   -	UIControlEventTouchUpInside // 在按钮及其一定外围内松开-	UIControlEventTouchUpOutside // 按钮外面松开  #### 4.adjustsImageWhenDisabled</span><br><span class="line">当按钮禁用的情况下，图像的颜色会被画深一点，默认为YES。</span><br><span class="line">#### 5.adjustsImageWhenHighlighted</span><br><span class="line">当按钮高亮的情况下，图像的颜色会被画深一点，默认为YES。</span><br><span class="line">#### 6.showsTouchWhenHighlighted</span><br><span class="line">```button.showsTouchWhenHighlighted=YES;点击时的闪光效果会被前景图片遮住中间部分；</span><br></pre></td></tr></table></figure>
 
-添加事件
-- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
-</code></pre><p>这些事件都是基于触摸、基于值、基于编辑。有如下事件会触发。<br>在点击按钮是按钮是凹下去，然后弹起才触发起事件，按钮的状态有： </p>
-<ul>
-<li>UIControlEventTouchDown      // 按下           </li>
-<li>UIControlEventTouchDownRepeat  多次按下   </li>
-<li>UIControlEventTouchUpInside // 在按钮及其一定外围内松开</li>
-<li>UIControlEventTouchUpOutside // 按钮外面松开  </li>
-</ul>
-<h4 id="4-adjustsImageWhenDisabled"><a href="#4-adjustsImageWhenDisabled" class="headerlink" title="4.adjustsImageWhenDisabled"></a>4.adjustsImageWhenDisabled</h4><p>当按钮禁用的情况下，图像的颜色会被画深一点，默认为YES。</p>
-<h4 id="5-adjustsImageWhenHighlighted"><a href="#5-adjustsImageWhenHighlighted" class="headerlink" title="5.adjustsImageWhenHighlighted"></a>5.adjustsImageWhenHighlighted</h4><p>当按钮高亮的情况下，图像的颜色会被画深一点，默认为YES。</p>
-<h4 id="6-showsTouchWhenHighlighted"><a href="#6-showsTouchWhenHighlighted" class="headerlink" title="6.showsTouchWhenHighlighted"></a>6.showsTouchWhenHighlighted</h4><pre><code>button.showsTouchWhenHighlighted=YES;点击时的闪光效果会被前景图片遮住中间部分；
-</code></pre><h4 id="7-contentEdgeInsets"><a href="#7-contentEdgeInsets" class="headerlink" title="7.contentEdgeInsets"></a>7.contentEdgeInsets</h4><p>设置按钮的内部内容（包含按钮图片和标题）离按钮边缘上下左右的距离。</p>
-<h4 id="8-按钮实例"><a href="#8-按钮实例" class="headerlink" title="8.按钮实例"></a>8.按钮实例</h4><pre><code>有些时候我们想让UIButton的title居左对齐，我们设置 
-btn.textLabel.textAlignment = UITextAlignmentLeft
-是没有作用的，我们需要设置 
-btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-但是问题又出来，此时文字会紧贴到左边框，我们可以设置 
-btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
-使文字距离左边框保持10个像素的距离。
-</code></pre>
+#### 7.contentEdgeInsets
+设置按钮的内部内容（包含按钮图片和标题）离按钮边缘上下左右的距离。
+
+#### 8.按钮实例
+</code></pre><p>有些时候我们想让UIButton的title居左对齐，我们设置<br>btn.textLabel.textAlignment = UITextAlignmentLeft<br>是没有作用的，我们需要设置<br>btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;<br>但是问题又出来，此时文字会紧贴到左边框，我们可以设置<br>btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);<br>使文字距离左边框保持10个像素的距离。<br>```</p>
+
       
 
       
@@ -652,7 +626,7 @@ btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIButton-06/">展开全文 >></a>
         </p>
       
 
@@ -674,12 +648,12 @@ btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/">iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05</a>
+      <a class="article-title" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/">iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05</a>
     </h1>
   
 
         
-        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/" class="archive-article-date">
+        <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/" class="archive-article-date">
   	<time datetime="2016-04-25T13:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
 </a>
         
@@ -697,8 +671,8 @@ btn.contentEdgeInsets = UIEdgeInsetsMake(0,10, 0, 0);
 <hr>
 <pre><code>NSString *text = @&quot;first&quot;;  
 NSMutableAttributedString *textLabelStr = [[NSMutableAttributedString alloc] initWithString:text];  
-[textLabelStr setAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor],   
- NSFontAttributeName : [UIFont systemFontOfSize:17]} range:NSMakeRange(11, 10)];
+[textLabelStr setAttributes:@&#123;NSForegroundColorAttributeName : [UIColor lightGrayColor],   
+ NSFontAttributeName : [UIFont systemFontOfSize:17]&#125; range:NSMakeRange(11, 10)];
 label.attributedText = textLabelStr;  
 </code></pre><ul>
 <li>font：设置标签文本字体。默认是系统自带字体，大小为17。</li>
@@ -783,7 +757,7 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/">展开全文 >></a>
         </p>
       
 
@@ -805,12 +779,12 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-04</a>
+      <a class="article-title" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E7%B1%BB-04/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-04</a>
     </h1>
   
 
         
-        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/" class="archive-article-date">
+        <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E7%B1%BB-04/" class="archive-article-date">
   	<time datetime="2016-04-25T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
 </a>
         
@@ -894,27 +868,27 @@ NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 [dateFormatter setDateFormat:@&quot;a&quot;];
 NSString *AMPMtext = [dateFormatter stringFromDate:[NSDate date]];
 [dateFormatter release];
-if ([AMPMtext isEqualToString:@&quot;&quot;]){
+if ([AMPMtext isEqualToString:@&quot;&quot;])&#123;
     NSLog(@&quot;24小时制&quot;);
-}
-else {
+&#125;
+else &#123;
     NSLog(@&quot;12小时制&quot;);
-}
+&#125;
 
 NSDate和NSString的转换
 
 用于uidate，picker。。
 
 +(NSDate * ) convertDateFromString:(NSString*)uiDate
-{
+&#123;
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     [formatter setDateFormat:@&quot;yyyy年MM月dd日&quot;];
     NSDate *date=[formatter dateFromString:uiDate];
     return date;
-}
+&#125;
 
 输入的日期字符串形如：@&quot;1992-05-21 13:08:08&quot;
-- (NSDate *)dateFromString:(NSString *)dateString{
+- (NSDate *)dateFromString:(NSString *)dateString&#123;
 NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
 [dateFormatter setDateFormat: @&quot;yyyy-MM-dd HH:mm:ss&quot;];
 
@@ -924,9 +898,9 @@ NSDate *destDate= [dateFormatter dateFromString:dateString];
 
 [dateFormatter release];
 return destDate;
-}
+&#125;
 
-- (NSString *)stringFromDate:(NSDate *)date{
+- (NSString *)stringFromDate:(NSDate *)date&#123;
 NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
 
 //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
@@ -938,18 +912,18 @@ NSString *destDateString = [dateFormatter stringFromDate:date];
 
 [dateFormatter release];
 return destDateString;
-}
+&#125;
 
-- (IBAction)handleDidPressBtn1{
+- (IBAction)handleDidPressBtn1&#123;
 NSLog(@&quot;%@/n&quot;, [selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]);
 NSLog(@&quot;%@/n&quot;, [selfstringFromDate:[selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]]);
-}
+&#125;
 
 输出结果如下：
 2011-08-09 04:02:01 +0000
 2011-08-09 12:02:01 GMT+08:00
 </code></pre><h2 id="NSURL-URL"><a href="#NSURL-URL" class="headerlink" title="NSURL URL"></a>NSURL URL</h2><p>可以用于管理和提取连接地址信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[myUrl host]</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myUrl host]</span><br></pre></td></tr></table></figure>
 <h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><hr>
 <pre><code>NSString
 *******************************************************************************************/
@@ -1037,9 +1011,9 @@ NSString *path = @&quot;astring.text&quot;;
 char string1[] = &quot;string!&quot;;
 char string2[] = &quot;string!&quot;;
 if(strcmp(string1, string2) = = 0)
-{
+&#123;
 NSLog(@&quot;1&quot;);
-}
+&#125;
 
 //isEqualToString方法    
 NSString *astring01 = @&quot;This is a String!&quot;;
@@ -1242,10 +1216,10 @@ NSArray *oldArray = [NSArray arrayWithObjects:
 
 NSLog(@&quot;oldArray:%@&quot;,oldArray);
 for(int i = 0; i &lt; [oldArray count]; i++)
-{        
+&#123;        
 obj = [[oldArray objectAtIndex:i] copy];
 [newArray addObject: obj];
-}
+&#125;
 //     
 NSLog(@&quot;newArray:%@&quot;, newArray);
 [newArray release];
@@ -1259,9 +1233,9 @@ NSArray *oldArray = [NSArray arrayWithObjects:
 NSLog(@&quot;oldArray:%@&quot;,oldArray);
 
 for(id obj in oldArray)
-{
+&#123;
 [newArray addObject: obj];
-}
+&#125;
 //     
 NSLog(@&quot;newArray:%@&quot;, newArray);
 [newArray release];    
@@ -1288,9 +1262,9 @@ NSEnumerator *enumerator;
 enumerator = [oldArray objectEnumerator];
 id obj;
 while(obj = [enumerator nextObject])
-{
+&#123;
 [newArray addObject: obj];
-}
+&#125;
 [newArray sortUsingSelector:@selector(compare:)];
 NSLog(@&quot;newArray:%@&quot;, newArray);
 [newArray release];
@@ -1349,9 +1323,9 @@ NSEnumerator *enumerator;
 enumerator = [array objectEnumerator];
 
 id thingie;
-while (thingie = [enumerator nextObject]) {
+while (thingie = [enumerator nextObject]) &#123;
 NSLog(@&quot;thingie:%@&quot;,thingie);
-}
+&#125;
 
 
 //- (NSEnumerator *)reverseObjectEnumerator;从后向前
@@ -1361,18 +1335,18 @@ NSEnumerator *enumerator;
 enumerator = [array reverseObjectEnumerator];
 
 id object;
-while (object = [enumerator nextObject]) {
+while (object = [enumerator nextObject]) &#123;
 NSLog(@&quot;object:%@&quot;,object);
-}
+&#125;
 
 
 //快速枚举
 //NSMutableArray *array = [NSMutableArray arrayWithObjects:
 @&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
 for(NSString *string in array)
-{
+&#123;
 NSLog(@&quot;string:%@&quot;,string);
-}
+&#125;
 
 
 
@@ -1444,33 +1418,33 @@ NSMutableArray *files = [[NSMutableArray alloc] init];
 
 //枚举
 NSString *filename;
-while (filename = [direnum nextObject]) {
-if([[filename pathExtension] hasSuffix:@&quot;jpg&quot;]){
+while (filename = [direnum nextObject]) &#123;
+if([[filename pathExtension] hasSuffix:@&quot;jpg&quot;])&#123;
 [files addObject:filename];
-}
-}
+&#125;
+&#125;
 
 //快速枚举
 //for(NSString *filename in direnum)
-//{
-//    if([[filename pathExtension] isEqualToString:@&quot;jpg&quot;]){
+//&#123;
+//    if([[filename pathExtension] isEqualToString:@&quot;jpg&quot;])&#123;
 //        [files addObject:filename];
-//    }
-//}
+//    &#125;
+//&#125;
 NSLog(@&quot;files:%@&quot;,files);
 
 //枚举
 NSEnumerator *filenum;
 filenum = [files objectEnumerator];
-while (filename = [filenum nextObject]) {
+while (filename = [filenum nextObject]) &#123;
 NSLog(@&quot;filename:%@&quot;,filename);
-}
+&#125;
 
 //快速枚举
 //for(id object in files)
-//{
+//&#123;
 //    NSLog(@&quot;object:%@&quot;,object);
-//}
+//&#125;
 </code></pre><p><em>ps:终于讲完了基础类型，为嘛感觉少了NSInteger类型</em></p>
 
       
@@ -1499,7 +1473,7 @@ NSLog(@&quot;filename:%@&quot;,filename);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E7%B1%BB-04/">展开全文 >></a>
         </p>
       
 
@@ -1521,12 +1495,12 @@ NSLog(@&quot;filename:%@&quot;,filename);
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-03</a>
+      <a class="article-title" href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-03</a>
     </h1>
   
 
         
-        <a href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/" class="archive-article-date">
+        <a href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/" class="archive-article-date">
   	<time datetime="2016-04-22T12:21:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-22</time>
 </a>
         
@@ -1707,19 +1681,19 @@ b = [a longLongValue]; 将 a 转换为 长整型
 
 11。 字符串截取到第n位  （substringToIndex: n）(第n 位不算再内)
 - (void)viewDidLoad
-{
+&#123;
     NSString  *a = @&quot;i like long dress&quot;;
     NSString *b = [a substringToIndex:4];
     NSLog(@&quot;\n b: %@&quot;,b);
-}
+&#125;
 
 12。字符串从第n 位开始截取,直到最后 （substringFromIndex:n）（包括第 n 位）
 - (void)viewDidLoad
-{
+&#123;
     NSString  *a = @&quot;i like long dress&quot;;
     NSString *b = [a substringFromIndex:4];
     NSLog(@&quot;\n b: %@&quot;,b);
-}
+&#125;
 </code></pre><h2 id="NSArray-NSMutableArray-数组"><a href="#NSArray-NSMutableArray-数组" class="headerlink" title="NSArray/NSMutableArray    数组"></a>NSArray/NSMutableArray    数组</h2><pre><code>//创建数组对象，nsarray不可变数组
 //c语言的数组可以存放任何类型的数据，同一个数组只能有同一种数据类型
 //oc语言的数组只能存放对象，可以存放任意对象
@@ -1731,7 +1705,7 @@ nslog(@&quot;arr = %@&quot;,arr3);
 
 //将c数组转换为oc数组对象
 //oc不允许将nil插入到数组中,因为nil作用是数组的结束标记
-NSString *carr[10] = {@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;};
+NSString *carr[10] = &#123;@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;&#125;;
 NSArray *arr4 = [[NSArray alloc] initWithObjects:carr count:2];
 NSLog(@&quot;arr4 = %@&quot;,arr4);
 //获取元素个数
@@ -1755,12 +1729,12 @@ NSLog(@&quot;sub1 = %@&quot;, sub1);
 NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
 //1-1.将要获取元素的下标写入清单
 for (NSInteger i = 0; i &lt; [arr2 count]; i++)
-{
+&#123;
 if (i % 2 != 0)
-{
+&#123;
 [indexs addIndex:i];
-}
-}
+&#125;
+&#125;
 
 //2.将清单交给数组
 //id obj =[arr2 objectAtIndex:0]; //获取单个元素,返回单个元素
@@ -1776,20 +1750,20 @@ NSInteger minLength = [arr5[0] length];
 NSString *maxString = nil;
 NSString *minString = nil;
 
-for (id obj in arr5) {
+for (id obj in arr5) &#123;
 
-if (maxLength &lt;= [obj length]) {
+if (maxLength &lt;= [obj length]) &#123;
 
 maxLength = [obj length];
 maxString = obj;
-}
+&#125;
 
-if (minLength &gt;= [obj length]) {
+if (minLength &gt;= [obj length]) &#123;
 
 minLength = [obj length];
 minString = obj;
-}
-}
+&#125;
+&#125;
 NSLog(@&quot;maxString = %@, minString = %@&quot;,maxString,minString);
 #if 0
 //创建可变数组对象
@@ -1828,14 +1802,14 @@ NSLog(@&quot;arr1 = %@&quot;,arr1);
 
 NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
 
-for (int i = 0; i &lt; [arr2 count]; i++) {
+for (int i = 0; i &lt; [arr2 count]; i++) &#123;
 
-if (i % 2 == 0) {
+if (i % 2 == 0) &#123;
 
 [indexs addIndex:i];
-}
+&#125;
 
-}
+&#125;
 //删除清单中得元素
 [arr2 removeObjectsAtIndexes:indexs];
 
@@ -1850,16 +1824,16 @@ NSArray *arr = @[@&quot;qqqq&quot;,@&quot;www&quot;,@&quot;ee&quot;];
 //交换数组中得内容
 [arr2 exchangeObjectAtIndex:1 withObjectAtIndex:3];
 //用oc对c语言中得数组进行排序
-for (int i = 0; i &lt; [arr2 count]; ++i) {
+for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
 
-    for (int i = 0; i &lt; [arr2 count]; ++i) {
-        for (int j = i + 1; j &lt; [arr2 count]; ++j) {
-            if ([arr2[i] length] &gt; [arr2[j] length]) {
+    for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
+        for (int j = i + 1; j &lt; [arr2 count]; ++j) &#123;
+            if ([arr2[i] length] &gt; [arr2[j] length]) &#123;
                 [arr2 exchangeObjectAtIndex:i withObjectAtIndex:j];
-            }
-        }
-    }
-}
+            &#125;
+        &#125;
+    &#125;
+&#125;
 </code></pre>
       
 
@@ -1887,7 +1861,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/">展开全文 >></a>
         </p>
       
 
@@ -1909,12 +1883,12 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/">iOS开发指南-Objective—C基础-Cocoa Touch框架-02</a>
+      <a class="article-title" href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%E6%A1%86%E6%9E%B6-02/">iOS开发指南-Objective—C基础-Cocoa Touch框架-02</a>
     </h1>
   
 
         
-        <a href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/" class="archive-article-date">
+        <a href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%E6%A1%86%E6%9E%B6-02/" class="archive-article-date">
   	<time datetime="2016-04-21T14:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-21</time>
 </a>
         
@@ -2071,7 +2045,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%E6%A1%86%E6%9E%B6-02/">展开全文 >></a>
         </p>
       
 
@@ -2093,12 +2067,12 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/">iOS开发指南-Objective—C基础-数据类型-01</a>
+      <a class="article-title" href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-01/">iOS开发指南-Objective—C基础-数据类型-01</a>
     </h1>
   
 
         
-        <a href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/" class="archive-article-date">
+        <a href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-01/" class="archive-article-date">
   	<time datetime="2016-04-20T14:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-20</time>
 </a>
         
@@ -2236,7 +2210,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/20/iOS开发指南-Objective—C基础-数据类型-01/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-01/">展开全文 >></a>
         </p>
       
 
@@ -2258,12 +2232,12 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/19/前言/">前言</a>
+      <a class="article-title" href="/2016/04/19/%E5%89%8D%E8%A8%80/">前言</a>
     </h1>
   
 
         
-        <a href="/2016/04/19/前言/" class="archive-article-date">
+        <a href="/2016/04/19/%E5%89%8D%E8%A8%80/" class="archive-article-date">
   	<time datetime="2016-04-19T15:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-19</time>
 </a>
         
@@ -2310,7 +2284,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/19/前言/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/19/%E5%89%8D%E8%A8%80/">展开全文 >></a>
         </p>
       
 
@@ -2327,7 +2301,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
     </nav>
   
 
@@ -2339,7 +2313,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

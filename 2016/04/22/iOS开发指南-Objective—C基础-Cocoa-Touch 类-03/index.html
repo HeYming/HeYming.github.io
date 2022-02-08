@@ -9,16 +9,18 @@
   <title>iOS开发指南-Objective—C基础-Cocoa-Touch 类-03 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ps：接着上次继续，上次没有介绍Cocoa Touch中类，本次接着介绍。 Cocoa Touch中的类核心类  根类（NSObject）        根类是所有类的子类。几乎所有Objective-C类都是从它派生而来的。 应用程序类（NSApplication）    为iOS程序运行期间的控制和协作工作提供支持。通过[UIApplication sharedApplication]来获取单">
-<meta name="keywords" content="Objective-C,入门">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch 类-03">
-<meta property="og:url" content="http://yoursite.com/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="ps：接着上次继续，上次没有介绍Cocoa Touch中类，本次接着介绍。 Cocoa Touch中的类核心类  根类（NSObject）        根类是所有类的子类。几乎所有Objective-C类都是从它派生而来的。 应用程序类（NSApplication）    为iOS程序运行期间的控制和协作工作提供支持。通过[UIApplication sharedApplication]来获取单">
-<meta property="og:updated_time" content="2017-06-01T13:51:34.000Z">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-04-22T12:21:36.000Z">
+<meta property="article:modified_time" content="2017-06-01T13:51:34.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch 类-03">
-<meta name="twitter:description" content="ps：接着上次继续，上次没有介绍Cocoa Touch中类，本次接着介绍。 Cocoa Touch中的类核心类  根类（NSObject）        根类是所有类的子类。几乎所有Objective-C类都是从它派生而来的。 应用程序类（NSApplication）    为iOS程序运行期间的控制和协作工作提供支持。通过[UIApplication sharedApplication]来获取单">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -36,7 +38,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -50,7 +52,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +114,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -176,7 +178,7 @@
   
 
         
-        <a href="/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/" class="archive-article-date">
+        <a href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/" class="archive-article-date">
   	<time datetime="2016-04-22T12:21:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-22</time>
 </a>
         
@@ -357,19 +359,19 @@ b = [a longLongValue]; 将 a 转换为 长整型
 
 11。 字符串截取到第n位  （substringToIndex: n）(第n 位不算再内)
 - (void)viewDidLoad
-{
+&#123;
     NSString  *a = @&quot;i like long dress&quot;;
     NSString *b = [a substringToIndex:4];
     NSLog(@&quot;\n b: %@&quot;,b);
-}
+&#125;
 
 12。字符串从第n 位开始截取,直到最后 （substringFromIndex:n）（包括第 n 位）
 - (void)viewDidLoad
-{
+&#123;
     NSString  *a = @&quot;i like long dress&quot;;
     NSString *b = [a substringFromIndex:4];
     NSLog(@&quot;\n b: %@&quot;,b);
-}
+&#125;
 </code></pre><h2 id="NSArray-NSMutableArray-数组"><a href="#NSArray-NSMutableArray-数组" class="headerlink" title="NSArray/NSMutableArray    数组"></a>NSArray/NSMutableArray    数组</h2><pre><code>//创建数组对象，nsarray不可变数组
 //c语言的数组可以存放任何类型的数据，同一个数组只能有同一种数据类型
 //oc语言的数组只能存放对象，可以存放任意对象
@@ -381,7 +383,7 @@ nslog(@&quot;arr = %@&quot;,arr3);
 
 //将c数组转换为oc数组对象
 //oc不允许将nil插入到数组中,因为nil作用是数组的结束标记
-NSString *carr[10] = {@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;};
+NSString *carr[10] = &#123;@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;&#125;;
 NSArray *arr4 = [[NSArray alloc] initWithObjects:carr count:2];
 NSLog(@&quot;arr4 = %@&quot;,arr4);
 //获取元素个数
@@ -405,12 +407,12 @@ NSLog(@&quot;sub1 = %@&quot;, sub1);
 NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
 //1-1.将要获取元素的下标写入清单
 for (NSInteger i = 0; i &lt; [arr2 count]; i++)
-{
+&#123;
 if (i % 2 != 0)
-{
+&#123;
 [indexs addIndex:i];
-}
-}
+&#125;
+&#125;
 
 //2.将清单交给数组
 //id obj =[arr2 objectAtIndex:0]; //获取单个元素,返回单个元素
@@ -426,20 +428,20 @@ NSInteger minLength = [arr5[0] length];
 NSString *maxString = nil;
 NSString *minString = nil;
 
-for (id obj in arr5) {
+for (id obj in arr5) &#123;
 
-if (maxLength &lt;= [obj length]) {
+if (maxLength &lt;= [obj length]) &#123;
 
 maxLength = [obj length];
 maxString = obj;
-}
+&#125;
 
-if (minLength &gt;= [obj length]) {
+if (minLength &gt;= [obj length]) &#123;
 
 minLength = [obj length];
 minString = obj;
-}
-}
+&#125;
+&#125;
 NSLog(@&quot;maxString = %@, minString = %@&quot;,maxString,minString);
 #if 0
 //创建可变数组对象
@@ -478,14 +480,14 @@ NSLog(@&quot;arr1 = %@&quot;,arr1);
 
 NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
 
-for (int i = 0; i &lt; [arr2 count]; i++) {
+for (int i = 0; i &lt; [arr2 count]; i++) &#123;
 
-if (i % 2 == 0) {
+if (i % 2 == 0) &#123;
 
 [indexs addIndex:i];
-}
+&#125;
 
-}
+&#125;
 //删除清单中得元素
 [arr2 removeObjectsAtIndexes:indexs];
 
@@ -500,16 +502,16 @@ NSArray *arr = @[@&quot;qqqq&quot;,@&quot;www&quot;,@&quot;ee&quot;];
 //交换数组中得内容
 [arr2 exchangeObjectAtIndex:1 withObjectAtIndex:3];
 //用oc对c语言中得数组进行排序
-for (int i = 0; i &lt; [arr2 count]; ++i) {
+for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
 
-    for (int i = 0; i &lt; [arr2 count]; ++i) {
-        for (int j = i + 1; j &lt; [arr2 count]; ++j) {
-            if ([arr2[i] length] &gt; [arr2[j] length]) {
+    for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
+        for (int j = i + 1; j &lt; [arr2 count]; ++j) &#123;
+            if ([arr2[i] length] &gt; [arr2[j] length]) &#123;
                 [arr2 exchangeObjectAtIndex:i withObjectAtIndex:j];
-            }
-        }
-    }
-}
+            &#125;
+        &#125;
+    &#125;
+&#125;
 </code></pre>
       
 
@@ -583,7 +585,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/22/iOS开发指南-Objective—C基础-Cocoa-Touch 类-03/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%20%E7%B1%BB-03/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -597,7 +599,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
   
 <nav id="article-nav">
   
-    <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E7%B1%BB-04/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -607,7 +609,7 @@ for (int i = 0; i &lt; [arr2 count]; ++i) {
     </a>
   
   
-    <a href="/2016/04/21/iOS开发指南-Objective—C基础-Cocoa-Touch框架-02/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch%E6%A1%86%E6%9E%B6-02/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-Cocoa Touch框架-02</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -643,7 +645,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

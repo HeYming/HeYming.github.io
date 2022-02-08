@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:locale">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -34,7 +34,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -48,7 +48,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -110,7 +110,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -189,14 +189,14 @@
 <p>由于扩展的UI组件都在UIKit框架中，所以首先要引用UIKit框架。</p>
 <pre><code>import UIKit
 </code></pre><p>然后写代码，扩展指定UIKit组件。</p>
-<pre><code>extension UITextField{
+<pre><code>extension UITextField&#123;
 
-}
+&#125;
 </code></pre><p>前面讲到Swift支持重载，就可以直接重载方法，也可以创建新的方法。</p>
-<pre><code>convenience init(frame: CGRect,placeholder: String) {
+<pre><code>convenience init(frame: CGRect,placeholder: String) &#123;
     self.init(frame: frame)
     self.placeholder = placeholder
-}
+&#125;
 </code></pre>
       
 
@@ -259,7 +259,7 @@
 <p>Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。<br>Swift兼容oc，自然也会有runtime的方法调用。<br>KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。</p>
 <h1 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h1><p>获取类列表<br>class_copyPropertyList<br>获取到UnsafeMutablePointer 类型的当前类的集合<br>property_getName<br>获取UnsafePointer 类型的当前类名称<br>String(utf8String:cName)<br>转换为String格式<br>setValuesForKeys<br>通过key给Value赋值</p>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>//如果是对象，可选<br>var name:String?<br>//基本属性不能可以选，否则无法用KVC设置属性<br>var age: Int?<br>//私有属性无法用KVC设置属性<br>private var title = “”</p>
-<h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><pre><code>class Person: NSObject {
+<h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><pre><code>class Person: NSObject &#123;
     //如果是对象，可选
     var name:String?
     //基本属性不能可以选，否则无法用KVC设置属性
@@ -268,41 +268,41 @@
     private var title = &quot;&quot;
 
     //重载init方法
-    init(dict:[NSString:Any]) {
+    init(dict:[NSString:Any]) &#123;
         super.init()
         setValuesForKeys(dict as [String : Any])
-    }
+    &#125;
 
     //重写 setValue方法
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) &#123;
 
-    }
+    &#125;
 
     //runtime 获取当前所有属性
-    class func propertyList() -&gt; [String]{
+    class func propertyList() -&gt; [String]&#123;
         var count: UInt32 = 0
         //获取类列表
         let list = class_copyPropertyList(self, &amp;count)
 
-        for i in 0..&lt;Int(count) {
+        for i in 0..&lt;Int(count) &#123;
             guard let pty = list?[i],
                 let cName = property_getName(pty),
                 let name = String(utf8String:cName)
-             else {
+             else &#123;
                 continue
-            }
+            &#125;
             print(name)
-        }
+        &#125;
 
         return [];
-    }
+    &#125;
 
     //对象销毁前自动调用
     //用于释放 通知 和kvo
-    deinit {
+    deinit &#123;
 
-    }
-}
+    &#125;
+&#125;
 </code></pre>
       
 
@@ -348,12 +348,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">iOS开发指南-Objective—C基础-UIImageView动画</a>
+      <a class="article-title" href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/">iOS开发指南-Objective—C基础-UIImageView动画</a>
     </h1>
   
 
         
-        <a href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/" class="archive-article-date">
+        <a href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/" class="archive-article-date">
   	<time datetime="2016-08-15T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-15</time>
 </a>
         
@@ -396,7 +396,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/">展开全文 >></a>
         </p>
       
 
@@ -418,12 +418,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/">iOS开发指南-Objective—C基础-视图和图层-36</a>
+      <a class="article-title" href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82-36/">iOS开发指南-Objective—C基础-视图和图层-36</a>
     </h1>
   
 
         
-        <a href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/" class="archive-article-date">
+        <a href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82-36/" class="archive-article-date">
   	<time datetime="2016-06-29T14:26:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-29</time>
 </a>
         
@@ -468,9 +468,9 @@ CGContextStrokePath(con);
 CGColorSpaceRef sp = CGColorSpaceCreatePattern(NULL);
 CGContextSetFillColorSpace (con, sp);
 CGColorSpaceRelease (sp);
-CGPatternCallbacks callback = {
+CGPatternCallbacks callback = &#123;
     0, &amp;drawStripes, NULL
-};
+&#125;;
 CGAffineTransform tr = CGAffineTransformIdentity;
 CGPatternRef patt = CGPatternCreate(NULL,
                                     CGRectMake(0,0,4,4),
@@ -513,7 +513,7 @@ CGContextFillPath(con);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82-36/">展开全文 >></a>
         </p>
       
 
@@ -535,12 +535,12 @@ CGContextFillPath(con);
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/">iOS开发指南-Objective—C基础-UIView继承-35</a>
+      <a class="article-title" href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/">iOS开发指南-Objective—C基础-UIView继承-35</a>
     </h1>
   
 
         
-        <a href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/" class="archive-article-date">
+        <a href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/" class="archive-article-date">
   	<time datetime="2016-06-05T14:49:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-05</time>
 </a>
         
@@ -552,19 +552,19 @@ CGContextFillPath(con);
 <h1 id="实战-在屏幕中绘制一个三角形"><a href="#实战-在屏幕中绘制一个三角形" class="headerlink" title="实战-在屏幕中绘制一个三角形"></a>实战-在屏幕中绘制一个三角形</h1><p>直接开始讲解如何扩展一个UIView，<strong>之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展</strong>。</p>
 <p>###创建一个类基于UIView</p>
 <pre><code>@interface TestView : UIView
-{
+&#123;
     CGPoint firstPoint;
     CGPoint secondPoint;
     CGPoint thirdPoint;
     NSMutableArray *pointArray;
-}
+&#125;
 
 @end
 </code></pre><p>在.m文件中实现</p>
 <pre><code>- (id)initWithFrame:(CGRect)frame
-{
+&#123;
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self) &#123;
         // 初始化代码
         self.backgroundColor = [UIColor whiteColor];
         pointArray = [[NSMutableArray alloc]initWithCapacity:3];
@@ -572,15 +572,15 @@ CGContextFillPath(con);
         label.text = @&quot;任意点击屏幕内的三点以确定一个三角形&quot;;
         [self addSubview:label];
         [label release];
-    }
+    &#125;
     return self;
-}
+&#125;
 
 //如果执行了自定义绘制，则只覆盖drawrect：。
 
 //一个空的实现产生不利的影响会表现在动画。
 - (void)drawRect:(CGRect)rect
-{
+&#123;
     // 绘制代码
     CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -590,39 +590,39 @@ CGContextFillPath(con);
 
     // 画一条连接起来的线条
     CGPoint addLines[] =
-    {
+    &#123;
         firstPoint,secondPoint,thirdPoint,firstPoint,
-    };
+    &#125;;
     CGContextAddLines(context, addLines, sizeof(addLines)/sizeof(addLines[0]));
     CGContextStrokePath(context);
 
-}
+&#125;
 </code></pre><p>监听触摸</p>
 <pre><code>- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+&#123;
     UITouch * touch = [touches anyObject]; 
     CGPoint point = [touch locationInView:self];
     [pointArray addObject:[NSValue valueWithCGPoint:point]];
-    if (pointArray.count &gt; 3) {
+    if (pointArray.count &gt; 3) &#123;
         [pointArray removeObjectAtIndex:0];
-    }
-    if (pointArray.count==3) {
+    &#125;
+    if (pointArray.count==3) &#123;
         firstPoint = [[pointArray objectAtIndex:0]CGPointValue];
         secondPoint = [[pointArray objectAtIndex:1]CGPointValue];
         thirdPoint = [[pointArray objectAtIndex:2]CGPointValue];
-    }
+    &#125;
     NSLog(@&quot;%@&quot;,[NSString stringWithFormat:@&quot;1:%f/%f\n2:%f/%f\n3:%f/%f&quot;,firstPoint.x,firstPoint.y,secondPoint.x,secondPoint.y,thirdPoint.x,thirdPoint.y]);
     //调用drawRect方法
     [self setNeedsDisplay];
-}
+&#125;
 </code></pre><p>在控制器中 加入下面语句就可以调用了</p>
 <pre><code>- (void)viewDidLoad
-{
+&#123;
     [super viewDidLoad];
     // 加载试图
     TestView *view = [[TestView alloc]initWithFrame:self.view.frame];
     self.view = view;
-}
+&#125;
 </code></pre><p>基本上的调用就是这样。</p>
 
       
@@ -651,7 +651,7 @@ CGContextFillPath(con);
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/">展开全文 >></a>
         </p>
       
 
@@ -673,12 +673,12 @@ CGContextFillPath(con);
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/">iOS开发指南-Objective—C基础-图形处理-34</a>
+      <a class="article-title" href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86-34/">iOS开发指南-Objective—C基础-图形处理-34</a>
     </h1>
   
 
         
-        <a href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/" class="archive-article-date">
+        <a href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86-34/" class="archive-article-date">
   	<time datetime="2016-05-17T14:22:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-17</time>
 </a>
         
@@ -778,7 +778,7 @@ void CGContextRestoreGState(CGContextRef c)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86-34/">展开全文 >></a>
         </p>
       
 
@@ -800,12 +800,12 @@ void CGContextRestoreGState(CGContextRef c)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/">iOS开发指南-Objective—C基础-界面旋转-33</a>
+      <a class="article-title" href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/">iOS开发指南-Objective—C基础-界面旋转-33</a>
     </h1>
   
 
         
-        <a href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/" class="archive-article-date">
+        <a href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/" class="archive-article-date">
   	<time datetime="2016-05-15T14:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
 </a>
         
@@ -817,19 +817,19 @@ void CGContextRestoreGState(CGContextRef c)
 <p>#1、启动界面旋转</p>
 <p>##1.1 全局设置是否可以旋转</p>
 <pre><code>- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+&#123;
     return NO;
-}
+&#125;
 </code></pre><p>##1.2 当前控制器设置旋转</p>
 <pre><code>-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-{
+&#123;
     return YES;
-}
+&#125;
 </code></pre><p>#2、页面旋转调用</p>
 <pre><code>-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-{
+&#123;
 
-}
+&#125;
 </code></pre><p>每次页面旋转的时候就会调用这个方法，在该方法内写页面旋转后的逻辑。<br>如果用的是Storyboard的话，可以直接将orientation属性修改为landscape来查看效果，但是记得看完后改回portrait，否则默认进入就是横屏。</p>
 <p>本章内容不多，多数页面中，横屏均为单独设计，此处可以根据情况来进行采用适当的方法。</p>
 
@@ -859,7 +859,7 @@ void CGContextRestoreGState(CGContextRef c)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/15/iOS开发指南-Objective—C基础-界面旋转-33/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/">展开全文 >></a>
         </p>
       
 
@@ -881,12 +881,12 @@ void CGContextRestoreGState(CGContextRef c)
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
+      <a class="article-title" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-32/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
     </h1>
   
 
         
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/" class="archive-article-date">
+        <a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-32/" class="archive-article-date">
   	<time datetime="2016-05-12T14:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
 </a>
         
@@ -894,7 +894,7 @@ void CGContextRestoreGState(CGContextRef c)
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="UIPopoverController-分割视图控制器"><a href="#UIPopoverController-分割视图控制器" class="headerlink" title="UIPopoverController 分割视图控制器"></a>UIPopoverController 分割视图控制器</h1><p><em>ps:本章节内容只用于ipad，我也没有开发过ipad的应用程序，所以摘抄了网上的一篇文章，来源<a href="https://yq.aliyun.com/articles/41385" target="_blank" rel="external">https://yq.aliyun.com/articles/41385</a></em></p>
+        <h1 id="UIPopoverController-分割视图控制器"><a href="#UIPopoverController-分割视图控制器" class="headerlink" title="UIPopoverController 分割视图控制器"></a>UIPopoverController 分割视图控制器</h1><p><em>ps:本章节内容只用于ipad，我也没有开发过ipad的应用程序，所以摘抄了网上的一篇文章，来源<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/41385">https://yq.aliyun.com/articles/41385</a></em></p>
 <p>#1、概述</p>
 <p>是iPad开发中常见的一种控制器（在iPhone上不允许使用），跟其他控制器不一样的是，它直接继承自NSObject，并非继承自UIViewController，它只占用部分屏幕空间来呈现信息，而且显示在屏幕的最前面。</p>
 <p>#2、使用步骤</p>
@@ -953,7 +953,7 @@ UIPopoverArrowDirectionDown animated:YES];
 <p>（1）当popover仍旧可见的时候，不准销毁popover对象</p>
 <p>（2）在销毁popover对象之前，一定先让popover消失（不可见）</p>
 <p>例如：</p>
-<pre><code>-(IBAction)menuClick:(UIBarButtonItem *)sender {
+<pre><code>-(IBAction)menuClick:(UIBarButtonItem *)sender &#123;
 
 //创建内容控制器
 
@@ -973,7 +973,7 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 
 [titlePopover presentPopoverFromBarButtonItem:sender permittedArrowDirectionAny animated:YES];
 
-}
+&#125;
 </code></pre><p>上面代码就会报这个错误，因为在ARC模式下，当执行到最后一句时，titlePopover就会被系统回收，但此时titlePopover仍然显示在屏幕上，所以会报上面错误。解决办法是创建一个属性：</p>
 <pre><code>@property (nonatomic, strong) UIPopoverController *titlePopover;
 </code></pre><p>把上面代码红色部分全部改成self.titlePopover</p>
@@ -1002,8 +1002,8 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 <p>这个属性是设置当UIPopoverController显示出来时，哪些控件可以继续跟用户进行正常交互。这样的话，点击区域外的控件就不会让UIPopoverController消失了</p>
 <p>#9、如何iPhone中实现popover的效果</p>
 <p>UIPopoverController这个类是只能用在iPad中的，要想在iPhone中实现popover效果，必须得自定义view，可以参考：</p>
-<p><a href="http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000" target="_blank" rel="external">http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000</a></p>
-<p><a href="http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000" target="_blank" rel="external">http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000</a></p>
+<p><a target="_blank" rel="noopener" href="http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000">http://code4app.com/ios/Popover-View-in-iPhone/4fa931bd06f6e78d0f000000</a></p>
+<p><a target="_blank" rel="noopener" href="http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000">http://code4app.com/ios/Popup-Menu/512231ac6803fa9e08000000</a></p>
 
       
 
@@ -1031,7 +1031,7 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-32/">展开全文 >></a>
         </p>
       
 
@@ -1053,12 +1053,12 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/">iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31</a>
+      <a class="article-title" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%A4%9A%E5%9C%BA%E6%99%AF%E6%95%85%E4%BA%8B%E7%89%88-31/">iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31</a>
     </h1>
   
 
         
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/" class="archive-article-date">
+        <a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%A4%9A%E5%9C%BA%E6%99%AF%E6%95%85%E4%BA%8B%E7%89%88-31/" class="archive-article-date">
   	<time datetime="2016-05-12T14:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
 </a>
         
@@ -1141,7 +1141,7 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-StoryBoard-多场景故事版-31/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%A4%9A%E5%9C%BA%E6%99%AF%E6%95%85%E4%BA%8B%E7%89%88-31/">展开全文 >></a>
         </p>
       
 
@@ -1163,12 +1163,12 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/">iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30</a>
+      <a class="article-title" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/">iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30</a>
     </h1>
   
 
         
-        <a href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/" class="archive-article-date">
+        <a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/" class="archive-article-date">
   	<time datetime="2016-05-12T14:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
 </a>
         
@@ -1185,17 +1185,17 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 <p>（4）把子控制器添加到UITabBarController</p>
 <p>selectedIndex属性可用于设置当前被选中的为哪个viewcontroller</p>
 <p>可通过代理使tabbarcontroller的某一个viewcontroller不可用，即不可点击，示例代码：</p>
-<pre><code>- (BOOL)tabBarController:(UITabBarController*)tabBarController shouldSelectViewController:(UIViewController*)viewController {
+<pre><code>- (BOOL)tabBarController:(UITabBarController*)tabBarController shouldSelectViewController:(UIViewController*)viewController &#123;
 
-if([tabBarController.viewControllersindexOfObject:viewController] ==1) {
+if([tabBarController.viewControllersindexOfObject:viewController] ==1) &#123;
 
 returnNO;
 
-}
+&#125;
 
 returnYES;
 
-}
+&#125;
 </code></pre><p>#2.UITabbar</p>
 <p>UITabBar上面显示的每一个Tab都对应着一个ViewController，我们可以通过设置 viewcontroller.tabBarItem属性来改变tabbar上对应的tab显示内容。否则系统将会根据viewController的 title自动创建一个，该tabBarItem只显示文字，没有图像。当我们自己创建UITabBarItem的时候，我们可以显示的指定显示的图像和 对应的文字描述。当然还可以通过</p>
 <p>设置背景颜色</p>
@@ -1224,7 +1224,7 @@ newsVC.tabBarItem.selectedImage= [UIImageimageNamed:@&quot;icon87&quot;];
 
 newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 </code></pre><p>注：未被选中状态的图片默认会被渲染成灰色，但也使用与以上属性（可设为显示某一张图片的原色）</p>
-<p><em>ps:原文链接：<a href="http://www.jianshu.com/p/d138faa563cb" target="_blank" rel="external">http://www.jianshu.com/p/d138faa563cb</a></em></p>
+<p><em>ps:原文链接：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d138faa563cb">http://www.jianshu.com/p/d138faa563cb</a></em></p>
 
       
 
@@ -1252,7 +1252,7 @@ newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRe
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/">展开全文 >></a>
         </p>
       
 
@@ -1269,7 +1269,7 @@ newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRe
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1281,7 +1281,7 @@ newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRe
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

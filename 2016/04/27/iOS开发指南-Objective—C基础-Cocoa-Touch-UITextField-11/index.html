@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UITextField 文本框enablesReturnKeyAutomatically默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。 borderStyle设置边框样式，只有设置了才会显示边框样式　 text.borderStyle = UITextBorderStyleRoundedRect; 　typedef enum {   UIText">
-<meta name="keywords" content="Objective-C,入门">
+  <meta name="description" content="UITextField 文本框enablesReturnKeyAutomatically默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。 borderStyle设置边框样式，只有设置了才会显示边框样式　 text.borderStyle &#x3D; UITextBorderStyleRoundedRect; 　typedef enum &amp;#123;   U">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11">
-<meta property="og:url" content="http://yoursite.com/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="UITextField 文本框enablesReturnKeyAutomatically默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。 borderStyle设置边框样式，只有设置了才会显示边框样式　 text.borderStyle = UITextBorderStyleRoundedRect; 　typedef enum {   UIText">
-<meta property="og:updated_time" content="2017-06-01T13:53:25.000Z">
+<meta property="og:description" content="UITextField 文本框enablesReturnKeyAutomatically默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。 borderStyle设置边框样式，只有设置了才会显示边框样式　 text.borderStyle &#x3D; UITextBorderStyleRoundedRect; 　typedef enum &amp;#123;   U">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-04-27T13:02:29.000Z">
+<meta property="article:modified_time" content="2017-06-01T13:53:25.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11">
-<meta name="twitter:description" content="UITextField 文本框enablesReturnKeyAutomatically默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。 borderStyle设置边框样式，只有设置了才会显示边框样式　 text.borderStyle = UITextBorderStyleRoundedRect; 　typedef enum {   UIText">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -36,7 +38,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -50,7 +52,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +114,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -176,7 +178,7 @@
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/" class="archive-article-date">
   	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -187,12 +189,12 @@
         <h1 id="UITextField-文本框"><a href="#UITextField-文本框" class="headerlink" title="UITextField 文本框"></a>UITextField 文本框</h1><h2 id="enablesReturnKeyAutomatically"><a href="#enablesReturnKeyAutomatically" class="headerlink" title="enablesReturnKeyAutomatically"></a>enablesReturnKeyAutomatically</h2><p>默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。</p>
 <h2 id="borderStyle"><a href="#borderStyle" class="headerlink" title="borderStyle"></a>borderStyle</h2><p>设置边框样式，只有设置了才会显示边框样式　</p>
 <pre><code>text.borderStyle = UITextBorderStyleRoundedRect;
-　typedef enum {
+　typedef enum &#123;
   UITextBorderStyleNone, 
   UITextBorderStyleLine,
   UITextBorderStyleBezel,
   UITextBorderStyleRoundedRect  
-} UITextBorderStyle;                                                      
+&#125; UITextBorderStyle;                                                      
 </code></pre><h2 id="backgroundColor"><a href="#backgroundColor" class="headerlink" title="backgroundColor　"></a>backgroundColor　</h2><p>设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉　</p>
 <pre><code>text.backgroundColor = [UIColor whiteColor];
 </code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><p>设置背景</p>
@@ -207,23 +209,23 @@
 <pre><code>text.textColor = [UIColor redColor];
 </code></pre><h2 id="clearButtonMode"><a href="#clearButtonMode" class="headerlink" title="clearButtonMode"></a>clearButtonMode</h2><p>输入框中是否有个叉号，在什么时候显示，用于一次性删除输入框中的内容</p>
 <pre><code>text.clearButtonMode = UITextFieldViewModeAlways; 
-typedef enum {
+typedef enum &#123;
     UITextFieldViewModeNever,　重不出现
     UITextFieldViewModeWhileEditing, 编辑时出现
     UITextFieldViewModeUnlessEditing,　除了编辑外都出现
     UITextFieldViewModeAlways 　一直出现
-} UITextFieldViewMode;
+&#125; UITextFieldViewMode;
 </code></pre><h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p>输入框中一开始就有的文字</p>
 <pre><code>text.text = @&quot;一开始就在输入框的文字&quot;;
 </code></pre><h2 id="secureTextEntry"><a href="#secureTextEntry" class="headerlink" title="secureTextEntry"></a>secureTextEntry</h2><p>每输入一个字符就变成点 用来输入密码时，设置这个属性。</p>
 <pre><code>text.secureTextEntry = YES;
 </code></pre><h2 id="autocorrectionType"><a href="#autocorrectionType" class="headerlink" title="autocorrectionType"></a>autocorrectionType</h2><p>是否纠错</p>
 <pre><code>text.autocorrectionType = UITextAutocorrectionTypeNo;
-typedef enum {
+typedef enum &#123;
     UITextAutocorrectionTypeDefault, 默认
     UITextAutocorrectionTypeNo, 　不自动纠错
     UITextAutocorrectionTypeYes,　自动纠错
-} UITextAutocorrectionType;
+&#125; UITextAutocorrectionType;
 </code></pre><h2 id="clearsOnBeginEditing"><a href="#clearsOnBeginEditing" class="headerlink" title="clearsOnBeginEditing"></a>clearsOnBeginEditing</h2><p>再次编辑就清空</p>
 <pre><code>text.clearsOnBeginEditing = YES; 
 </code></pre><h2 id="textAlignment"><a href="#textAlignment" class="headerlink" title="textAlignment"></a>textAlignment</h2><p>内容对齐方式</p>
@@ -236,7 +238,7 @@ typedef enum {
 text.minimumFontSize = 20;
 </code></pre><h2 id="keyboardType"><a href="#keyboardType" class="headerlink" title="keyboardType"></a>keyboardType</h2><p>设置键盘的样式</p>
 <pre><code>text.keyboardType = UIKeyboardTypeNumberPad;
-typedef enum {
+typedef enum &#123;
     UIKeyboardTypeDefault,     　默认键盘，支持所有字符         
     UIKeyboardTypeASCIICapable,　支持ASCII的默认键盘
     UIKeyboardTypeNumbersAndPunctuation,　标准电话键盘，支持＋＊＃字符
@@ -248,18 +250,18 @@ typedef enum {
     UIKeyboardTypeDecimalPad,   　数字键盘 有数字和小数点
     UIKeyboardTypeTwitter,      　优化的键盘，方便输入@、#字符
     UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, 
-} UIKeyboardType;
+&#125; UIKeyboardType;
 </code></pre><h2 id="autocapitalizationType"><a href="#autocapitalizationType" class="headerlink" title="autocapitalizationType"></a>autocapitalizationType</h2><p>首字母是否大写</p>
 <pre><code>text.autocapitalizationType = UITextAutocapitalizationTypeNone;
-typedef enum {
+typedef enum &#123;
     UITextAutocapitalizationTypeNone, 不自动大写
     UITextAutocapitalizationTypeWords,　单词首字母大写
     UITextAutocapitalizationTypeSentences,　句子的首字母大写
     UITextAutocapitalizationTypeAllCharacters, 所有字母都大写
-} UITextAutocapitalizationType;
+&#125; UITextAutocapitalizationType;
 </code></pre><h2 id="returnKeyType"><a href="#returnKeyType" class="headerlink" title="returnKeyType"></a>returnKeyType</h2><p>return键变成什么键</p>
 <pre><code>text.returnKeyType =UIReturnKeyDone;
-typedef enum {
+typedef enum &#123;
     UIReturnKeyDefault, 默认 灰色按钮，标有Return
     UIReturnKeyGo,    　标有Go的蓝色按钮
     UIReturnKeyGoogle,标有Google的蓝色按钮，用语搜索
@@ -271,25 +273,25 @@ typedef enum {
     UIReturnKeyYahoo,标有Yahoo的蓝色按钮
     UIReturnKeyYahoo,标有Yahoo的蓝色按钮
     UIReturnKeyEmergencyCall, 紧急呼叫按钮
-} UIReturnKeyType;
+&#125; UIReturnKeyType;
 </code></pre><h2 id="keyboardAppearance"><a href="#keyboardAppearance" class="headerlink" title="keyboardAppearance"></a>keyboardAppearance</h2><p>键盘外观</p>
 <pre><code>textView.keyboardAppearance=UIKeyboardAppearanceDefault；
-typedef enum {
+typedef enum &#123;
 UIKeyboardAppearanceDefault， 默认外观，浅灰色
 UIKeyboardAppearanceAlert，　 　深灰 石墨色
-} UIReturnKeyType;
+&#125; UIReturnKeyType;
 </code></pre><h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><p>设置代理 用于实现协议</p>
 <pre><code>text.delegate = self;
 </code></pre><h2 id="rightView"><a href="#rightView" class="headerlink" title="rightView"></a>rightView</h2><p>最右侧加图片是以下代码　 左侧类似</p>
 <pre><code>UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;right.png&quot;]];
 text.rightView=image;
 text.rightViewMode = UITextFieldViewModeAlways; 
-typedef enum {
+typedef enum &#123;
     UITextFieldViewModeNever,
     UITextFieldViewModeWhileEditing,
     UITextFieldViewModeUnlessEditing,
     UITextFieldViewModeAlways
-} UITextFieldViewMode;
+&#125; UITextFieldViewMode;
 </code></pre><h2 id="editing"><a href="#editing" class="headerlink" title="editing"></a>editing</h2><p>是否允许编辑。</p>
 <h2 id="界面重写绘制行为"><a href="#界面重写绘制行为" class="headerlink" title="界面重写绘制行为"></a>界面重写绘制行为</h2><p>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写。</p>
 <pre><code>– textRectForBounds:　　  　//重写来重置文字区域
@@ -307,34 +309,34 @@ inputAccessoryView //编辑时显示在系统键盘或用户自定义的inputVie
 <pre><code>text.delegate = self;　声明text的代理是我，我会去实现把键盘往下收的方法 这个方法在UITextFieldDelegate里所以我们要遵守UITextFieldDelegate这个协议
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+&#123;
     [text resignFirstResponder];    //主要是[receiver resignFirstResponder]在哪调用就能把receiver（text）对应的键盘往下收
 return YES;
-}
+&#125;
 
 代理方法 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{　
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField&#123;　
 　　
 //返回一个BOOL值，YES代表允许编辑，NO不允许编辑.　
     return YES;　
-}　
+&#125;　
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{　
+- (void)textFieldDidBeginEditing:(UITextField *)textField&#123;　
  //开始编辑时触发，文本字段将成为first responder　
-}　
+&#125;　
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{　
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField&#123;　
 //返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder　
 　 //要想在用户结束编辑时阻止文本字段消失，可以返回NO　，返回NO，点击键盘的返回按钮会无效果。
 　 //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息　
 　 
     return NO;　
-}　
-- (void)textFieldDidEndEditing:(UITextField *)textField;{
+&#125;　
+- (void)textFieldDidEndEditing:(UITextField *)textField;&#123;
 
-}// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
+&#125;// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
 
-- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{　
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string&#123;　
 //当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。　
 //这对于想要加入撤销选项的应用程序特别有用　
 //可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。　　 
@@ -342,23 +344,23 @@ return YES;
 //这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中　
 
 　   return YES;　
-}　
+&#125;　
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField{　
+- (BOOL)textFieldShouldClear:(UITextField *)textField&#123;　
 
 //返回一个BOOL值指明是否允许根据用户请求清除内容　
 //可以设置在特定条件下才允许清除内容　
 
 　   return YES;　
-}　
+&#125;　
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{　
+-(BOOL)textFieldShouldReturn:(UITextField *)textField&#123;　
 
 //返回一个BOOL值，指明是否允许在按下回车键时结束编辑　
  //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];
 //查一下resign这个单词的意思就明白这个方法了　
 　   return YES;　
-}　
+&#125;　
 </code></pre><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>UITextField派生自UIControl，所以UIControl类中的通知系统在文本字段中也可以使用。除了UIControl类的标准事件，你还可以使用下列UITextField类特有的事件</p>
 <pre><code>UITextFieldTextDidBeginEditingNotification
 UITextFieldTextDidChangeNotification
@@ -408,7 +410,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
-{  
+&#123;  
     NSCharacterSet *cs;  
     cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERSPERIOD ] invertedSet]; //invertedSet 方法是去反字符,把所有的除了数字的字符都找出来  
 
@@ -417,7 +419,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
     BOOL basicTest = [string isEqualToString:filtered];  
     if(!basicTest)   
-      {  
+      &#123;  
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot;  
                                                             message:@&quot;请输入数字&quot;  
                                                            delegate:nil  
@@ -427,34 +429,34 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
         [alert show];  
         [alert release];  
         return NO;  
-    }    
+    &#125;    
     // Add any predicate testing here  
     return basicTest;  
-}  
+&#125;  
 
 #define NUMBERS @”0123456789n” （这个代表可以输入数字和换行，请注意这个n，如果不写这个，Done按键将不会触发，如果用在SearchBar中，将会不触发Search事件，因为你自己限制不让输入n，好惨，我在项目中才发现的。） 所以，如果你要限制输入英文和数字的话，就可以把这个定义为： #define kAlphaNum @”ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789″。 当然，你还可以在以上方法return之前，做一提示的，比如提示用户只能输入数字之类的。如果你觉得有需要的话。
 </code></pre><h2 id="实例：限制只能输入一定长度的字符"><a href="#实例：限制只能输入一定长度的字符" class="headerlink" title="实例：限制只能输入一定长度的字符"></a>实例：限制只能输入一定长度的字符</h2><p>ios代码  </p>
 <pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   
-{　
+&#123;　
 //string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反  
     if ([string isEqualToString:@&quot;n&quot;])　//按回车可以改变  
-    {   
+    &#123;   
         return YES;   
-    }   
+    &#125;   
 
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容  
 
     if (self.myTextField == textField)　//判断是否时我们想要限定的那个输入框  
-    {   
-        if ([toBeString length] &gt; 20) { //如果输入框内容大于20则弹出警告  
+    &#123;   
+        if ([toBeString length] &gt; 20) &#123; //如果输入框内容大于20则弹出警告  
   textField.text = [toBeString substringToIndex:20];   
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@&quot;超过最大字数不能输入了&quot; delegate:nil cancelButtonTitle:@&quot;Ok&quot; otherButtonTitles:nil, nil] autorelease];   
             [alert show];   
             return NO;   
-        }   
-    }   
+        &#125;   
+    &#125;   
     return YES;   
-}  
+&#125;  
 </code></pre><h2 id="UITextField实例二："><a href="#UITextField实例二：" class="headerlink" title="UITextField实例二："></a>UITextField实例二：</h2><p>在UISearchBar中,当输入信息改变时,它就会调用textDidChange函数,但是UITextField没有这个功能,唯一与这个类似的shouldChangeCharactersInRange函数,也是在文件还没有改变前就调用了,而不是在改变后调用,要想实现这个功能,我们可以增加事件监听的方式.先来看看objective-c提供的接口:</p>
 <p>ios代码  </p>
 <pre><code>// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event. 
@@ -469,10 +471,10 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];  
 
 //第二步,实现回调函数  
-- (void) textFieldDidChange:(id) sender {  
+- (void) textFieldDidChange:(id) sender &#123;  
     UITextField *_field = (UITextField *)sender;  
     NSLog(@&quot;%@&quot;,[_field text]);  
-}  
+&#125;  
 </code></pre><h2 id="UITextField实例三："><a href="#UITextField实例三：" class="headerlink" title="UITextField实例三："></a>UITextField实例三：</h2><p>UITextField控件处理键盘弹出时遮住输入框的问题<br>打开键盘卷动文本字段<br>默认情况下打开键盘会遮住下面的view，带来一点点困扰，不过这不是什么大问题，我们使用点小小的手段就可以解决。</p>
 <p>首先我们要知道键盘的高度是固定不变的，不过在IOS 5.0 以后键盘的高度貌似不是216了，不过不要紧，我们调整调整就是了：</p>
 <pre><code>                 iPhone    ipad
@@ -484,7 +486,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 </code></pre><p>然后我们在当前控制器实现下面两个委托方法：</p>
 <p>ios代码  </p>
 <pre><code>- (void)textFieldDidBeginEditing:(UITextField *)textField  
-{ //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
+&#123; //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
        NSTimeInterval animationDuration = 0.30f;      
       CGRect frame = self.view.frame;  
       frame.origin.y -=216;  
@@ -494,10 +496,10 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
        [UIView setAnimationDuration:animationDuration];  
        self.view.frame = frame;                  
        [UIView commitAnimations];                  
-}  
+&#125;  
 </code></pre><p>ios代码</p>
 <pre><code>- (BOOL)textFieldShouldReturn:(UITextField *)textField   
-{//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
+&#123;//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
         NSTimeInterval animationDuration = 0.30f;  
         CGRect frame = self.view.frame;      
         frame.origin.y +=216;        
@@ -509,7 +511,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
         self.view.frame = frame;                  
         [UIView commitAnimations];  
         [textField resignFirstResponder];     
-}     
+&#125;     
 </code></pre>
       
 
@@ -583,7 +585,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -597,7 +599,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
   
 <nav id="article-nav">
   
-    <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -607,7 +609,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
     </a>
   
   
-    <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -643,7 +645,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="界面类ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。 标签 UILableUILabel属性  text：设置标签显示文本。  attributedText：设置标签属性文本。   Ios代码   NSString *text = @&amp;quot;first&amp;quot;;   NSMutableAttributedString *textLabelStr = [[N">
-<meta name="keywords" content="Objective-C,入门">
+  <meta name="description" content="界面类ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。 标签 UILableUILabel属性  text：设置标签显示文本。  attributedText：设置标签属性文本。   Ios代码   NSString *text &#x3D; @&quot;first&quot;;   NSMutableAttributedString *textLabelStr &#x3D; [[N">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05">
-<meta property="og:url" content="http://yoursite.com/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="界面类ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。 标签 UILableUILabel属性  text：设置标签显示文本。  attributedText：设置标签属性文本。   Ios代码   NSString *text = @&amp;quot;first&amp;quot;;   NSMutableAttributedString *textLabelStr = [[N">
+<meta property="og:description" content="界面类ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。 标签 UILableUILabel属性  text：设置标签显示文本。  attributedText：设置标签属性文本。   Ios代码   NSString *text &#x3D; @&quot;first&quot;;   NSMutableAttributedString *textLabelStr &#x3D; [[N">
+<meta property="og:locale">
 <meta property="og:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image%2F160425%2F1.jpg">
-<meta property="og:updated_time" content="2017-06-01T13:51:50.000Z">
+<meta property="article:published_time" content="2016-04-25T13:52:41.000Z">
+<meta property="article:modified_time" content="2017-06-01T13:51:50.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发指南-Objective—C基础-Cocoa-Touch UI界面类 -05">
-<meta name="twitter:description" content="界面类ps：写了大量书中并未标注的方法，还有多数的其他文章内容，就一个类型一篇文章吧。 标签 UILableUILabel属性  text：设置标签显示文本。  attributedText：设置标签属性文本。   Ios代码   NSString *text = @&amp;quot;first&amp;quot;;   NSMutableAttributedString *textLabelStr = [[N">
 <meta name="twitter:image" content="http://7xt76f.com2.z0.glb.clouddn.com/image%2F160425%2F1.jpg">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
@@ -38,7 +40,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -52,7 +54,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -114,7 +116,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -178,7 +180,7 @@
   
 
         
-        <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/" class="archive-article-date">
+        <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/" class="archive-article-date">
   	<time datetime="2016-04-25T13:52:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
 </a>
         
@@ -196,8 +198,8 @@
 <hr>
 <pre><code>NSString *text = @&quot;first&quot;;  
 NSMutableAttributedString *textLabelStr = [[NSMutableAttributedString alloc] initWithString:text];  
-[textLabelStr setAttributes:@{NSForegroundColorAttributeName : [UIColor lightGrayColor],   
- NSFontAttributeName : [UIFont systemFontOfSize:17]} range:NSMakeRange(11, 10)];
+[textLabelStr setAttributes:@&#123;NSForegroundColorAttributeName : [UIColor lightGrayColor],   
+ NSFontAttributeName : [UIFont systemFontOfSize:17]&#125; range:NSMakeRange(11, 10)];
 label.attributedText = textLabelStr;  
 </code></pre><ul>
 <li>font：设置标签文本字体。默认是系统自带字体，大小为17。</li>
@@ -328,7 +330,7 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UI界面类-05/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UI%E7%95%8C%E9%9D%A2%E7%B1%BB-05/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -342,7 +344,7 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
   
 <nav id="article-nav">
   
-    <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-UIButton-06/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIButton-06/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -352,7 +354,7 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
     </a>
   
   
-    <a href="/2016/04/25/iOS开发指南-Objective—C基础-Cocoa-Touch-类-04/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E7%B1%BB-04/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-Cocoa-Touch 类-04</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -388,7 +390,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

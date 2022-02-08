@@ -8,17 +8,19 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="UIActionSheet一、初始化方法- (instancetype)initWithTitle:(NSString *)title delegate:(id&amp;lt;UIActionSheetDelegate&amp;gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString">
-<meta name="keywords" content="Objective-C,入门">
+  <meta name="description" content="UIActionSheet一、初始化方法- (instancetype)initWithTitle:(NSString *)title delegate:(id&lt;UIActionSheetDelegate&gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22">
-<meta property="og:url" content="http://yoursite.com/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="UIActionSheet一、初始化方法- (instancetype)initWithTitle:(NSString *)title delegate:(id&amp;lt;UIActionSheetDelegate&amp;gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString">
-<meta property="og:updated_time" content="2017-06-01T13:53:48.000Z">
+<meta property="og:description" content="UIActionSheet一、初始化方法- (instancetype)initWithTitle:(NSString *)title delegate:(id&lt;UIActionSheetDelegate&gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-05-05T14:03:21.000Z">
+<meta property="article:modified_time" content="2017-06-01T13:53:48.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22">
-<meta name="twitter:description" content="UIActionSheet一、初始化方法- (instancetype)initWithTitle:(NSString *)title delegate:(id&amp;lt;UIActionSheetDelegate&amp;gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -36,7 +38,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -50,7 +52,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +114,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -176,7 +178,7 @@
   
 
         
-        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
+        <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
   	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
 </a>
         
@@ -195,12 +197,12 @@
 </code></pre><p>设置标题</p>
 <pre><code>@property(nonatomic) UIActionSheetStyle actionSheetStyle;
 </code></pre><p>设置风格，枚举如下：</p>
-<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) {
+<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) &#123;
     UIActionSheetStyleAutomatic        = -1,      
     UIActionSheetStyleDefault          = UIBarStyleDefault,
     UIActionSheetStyleBlackTranslucent = UIBarStyleBlackTranslucent,
     UIActionSheetStyleBlackOpaque      = UIBarStyleBlackOpaque,
-};
+&#125;;
 
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 </code></pre><p>添加一个按钮，会返回按钮的索引</p>
@@ -308,7 +310,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -322,7 +324,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIToolBar-23/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -332,7 +334,7 @@
     </a>
   
   
-    <a href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIAlterView-21/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -368,7 +370,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

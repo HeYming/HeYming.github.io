@@ -9,16 +9,18 @@
   <title>iOS开发指南-Objective—C基础-UIView继承-35 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="UIView继承ps:最近有点懒惰啊，继续吧，前面写的UIView我确实还没有看懂，不过后面我又细细的看了一遍，现在写下这篇文章。 实战-在屏幕中绘制一个三角形直接开始讲解如何扩展一个UIView，之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展。 ###创建一个类基于UIVi">
-<meta name="keywords" content="Objective-C,入门">
 <meta property="og:type" content="article">
 <meta property="og:title" content="iOS开发指南-Objective—C基础-UIView继承-35">
-<meta property="og:url" content="http://yoursite.com/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="UIView继承ps:最近有点懒惰啊，继续吧，前面写的UIView我确实还没有看懂，不过后面我又细细的看了一遍，现在写下这篇文章。 实战-在屏幕中绘制一个三角形直接开始讲解如何扩展一个UIView，之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展。 ###创建一个类基于UIVi">
-<meta property="og:updated_time" content="2017-06-01T13:55:06.000Z">
+<meta property="og:locale">
+<meta property="article:published_time" content="2016-06-05T14:49:23.000Z">
+<meta property="article:modified_time" content="2017-06-01T13:55:06.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Objective-C">
+<meta property="article:tag" content="入门">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="iOS开发指南-Objective—C基础-UIView继承-35">
-<meta name="twitter:description" content="UIView继承ps:最近有点懒惰啊，继续吧，前面写的UIView我确实还没有看懂，不过后面我又细细的看了一遍，现在写下这篇文章。 实战-在屏幕中绘制一个三角形直接开始讲解如何扩展一个UIView，之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展。 ###创建一个类基于UIVi">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -36,7 +38,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -50,7 +52,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +114,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -176,7 +178,7 @@
   
 
         
-        <a href="/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/" class="archive-article-date">
+        <a href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/" class="archive-article-date">
   	<time datetime="2016-06-05T14:49:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-05</time>
 </a>
         
@@ -188,19 +190,19 @@
 <h1 id="实战-在屏幕中绘制一个三角形"><a href="#实战-在屏幕中绘制一个三角形" class="headerlink" title="实战-在屏幕中绘制一个三角形"></a>实战-在屏幕中绘制一个三角形</h1><p>直接开始讲解如何扩展一个UIView，<strong>之前我以为drawRect方法是在Controller中调用，后来才知道，是在UIView中调用，既然如此，想要调用drawRect方法就需要单独创建UIView用于扩展</strong>。</p>
 <p>###创建一个类基于UIView</p>
 <pre><code>@interface TestView : UIView
-{
+&#123;
     CGPoint firstPoint;
     CGPoint secondPoint;
     CGPoint thirdPoint;
     NSMutableArray *pointArray;
-}
+&#125;
 
 @end
 </code></pre><p>在.m文件中实现</p>
 <pre><code>- (id)initWithFrame:(CGRect)frame
-{
+&#123;
     self = [super initWithFrame:frame];
-    if (self) {
+    if (self) &#123;
         // 初始化代码
         self.backgroundColor = [UIColor whiteColor];
         pointArray = [[NSMutableArray alloc]initWithCapacity:3];
@@ -208,15 +210,15 @@
         label.text = @&quot;任意点击屏幕内的三点以确定一个三角形&quot;;
         [self addSubview:label];
         [label release];
-    }
+    &#125;
     return self;
-}
+&#125;
 
 //如果执行了自定义绘制，则只覆盖drawrect：。
 
 //一个空的实现产生不利的影响会表现在动画。
 - (void)drawRect:(CGRect)rect
-{
+&#123;
     // 绘制代码
     CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -226,39 +228,39 @@
 
     // 画一条连接起来的线条
     CGPoint addLines[] =
-    {
+    &#123;
         firstPoint,secondPoint,thirdPoint,firstPoint,
-    };
+    &#125;;
     CGContextAddLines(context, addLines, sizeof(addLines)/sizeof(addLines[0]));
     CGContextStrokePath(context);
 
-}
+&#125;
 </code></pre><p>监听触摸</p>
 <pre><code>- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+&#123;
     UITouch * touch = [touches anyObject]; 
     CGPoint point = [touch locationInView:self];
     [pointArray addObject:[NSValue valueWithCGPoint:point]];
-    if (pointArray.count &gt; 3) {
+    if (pointArray.count &gt; 3) &#123;
         [pointArray removeObjectAtIndex:0];
-    }
-    if (pointArray.count==3) {
+    &#125;
+    if (pointArray.count==3) &#123;
         firstPoint = [[pointArray objectAtIndex:0]CGPointValue];
         secondPoint = [[pointArray objectAtIndex:1]CGPointValue];
         thirdPoint = [[pointArray objectAtIndex:2]CGPointValue];
-    }
+    &#125;
     NSLog(@&quot;%@&quot;,[NSString stringWithFormat:@&quot;1:%f/%f\n2:%f/%f\n3:%f/%f&quot;,firstPoint.x,firstPoint.y,secondPoint.x,secondPoint.y,thirdPoint.x,thirdPoint.y]);
     //调用drawRect方法
     [self setNeedsDisplay];
-}
+&#125;
 </code></pre><p>在控制器中 加入下面语句就可以调用了</p>
 <pre><code>- (void)viewDidLoad
-{
+&#123;
     [super viewDidLoad];
     // 加载试图
     TestView *view = [[TestView alloc]initWithFrame:self.view.frame];
     self.view = view;
-}
+&#125;
 </code></pre><p>基本上的调用就是这样。</p>
 
       
@@ -333,7 +335,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/06/05/iOS开发指南-Objective—C基础-UIView继承-35/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIView%E7%BB%A7%E6%89%BF-35/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -347,7 +349,7 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/06/29/iOS开发指南-Objective—C基础-视图和图层-36/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82-36/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
@@ -357,7 +359,7 @@
     </a>
   
   
-    <a href="/2016/05/17/iOS开发指南-Objective—C基础-图形处理-34/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86-34/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-图形处理-34</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -393,7 +395,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

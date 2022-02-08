@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:locale">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -34,7 +34,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -48,7 +48,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -110,7 +110,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -171,12 +171,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29</a>
+      <a class="article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UINavigationcontroller-29/">iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29</a>
     </h1>
   
 
         
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/" class="archive-article-date">
+        <a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UINavigationcontroller-29/" class="archive-article-date">
   	<time datetime="2016-05-10T14:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
 </a>
         
@@ -221,11 +221,11 @@
 <ul>
 <li>配置背景颜色</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.navigationController.navigationBar.barTintColor = [UIColor magentaColor];//tint |tɪnt|色彩</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.navigationController.navigationBar.barTintColor = [UIColor magentaColor];//tint |tɪnt|色彩</span><br></pre></td></tr></table></figure>
 <ul>
 <li>配置背景图片</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">self.navigationController.navigationBar setBackgroundImage: forBarMetrics:</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.navigationController.navigationBar setBackgroundImage: forBarMetrics:</span><br></pre></td></tr></table></figure>
 <ul>
 <li><p>改变导航栏上默认按钮颜色</p>
 <p>  self.navigationBar.tintColor</p>
@@ -256,14 +256,14 @@
 <ul>
 <li>重新设置导航栏的标题样式</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeContactAdd];</div><div class="line">[btn1 addTarget:self action:@selector(clickTitle) forControlEvents:UIControlEventTouchUpInside];</div><div class="line">self.navigationItem.titleView = btn1;</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIButton *btn1 = [UIButton buttonWithType:UIButtonTypeContactAdd];</span><br><span class="line">[btn1 addTarget:self action:@selector(clickTitle) forControlEvents:UIControlEventTouchUpInside];</span><br><span class="line">self.navigationItem.titleView = btn1;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>给导航设置右边的barbuttonItem</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];</div><div class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;</div></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *style1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(clickReigter)];</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];</span><br><span class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *style1 = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(clickReigter)];</span><br></pre></td></tr></table></figure>
 <ul>
-<li>给右边设置多个barbuttonitem<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">self.navigationItem.rightBarButtonItems = @[reginBarButtonItem,style1];</div><div class="line">//self.navigationItem.leftBarButtonItems =@[reginBarButtonItem,style1];</div><div class="line"></div><div class="line">self.navigationItem.prompt = @&quot;正在努力帮你加载&quot;;//增加一个提示（prompt提示）</div></pre></td></tr></table></figure>
+<li>给右边设置多个barbuttonitem<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">self.navigationItem.rightBarButtonItems = @[reginBarButtonItem,style1];</span><br><span class="line">//self.navigationItem.leftBarButtonItems =@[reginBarButtonItem,style1];</span><br><span class="line"></span><br><span class="line">self.navigationItem.prompt = @&quot;正在努力帮你加载&quot;;//增加一个提示（prompt提示）</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <ol>
@@ -272,7 +272,7 @@
 <ul>
 <li>添加系统自己的button（其他的控制器界面都会显示）</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[self.navigationController.navigationBar addSubview:rigisterBtn];//设置的BarButton在每一个界面都会显示</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[self.navigationController.navigationBar addSubview:rigisterBtn];//设置的BarButton在每一个界面都会显示</span><br></pre></td></tr></table></figure>
 <ul>
 <li>添加自己当前控制器界面的BarButton（例如，登录页面右上角的注册按钮）</li>
 </ul>
@@ -282,7 +282,7 @@
 <li><p>（2）添加系统的BarButton（也只有当前系统有这个button）</p>
 </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];//刷新</div><div class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;（刷新按钮）</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *reginBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(clickReigter)];//刷新</span><br><span class="line">self.navigationItem.rightBarButtonItem = reginBarButtonItem;（刷新按钮）</span><br></pre></td></tr></table></figure>
 <ul>
 <li>（3）设置多个按钮，按照数组的方式排列在导航栏上（例如在导航栏上添加刷新和返回按钮）</li>
 </ul>
@@ -292,15 +292,15 @@
 <ul>
 <li>让第二个控制器显示的时候，将导航栏隐藏</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> - (void)viewDidAppear:(BOOL)animated&#123;</div><div class="line">  [super viewDidAppear:animated];</div><div class="line">  [self.navigationController setNavigationBarHidden:YES animated:YES ];</div><div class="line">  或者 self.navigationBarHidden= YES；</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> - (void)viewDidAppear:(BOOL)animated&#123;</span><br><span class="line">  [super viewDidAppear:animated];</span><br><span class="line">  [self.navigationController setNavigationBarHidden:YES animated:YES ];</span><br><span class="line">  或者 self.navigationBarHidden= YES；</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>当第二个控制器消失的时候，不隐藏导航栏</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)viewDidDisappear:(BOOL)animated&#123;</div><div class="line">[super viewDidDisappear:animated];</div><div class="line">[self.navigationController setNavigationBarHidden:NO animated:NO];</div><div class="line"> 或者 self.navigationBarHidden= NO;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (void)viewDidDisappear:(BOOL)animated&#123;</span><br><span class="line">[super viewDidDisappear:animated];</span><br><span class="line">[self.navigationController setNavigationBarHidden:NO animated:NO];</span><br><span class="line"> 或者 self.navigationBarHidden= NO;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li><p>重新设置导航栏的返回按钮 继承解决都返回的问题(新建一个类，父类还是UIViewController)（定义一个类让所有的控制器都遵守协议，都设置为返回样式，否则进入界面会成为主题放在导航栏的左边）</p>
 <p>重新设置导航栏的返回按钮   继承解决都返回的问题</p>
 </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">UIBarButtonItem *customBackItem = [[UIBarButtonItem alloc]initWithTitle:@&quot;返回&quot; style:UIBarButtonItemStylePlain target:self </div><div class="line">self.navigationItem.backBarButtonItem = customBackItem;</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIBarButtonItem *customBackItem = [[UIBarButtonItem alloc]initWithTitle:@&quot;返回&quot; style:UIBarButtonItemStylePlain target:self </span><br><span class="line">self.navigationItem.backBarButtonItem = customBackItem;</span><br></pre></td></tr></table></figure>
 <p>##2) 内容视图</p>
 <p>##3）toolBar，因为不常用，默认是隐藏的 / 工具栏</p>
 <p>#3、常用属性和方法</p>
@@ -329,7 +329,7 @@ NSArray *arrayViewController = self.navigationController.viewControllers;
 [self.navigationController popToViewController:arrayViewController[1] animated:YES];
 </code></pre><h3 id="5）回到根视图控制器"><a href="#5）回到根视图控制器" class="headerlink" title="5）回到根视图控制器"></a>5）回到根视图控制器</h3><pre><code>- (NSArray *)popToRootViewControllerAnimated:(BOOL)animated;
     例如：[self.navigationController popToRootViewControllerAnimated:YES];//回老家
-</code></pre><p><em>ps文／lerveinitial 原文链接：<a href="http://www.jianshu.com/p/77fcc26b8694" target="_blank" rel="external">http://www.jianshu.com/p/77fcc26b8694</a></em></p>
+</code></pre><p><em>ps文／lerveinitial 原文链接：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/77fcc26b8694">http://www.jianshu.com/p/77fcc26b8694</a></em></p>
 
       
 
@@ -357,7 +357,7 @@ NSArray *arrayViewController = self.navigationController.viewControllers;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UINavigationcontroller-29/">展开全文 >></a>
         </p>
       
 
@@ -379,12 +379,12 @@ NSArray *arrayViewController = self.navigationController.viewControllers;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">iOS开发指南-Objective—C基础-Interface-Builder-UIView-28</a>
+      <a class="article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIView-28/">iOS开发指南-Objective—C基础-Interface-Builder-UIView-28</a>
     </h1>
   
 
         
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/" class="archive-article-date">
+        <a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIView-28/" class="archive-article-date">
   	<time datetime="2016-05-10T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
 </a>
         
@@ -435,18 +435,18 @@ view.tag = 0;
 <p>返回当前视图的窗口。（窗口）</p>
 <p>获取根视图的superview和window时，需要注意，在viewdidload中是获取不到的，viewdidload只是视图加载完成，并没有添加到窗口中，因此需要在viewDidAppear方法中才能获取到。那时候视图才被添加到窗口中。</p>
 <pre><code>- (void)viewDidLoad
-{
+&#123;
     [super viewDidLoad]; 
     NSLog(@&quot;%@&quot;,self.view.superview); // 没有值
     NSLog(@&quot;%@&quot;, self.view.window); // 没有值
-}
+&#125;
 
 
 - (void)viewDidAppear:(BOOL)animated
-{
+&#123;
     NSLog(@&quot;%@&quot;,self.view.superview); // 有值
     NSLog(@&quot;%@&quot;, self.view.window);  // 有值
-}
+&#125;
 </code></pre><p>#13.autoresizesSubviews</p>
 <p>默认为YES，表示当父视图尺寸改变时，子视图也会随着改变。</p>
 <p>#14.autoresizingMask</p>
@@ -501,7 +501,7 @@ exchangeSubviewAtIndex:withSubviewAtIndex:
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UIView-28/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIView-28/">展开全文 >></a>
         </p>
       
 
@@ -523,12 +523,12 @@ exchangeSubviewAtIndex:withSubviewAtIndex:
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27</a>
+      <a class="article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UISearchBar-27/">iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27</a>
     </h1>
   
 
         
-        <a href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/" class="archive-article-date">
+        <a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UISearchBar-27/" class="archive-article-date">
   	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
 </a>
         
@@ -536,7 +536,7 @@ exchangeSubviewAtIndex:withSubviewAtIndex:
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="UISearchBar-检索条"><a href="#UISearchBar-检索条" class="headerlink" title="UISearchBar 检索条"></a>UISearchBar 检索条</h1><p><em>ps:这本书已经写了一半的，其中很多内容比较繁琐，我都是在网上找的方法进行复制，其中有很多表格就不写了，毕竟还有Google，本文内容来自<a href="http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral" target="_blank" rel="external">http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral</a>,作者:FlyElephant</em></p>
+        <h1 id="UISearchBar-检索条"><a href="#UISearchBar-检索条" class="headerlink" title="UISearchBar 检索条"></a>UISearchBar 检索条</h1><p><em>ps:这本书已经写了一半的，其中很多内容比较繁琐，我都是在网上找的方法进行复制，其中有很多表格就不写了，毕竟还有Google，本文内容来自<a target="_blank" rel="noopener" href="http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral">http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral</a>,作者:FlyElephant</em></p>
 <p>#UISearchBar和UISearchDisplayController</p>
 <p>是网上最常见的也算是最简单的，也有使用Searh Bar Search Display Controller的控件的，本文就简单的使用Search Bar和UITableView实现搜索Demo的,最上面的就是搜索栏，之前的就是TableView:</p>
 <p>为了实现搜索需要声明委托UISearchBarDelegate,UISearchDisplayDelegate,其中搜索主要使用的就是UISearchDisplayDelegate，具体代码实现过程:</p>
@@ -547,61 +547,61 @@ exchangeSubviewAtIndex:withSubviewAtIndex:
 </code></pre><p>##初始化数据:</p>
 <pre><code>self.dataList=[NSMutableArray arrayWithCapacity:100];
 
-for (NSInteger i=0; i&lt;100; i++) {
+for (NSInteger i=0; i&lt;100; i++) &#123;
     [self.dataList addObject:[NSString stringWithFormat:@&quot;%ld-FlyElephant&quot;,(long)i]];
-}
+&#125;
 </code></pre><p>##设置区域:</p>
 <pre><code>//设置区域
--(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView&#123;
     return 1;
-}
+&#125;
 </code></pre><p>　<br>设置区域的行数(重点),这个就是使用委托之后需要需要判断是一下是否是需要使用Search之后的视图:</p>
-<pre><code>-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        if (tableView == self.searchDisplayController.searchResultsTableView) {
+<pre><code>-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;
+        if (tableView == self.searchDisplayController.searchResultsTableView) &#123;
             return [self.searchList count];
-        }else{
+        &#125;else&#123;
             return [self.dataList count];
-    }
-}
+    &#125;
+&#125;
 </code></pre><p>　<br>同样的返回单元格也有两种情况，一种是初始化数据，一种是过滤之后的数据视图:</p>
-<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
     static NSString *flag=@&quot;cellFlag&quot;;
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
+    if (cell==nil) &#123;
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
+    &#125;
+    if (tableView==self.searchDisplayController.searchResultsTableView) &#123;
         [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
+    &#125;
+    else&#123;
         [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
+    &#125;
 
     return cell;
-}
+&#125;
 </code></pre><p>UISearchBarDelegate中的开始和结束的事件:</p>
-<pre><code>- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
+<pre><code>- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar&#123;
     NSLog(@&quot;搜索Begin&quot;);
     return YES;
-}
+&#125;
 
-- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar&#123;
     NSLog(@&quot;搜索End&quot;);
     return YES;
-}
+&#125;
 </code></pre><p>搜索时过滤数据:</p>
-<pre><code>- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+<pre><code>- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString&#123;
     // 谓词的包含语法,之前文章介绍过http://www.cnblogs.com/xiaofeixiang/
     NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
 
-    if (self.searchList!= nil) {
+    if (self.searchList!= nil) &#123;
         [self.searchList removeAllObjects];
-    }
+    &#125;
     //过滤数据
     self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
     //刷新表格
     return YES;
-}
+&#125;
 </code></pre><p>UISearchController实现搜索</p>
 <p>UISeachBar通过UISearchDisplayDelegate实现上面的效果是没有问题的，网上也有很多类似的实现效果，不过是警告的，信息如下: ‘searchDisplayController’ is deprecated: first deprecated in iOS 8.0,这么明显一个警告总不能视而不见吧，在StackOverFlow中发现UISearchDisplayController is deprecated in IOS8.0, and recommended to use UISearchController instead，也就是说iOS 8.0不推荐UISearchDisplayController,也就是不推荐使用UISearchDisplayDelegate，但是可以通过UISearchController实现UISearchResultsUpdating这个委托实现上面的效果；</p>
 <p>视图中中需要声明UISearchResultsUpdating:</p>
@@ -623,47 +623,47 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
 </code></pre><p>之前是通过判断搜索时候的TableView，不过现在直接使用self.searchController.active进行判断即可，也就是</p>
 <p>UISearchController的active属性:</p>
 <pre><code>//设置区域的行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;
 
-    if (self.searchController.active) {
+    if (self.searchController.active) &#123;
         return [self.searchList count];
-    }else{
+    &#125;else&#123;
         return [self.dataList count];
-    }
+    &#125;
 
-}
+&#125;
 
 //返回单元格内容
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
     static NSString *flag=@&quot;cellFlag&quot;;
     UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
-    if (cell==nil) {
+    if (cell==nil) &#123;
         cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
-    }
-    if (self.searchController.active) {
+    &#125;
+    if (self.searchController.active) &#123;
         [cell.textLabel setText:self.searchList[indexPath.row]];
-    }
-    else{
+    &#125;
+    else&#123;
         [cell.textLabel setText:self.dataList[indexPath.row]];
-    }
+    &#125;
     return cell;
-}
+&#125;
 </code></pre><p>　具体调用的时候使用的方法也发生了改变，这个时候使用updateSearchResultsForSearchController进行结果过滤:</p>
-<pre><code>-(void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+<pre><code>-(void)updateSearchResultsForSearchController:(UISearchController *)searchController &#123;
 
     NSString *searchString = [self.searchController.searchBar text];
 
     NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
 
-    if (self.searchList!= nil) {
+    if (self.searchList!= nil) &#123;
         [self.searchList removeAllObjects];
-    }
+    &#125;
     //过滤数据
     self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
     //刷新表格
 
     [self.tableView reloadData];
-}
+&#125;
 </code></pre>
       
 
@@ -691,7 +691,7 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/10/iOS开发指南-Objective—C基础-Interface-Builder-UISearchBar-27/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UISearchBar-27/">展开全文 >></a>
         </p>
       
 
@@ -713,12 +713,12 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/">iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26</a>
+      <a class="article-title" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIProgressView-26/">iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26</a>
     </h1>
   
 
         
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/" class="archive-article-date">
+        <a href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIProgressView-26/" class="archive-article-date">
   	<time datetime="2016-05-09T14:34:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
 </a>
         
@@ -731,10 +731,10 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
 </code></pre><p>注意：<br>1.用这个方式初始化的进度条系统会默认给一个长度。</p>
 <p>2.进度条的长度可以通过frame来设置，但是只有前三个参数有效。</p>
 <p>3.风格枚举如下：</p>
-<pre><code>typedef NS_ENUM(NSInteger, UIProgressViewStyle) {
+<pre><code>typedef NS_ENUM(NSInteger, UIProgressViewStyle) &#123;
     UIProgressViewStyleDefault,     // 普通样式
     UIProgressViewStyleBar,         // 用于工具条的样式
-};
+&#125;;
 </code></pre><p>##设置进度条风格样式</p>
 <pre><code>@property(nonatomic) UIProgressViewStyle progressViewStyle; 
 </code></pre><p>##设置进度条进度(0.0-1.0之间，默认为0.0)</p>
@@ -776,7 +776,7 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIProgressView-26/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIProgressView-26/">展开全文 >></a>
         </p>
       
 
@@ -798,12 +798,12 @@ self.tableView.tableHeaderView = self.searchController.searchBar;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25</a>
+      <a class="article-title" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActivityIndicatorView-25/">iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25</a>
     </h1>
   
 
         
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/" class="archive-article-date">
+        <a href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActivityIndicatorView-25/" class="archive-article-date">
   	<time datetime="2016-05-09T14:26:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
 </a>
         
@@ -873,7 +873,7 @@ indicator.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIActivityIndicatorView-25/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActivityIndicatorView-25/">展开全文 >></a>
         </p>
       
 
@@ -895,12 +895,12 @@ indicator.center = CGPointMake(self.view.frame.size.width * 0.5, self.view.frame
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
+      <a class="article-title" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIPickerView-24/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
     </h1>
   
 
         
-        <a href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/" class="archive-article-date">
+        <a href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIPickerView-24/" class="archive-article-date">
   	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
 </a>
         
@@ -924,29 +924,29 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 <pre><code>_pickerView.delegate = self;
 </code></pre><p>##2.1 设置UIPickView每行显示的内容</p>
 <pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+&#123;
     return @&quot;showData&quot;;
-}
+&#125;
 </code></pre><p><img src="http://qn.heyim.xyz/image/160509/2.png" alt="2"></p>
 <p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
 <pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
+&#123;
     UIView *myView=[[UIView alloc]init];
     myView.backgroundColor = [UIColor redColor];
     return myView;
-}
+&#125;
 </code></pre><p>效果：</p>
 <p><img src="http://qn.heyim.xyz/image/160509/3.png" alt="3"></p>
 <p>#3.    dataSource：数据源</p>
 <p>##1.设置每列显示3行</p>
 <pre><code>// pragma mark  - dataSource method
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+&#123;
     return 3;
-}
+&#125;
 // 设置显示2列
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+&#123;
     return 2; 
 </code></pre><p>}</p>
 <p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
@@ -991,7 +991,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/09/iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIPickerView-24/">展开全文 >></a>
         </p>
       
 
@@ -1013,12 +1013,12 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23</a>
+      <a class="article-title" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIToolBar-23/">iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23</a>
     </h1>
   
 
         
-        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/" class="archive-article-date">
+        <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIToolBar-23/" class="archive-article-date">
   	<time datetime="2016-05-05T14:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
 </a>
         
@@ -1083,7 +1083,7 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIToolBar-23/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIToolBar-23/">展开全文 >></a>
         </p>
       
 
@@ -1105,12 +1105,12 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22</a>
+      <a class="article-title" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/">iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22</a>
     </h1>
   
 
         
-        <a href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
+        <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/" class="archive-article-date">
   	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
 </a>
         
@@ -1129,12 +1129,12 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
 </code></pre><p>设置标题</p>
 <pre><code>@property(nonatomic) UIActionSheetStyle actionSheetStyle;
 </code></pre><p>设置风格，枚举如下：</p>
-<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) {
+<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) &#123;
     UIActionSheetStyleAutomatic        = -1,      
     UIActionSheetStyleDefault          = UIBarStyleDefault,
     UIActionSheetStyleBlackTranslucent = UIBarStyleBlackTranslucent,
     UIActionSheetStyleBlackOpaque      = UIBarStyleBlackOpaque,
-};
+&#125;;
 
 - (NSInteger)addButtonWithTitle:(NSString *)title;
 </code></pre><p>添加一个按钮，会返回按钮的索引</p>
@@ -1196,7 +1196,7 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/05/iOS开发指南-Objective—C基础-Interface-Builder-UIActionSheet-22/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIActionSheet-22/">展开全文 >></a>
         </p>
       
 
@@ -1218,12 +1218,12 @@ UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemIte
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/">iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21</a>
+      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIAlterView-21/">iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21</a>
     </h1>
   
 
         
-        <a href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/" class="archive-article-date">
+        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIAlterView-21/" class="archive-article-date">
   	<time datetime="2016-05-04T13:15:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
 </a>
         
@@ -1308,16 +1308,16 @@ activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.siz
 <pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView
 </code></pre><p>中按照自己的需要修改或添加即可， 比如需要将消息文本左对齐，下面的代码即可实现:</p>
 <pre><code>-(void) willPresentAlertView:(UIAlertView *)alertView
-{
+&#123;
       for( UIView * view in alertView.subviews )
-      {
+      &#123;
             if( [view isKindOfClass:[UILabel class]] )
-            {
+            &#123;
                   UILabel* label = (UILabel*) view;
                   label.textAlignment=UITextAlignmentLeft;
-            }
-      }
-}
+            &#125;
+      &#125;
+&#125;
 </code></pre><p><img src="http://qn.heyim.xyz/image/160504/8.png" alt="8"></p>
 
       
@@ -1346,7 +1346,7 @@ activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.siz
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIAlterView-21/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIAlterView-21/">展开全文 >></a>
         </p>
       
 
@@ -1368,12 +1368,12 @@ activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.siz
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/">iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20</a>
+      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20</a>
     </h1>
   
 
         
-        <a href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/" class="archive-article-date">
+        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/" class="archive-article-date">
   	<time datetime="2016-05-04T12:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
 </a>
         
@@ -1432,9 +1432,9 @@ scrollView.minimumZoomScale = 0.8;
 
 // 列如：
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
+&#123;
     return scrollView.subviews[0];
-}
+&#125;
 </code></pre><p>###11.9 scrollView即将开始缩放</p>
 <pre><code>- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view NS_AVAILABLE_IOS(3_2); 
 </code></pre><p>###11.10 scrollView完成缩放</p>
@@ -1486,7 +1486,7 @@ scrollView.minimumZoomScale = 0.8;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/04/iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">展开全文 >></a>
         </p>
       
 
@@ -1503,7 +1503,7 @@ scrollView.minimumZoomScale = 0.8;
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1515,7 +1515,7 @@ scrollView.minimumZoomScale = 0.8;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

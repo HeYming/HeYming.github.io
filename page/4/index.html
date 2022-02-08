@@ -14,9 +14,9 @@
 <meta property="og:url" content="http://yoursite.com/page/4/index.html">
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:locale">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小豆子的博客">
-<meta name="twitter:description" content="我的征程是星辰大海">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -34,7 +34,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -48,7 +48,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -110,7 +110,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -171,12 +171,12 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/">iOS开发指南-Objective—C基础-Interface Builder-UIWebView-19</a>
+      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/">iOS开发指南-Objective—C基础-Interface Builder-UIWebView-19</a>
     </h1>
   
 
         
-        <a href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/" class="archive-article-date">
+        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/" class="archive-article-date">
   	<time datetime="2016-05-03T14:41:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-03</time>
 </a>
         
@@ -188,11 +188,11 @@
 <ul>
 <li>url 加载</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];</div><div class="line">NSURL *url = [[NSURL alloc]initWithString:@&quot;http://www.apple.com/cn/&quot;];</div><div class="line">[view loadRequest:[NSURLRequest requestWithURL:url]];</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIWebView *view = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 300, 400)];</span><br><span class="line">NSURL *url = [[NSURL alloc]initWithString:@&quot;http://www.apple.com/cn/&quot;];</span><br><span class="line">[view loadRequest:[NSURLRequest requestWithURL:url]];</span><br></pre></td></tr></table></figure>
 <ul>
 <li>本地html 加载    </li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">NSString *html = @&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;!--Copyright 2015 The Chromium Authors.All rights reserved.Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.--&gt;&lt;head&gt;&lt;script src=\&quot;chrome-search://local-ntp/config.js\&quot;&gt;&lt;/script&gt;&lt;script src=\&quot;chrome-search://local-ntp/local-ntp.js\&quot;&gt;&lt;/script&gt;&lt;link rel=\&quot;stylesheet\&quot;href=\&quot;chrome-search://local-ntp/local-ntp.css\&quot;&gt;&lt;/link&gt;&lt;meta charset=\&quot;utf-8\&quot;&gt;&lt;meta name=\&quot;google\&quot;value=\&quot;notranslate\&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=\&quot;ntp-contents\&quot;&gt;&lt;div id=\&quot;most-visited\&quot;&gt;&lt;div id=\&quot;mv-tiles\&quot;&gt;&lt;/div&gt;&lt;!--Notification shown when a tile is blacklisted.--&gt;&lt;div id=\&quot;mv-notice\&quot;class=\&quot;mv-notice-hide\&quot;&gt;&lt;span id=\&quot;mv-msg\&quot;&gt;&lt;/span&gt;&lt;!--Links in the notification.--&gt;&lt;span id=\&quot;mv-notice-links\&quot;&gt;&lt;span id=\&quot;mv-undo\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;span id=\&quot;mv-restore\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;div id=\&quot;mv-notice-x\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=\&quot;attribution\&quot;&gt;&lt;div id=\&quot;attribution-text\&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;;</div><div class="line">[view loadHTMLString:html baseURL:nil];</div></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NSString *html = @&quot;&lt;!doctype html&gt;&lt;html&gt;&lt;!--Copyright 2015 The Chromium Authors.All rights reserved.Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.--&gt;&lt;head&gt;&lt;script src=\&quot;chrome-search://local-ntp/config.js\&quot;&gt;&lt;/script&gt;&lt;script src=\&quot;chrome-search://local-ntp/local-ntp.js\&quot;&gt;&lt;/script&gt;&lt;link rel=\&quot;stylesheet\&quot;href=\&quot;chrome-search://local-ntp/local-ntp.css\&quot;&gt;&lt;/link&gt;&lt;meta charset=\&quot;utf-8\&quot;&gt;&lt;meta name=\&quot;google\&quot;value=\&quot;notranslate\&quot;&gt;&lt;/head&gt;&lt;body&gt;&lt;div id=\&quot;ntp-contents\&quot;&gt;&lt;div id=\&quot;most-visited\&quot;&gt;&lt;div id=\&quot;mv-tiles\&quot;&gt;&lt;/div&gt;&lt;!--Notification shown when a tile is blacklisted.--&gt;&lt;div id=\&quot;mv-notice\&quot;class=\&quot;mv-notice-hide\&quot;&gt;&lt;span id=\&quot;mv-msg\&quot;&gt;&lt;/span&gt;&lt;!--Links in the notification.--&gt;&lt;span id=\&quot;mv-notice-links\&quot;&gt;&lt;span id=\&quot;mv-undo\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;span id=\&quot;mv-restore\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/span&gt;&lt;div id=\&quot;mv-notice-x\&quot;tabIndex=\&quot;1\&quot;&gt;&lt;/div&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=\&quot;attribution\&quot;&gt;&lt;div id=\&quot;attribution-text\&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/body&gt;&lt;/html&gt;&quot;;</span><br><span class="line">[view loadHTMLString:html baseURL:nil];</span><br></pre></td></tr></table></figure>
 <p>控制页面方法</p>
 <pre><code>//重新读取页面
 [view reload];
@@ -206,7 +206,7 @@
 //进入下一画面
 [view goForward];
 </code></pre><p><em>ps:书中介绍的内容基本如此，还有就是其他的方法调用，我直接复制粘贴百度文章，这些内容知道就可以，需要的时候直接搜索拿来就用</em></p>
-<p><em>来源：<a href="http://www.2cto.com/kf/201502/378706.html" target="_blank" rel="external">http://www.2cto.com/kf/201502/378706.html</a></em></p>
+<p><em>来源：<a target="_blank" rel="noopener" href="http://www.2cto.com/kf/201502/378706.html">http://www.2cto.com/kf/201502/378706.html</a></em></p>
 <h2 id="一、UIWebView的基础使用"><a href="#一、UIWebView的基础使用" class="headerlink" title="一、UIWebView的基础使用"></a>一、UIWebView的基础使用</h2><p>###1、创建UIWebView：</p>
 <pre><code>CGRect bouds = [[UIScreen manScreen]applicationFrame];
 UIWebView* webView = [[UIWebView alloc]initWithFrame:bounds];
@@ -249,10 +249,10 @@ UIWebViewNavigationTypeOther
 </code></pre><p>以上是IOS中UIWebView的基础使用要点详解，接下来一些UIWebView的常用注意点。</p>
 <h2 id="二、IOS中UIWebView常用注意点："><a href="#二、IOS中UIWebView常用注意点：" class="headerlink" title="二、IOS中UIWebView常用注意点："></a>二、IOS中UIWebView常用注意点：</h2><p>####1、与UIWebView进行交互，调用web页面中的需要传参的函数时，参数需要带单引号，或者双引号（双引号需要进行转义在转义字符前加\）,在传递json字符串时不需要加单引号或双引号：</p>
 <pre><code>-(void)webViewDidFinishLoad:(UIWebView *)webView
-{
+&#123;
 NSString *sendJsStr=[NSString stringWithFormat:@&quot;openFile(\&quot;%@\&quot;)&quot;,jsDocPathStr];
 [webView stringByEvaluatingJavaScriptFromString:sendJsStr];
-}
+&#125;
 </code></pre><p>###2、在该代理方法中判断与webView的交互，可通过html里定义的协议实现：</p>
 <pre><code>- (BOOL)webView:(UIWebView*)webView shouldStartLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
 </code></pre><p>###3、只有在webView加载完毕之后在能够调用对应页面中的js方法。（对应方法如第1条）.</p>
@@ -285,20 +285,20 @@ NSFileManager *magngerDoc=[NSFileManager defaultManager];
 [magngerDoc removeItemAtPath:filePath error:nil];
 </code></pre><p>###8、处理webView展示txt文档乱码问题：</p>
 <pre><code>if ([theType isEqualToString:@&quot;.txt&quot;])
-{
+&#123;
 //txt分带编码和不带编码两种，带编码的如UTF-8格式txt，不带编码的如ANSI格式txt
 //不带的，可以依次尝试GBK和GB18030编码
 NSString* aStr = [[NSString alloc] initWithData:attachmentData encoding:NSUTF8StringEncoding];
 if (!aStr)
-{
+&#123;
 //用GBK进行编码
 aStr=[[NSString alloc] initWithData:attachmentData encoding:0x80000632];
-}
+&#125;
 if (!aStr)
-{
+&#123;
 //用GBK编码不行,再用GB18030编码
 aStr=[[NSString alloc] initWithData:attachmentData encoding:0x80000631];
-}
+&#125;
 //通过html语言进行排版
 NSString* responseStr = [NSString stringWithFormat:
 @&quot;&quot;
@@ -312,36 +312,36 @@ NSString* responseStr = [NSString stringWithFormat:
 aStr];
 [attachmentWebView loadHTMLString:responseStr baseURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] bundlePath]]];
 return;
-}
+&#125;
 </code></pre><p>###9、使用webView加载本地或网络文件整个流程：</p>
 <p>1、 Loading a local PDF file into the web view</p>
-<pre><code>- (void)viewDidLoad {
+<pre><code>- (void)viewDidLoad &#123;
 [super viewDidLoad];
 //从本地加载
 NSString *thePath = [[NSBundle mainBundle] pathForResource:@&quot;iPhone_User_Guide&quot; ofType:@&quot;pdf&quot;];
-if (thePath) {
+if (thePath) &#123;
 NSData *pdfData = [NSData dataWithContentsOfFile:thePath];
 [(UIWebView *)self.view loadData:pdfData MIMEType:@&quot;application/pdf&quot;
 textEncodingName:@&quot;utf-8&quot; baseURL:nil];
-}
+&#125;
 //从网络加载
 [self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@&quot;http://www.apple.com/&quot;]]];
-}
+&#125;
 </code></pre><p>2、The web-view delegate managing network loading</p>
 <pre><code>- (void)webViewDidStartLoad:(UIWebView *)webView
-{
+&#123;
 // starting the load, show the activity indicator in the status bar
 [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-}
+&#125;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView
-{
+&#123;
 // finished loading, hide the activity indicator in the status bar
 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
+&#125;
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
+&#123;
 // load error, hide the activity indicator in the status bar
 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 
@@ -351,104 +351,104 @@ NSString* errorString = [NSString stringWithFormat:
 %@&quot;,
 error.localizedDescription];
 [self.myWebView loadHTMLString:errorString baseURL:nil];
-}
+&#125;
 </code></pre><p>3、Stopping a load request when the web view is to disappear</p>
 <pre><code>- (void)viewWillDisappear:(BOOL)animated
-{
-if ( [self.myWebView loading] ) {
+&#123;
+if ( [self.myWebView loading] ) &#123;
 [self.myWebView stopLoading];
-}
+&#125;
 self.myWebView.delegate = nil; // disconnect the delegate as the webview is hidden
 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-}
+&#125;
 </code></pre><p>/<strong><strong><em>**</em></strong></strong>/<br>引用自苹果官方文档（displaying web content）</p>
 <p>###10、查找webView中的scrollview：</p>
 <pre><code>- (void) addScrollViewListener
-{
+&#123;
 UIScrollView* currentScrollView;
-for (UIView* subView in self.webView.subviews) {
-if ([subView isKindOfClass:[UIScrollView class]]) {
+for (UIView* subView in self.webView.subviews) &#123;
+if ([subView isKindOfClass:[UIScrollView class]]) &#123;
 currentScrollView = (UIScrollView*)subView;
 currentScrollView.delegate = self;
-}
-}
-}
+&#125;
+&#125;
+&#125;
 </code></pre><p>###11、去掉webView的阴影，做成类似scrollView：</p>
 <pre><code>- (void)clearBackgroundWithColor:(UIColor*)color
-{
+&#123;
 // 去掉webview的阴影
 self.backgroundColor = color;
 for (UIView* subView in [self subviews])
-{
-if ([subView isKindOfClass:[UIScrollView class]]) {
+&#123;
+if ([subView isKindOfClass:[UIScrollView class]]) &#123;
 for (UIView* shadowView in [subView subviews])
-{
-if ([shadowView isKindOfClass:[UIImageView class]]) {
+&#123;
+if ([shadowView isKindOfClass:[UIImageView class]]) &#123;
 [shadowView setHidden:YES];
-}
-}
-}
-}
-}
+&#125;
+&#125;
+&#125;
+&#125;
+&#125;
 </code></pre><p>###12、取消长按webView上的链接弹出actionSheet的问题：</p>
 <pre><code>-(void)webViewDidFinishLoad:(UIWebView *)webView
-{
+&#123;
 [webView stringByEvaluatingJavaScriptFromString:@&quot;document.documentElement.style.webkitTouchCallout = &apos;none&apos;;&quot;];
-}
+&#125;
 </code></pre><p>###13、取消webView上的超级链接加载问题：</p>
 <pre><code>-(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-if (navigationType==UIWebViewNavigationTypeLinkClicked) {
+&#123;
+if (navigationType==UIWebViewNavigationTypeLinkClicked) &#123;
 return NO;
-}
-else {
+&#125;
+else &#123;
 return YES;
-}
-}
+&#125;
+&#125;
 </code></pre><p>###14、webView在ios5.1之前的bug：</p>
 <p>在之前的工程中使用webView加载附件，webView支持doc，excel，ppt，pdf等格式，但这些附件必须先下载到本地然后在加载到webView上才可以显示， 当附件下载到本地之后刚刚开始加载到webView上时，此时退出附件页面会导致程序崩溃。会崩溃是由于webView控件内部没有把相关代理取消掉，所以导致退出之后程序崩溃。</p>
 <p>webView在5.1上的bug：之前项目需求要webView可以左右活动，但在往webView上加载页面时导致页面加载不全，这个bug是由于webView本身的缓存所致。（还有待研究）</p>
 <p>###15、在使用webView进行新浪微博分享时，webView会自动保存登陆的cookie导致项目中的分享模块有些问题，删除 webView的cookie的方法：</p>
 <pre><code>-(void)deleteCookieForDominPathStr:(NSString *)thePath
-{
+&#123;
 //删除本地cookie，thePath为cookie路径通过打印cookie可知道其路径
-for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) {
+for(NSHTTPCookie *cookie in [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies]) &#123;
 
-if([[cookie domain] isEqualToString:thePath]) {
+if([[cookie domain] isEqualToString:thePath]) &#123;
 
 [[NSHTTPCookieStorage sharedHTTPCookieStorage] deleteCookie:cookie];
-}
-}
-}
+&#125;
+&#125;
+&#125;
 </code></pre><p>###16、在UIWebView中使用flashScrollIndicators</p>
 <p>使用UIScrollView时，我们可以使用flashScrollIndicators方法显示滚动标识然后消失，告知用户此页面可以滚动，后面还有 更多内容。UIWebView内部依赖于UIScrollView,但是其没有flashScrollIndicators方法，但可以通过其他途径使用 此方法，如下所示。</p>
 <pre><code>for (id subView in [webView subviews])
-{ if ([subView respondsToSelector:@selector(flashScrollIndicators)])
-{
+&#123; if ([subView respondsToSelector:@selector(flashScrollIndicators)])
+&#123;
 [subView flashScrollIndicators];
-}
-}
+&#125;
+&#125;
 </code></pre><p>上述代码片段可以到webViewDidFinishLoad回调中使用，加载完网页内容后flash显示滚动标识。</p>
 <p>###17、根据内容获取UIWebView的高度：</p>
 <p>有时候需要根据不同的内容调整UIWebView的高度，以使UIWebView刚好装下所有内容，不用拖动，后面也不会留白。有两种方式可根据加载内容 获取UIWebView的合适高度，但都需要在网页内容加载完成后才可以，即需要在webViewDidFinishLoad回调中使用。</p>
 <p>①.使用sizeThatFits方法。</p>
 <pre><code>- (void)webViewDidFinishLoad:(UIWebView *)webView
-{
+&#123;
 CGRect frame = webView.frame;
 frame.size.height = 1;
 webView.frame = frame;
 CGSize fittingSize = [webView sizeThatFits:CGSizeZero];
 frame.size = fittingSize;
 webView.frame = frame;
-}
+&#125;
 </code></pre><p>sizeThatFits方法有个问题，如果当前UIView的大小比刚好合适的大小还大，则返回当前的大小，不会返回最合适的大小值，所以使用 sizeThatFits前，先将UIWebView的高度设为最小，即1，然后再使用sizeThatFits就会返回刚好合适的大小。</p>
 <p>②、使用JavaScript</p>
 <pre><code>- (void)webViewDidFinishLoad:(UIWebView *)webView
-{ CGRect frame = webView.frame;
+&#123; CGRect frame = webView.frame;
 NSString *fitHeight = [webview stringByEvaluatingJavaScriptFromString:@&quot;document.body.scrollHeight;&quot;];
 frame.size.height = [fitHeight floatValue];
 webView.frame = frame;
-}
+&#125;
 </code></pre>
       
 
@@ -476,7 +476,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/">展开全文 >></a>
         </p>
       
 
@@ -498,12 +498,12 @@ webView.frame = frame;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-页面创建-18/">iOS开发指南-Objective—C基础-Interface Builder-页面创建-18</a>
+      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/">iOS开发指南-Objective—C基础-Interface Builder-页面创建-18</a>
     </h1>
   
 
         
-        <a href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-页面创建-18/" class="archive-article-date">
+        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/" class="archive-article-date">
   	<time datetime="2016-05-03T14:15:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-03</time>
 </a>
         
@@ -566,7 +566,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/03/iOS开发指南-Objective—C基础-Interface-Builder-页面创建-18/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/">展开全文 >></a>
         </p>
       
 
@@ -588,12 +588,12 @@ webView.frame = frame;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17/">iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/">iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/" class="archive-article-date">
   	<time datetime="2016-04-28T14:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -635,7 +635,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/">展开全文 >></a>
         </p>
       
 
@@ -657,12 +657,12 @@ webView.frame = frame;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/" class="archive-article-date">
   	<time datetime="2016-04-28T13:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -671,7 +671,7 @@ webView.frame = frame;
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="UITableView"><a href="#UITableView" class="headerlink" title="UITableView"></a>UITableView</h1><p>UITableView内置了两种样式：<br>UITableViewStylePlain，UITableViewStyleGrouped</p>
-<h2 id="里的方法："><a href="#里的方法：" class="headerlink" title="里的方法："></a><uitableviewdatasource,uitableviewdelegate>里的方法：</uitableviewdatasource,uitableviewdelegate></h2><p>tableView处理步骤</p>
+<h2 id="里的方法："><a href="#里的方法：" class="headerlink" title="里的方法："></a><UITableViewDataSource,UITableViewDelegate>里的方法：</h2><p>tableView处理步骤</p>
 <pre><code>#pragma mark 1.有多少组
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 #pragma mark 2.第section组头部控件有多高
@@ -691,11 +691,11 @@ webView.frame = frame;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 
 //每当有一个cell进入视野屏幕就会调用，所以在这个方法内部就需要优化。
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-if(cell==nil){
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
+if(cell==nil)&#123;
      //在这里面做创建的工作。循环优化。防止刷新cell进入屏幕的时候重复的创建
-} 
-}
+&#125; 
+&#125;
 
 //当调用reloadData的时候，会重新刷新调用数据源内所有方法,其他事情都不会做呀
  [self reloadData]
@@ -766,10 +766,10 @@ contentView下默认有3个子视图，其中的2个是UILabel，通过textLabel
   UITableViewCellStyleDefault, UITableViewCellStyleValue1, UITableViewCellStyleValue2, UITableViewCellStyleSubtitle
 
 #pragma mark - 重新调整UITalbleViewCell中的控件布局
-- (void)layoutSubviews{ 
+- (void)layoutSubviews&#123; 
 [super layoutSubviews];
 …
-} 
+&#125; 
 </code></pre><p>cell 里面还有一个contentView</p>
 <p>UITableViewCell表格优化</p>
 <p>UITableViewCell对象的重用原理：</p>
@@ -780,32 +780,32 @@ contentView下默认有3个子视图，其中的2个是UILabel，通过textLabel
 <li>首先在缓冲池中找名为”myCell”的单元格对象</li>
 <li>如果没有找到，实例化一个新的cell<br>**/</li>
 </ol>
-<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+<pre><code>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
     static NSString *cellIdentifier = @&quot;myCell&quot;;
 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 //使用这种方法不用判断下面的cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
-    if (cell == nil) {        
+    if (cell == nil) &#123;        
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
+    &#125;
     return cell;
-}
+&#125;
 </code></pre><p>表格的编辑模式</p>
 <p>删除、插入 </p>
 <pre><code>- (void)setEditing:(BOOL)editing animated:(BOOL)animated;  开启表格编辑状态 
 
-- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
     返回表格编辑编辑样式。不实现默认都是删除
 return editingStyle : UITableViewCellEditingStyleDelete, UITableViewCellEditingStyleInsert
-}
+&#125;
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath&#123;
       //根据editingStyle处理是删除还是添加操作
       完成删除、插入操作刷新表格
 - (void)insertRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
 
 -(void)deleteRowsAtIndexPaths:(NSArray *)indexPaths withRowAnimation:(UITableViewRowAnimation)animation;
-}
+&#125;
 </code></pre><p>移动</p>
 <pre><code>- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 sourceIndexPath 移动的行    
@@ -822,7 +822,7 @@ destinationIndexPath 目标的行
 <p>[tableView registerClass:XxxCell class] forCellReuseIdentifier:@”xxCell”];</p>
 <p>xib方式创建：</p>
 <pre><code>//注册Identifier 
-- (void)viewDidLoad{
+- (void)viewDidLoad&#123;
     [super viewDidLoad];
     /**
      注意：以下几句注册XIB的代码，一定要在viewDidLoad中！
@@ -832,18 +832,18 @@ destinationIndexPath 目标的行
     UINib *nib = [UINib nibWithNibName:@&quot;BookCell&quot; bundle:[NSBundle mainBundle]];
     UITableView *tableView = (UITableView *)self.view;
     [tableView registerNib:nib forCellReuseIdentifier:@&quot;bookCell&quot;];    
-}
+&#125;
 
 //没有注册Identifier只能使用下面方法
 
 static NSString *CellIdentifier = @&quot;bookCell&quot;;
 BookCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier]; 
-if (cell == nil) { 
+if (cell == nil) &#123; 
         cell = [[BookCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier]; 
         NSBundle *bundle = [NSBundle mainBundle];
         NSArray *array = [bundle loadNibNamed:@&quot;BookCell&quot; owner:nil options:nil];
         cell = [array lastObject];
-    }
+    &#125;
 </code></pre><p>代码方式创建：</p>
 <p>1．    建立UITableViewCell的类，继承UITableViewCell<br>2．    往cell里面加入view的时候注意点：</p>
 <pre><code>//新建的组件放入contentView中
@@ -905,10 +905,10 @@ CGFloat nameX = CGRectGetMaxX(_iconF) + padding;
  *  @param maxSize 文字的最大尺寸
  */
 - (CGSize)sizeWithText:(NSString *)text font:(UIFont *)font maxSize:(CGSize)maxSize
-{
-    NSDictionary *attrs = @{NSFontAttributeName : font};
+&#123;
+    NSDictionary *attrs = @&#123;NSFontAttributeName : font&#125;;
     return [text boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attrs context:nil].size;
-}
+&#125;
 // 昵称的字体
 #define MJNameFont [UIFont systemFontOfSize:14]
 // 文字的字体
@@ -924,12 +924,12 @@ _nameF = CGRectMake(nameX, nameY, nameSize.width, nameSize.height);
  *  @param name 图片名字
  */
 + (UIImage *)resizableImage:(NSString *)name
-{
+&#123;
     UIImage *normal = [UIImage imageNamed:name];
     CGFloat w = normal.size.width * 0.5;
     CGFloat h = normal.size.height * 0.5;
     return [normal resizableImageWithCapInsets:UIEdgeInsetsMake(h, w, h, w)];
-}
+&#125;
 
 //修改边框内边距偏移量
 textView.contentEdgeInsets = UIEdgeInsetsMake(MJTextPadding, MJTextPadding, MJTextPadding, MJTextPadding);
@@ -967,7 +967,7 @@ self.tab_table.separatorStyle = UITableViewCellSeparatorStyleNone;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/">展开全文 >></a>
         </p>
       
 
@@ -989,12 +989,12 @@ self.tab_table.separatorStyle = UITableViewCellSeparatorStyleNone;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/" class="archive-article-date">
   	<time datetime="2016-04-28T13:42:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -1061,7 +1061,7 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/">展开全文 >></a>
         </p>
       
 
@@ -1083,12 +1083,12 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/" class="archive-article-date">
   	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1108,32 +1108,32 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 // 设置UIPickView每行显示的内容
 </code></pre><p>###4.1</p>
 <pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+&#123;
     return @&quot;showData&quot;;
-}
+&#125;
 </code></pre><p><img src="http://qn.heyim.xyz/image/16042702/2.png" alt="2"></p>
 <h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
 
 // 返回一个视图，用来设置pickerView的每行显示的内容。
 -(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-{
+&#123;
     UIView *myView=[[UIView alloc]init];
     myView.backgroundColor = [UIColor redColor];
     return myView;
-}
+&#125;
 </code></pre><p>效果：</p>
 <p><img src="http://qn.heyim.xyz/image/16042702/3.png" alt="3"></p>
 <h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
 // 设置每列显示3行
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
+&#123;
     return 3;
-}
+&#125;
 // 设置显示2列
 -(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
+&#123;
     return 2; 
-}
+&#125;
 </code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
 </code></pre><p><img src="http://qn.heyim.xyz/image/16042702/4.png" alt="4"></p>
 <p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
@@ -1171,7 +1171,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
         </p>
       
 
@@ -1193,12 +1193,12 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/" class="archive-article-date">
   	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1313,7 +1313,7 @@ datePicker.maximumDate = maxDate;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
         </p>
       
 
@@ -1335,12 +1335,12 @@ datePicker.maximumDate = maxDate;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/" class="archive-article-date">
   	<time datetime="2016-04-27T13:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1393,7 +1393,7 @@ datePicker.maximumDate = maxDate;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/">展开全文 >></a>
         </p>
       
 
@@ -1415,12 +1415,12 @@ datePicker.maximumDate = maxDate;
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/" class="archive-article-date">
   	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1431,12 +1431,12 @@ datePicker.maximumDate = maxDate;
         <h1 id="UITextField-文本框"><a href="#UITextField-文本框" class="headerlink" title="UITextField 文本框"></a>UITextField 文本框</h1><h2 id="enablesReturnKeyAutomatically"><a href="#enablesReturnKeyAutomatically" class="headerlink" title="enablesReturnKeyAutomatically"></a>enablesReturnKeyAutomatically</h2><p>默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。</p>
 <h2 id="borderStyle"><a href="#borderStyle" class="headerlink" title="borderStyle"></a>borderStyle</h2><p>设置边框样式，只有设置了才会显示边框样式　</p>
 <pre><code>text.borderStyle = UITextBorderStyleRoundedRect;
-　typedef enum {
+　typedef enum &#123;
   UITextBorderStyleNone, 
   UITextBorderStyleLine,
   UITextBorderStyleBezel,
   UITextBorderStyleRoundedRect  
-} UITextBorderStyle;                                                      
+&#125; UITextBorderStyle;                                                      
 </code></pre><h2 id="backgroundColor"><a href="#backgroundColor" class="headerlink" title="backgroundColor　"></a>backgroundColor　</h2><p>设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉　</p>
 <pre><code>text.backgroundColor = [UIColor whiteColor];
 </code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><p>设置背景</p>
@@ -1451,23 +1451,23 @@ datePicker.maximumDate = maxDate;
 <pre><code>text.textColor = [UIColor redColor];
 </code></pre><h2 id="clearButtonMode"><a href="#clearButtonMode" class="headerlink" title="clearButtonMode"></a>clearButtonMode</h2><p>输入框中是否有个叉号，在什么时候显示，用于一次性删除输入框中的内容</p>
 <pre><code>text.clearButtonMode = UITextFieldViewModeAlways; 
-typedef enum {
+typedef enum &#123;
     UITextFieldViewModeNever,　重不出现
     UITextFieldViewModeWhileEditing, 编辑时出现
     UITextFieldViewModeUnlessEditing,　除了编辑外都出现
     UITextFieldViewModeAlways 　一直出现
-} UITextFieldViewMode;
+&#125; UITextFieldViewMode;
 </code></pre><h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p>输入框中一开始就有的文字</p>
 <pre><code>text.text = @&quot;一开始就在输入框的文字&quot;;
 </code></pre><h2 id="secureTextEntry"><a href="#secureTextEntry" class="headerlink" title="secureTextEntry"></a>secureTextEntry</h2><p>每输入一个字符就变成点 用来输入密码时，设置这个属性。</p>
 <pre><code>text.secureTextEntry = YES;
 </code></pre><h2 id="autocorrectionType"><a href="#autocorrectionType" class="headerlink" title="autocorrectionType"></a>autocorrectionType</h2><p>是否纠错</p>
 <pre><code>text.autocorrectionType = UITextAutocorrectionTypeNo;
-typedef enum {
+typedef enum &#123;
     UITextAutocorrectionTypeDefault, 默认
     UITextAutocorrectionTypeNo, 　不自动纠错
     UITextAutocorrectionTypeYes,　自动纠错
-} UITextAutocorrectionType;
+&#125; UITextAutocorrectionType;
 </code></pre><h2 id="clearsOnBeginEditing"><a href="#clearsOnBeginEditing" class="headerlink" title="clearsOnBeginEditing"></a>clearsOnBeginEditing</h2><p>再次编辑就清空</p>
 <pre><code>text.clearsOnBeginEditing = YES; 
 </code></pre><h2 id="textAlignment"><a href="#textAlignment" class="headerlink" title="textAlignment"></a>textAlignment</h2><p>内容对齐方式</p>
@@ -1480,7 +1480,7 @@ typedef enum {
 text.minimumFontSize = 20;
 </code></pre><h2 id="keyboardType"><a href="#keyboardType" class="headerlink" title="keyboardType"></a>keyboardType</h2><p>设置键盘的样式</p>
 <pre><code>text.keyboardType = UIKeyboardTypeNumberPad;
-typedef enum {
+typedef enum &#123;
     UIKeyboardTypeDefault,     　默认键盘，支持所有字符         
     UIKeyboardTypeASCIICapable,　支持ASCII的默认键盘
     UIKeyboardTypeNumbersAndPunctuation,　标准电话键盘，支持＋＊＃字符
@@ -1492,18 +1492,18 @@ typedef enum {
     UIKeyboardTypeDecimalPad,   　数字键盘 有数字和小数点
     UIKeyboardTypeTwitter,      　优化的键盘，方便输入@、#字符
     UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, 
-} UIKeyboardType;
+&#125; UIKeyboardType;
 </code></pre><h2 id="autocapitalizationType"><a href="#autocapitalizationType" class="headerlink" title="autocapitalizationType"></a>autocapitalizationType</h2><p>首字母是否大写</p>
 <pre><code>text.autocapitalizationType = UITextAutocapitalizationTypeNone;
-typedef enum {
+typedef enum &#123;
     UITextAutocapitalizationTypeNone, 不自动大写
     UITextAutocapitalizationTypeWords,　单词首字母大写
     UITextAutocapitalizationTypeSentences,　句子的首字母大写
     UITextAutocapitalizationTypeAllCharacters, 所有字母都大写
-} UITextAutocapitalizationType;
+&#125; UITextAutocapitalizationType;
 </code></pre><h2 id="returnKeyType"><a href="#returnKeyType" class="headerlink" title="returnKeyType"></a>returnKeyType</h2><p>return键变成什么键</p>
 <pre><code>text.returnKeyType =UIReturnKeyDone;
-typedef enum {
+typedef enum &#123;
     UIReturnKeyDefault, 默认 灰色按钮，标有Return
     UIReturnKeyGo,    　标有Go的蓝色按钮
     UIReturnKeyGoogle,标有Google的蓝色按钮，用语搜索
@@ -1515,25 +1515,25 @@ typedef enum {
     UIReturnKeyYahoo,标有Yahoo的蓝色按钮
     UIReturnKeyYahoo,标有Yahoo的蓝色按钮
     UIReturnKeyEmergencyCall, 紧急呼叫按钮
-} UIReturnKeyType;
+&#125; UIReturnKeyType;
 </code></pre><h2 id="keyboardAppearance"><a href="#keyboardAppearance" class="headerlink" title="keyboardAppearance"></a>keyboardAppearance</h2><p>键盘外观</p>
 <pre><code>textView.keyboardAppearance=UIKeyboardAppearanceDefault；
-typedef enum {
+typedef enum &#123;
 UIKeyboardAppearanceDefault， 默认外观，浅灰色
 UIKeyboardAppearanceAlert，　 　深灰 石墨色
-} UIReturnKeyType;
+&#125; UIReturnKeyType;
 </code></pre><h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><p>设置代理 用于实现协议</p>
 <pre><code>text.delegate = self;
 </code></pre><h2 id="rightView"><a href="#rightView" class="headerlink" title="rightView"></a>rightView</h2><p>最右侧加图片是以下代码　 左侧类似</p>
 <pre><code>UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;right.png&quot;]];
 text.rightView=image;
 text.rightViewMode = UITextFieldViewModeAlways; 
-typedef enum {
+typedef enum &#123;
     UITextFieldViewModeNever,
     UITextFieldViewModeWhileEditing,
     UITextFieldViewModeUnlessEditing,
     UITextFieldViewModeAlways
-} UITextFieldViewMode;
+&#125; UITextFieldViewMode;
 </code></pre><h2 id="editing"><a href="#editing" class="headerlink" title="editing"></a>editing</h2><p>是否允许编辑。</p>
 <h2 id="界面重写绘制行为"><a href="#界面重写绘制行为" class="headerlink" title="界面重写绘制行为"></a>界面重写绘制行为</h2><p>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写。</p>
 <pre><code>– textRectForBounds:　　  　//重写来重置文字区域
@@ -1551,34 +1551,34 @@ inputAccessoryView //编辑时显示在系统键盘或用户自定义的inputVie
 <pre><code>text.delegate = self;　声明text的代理是我，我会去实现把键盘往下收的方法 这个方法在UITextFieldDelegate里所以我们要遵守UITextFieldDelegate这个协议
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+&#123;
     [text resignFirstResponder];    //主要是[receiver resignFirstResponder]在哪调用就能把receiver（text）对应的键盘往下收
 return YES;
-}
+&#125;
 
 代理方法 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{　
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField&#123;　
 　　
 //返回一个BOOL值，YES代表允许编辑，NO不允许编辑.　
     return YES;　
-}　
+&#125;　
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField{　
+- (void)textFieldDidBeginEditing:(UITextField *)textField&#123;　
  //开始编辑时触发，文本字段将成为first responder　
-}　
+&#125;　
 
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField{　
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField&#123;　
 //返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder　
 　 //要想在用户结束编辑时阻止文本字段消失，可以返回NO　，返回NO，点击键盘的返回按钮会无效果。
 　 //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息　
 　 
     return NO;　
-}　
-- (void)textFieldDidEndEditing:(UITextField *)textField;{
+&#125;　
+- (void)textFieldDidEndEditing:(UITextField *)textField;&#123;
 
-}// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
+&#125;// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
 
-- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{　
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string&#123;　
 //当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。　
 //这对于想要加入撤销选项的应用程序特别有用　
 //可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。　　 
@@ -1586,23 +1586,23 @@ return YES;
 //这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中　
 
 　   return YES;　
-}　
+&#125;　
 
-- (BOOL)textFieldShouldClear:(UITextField *)textField{　
+- (BOOL)textFieldShouldClear:(UITextField *)textField&#123;　
 
 //返回一个BOOL值指明是否允许根据用户请求清除内容　
 //可以设置在特定条件下才允许清除内容　
 
 　   return YES;　
-}　
+&#125;　
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField{　
+-(BOOL)textFieldShouldReturn:(UITextField *)textField&#123;　
 
 //返回一个BOOL值，指明是否允许在按下回车键时结束编辑　
  //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];
 //查一下resign这个单词的意思就明白这个方法了　
 　   return YES;　
-}　
+&#125;　
 </code></pre><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>UITextField派生自UIControl，所以UIControl类中的通知系统在文本字段中也可以使用。除了UIControl类的标准事件，你还可以使用下列UITextField类特有的事件</p>
 <pre><code>UITextFieldTextDidBeginEditingNotification
 UITextFieldTextDidChangeNotification
@@ -1652,7 +1652,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
-{  
+&#123;  
     NSCharacterSet *cs;  
     cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERSPERIOD ] invertedSet]; //invertedSet 方法是去反字符,把所有的除了数字的字符都找出来  
 
@@ -1661,7 +1661,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
     BOOL basicTest = [string isEqualToString:filtered];  
     if(!basicTest)   
-      {  
+      &#123;  
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot;  
                                                             message:@&quot;请输入数字&quot;  
                                                            delegate:nil  
@@ -1671,34 +1671,34 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
         [alert show];  
         [alert release];  
         return NO;  
-    }    
+    &#125;    
     // Add any predicate testing here  
     return basicTest;  
-}  
+&#125;  
 
 #define NUMBERS @”0123456789n” （这个代表可以输入数字和换行，请注意这个n，如果不写这个，Done按键将不会触发，如果用在SearchBar中，将会不触发Search事件，因为你自己限制不让输入n，好惨，我在项目中才发现的。） 所以，如果你要限制输入英文和数字的话，就可以把这个定义为： #define kAlphaNum @”ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789″。 当然，你还可以在以上方法return之前，做一提示的，比如提示用户只能输入数字之类的。如果你觉得有需要的话。
 </code></pre><h2 id="实例：限制只能输入一定长度的字符"><a href="#实例：限制只能输入一定长度的字符" class="headerlink" title="实例：限制只能输入一定长度的字符"></a>实例：限制只能输入一定长度的字符</h2><p>ios代码  </p>
 <pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   
-{　
+&#123;　
 //string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反  
     if ([string isEqualToString:@&quot;n&quot;])　//按回车可以改变  
-    {   
+    &#123;   
         return YES;   
-    }   
+    &#125;   
 
     NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容  
 
     if (self.myTextField == textField)　//判断是否时我们想要限定的那个输入框  
-    {   
-        if ([toBeString length] &gt; 20) { //如果输入框内容大于20则弹出警告  
+    &#123;   
+        if ([toBeString length] &gt; 20) &#123; //如果输入框内容大于20则弹出警告  
   textField.text = [toBeString substringToIndex:20];   
             UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@&quot;超过最大字数不能输入了&quot; delegate:nil cancelButtonTitle:@&quot;Ok&quot; otherButtonTitles:nil, nil] autorelease];   
             [alert show];   
             return NO;   
-        }   
-    }   
+        &#125;   
+    &#125;   
     return YES;   
-}  
+&#125;  
 </code></pre><h2 id="UITextField实例二："><a href="#UITextField实例二：" class="headerlink" title="UITextField实例二："></a>UITextField实例二：</h2><p>在UISearchBar中,当输入信息改变时,它就会调用textDidChange函数,但是UITextField没有这个功能,唯一与这个类似的shouldChangeCharactersInRange函数,也是在文件还没有改变前就调用了,而不是在改变后调用,要想实现这个功能,我们可以增加事件监听的方式.先来看看objective-c提供的接口:</p>
 <p>ios代码  </p>
 <pre><code>// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event. 
@@ -1713,10 +1713,10 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 [textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];  
 
 //第二步,实现回调函数  
-- (void) textFieldDidChange:(id) sender {  
+- (void) textFieldDidChange:(id) sender &#123;  
     UITextField *_field = (UITextField *)sender;  
     NSLog(@&quot;%@&quot;,[_field text]);  
-}  
+&#125;  
 </code></pre><h2 id="UITextField实例三："><a href="#UITextField实例三：" class="headerlink" title="UITextField实例三："></a>UITextField实例三：</h2><p>UITextField控件处理键盘弹出时遮住输入框的问题<br>打开键盘卷动文本字段<br>默认情况下打开键盘会遮住下面的view，带来一点点困扰，不过这不是什么大问题，我们使用点小小的手段就可以解决。</p>
 <p>首先我们要知道键盘的高度是固定不变的，不过在IOS 5.0 以后键盘的高度貌似不是216了，不过不要紧，我们调整调整就是了：</p>
 <pre><code>                 iPhone    ipad
@@ -1728,7 +1728,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 </code></pre><p>然后我们在当前控制器实现下面两个委托方法：</p>
 <p>ios代码  </p>
 <pre><code>- (void)textFieldDidBeginEditing:(UITextField *)textField  
-{ //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
+&#123; //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
        NSTimeInterval animationDuration = 0.30f;      
       CGRect frame = self.view.frame;  
       frame.origin.y -=216;  
@@ -1738,10 +1738,10 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
        [UIView setAnimationDuration:animationDuration];  
        self.view.frame = frame;                  
        [UIView commitAnimations];                  
-}  
+&#125;  
 </code></pre><p>ios代码</p>
 <pre><code>- (BOOL)textFieldShouldReturn:(UITextField *)textField   
-{//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
+&#123;//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
         NSTimeInterval animationDuration = 0.30f;  
         CGRect frame = self.view.frame;      
         frame.origin.y +=216;        
@@ -1753,7 +1753,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
         self.view.frame = frame;                  
         [UIView commitAnimations];  
         [textField resignFirstResponder];     
-}     
+&#125;     
 </code></pre>
       
 
@@ -1781,7 +1781,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/">展开全文 >></a>
         </p>
       
 
@@ -1803,12 +1803,12 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/" class="archive-article-date">
   	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1861,7 +1861,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/">展开全文 >></a>
         </p>
       
 
@@ -1878,7 +1878,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1890,7 +1890,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

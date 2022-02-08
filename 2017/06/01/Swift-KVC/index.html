@@ -8,17 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Swift-KVC | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理 Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。Swift兼容oc，自然也会有runtime的方法调用。KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。 基础方">
-<meta name="keywords" content="Swift">
+  <meta name="description" content="ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理 Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。Swift兼容oc，自然也会有runtime的方法调用。KVC&#x3D;Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。 基础方">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Swift-KVC">
 <meta property="og:url" content="http://yoursite.com/2017/06/01/Swift-KVC/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理 Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。Swift兼容oc，自然也会有runtime的方法调用。KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。 基础方">
-<meta property="og:updated_time" content="2017-06-01T14:20:04.000Z">
+<meta property="og:description" content="ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理 Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。Swift兼容oc，自然也会有runtime的方法调用。KVC&#x3D;Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。 基础方">
+<meta property="og:locale">
+<meta property="article:published_time" content="2017-06-01T13:39:20.000Z">
+<meta property="article:modified_time" content="2017-06-01T14:20:04.000Z">
+<meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Swift-KVC">
-<meta name="twitter:description" content="ps: KVC几乎是每个面试都会问到的问题。现在讲解下Swift中的KVC实现和原理 Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。Swift兼容oc，自然也会有runtime的方法调用。KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。 基础方">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -36,7 +37,7 @@
 
   
 
-</head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container" q-class="show:isCtnShow">
@@ -50,7 +51,7 @@
 			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">小豆子</a></h1>
+		  <h1 class="header-author"><a href="/">undefined</a></h1>
 		</hgroup>
 		
 
@@ -112,7 +113,7 @@
 				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">小豆子</h1>
+			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
@@ -188,7 +189,7 @@
 <p>Objective-C中最重要的就是runtime，应为有了runtime几乎可以访问和修改oc中任何属性。<br>Swift兼容oc，自然也会有runtime的方法调用。<br>KVC=Key Value Coding，理解就是通过key来找到value进行访问属性的方式，区别去常规的通过get和set访问属性的方式。</p>
 <h1 id="基础方法"><a href="#基础方法" class="headerlink" title="基础方法"></a>基础方法</h1><p>获取类列表<br>class_copyPropertyList<br>获取到UnsafeMutablePointer 类型的当前类的集合<br>property_getName<br>获取UnsafePointer 类型的当前类名称<br>String(utf8String:cName)<br>转换为String格式<br>setValuesForKeys<br>通过key给Value赋值</p>
 <h1 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h1><p>//如果是对象，可选<br>var name:String?<br>//基本属性不能可以选，否则无法用KVC设置属性<br>var age: Int?<br>//私有属性无法用KVC设置属性<br>private var title = “”</p>
-<h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><pre><code>class Person: NSObject {
+<h1 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h1><pre><code>class Person: NSObject &#123;
     //如果是对象，可选
     var name:String?
     //基本属性不能可以选，否则无法用KVC设置属性
@@ -197,41 +198,41 @@
     private var title = &quot;&quot;
 
     //重载init方法
-    init(dict:[NSString:Any]) {
+    init(dict:[NSString:Any]) &#123;
         super.init()
         setValuesForKeys(dict as [String : Any])
-    }
+    &#125;
 
     //重写 setValue方法
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) &#123;
 
-    }
+    &#125;
 
     //runtime 获取当前所有属性
-    class func propertyList() -&gt; [String]{
+    class func propertyList() -&gt; [String]&#123;
         var count: UInt32 = 0
         //获取类列表
         let list = class_copyPropertyList(self, &amp;count)
 
-        for i in 0..&lt;Int(count) {
+        for i in 0..&lt;Int(count) &#123;
             guard let pty = list?[i],
                 let cName = property_getName(pty),
                 let name = String(utf8String:cName)
-             else {
+             else &#123;
                 continue
-            }
+            &#125;
             print(name)
-        }
+        &#125;
 
         return [];
-    }
+    &#125;
 
     //对象销毁前自动调用
     //用于释放 通知 和kvo
-    deinit {
+    deinit &#123;
 
-    }
-}
+    &#125;
+&#125;
 </code></pre>
       
 
@@ -325,7 +326,7 @@
     </a>
   
   
-    <a href="/2016/08/15/iOS开发指南-Objective—C基础-UIImageView动画/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">iOS开发指南-Objective—C基础-UIImageView动画</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -361,7 +362,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 小豆子
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
