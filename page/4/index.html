@@ -164,159 +164,19 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-19-Interface Builder-UIWebView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20</a>
+      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-19-Interface%20Builder-UIWebView/">iOS开发指南-Objective—C基础-19-Interface Builder-UIWebView</a>
     </h1>
   
 
         
-        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/" class="archive-article-date">
-  	<time datetime="2016-05-04T12:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIScrollView-可滚动视图"><a href="#UIScrollView-可滚动视图" class="headerlink" title="UIScrollView 可滚动视图"></a>UIScrollView 可滚动视图</h1><h2 id="1-contentOffset"><a href="#1-contentOffset" class="headerlink" title="1.    contentOffset"></a>1.    contentOffset</h2><p>默认CGPointZero，用来设置scrollView的滚动偏移量。</p>
-<pre><code>// 设置scrollView的滚动偏移量
-scrollView.contentOffset = CGPointMake(0, 200);
-</code></pre><h2 id="2-contentSize"><a href="#2-contentSize" class="headerlink" title="2.    contentSize"></a>2.    contentSize</h2><p>默认CGSizeZero，用来设置scrollView的滚动范围。</p>
-<pre><code>// 设置scrollView的滚动范围
-scrollView.contentSize = CGSizeMake( self.view.bounds.size.width, self.view.bounds.size.height * 2);
-</code></pre><h2 id="3-contentInset"><a href="#3-contentInset" class="headerlink" title="3.    contentInset"></a>3.    contentInset</h2><p>默认 UIEdgeInsetsZero，用来设置scrollView的额外滚动区域。</p>
-<pre><code>// 设置scrollView的额外顶部滚动区域:(UIEdgeInsetsMake是逆时针设置，上左下右)
-scrollView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
-</code></pre><h2 id="4-bounces"><a href="#4-bounces" class="headerlink" title="4.    bounces"></a>4.    bounces</h2><p>默认为YES，用来设置scrollView的弹簧效果</p>
-<pre><code>// 取消scrollView的弹簧效果
-scrollView.bounces = NO;
-</code></pre><h2 id="5-pagingEnabled"><a href="#5-pagingEnabled" class="headerlink" title="5.pagingEnabled"></a>5.pagingEnabled</h2><p>默认为NO，用来设置scrollView是否开启分页.</p>
-<pre><code>// 开启分页
-scrollView.pagingEnabled = YES;
-</code></pre><h2 id="6-scrollEnabled"><a href="#6-scrollEnabled" class="headerlink" title="6.scrollEnabled"></a>6.scrollEnabled</h2><p>默认为YES，用来设置scrollView是否允许滚动.</p>
-<pre><code>// scrollView禁止滚动
-scrollView.scrollEnabled = NO;
-</code></pre><h2 id="7-showsHorizontalScrollIndicator"><a href="#7-showsHorizontalScrollIndicator" class="headerlink" title="7.showsHorizontalScrollIndicator"></a>7.showsHorizontalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示水平滚动条.</p>
-<pre><code>// 隐藏水平滚动条
-scrollView.showsHorizontalScrollIndicator = NO;
-</code></pre><h2 id="8-showsVerticalScrollIndicator"><a href="#8-showsVerticalScrollIndicator" class="headerlink" title="8.showsVerticalScrollIndicator"></a>8.showsVerticalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示垂直滚动条.</p>
-<pre><code>// 隐藏垂直滚动条
-scrollView.showsVerticalScrollIndicator = NO;
-</code></pre><h2 id="9-minimumZoomScale"><a href="#9-minimumZoomScale" class="headerlink" title="9.minimumZoomScale"></a>9.minimumZoomScale</h2><p>默认1.0，用来设置scrollView最少缩小比例.</p>
-<pre><code>// 设置scrollView允许子视图的最大放大比例
-scrollView.maximumZoomScale = 2;
-</code></pre><h2 id="10-maximumZoomScale"><a href="#10-maximumZoomScale" class="headerlink" title="10.maximumZoomScale"></a>10.maximumZoomScale</h2><p>默认1.0，用来设置scrollView最大放大比例.</p>
-<pre><code>// 设置scrollView允许子视图的最小缩放比例
-scrollView.minimumZoomScale = 0.8;
-</code></pre><h2 id="11-delegate"><a href="#11-delegate" class="headerlink" title="11. delegate"></a>11. delegate</h2><p>类要遵守UIScrollViewDelegate协议</p>
-<pre><code>scrollView.delegate = self;　声明scrollView的代理是我， 这个方法在UIScrollViewDelegate里所以我们要遵守UIScrollViewDelegate这个协议
-</code></pre><p>###11.1当scrollView的偏移量一改变就会调用这个方法，即滚动scrollView就会调用。</p>
-<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView;                                               
-</code></pre><p>###11.2 当scrollView缩放时，就会调用这个方法</p>
-<pre><code>- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
-</code></pre><p>###11.3 即将拖拽的时候调用.</p>
-<pre><code>- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
-</code></pre><p>###11.4 即将停止拖拽的时候调用</p>
-<pre><code>- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
-</code></pre><p>###11.5 停止拖拽的时候调用。</p>
-<pre><code>- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-</code></pre><p>###11.6 即将减速完成的时候调用。</p>
-<pre><code>- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   
-</code></pre><p>###11.7 减速完成的时候调用</p>
-<pre><code>- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;     
-</code></pre><p>###11.8 返回需要缩放哪个视图，这个视图必须是scrollView里的子视图。</p>
-<pre><code>- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
-
-// 列如：
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-&#123;
-    return scrollView.subviews[0];
-&#125;
-</code></pre><p>###11.9 scrollView即将开始缩放</p>
-<pre><code>- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view NS_AVAILABLE_IOS(3_2); 
-</code></pre><p>###11.10 scrollView完成缩放</p>
-<pre><code>- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale; 
-</code></pre><p>###11.11没有开启分页的时候，代理方法调用顺序：</p>
-<p>scrollViewWillBeginDragging –&gt; scrollViewDidScroll -&gt; scrollViewWillEndDragging -&gt; scrollViewDidEndDragging</p>
-<p>###11.12 开启分页的时候，代理方法调用顺序</p>
-<p>scrollViewWillBeginDragging -&gt; scrollViewDidScroll -&gt; scrollViewDidEndDragging -&gt;scrollViewWillBeginDecelerating -&gt;scrollViewDidScroll -&gt; scrollViewDidEndDecelerating</p>
-<h2 id="12-directionalLockEnabled"><a href="#12-directionalLockEnabled" class="headerlink" title="12. directionalLockEnabled"></a>12. directionalLockEnabled</h2><p>指定控件是否只能在一个方向上滚动</p>
-<h2 id="13-decelerationRate"><a href="#13-decelerationRate" class="headerlink" title="13. decelerationRate"></a>13. decelerationRate</h2><p>改变scrollerView的减速点位置</p>
-<h2 id="14-tracking"><a href="#14-tracking" class="headerlink" title="14. tracking  "></a>14. tracking  </h2><p>监控当前目标是否正在被跟踪</p>
-<h2 id="15-dragging"><a href="#15-dragging" class="headerlink" title="15. dragging "></a>15. dragging </h2><p>改变scrollerView的减速点位置                         </p>
-<h2 id="16-delaysContentTouches"><a href="#16-delaysContentTouches" class="headerlink" title="16. delaysContentTouches"></a>16. delaysContentTouches</h2><p>控制视图是否延时调用开始滚动的方法         </p>
-<h2 id="17-canCancelContentTouches"><a href="#17-canCancelContentTouches" class="headerlink" title="17. canCancelContentTouches "></a>17. canCancelContentTouches </h2><p>控制控件是否接触取消touch的事件 </p>
-<h2 id="18-indicatorStyle"><a href="#18-indicatorStyle" class="headerlink" title="18. indicatorStyle"></a>18. indicatorStyle</h2><p>设定滚动条的样式</p>
-<h2 id="19-decelerating"><a href="#19-decelerating" class="headerlink" title="19. decelerating"></a>19. decelerating</h2><p>监控当前目标是否正在减速</p>
-<h1 id="UIPageControl-翻页控件"><a href="#UIPageControl-翻页控件" class="headerlink" title="UIPageControl 翻页控件"></a>UIPageControl 翻页控件</h1><p>既然说到 UIScrollView ，必须要写个滚动图的案例了。重点介绍 UIPageControl 翻页控件。</p>
-<h2 id="1-numberOfPages-设置有多少页-默认为0"><a href="#1-numberOfPages-设置有多少页-默认为0" class="headerlink" title="1.    numberOfPages // 设置有多少页 默认为0"></a>1.    numberOfPages // 设置有多少页 默认为0</h2><pre><code>//  设置页数
-[pageControl setNumberOfPages:kImageCount];
-</code></pre><h2 id="2-currentPage-设置当前页"><a href="#2-currentPage-设置当前页" class="headerlink" title="2.    currentPage  // 设置当前页"></a>2.    currentPage  // 设置当前页</h2><pre><code>[pageControl setCurrentPage:0];
-</code></pre><h2 id="3-pageIndicatorTintColor-设置页码指示器颜色"><a href="#3-pageIndicatorTintColor-设置页码指示器颜色" class="headerlink" title="3.    pageIndicatorTintColor // 设置页码指示器颜色"></a>3.    pageIndicatorTintColor // 设置页码指示器颜色</h2><pre><code>[pageControl setPageIndicatorTintColor:[UIColor blackColor]];
-</code></pre><h2 id="4-currentPageIndicatorTintColor-设置当前页码指示器颜色"><a href="#4-currentPageIndicatorTintColor-设置当前页码指示器颜色" class="headerlink" title="4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色"></a>4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色</h2><pre><code>[pageControl setCurrentPageIndicatorTintColor:[UIColor redColor]];
-</code></pre><h2 id="5-添加分页控件的监听事件（监听值改变事件）"><a href="#5-添加分页控件的监听事件（监听值改变事件）" class="headerlink" title="5.    添加分页控件的监听事件（监听值改变事件）"></a>5.    添加分页控件的监听事件（监听值改变事件）</h2><pre><code>[pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
-</code></pre><p><em>ps:占个坑 我要回来补个demo</em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/">iOS开发指南-Objective—C基础-Interface Builder-UIWebView-19</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/" class="archive-article-date">
+        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-19-Interface%20Builder-UIWebView/" class="archive-article-date">
   	<time datetime="2016-05-03T14:41:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-03</time>
 </a>
         
@@ -616,7 +476,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIWebView-19/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-19-Interface%20Builder-UIWebView/">展开全文 >></a>
         </p>
       
 
@@ -631,19 +491,19 @@ webView.frame = frame;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-页面创建-18" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-18-Interface Builder-页面创建" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/">iOS开发指南-Objective—C基础-Interface Builder-页面创建-18</a>
+      <a class="article-title" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-18-Interface%20Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA/">iOS开发指南-Objective—C基础-18-Interface Builder-页面创建8</a>
     </h1>
   
 
         
-        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/" class="archive-article-date">
+        <a href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-18-Interface%20Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA/" class="archive-article-date">
   	<time datetime="2016-05-03T14:15:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-03</time>
 </a>
         
@@ -706,7 +566,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA-18/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-18-Interface%20Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA/">展开全文 >></a>
         </p>
       
 
@@ -721,19 +581,19 @@ webView.frame = frame;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-17-Cocoa-Touch-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/">iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/">iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/" class="archive-article-date">
   	<time datetime="2016-04-28T14:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -743,10 +603,10 @@ webView.frame = frame;
       
         <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于讲完这个章节，之前我也不是很懂Cocoa Touch 到底是干嘛的，其实Cocoa Touch简单的说就是为iOS运行和OC语言做一个连接，是iOS的核心框架。<br>后面还有本OC语法的书，就完全不涉及Cocoa Touch 的操作。</p>
 <p>我在iPhone上发现了一个文档，其中也有对iOS的核心和Cocoa Touch 的介绍。</p>
-<p><img src="http://qn.heyim.xyz/image/160428/1.jpg" alt="1"></p>
-<p><img src="http://qn.heyim.xyz/image/160428/2.jpg" alt="2"></p>
-<p><img src="http://qn.heyim.xyz/image/160428/3.jpg" alt="3"></p>
-<p><img src="http://qn.heyim.xyz/image/160428/4.jpg" alt="4"></p>
+<p><img src="http://qn.heyim.top/image/160428/1.jpg" alt="1"></p>
+<p><img src="http://qn.heyim.top/image/160428/2.jpg" alt="2"></p>
+<p><img src="http://qn.heyim.top/image/160428/3.jpg" alt="3"></p>
+<p><img src="http://qn.heyim.top/image/160428/4.jpg" alt="4"></p>
 <p>由于Cocoa Touch 是iOS的核心框架，所以就必须要学好并且掌握其中内容。</p>
 
       
@@ -775,7 +635,7 @@ webView.frame = frame;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-%E6%80%BB%E7%BB%93-17/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 
@@ -790,19 +650,19 @@ webView.frame = frame;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-16-Cocoa-Touch-UITableView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITableView-16</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-16-Cocoa-Touch-UITableView/">iOS开发指南-Objective—C基础-16-Cocoa-Touch-UITableView</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-16-Cocoa-Touch-UITableView/" class="archive-article-date">
   	<time datetime="2016-04-28T13:54:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -1107,7 +967,7 @@ self.tab_table.separatorStyle = UITableViewCellSeparatorStyleNone;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITableView-16/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-16-Cocoa-Touch-UITableView/">展开全文 >></a>
         </p>
       
 
@@ -1122,19 +982,19 @@ self.tab_table.separatorStyle = UITableViewCellSeparatorStyleNone;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-15-Cocoa-Touch-UIColor" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIColor-15</a>
+      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-15-Cocoa-Touch-UIColor/">iOS开发指南-Objective—C基础-15-Cocoa-Touch-UIColor</a>
     </h1>
   
 
         
-        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/" class="archive-article-date">
+        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-15-Cocoa-Touch-UIColor/" class="archive-article-date">
   	<time datetime="2016-04-28T13:42:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
 </a>
         
@@ -1201,7 +1061,7 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIColor-15/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-15-Cocoa-Touch-UIColor/">展开全文 >></a>
         </p>
       
 
@@ -1216,19 +1076,19 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIPicker-14</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/" class="archive-article-date">
   	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1242,7 +1102,7 @@ NSLog( @&quot;%d&quot;, num);
 NSLog(@&quot;%d&quot;,numInCp);
 </code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
 NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/1.png" alt="1"></p>
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/1.png" alt="1"></p>
 <h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
 <pre><code>_pickerView.delegate = self;
 // 设置UIPickView每行显示的内容
@@ -1251,7 +1111,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 &#123;
     return @&quot;showData&quot;;
 &#125;
-</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/2.png" alt="2"></p>
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/2.png" alt="2"></p>
 <h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
 
 // 返回一个视图，用来设置pickerView的每行显示的内容。
@@ -1262,7 +1122,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return myView;
 &#125;
 </code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.xyz/image/16042702/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.top/image/16042702/3.png" alt="3"></p>
 <h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
 // 设置每列显示3行
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
@@ -1275,7 +1135,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
     return 2; 
 &#125;
 </code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p><img src="http://qn.heyim.xyz/image/16042702/4.png" alt="4"></p>
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/4.png" alt="4"></p>
 <p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
 <h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
 </code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
@@ -1311,7 +1171,7 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIPicker-14/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">展开全文 >></a>
         </p>
       
 
@@ -1326,19 +1186,19 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/">iOS开发指南-Objective—C基础-Cocoa-Touch-UIDatePicker-13</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/" class="archive-article-date">
   	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1354,11 +1214,11 @@ NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
 [datePicker setLocale:[[NSLocale
 alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 </code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.xyz/image/16042701/1.png" alt="1"></p>
+<p><img src="http://qn.heyim.top/image/16042701/1.png" alt="1"></p>
 <pre><code>// 2) 设置日期选择控件的地区
 [datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
 </code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.xyz/image/16042701/2.png" alt="2"> </p>
+<p><img src="http://qn.heyim.top/image/16042701/2.png" alt="2"> </p>
 <h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
 <pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
 </code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
@@ -1376,7 +1236,7 @@ alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 // 倒计时的时长，以秒为单位
 [self.datePicker setCountDownDuration:10 * 60];
 </code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.xyz/image/16042701/3.png" alt="3"></p>
+<p><img src="http://qn.heyim.top/image/16042701/3.png" alt="3"></p>
 <h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
 <pre><code>// 设置分钟间隔
     datePicker.minuteInterval = 15;
@@ -1385,24 +1245,24 @@ alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
 显示小时，分钟和AM/PM,这个的名称是根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeTime];
 </code></pre><p>效果图：</p>
-<p><img src="http://qn.heyim.xyz/image/16042701/4.png" alt="4"> </p>
+<p><img src="http://qn.heyim.top/image/16042701/4.png" alt="4"> </p>
 <p>9.2    </p>
 <pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
 显示年月日，名称根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeDate];
 </code></pre><p>效果图： </p>
-<p><img src="http://qn.heyim.xyz/image/16042701/5.png" alt="5"></p>
+<p><img src="http://qn.heyim.top/image/16042701/5.png" alt="5"></p>
 <p>9.3 默认是显示这种模式</p>
 <pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
 显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
 [datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
 </code></pre><p>效果图：</p>
-<p><img src="http://qn.heyim.xyz/image/16042701/6.png" alt="6"></p>
+<p><img src="http://qn.heyim.top/image/16042701/6.png" alt="6"></p>
 <p> 9.4  </p>
 <pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
 显示小时和分钟
 [datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-</code></pre><p><img src="http://qn.heyim.xyz/image/16042701/7.png" alt="7"></p>
+</code></pre><p><img src="http://qn.heyim.top/image/16042701/7.png" alt="7"></p>
 <h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
 <pre><code>// 不用设置宽高，因为它的宽高是固定的
 UIDatePicker *datePicker = [[UIDatePicker alloc] init];
@@ -1453,7 +1313,7 @@ datePicker.maximumDate = maxDate;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIDatePicker-13/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">展开全文 >></a>
         </p>
       
 
@@ -1468,19 +1328,19 @@ datePicker.maximumDate = maxDate;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-12-Cocoa-Touch-UITextView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/" class="archive-article-date">
   	<time datetime="2016-04-27T13:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1533,7 +1393,7 @@ datePicker.maximumDate = maxDate;
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextView-12/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">展开全文 >></a>
         </p>
       
 
@@ -1548,19 +1408,19 @@ datePicker.maximumDate = maxDate;
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextField-11</a>
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField</a>
     </h1>
   
 
         
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/" class="archive-article-date">
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/" class="archive-article-date">
   	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
 </a>
         
@@ -1921,7 +1781,87 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UITextField-11/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/" class="archive-article-date">
+  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
+若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
+</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
+若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
+</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
+</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
+</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
+@property(nonatomic) double maximumValue; //默认为100
+</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
+</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
+</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
+</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
+</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
+</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
+</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)incrementImageForState:(UIControlState)state;
+</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)decrementImageForState:(UIControlState)state;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">展开全文 >></a>
         </p>
       
 
@@ -1938,7 +1878,7 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -2037,6 +1977,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">

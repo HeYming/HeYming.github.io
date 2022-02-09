@@ -15,14 +15,14 @@
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="喜报基础架构 基础控制器RootViewController在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。  用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。 设置页面基础属性，背景颜色，统一所有页面样式 设置NavBar，设置Title，按钮信息 基础">
 <meta property="og:locale">
-<meta property="og:image" content="http://qn.heyim.xyz/image/180319/180319.png">
-<meta property="og:image" content="http://qn.heyim.xyz/image/180319/180319001.png">
+<meta property="og:image" content="http://qn.heyim.top/image/180319/180319.png">
+<meta property="og:image" content="http://qn.heyim.top/image/180319/180319001.png">
 <meta property="article:published_time" content="2018-03-19T07:53:02.000Z">
-<meta property="article:modified_time" content="2019-02-26T09:29:05.000Z">
+<meta property="article:modified_time" content="2022-02-09T13:51:59.547Z">
 <meta property="article:author" content="小豆子">
 <meta property="article:tag" content="Objective-C">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qn.heyim.xyz/image/180319/180319.png">
+<meta name="twitter:image" content="http://qn.heyim.top/image/180319/180319.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -188,7 +188,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="喜报基础架构"><a href="#喜报基础架构" class="headerlink" title="喜报基础架构"></a>喜报基础架构</h1><p><img src="http://qn.heyim.xyz/image/180319/180319.png" alt="180319"></p>
+        <h1 id="喜报基础架构"><a href="#喜报基础架构" class="headerlink" title="喜报基础架构"></a>喜报基础架构</h1><p><img src="http://qn.heyim.top/image/180319/180319.png" alt="180319"></p>
 <h2 id="基础控制器"><a href="#基础控制器" class="headerlink" title="基础控制器"></a>基础控制器</h2><h2 id="RootViewController"><a href="#RootViewController" class="headerlink" title="RootViewController"></a>RootViewController</h2><p>在喜报2.0版本的时候，开始新的架构设计，首先确定就是RootViewController，在RootViewController中，里面包含了以下几种方法。</p>
 <ul>
 <li>用户模型单例，每一个视图都能够获取到用户信息，这样子页面不需要在单独获取用户信息。</li>
@@ -197,7 +197,7 @@
 <li>基础方法，包含延时执行，获取当前页面信息等</li>
 </ul>
 <h2 id="LoginViewController"><a href="#LoginViewController" class="headerlink" title="LoginViewController"></a>LoginViewController</h2><p>整个登录功能在设计的时候，将其单独划分出来，当登录结束后，直接替换window的RootViewController。将所有登录相关的内容从内存中清除。</p>
-<p>在3.0版本中增加了启动显示公司信息功能，这个功能在AppDelegate的时候，已经开始获取存在NSUserDefaults里面的用户信息，创建ViewController将公司信息展示，同时异步去进行组件的注册，当所有的组件注册完成的时候，在进入到LoginViewController,这个时候在将创建的公司信息视图再次创建一次放在LoginViewController的View上，异步进行获取版本信息和自动登录，这样创造启动页面一直显示公司信息的假象。<br><img src="http://qn.heyim.xyz/image/180319/180319001.png" alt="180319001"></p>
+<p>在3.0版本中增加了启动显示公司信息功能，这个功能在AppDelegate的时候，已经开始获取存在NSUserDefaults里面的用户信息，创建ViewController将公司信息展示，同时异步去进行组件的注册，当所有的组件注册完成的时候，在进入到LoginViewController,这个时候在将创建的公司信息视图再次创建一次放在LoginViewController的View上，异步进行获取版本信息和自动登录，这样创造启动页面一直显示公司信息的假象。<br><img src="http://qn.heyim.top/image/180319/180319001.png" alt="180319001"></p>
 <h2 id="RootTableViewController"><a href="#RootTableViewController" class="headerlink" title="RootTableViewController"></a>RootTableViewController</h2><p>所有包含下拉刷新的页面均继承此View。子视图负责实现业务逻辑即可。</p>
 <ul>
 <li>根据第三方框架MJRefresh创建TableView</li>
@@ -312,17 +312,17 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/03/20/%E9%A1%B9%E7%9B%AE%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/03/20/%E9%A1%B9%E7%9B%AE%E7%95%8C%E9%9D%A2%E4%BC%98%E5%8C%96%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          项目页面创建优化过程
+          项目界面优化过程记录
         
       </div>
     </a>
   
   
-    <a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4-0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">新浪微博4.0版本移植填坑记录</div>
       <i class="icon-circle-right"></i>
     </a>
@@ -445,6 +445,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">基础</a>
               </li>
              
               <li class="article-tag-list-item">
