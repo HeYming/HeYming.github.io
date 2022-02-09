@@ -164,6 +164,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-FMDB使用事项" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/27/FMDB%E4%BD%BF%E7%94%A8%E4%BA%8B%E9%A1%B9/">FMDB使用事项</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/27/FMDB%E4%BD%BF%E7%94%A8%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2017-11-27T15:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-11-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="FMDB使用事项"><a href="#FMDB使用事项" class="headerlink" title="FMDB使用事项"></a>FMDB使用事项</h1><h2 id="1-创建数据库"><a href="#1-创建数据库" class="headerlink" title="1.创建数据库"></a>1.创建数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;FMDatabase.h&quot;</span><br></pre></td></tr></table></figure>
+<p>引用 FMDB文件，我下载的这个FMDB中所有的引用已经集成在这一个文件中了<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString * documentPath =[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) objectAtIndex:0];</span><br></pre></td></tr></table></figure><br>首先获取document文件夹位置，据说是应为iOS只有这个文件才能放东西，我随便写的绝对路径貌似没有用<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NSString * realPath = [documentPath stringByAppendingPathComponent:@&quot;test.sqlite&quot;];</span><br></pre></td></tr></table></figure><br>这里设定数据库的名字<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FMDatabase * db = [FMDatabase databaseWithPath:realPath];</span><br></pre></td></tr></table></figure></p>
+<p>这个时候，就已经实例化了一个DB，也相当于拿到了数据库的操作对象<br>这里提醒下各位，记住这个地址，防止后面应为数据库的名称和路径导致操作失败，</p>
+<h2 id="2-打开数据库"><a href="#2-打开数据库" class="headerlink" title="2.打开数据库"></a>2.打开数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[db open]</span><br><span class="line">NSString * sqlimage = @&quot;create table Image (ID int primary key AUTO_INCREMENT ,ReadingDetailID varchar(200) null , photo varchar(200) null ) &quot;;</span><br><span class="line">BOOL res = [db executeUpdate:sql];</span><br></pre></td></tr></table></figure>
+<h2 id="3-操作数据库"><a href="#3-操作数据库" class="headerlink" title="3.操作数据库"></a>3.操作数据库</h2><p>执行创建表单操作，使用 executeUpdate这个函数，这个函数是用来更新数据库的，包括插入和更新,返回BOOL类型，很便于操作<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NSString * arrsql =[NSString stringWithFormat: @&quot;select * from MeterRead where ReadingDetailID = %@ &quot;,self.arrDown[i][@&quot;ReadingDetailID&quot;]];</span><br><span class="line">FMResultSet * rs = [db executeQuery:arrsql];</span><br><span class="line">使用executeQuery用来查询，返回的是一个FMResultSet ，</span><br><span class="line">     while ([rs next]) &#123;</span><br><span class="line">     NSDictionary * meterdic = @&#123;@&quot;ReadingDetailID&quot;:[rs stringForColumn:@&quot;ReadingDetailID&quot;],</span><br><span class="line">                                 @&quot;UserWaterMeterCode&quot;:[rs stringForColumn:@&quot;UserWaterMeterCode&quot;],</span><br><span class="line">                                 @&quot;UserName&quot;:[rs stringForColumn:@&quot;UserName&quot;]&#125;;</span><br><span class="line">     [self.arrMeterRead addObject:meterdic];</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure><br>大家都看到了把，这个FMResultSet自带的方法中有stringForColumn这种函数来取指定数值，如果我们需要返回的全部数据，这样是很不方便的， resultDictionary他有这种方式，直接转换字典，<br>//用数组arr保存一条记录转成的字典<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[arr addObject:[rsnull resultDictionary]];</span><br><span class="line"></span><br><span class="line">* intForColumn:</span><br><span class="line">* longForColumn:</span><br><span class="line">* longLongIntForColumn:</span><br><span class="line">* boolForColumn:</span><br><span class="line">* doubleForColumn:</span><br><span class="line">* stringForColumn:</span><br><span class="line">* dateForColumn:</span><br><span class="line">* dataForColumn:</span><br><span class="line">* dataNoCopyForColumn:</span><br><span class="line">* UTF8StringForColumnIndex:</span><br><span class="line">* objectForColumn:</span><br></pre></td></tr></table></figure><br>将单一数据取出的其他方式，很多种数据方式</p>
+<h2 id="4-关闭数据库"><a href="#4-关闭数据库" class="headerlink" title="4.关闭数据库"></a>4.关闭数据库</h2><p>最后<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[db close];</span><br></pre></td></tr></table></figure><br>这样所有FMDB创建的都会自动消除了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/27/FMDB%E4%BD%BF%E7%94%A8%E4%BA%8B%E9%A1%B9/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Swift-Extension" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1156,120 +1231,9 @@ UIPopoverController *titlePopover = [[UIPopoverController alloc] initWithContent
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/">iOS开发指南-Objective—C基础-Interface-Builder-UITabBarController-30</a>
-    </h1>
-  
-
-        
-        <a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:06:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UITabBarController-选项卡栏控制器"><a href="#UITabBarController-选项卡栏控制器" class="headerlink" title="UITabBarController 选项卡栏控制器"></a>UITabBarController 选项卡栏控制器</h1><p>#1.UITabBarController</p>
-<p>UITabBarController通常作为整个程序的rootViewController，而且不能添加到别的 container viewController中。</p>
-<p>使用步骤：</p>
-<p>（1）初始化UITabBarController</p>
-<p>（2）设置UIWindow的rootViewController为UITabBarController</p>
-<p>（3）创建相应的子控制器（viewcontroller）</p>
-<p>（4）把子控制器添加到UITabBarController</p>
-<p>selectedIndex属性可用于设置当前被选中的为哪个viewcontroller</p>
-<p>可通过代理使tabbarcontroller的某一个viewcontroller不可用，即不可点击，示例代码：</p>
-<pre><code>- (BOOL)tabBarController:(UITabBarController*)tabBarController shouldSelectViewController:(UIViewController*)viewController &#123;
-
-if([tabBarController.viewControllersindexOfObject:viewController] ==1) &#123;
-
-returnNO;
-
-&#125;
-
-returnYES;
-
-&#125;
-</code></pre><p>#2.UITabbar</p>
-<p>UITabBar上面显示的每一个Tab都对应着一个ViewController，我们可以通过设置 viewcontroller.tabBarItem属性来改变tabbar上对应的tab显示内容。否则系统将会根据viewController的 title自动创建一个，该tabBarItem只显示文字，没有图像。当我们自己创建UITabBarItem的时候，我们可以显示的指定显示的图像和 对应的文字描述。当然还可以通过</p>
-<p>设置背景颜色</p>
-<pre><code>[tabVC.tabBar setBarTintColor:[UIColor grayColor]];
-</code></pre><p>设置选中item颜色:</p>
-<pre><code>[tabVC.tabBarsetTintColor:[UIColorcolorWithRed:170/255.0green:0/255.0blue:0/255.0alpha:1.0]];
-</code></pre><p>注意（未验证）：</p>
-<p>UITabBar自己有一些方法是可以改变自身状态，但是对于UITabBarController自带的tabBar，我们不能直接去修改其状态。任何直接修改tabBar的操作将会抛出异常</p>
-<pre><code>uitabbaritem的titlePositionAdjustment属性可设置title的偏移量，示例代码：
-
-[newsVC.tabBarItemsetTitlePositionAdjustment:UIOffsetMake(0, -3)];
-
-UIBarItem的imageInsets属性可设置image的偏移量，示例代码：
-
-[newsVC.tabBarItemsetImageInsets:UIEdgeInsetsMake(20,0,0,0)];
-</code></pre><p>UITabBar的默认高度为49</p>
-<p>UITabBarController的tabBar.frame属性可任意修改tabbar的宽度和位置，但高度修改不生效。而且此时tabbarcontroller控制下的view controller的view也是按照tabor的默认尺寸和位置进行适配，如果要修改tabor的frame还需要手动对其控制下的view controller进行适配。</p>
-<p>#3.UITabbarItem</p>
-<p>tabbaritem可分别设置image和selectedImage属性，用来显示选中和未选中时显示的图片</p>
-<p>UIBarItem的图片处理方案：</p>
-<p>1.(默认)使用系统的图片渲染处理，即时图片本身有颜色也将对最终显示结果无任何影响，此时可改变渲染的颜色</p>
-<p>2.使用图片本身的颜色，此时需修改UIImage的renderingMode（只读）属性。示例代码：</p>
-<pre><code>newsVC.tabBarItem.image        = [UIImage imageNamed:@&quot;picture&quot;];
-
-newsVC.tabBarItem.selectedImage= [UIImageimageNamed:@&quot;icon87&quot;];
-
-newsVC.tabBarItem.selectedImage=     [newsVC.tabBarItem.selectedImageimageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-</code></pre><p>注：未被选中状态的图片默认会被渲染成灰色，但也使用与以上属性（可设为显示某一张图片的原色）</p>
-<p><em>ps:原文链接：<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d138faa563cb">http://www.jianshu.com/p/d138faa563cb</a></em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UITabBarController-30/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1376,6 +1340,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目实战</a>
               </li>
             
             <div class="clearfix"></div>

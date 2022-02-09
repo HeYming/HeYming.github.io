@@ -164,6 +164,146 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">iOS开发指南-Objective—C基础-Interface-Builder-UIScrollView-20</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/" class="archive-article-date">
+  	<time datetime="2016-05-04T12:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIScrollView-可滚动视图"><a href="#UIScrollView-可滚动视图" class="headerlink" title="UIScrollView 可滚动视图"></a>UIScrollView 可滚动视图</h1><h2 id="1-contentOffset"><a href="#1-contentOffset" class="headerlink" title="1.    contentOffset"></a>1.    contentOffset</h2><p>默认CGPointZero，用来设置scrollView的滚动偏移量。</p>
+<pre><code>// 设置scrollView的滚动偏移量
+scrollView.contentOffset = CGPointMake(0, 200);
+</code></pre><h2 id="2-contentSize"><a href="#2-contentSize" class="headerlink" title="2.    contentSize"></a>2.    contentSize</h2><p>默认CGSizeZero，用来设置scrollView的滚动范围。</p>
+<pre><code>// 设置scrollView的滚动范围
+scrollView.contentSize = CGSizeMake( self.view.bounds.size.width, self.view.bounds.size.height * 2);
+</code></pre><h2 id="3-contentInset"><a href="#3-contentInset" class="headerlink" title="3.    contentInset"></a>3.    contentInset</h2><p>默认 UIEdgeInsetsZero，用来设置scrollView的额外滚动区域。</p>
+<pre><code>// 设置scrollView的额外顶部滚动区域:(UIEdgeInsetsMake是逆时针设置，上左下右)
+scrollView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
+</code></pre><h2 id="4-bounces"><a href="#4-bounces" class="headerlink" title="4.    bounces"></a>4.    bounces</h2><p>默认为YES，用来设置scrollView的弹簧效果</p>
+<pre><code>// 取消scrollView的弹簧效果
+scrollView.bounces = NO;
+</code></pre><h2 id="5-pagingEnabled"><a href="#5-pagingEnabled" class="headerlink" title="5.pagingEnabled"></a>5.pagingEnabled</h2><p>默认为NO，用来设置scrollView是否开启分页.</p>
+<pre><code>// 开启分页
+scrollView.pagingEnabled = YES;
+</code></pre><h2 id="6-scrollEnabled"><a href="#6-scrollEnabled" class="headerlink" title="6.scrollEnabled"></a>6.scrollEnabled</h2><p>默认为YES，用来设置scrollView是否允许滚动.</p>
+<pre><code>// scrollView禁止滚动
+scrollView.scrollEnabled = NO;
+</code></pre><h2 id="7-showsHorizontalScrollIndicator"><a href="#7-showsHorizontalScrollIndicator" class="headerlink" title="7.showsHorizontalScrollIndicator"></a>7.showsHorizontalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示水平滚动条.</p>
+<pre><code>// 隐藏水平滚动条
+scrollView.showsHorizontalScrollIndicator = NO;
+</code></pre><h2 id="8-showsVerticalScrollIndicator"><a href="#8-showsVerticalScrollIndicator" class="headerlink" title="8.showsVerticalScrollIndicator"></a>8.showsVerticalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示垂直滚动条.</p>
+<pre><code>// 隐藏垂直滚动条
+scrollView.showsVerticalScrollIndicator = NO;
+</code></pre><h2 id="9-minimumZoomScale"><a href="#9-minimumZoomScale" class="headerlink" title="9.minimumZoomScale"></a>9.minimumZoomScale</h2><p>默认1.0，用来设置scrollView最少缩小比例.</p>
+<pre><code>// 设置scrollView允许子视图的最大放大比例
+scrollView.maximumZoomScale = 2;
+</code></pre><h2 id="10-maximumZoomScale"><a href="#10-maximumZoomScale" class="headerlink" title="10.maximumZoomScale"></a>10.maximumZoomScale</h2><p>默认1.0，用来设置scrollView最大放大比例.</p>
+<pre><code>// 设置scrollView允许子视图的最小缩放比例
+scrollView.minimumZoomScale = 0.8;
+</code></pre><h2 id="11-delegate"><a href="#11-delegate" class="headerlink" title="11. delegate"></a>11. delegate</h2><p>类要遵守UIScrollViewDelegate协议</p>
+<pre><code>scrollView.delegate = self;　声明scrollView的代理是我， 这个方法在UIScrollViewDelegate里所以我们要遵守UIScrollViewDelegate这个协议
+</code></pre><p>###11.1当scrollView的偏移量一改变就会调用这个方法，即滚动scrollView就会调用。</p>
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView;                                               
+</code></pre><p>###11.2 当scrollView缩放时，就会调用这个方法</p>
+<pre><code>- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.3 即将拖拽的时候调用.</p>
+<pre><code>- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+</code></pre><p>###11.4 即将停止拖拽的时候调用</p>
+<pre><code>- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
+</code></pre><p>###11.5 停止拖拽的时候调用。</p>
+<pre><code>- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+</code></pre><p>###11.6 即将减速完成的时候调用。</p>
+<pre><code>- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   
+</code></pre><p>###11.7 减速完成的时候调用</p>
+<pre><code>- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;     
+</code></pre><p>###11.8 返回需要缩放哪个视图，这个视图必须是scrollView里的子视图。</p>
+<pre><code>- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+
+// 列如：
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+&#123;
+    return scrollView.subviews[0];
+&#125;
+</code></pre><p>###11.9 scrollView即将开始缩放</p>
+<pre><code>- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.10 scrollView完成缩放</p>
+<pre><code>- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale; 
+</code></pre><p>###11.11没有开启分页的时候，代理方法调用顺序：</p>
+<p>scrollViewWillBeginDragging –&gt; scrollViewDidScroll -&gt; scrollViewWillEndDragging -&gt; scrollViewDidEndDragging</p>
+<p>###11.12 开启分页的时候，代理方法调用顺序</p>
+<p>scrollViewWillBeginDragging -&gt; scrollViewDidScroll -&gt; scrollViewDidEndDragging -&gt;scrollViewWillBeginDecelerating -&gt;scrollViewDidScroll -&gt; scrollViewDidEndDecelerating</p>
+<h2 id="12-directionalLockEnabled"><a href="#12-directionalLockEnabled" class="headerlink" title="12. directionalLockEnabled"></a>12. directionalLockEnabled</h2><p>指定控件是否只能在一个方向上滚动</p>
+<h2 id="13-decelerationRate"><a href="#13-decelerationRate" class="headerlink" title="13. decelerationRate"></a>13. decelerationRate</h2><p>改变scrollerView的减速点位置</p>
+<h2 id="14-tracking"><a href="#14-tracking" class="headerlink" title="14. tracking  "></a>14. tracking  </h2><p>监控当前目标是否正在被跟踪</p>
+<h2 id="15-dragging"><a href="#15-dragging" class="headerlink" title="15. dragging "></a>15. dragging </h2><p>改变scrollerView的减速点位置                         </p>
+<h2 id="16-delaysContentTouches"><a href="#16-delaysContentTouches" class="headerlink" title="16. delaysContentTouches"></a>16. delaysContentTouches</h2><p>控制视图是否延时调用开始滚动的方法         </p>
+<h2 id="17-canCancelContentTouches"><a href="#17-canCancelContentTouches" class="headerlink" title="17. canCancelContentTouches "></a>17. canCancelContentTouches </h2><p>控制控件是否接触取消touch的事件 </p>
+<h2 id="18-indicatorStyle"><a href="#18-indicatorStyle" class="headerlink" title="18. indicatorStyle"></a>18. indicatorStyle</h2><p>设定滚动条的样式</p>
+<h2 id="19-decelerating"><a href="#19-decelerating" class="headerlink" title="19. decelerating"></a>19. decelerating</h2><p>监控当前目标是否正在减速</p>
+<h1 id="UIPageControl-翻页控件"><a href="#UIPageControl-翻页控件" class="headerlink" title="UIPageControl 翻页控件"></a>UIPageControl 翻页控件</h1><p>既然说到 UIScrollView ，必须要写个滚动图的案例了。重点介绍 UIPageControl 翻页控件。</p>
+<h2 id="1-numberOfPages-设置有多少页-默认为0"><a href="#1-numberOfPages-设置有多少页-默认为0" class="headerlink" title="1.    numberOfPages // 设置有多少页 默认为0"></a>1.    numberOfPages // 设置有多少页 默认为0</h2><pre><code>//  设置页数
+[pageControl setNumberOfPages:kImageCount];
+</code></pre><h2 id="2-currentPage-设置当前页"><a href="#2-currentPage-设置当前页" class="headerlink" title="2.    currentPage  // 设置当前页"></a>2.    currentPage  // 设置当前页</h2><pre><code>[pageControl setCurrentPage:0];
+</code></pre><h2 id="3-pageIndicatorTintColor-设置页码指示器颜色"><a href="#3-pageIndicatorTintColor-设置页码指示器颜色" class="headerlink" title="3.    pageIndicatorTintColor // 设置页码指示器颜色"></a>3.    pageIndicatorTintColor // 设置页码指示器颜色</h2><pre><code>[pageControl setPageIndicatorTintColor:[UIColor blackColor]];
+</code></pre><h2 id="4-currentPageIndicatorTintColor-设置当前页码指示器颜色"><a href="#4-currentPageIndicatorTintColor-设置当前页码指示器颜色" class="headerlink" title="4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色"></a>4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色</h2><pre><code>[pageControl setCurrentPageIndicatorTintColor:[UIColor redColor]];
+</code></pre><h2 id="5-添加分页控件的监听事件（监听值改变事件）"><a href="#5-添加分页控件的监听事件（监听值改变事件）" class="headerlink" title="5.    添加分页控件的监听事件（监听值改变事件）"></a>5.    添加分页控件的监听事件（监听值改变事件）</h2><pre><code>[pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
+</code></pre><p><em>ps:占个坑 我要回来补个demo</em></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Interface-Builder-UIScrollView-20/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-Interface-Builder-UIWebView-19" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1796,89 +1936,9 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-Cocoa-Touch-UIStepper-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/">iOS开发指南-Objective—C基础-Cocoa-Touch UIStepper - 10</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
-若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
-</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
-若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
-</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
-</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
-</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
-@property(nonatomic) double maximumValue; //默认为100
-</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
-</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
-</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
-</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
-</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
-</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
-</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)incrementImageForState:(UIControlState)state;
-</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)decrementImageForState:(UIControlState)state;
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-Cocoa-Touch-UIStepper-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1985,6 +2045,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目实战</a>
               </li>
             
             <div class="clearfix"></div>

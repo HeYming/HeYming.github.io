@@ -6,21 +6,37 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>iOS开发指南-Objective—C基础-界面旋转-33 | 小豆子的博客</title>
+  <title>新浪微博4.0版本移植填坑记录 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="界面旋转基础ps：本章开始就已经结束了ui控件的学习，开始其他的知识的学习 #1、启动界面旋转 ##1.1 全局设置是否可以旋转 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation &amp;#123;     return NO; &amp;#125; ##1.2 当前控制器设置旋">
+  <meta name="description" content="新浪微博4.0版本移植填坑记录 近期学习刀哥新浪微博3.0版本，现在由于Swift更新到4.0，出现很多BUG，现在整理出来分享。  Swift 4.0 YYModel 无法解析数据在Swift4.0中，由于YYModel采用运行时来获取Model对应的Key，所以无法获取Swift创建的Model属性。解决方法就是在前面加上@objc属性符号，这样YYModel的运行时就可以获取。  参考资料">
 <meta property="og:type" content="article">
-<meta property="og:title" content="iOS开发指南-Objective—C基础-界面旋转-33">
-<meta property="og:url" content="http://yoursite.com/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/index.html">
+<meta property="og:title" content="新浪微博4.0版本移植填坑记录">
+<meta property="og:url" content="http://yoursite.com/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="界面旋转基础ps：本章开始就已经结束了ui控件的学习，开始其他的知识的学习 #1、启动界面旋转 ##1.1 全局设置是否可以旋转 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation &amp;#123;     return NO; &amp;#125; ##1.2 当前控制器设置旋">
+<meta property="og:description" content="新浪微博4.0版本移植填坑记录 近期学习刀哥新浪微博3.0版本，现在由于Swift更新到4.0，出现很多BUG，现在整理出来分享。  Swift 4.0 YYModel 无法解析数据在Swift4.0中，由于YYModel采用运行时来获取Model对应的Key，所以无法获取Swift创建的Model属性。解决方法就是在前面加上@objc属性符号，这样YYModel的运行时就可以获取。  参考资料">
 <meta property="og:locale">
-<meta property="article:published_time" content="2016-05-15T14:27:14.000Z">
-<meta property="article:modified_time" content="2017-06-01T13:46:05.000Z">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119008.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119007.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119009.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119010.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119001.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119002.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119003.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119004.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119005.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119006.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119011.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119012.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119013.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119014.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119015.png">
+<meta property="og:image" content="http://qn.heyim.top/image/170119/119016.png">
+<meta property="article:published_time" content="2018-01-19T02:39:43.000Z">
+<meta property="article:modified_time" content="2022-02-09T13:24:44.556Z">
 <meta property="article:author" content="小豆子">
-<meta property="article:tag" content="Objective-C">
-<meta property="article:tag" content="入门">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.heyim.top/image/170119/119008.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -166,45 +182,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-iOS开发指南-Objective—C基础-界面旋转-33" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-新浪微博4.0版本移植填坑记录" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      iOS开发指南-Objective—C基础-界面旋转-33
+      新浪微博4.0版本移植填坑记录
     </h1>
   
 
         
-        <a href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/" class="archive-article-date">
-  	<time datetime="2016-05-15T14:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
+        <a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2018-01-19T02:39:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="界面旋转基础"><a href="#界面旋转基础" class="headerlink" title="界面旋转基础"></a>界面旋转基础</h1><p><em>ps：本章开始就已经结束了ui控件的学习，开始其他的知识的学习</em></p>
-<p>#1、启动界面旋转</p>
-<p>##1.1 全局设置是否可以旋转</p>
-<pre><code>- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-&#123;
-    return NO;
-&#125;
-</code></pre><p>##1.2 当前控制器设置旋转</p>
-<pre><code>-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
-&#123;
-    return YES;
-&#125;
-</code></pre><p>#2、页面旋转调用</p>
-<pre><code>-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration
-&#123;
-
-&#125;
-</code></pre><p>每次页面旋转的时候就会调用这个方法，在该方法内写页面旋转后的逻辑。<br>如果用的是Storyboard的话，可以直接将orientation属性修改为landscape来查看效果，但是记得看完后改回portrait，否则默认进入就是横屏。</p>
-<p>本章内容不多，多数页面中，横屏均为单独设计，此处可以根据情况来进行采用适当的方法。</p>
+        <h1 id="新浪微博4-0版本移植填坑记录"><a href="#新浪微博4-0版本移植填坑记录" class="headerlink" title="新浪微博4.0版本移植填坑记录"></a>新浪微博4.0版本移植填坑记录</h1><blockquote>
+<p>近期学习刀哥新浪微博3.0版本，现在由于Swift更新到4.0，出现很多BUG，现在整理出来分享。</p>
+</blockquote>
+<h2 id="Swift-4-0-YYModel-无法解析数据"><a href="#Swift-4-0-YYModel-无法解析数据" class="headerlink" title="Swift 4.0 YYModel 无法解析数据"></a>Swift 4.0 YYModel 无法解析数据</h2><p>在Swift4.0中，由于YYModel采用运行时来获取Model对应的Key，所以无法获取Swift创建的Model属性。解决方法就是在前面加上<code>@objc</code>属性符号，这样YYModel的运行时就可以获取。</p>
+<blockquote>
+<p>参考资料 <a target="_blank" rel="noopener" href="https://github.com/ibireme/YYModel/issues/238">https://github.com/ibireme/YYModel/issues/238</a></p>
+</blockquote>
+<p>当Model中包含Model的时候<br><img src="http://qn.heyim.top/image/170119/119008.png" alt="119008">@w=400<br>原来使用的是这个方法<br><img src="http://qn.heyim.top/image/170119/119007.png" alt="119007">@w=400<br>现在需要修改在方法前面加上<code>@objc</code><br>对应的属性也要加上<code>@objc</code><br><img src="http://qn.heyim.top/image/170119/119009.png" alt="119009">@w=400<br><img src="http://qn.heyim.top/image/170119/119010.png" alt="119010">@w=400</p>
+<h2 id="Function-types-cannot-have-argument-labels-use-‘-’-before-‘list’"><a href="#Function-types-cannot-have-argument-labels-use-‘-’-before-‘list’" class="headerlink" title="Function types cannot have argument labels; use ‘_’ before ‘list’"></a>Function types cannot have argument labels; use ‘_’ before ‘list’</h2><p><img src="http://qn.heyim.top/image/170119/119001.png" alt="119001">@w=400<br>这个问题是Swift4.0后，闭包的参数均为可选，只需要在参数名前面按照提示加上<code>_</code>下划线即可。<br><img src="http://qn.heyim.top/image/170119/119002.png" alt="119002">@w=400</p>
+<h2 id="Extraneous-argument-labels-‘isSuccess-shouldRefresh-’-in-call"><a href="#Extraneous-argument-labels-‘isSuccess-shouldRefresh-’-in-call" class="headerlink" title="Extraneous argument labels ‘isSuccess:shouldRefresh:’ in call"></a>Extraneous argument labels ‘isSuccess:shouldRefresh:’ in call</h2><p><img src="http://qn.heyim.top/image/170119/119003.png" alt="119003">@w=400<br>这个是上个问题的衍生问题，由于闭包参数可选，在4.0中就取消了参数名输入，直接输入值即可。<br><img src="http://qn.heyim.top/image/170119/119004.png" alt="119004">@w=400</p>
+<h2 id="‘NSFontAttributeName’-has-been-renamed-to-‘NSAttributedStringKey-font’"><a href="#‘NSFontAttributeName’-has-been-renamed-to-‘NSAttributedStringKey-font’" class="headerlink" title="‘NSFontAttributeName’ has been renamed to ‘NSAttributedStringKey.font’"></a>‘NSFontAttributeName’ has been renamed to ‘NSAttributedStringKey.font’</h2><p>在4.0中，原来的NSAttributedString中对应的属性已经变成了NSAttributedStringKey对象，这样的话只需要按照提示来变更就可以了，同样的问题还有</p>
+<blockquote>
+<p>‘NSForegroundColorAttributeName’ has been renamed to ‘NSAttributedStringKey.foregroundColor’</p>
+<p>‘NSParagraphStyleAttributeName’ has been renamed to ‘NSAttributedStringKey.paragraphStyle’<br>‘rangeAt’ has been renamed to ‘range(at:)’</p>
+</blockquote>
+<h2 id="Value-of-type-‘SDWebImageManager’-has-no-member-‘downloadImage’"><a href="#Value-of-type-‘SDWebImageManager’-has-no-member-‘downloadImage’" class="headerlink" title="Value of type ‘SDWebImageManager’ has no member ‘downloadImage’"></a>Value of type ‘SDWebImageManager’ has no member ‘downloadImage’</h2><p><img src="http://qn.heyim.top/image/170119/119005.png" alt="119005">@w=400<br>在新版本的SDWebImage中，downloadImage方法换到了SDWebImageDownloader对象中了。<br><img src="http://qn.heyim.top/image/170119/119006.png" alt="119006">@w=400</p>
+<h2 id="Cannot-subscript-a-value-of-type-‘-NSAttributedStringKey-Any-’-with-an-index-of-type-‘String’"><a href="#Cannot-subscript-a-value-of-type-‘-NSAttributedStringKey-Any-’-with-an-index-of-type-‘String’" class="headerlink" title="Cannot subscript a value of type ‘[NSAttributedStringKey : Any]’ with an index of type ‘String’"></a>Cannot subscript a value of type ‘[NSAttributedStringKey : Any]’ with an index of type ‘String’</h2><p><img src="http://qn.heyim.top/image/170119/119011.png" alt="119011">@w=400<br>在新版本中，字典对应的属性变更，这样的读取会报错，可以修改下面这种读取方式。</p>
+<blockquote>
+<p>参考链接 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/48297878/cannot-subscript-a-value-of-type-nsattributedstringkey-any-with-an-index-o">https://stackoverflow.com/questions/48297878/cannot-subscript-a-value-of-type-nsattributedstringkey-any-with-an-index-o</a></p>
+</blockquote>
+<p><img src="http://qn.heyim.top/image/170119/119012.png" alt="119012">@w=400</p>
+<h2 id="定位失效"><a href="#定位失效" class="headerlink" title="定位失效"></a>定位失效</h2><p><img src="http://qn.heyim.top/image/170119/119013.png" alt="119013">@w=400<br>在新版本中，初始化数据的时候，默认frame是0，所以需要指定frame属性。<br><img src="http://qn.heyim.top/image/170119/119014.png" alt="119014">@w=400</p>
+<h2 id="Navbar遮挡"><a href="#Navbar遮挡" class="headerlink" title="Navbar遮挡"></a>Navbar遮挡</h2><p><img src="http://qn.heyim.top/image/170119/119015.png" alt="119015">@w=400<br>新版本中，如果隐藏系统Navbar使用自定义的Navbar，Navbar由于NavItem置顶不在留出StatusBar位置，会导致Navbar遮挡StatusBar</p>
+<blockquote>
+<p>解决方案参考 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/29839893">https://zhuanlan.zhihu.com/p/29839893</a><br><img src="http://qn.heyim.top/image/170119/119016.png" alt="119016">@w=400</p>
+</blockquote>
+<p>项目地址 <a target="_blank" rel="noopener" href="https://github.com/HeYming/WeiBo">https://github.com/HeYming/WeiBo</a></p>
 
       
 
@@ -218,17 +242,24 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
 
@@ -278,7 +309,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC-33/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +323,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86-34/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4-0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          iOS开发指南-Objective—C基础-图形处理-34
+          新浪微博4.0版本移植填坑记录
         
       </div>
     </a>
   
   
-    <a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8-32/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</div>
+    <a href="/2017/11/27/FMDB%E4%BD%BF%E7%94%A8%E4%BA%8B%E9%A1%B9/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FMDB使用事项</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -318,7 +349,7 @@
   
 
   
-  <div id="SOHUCS" sid="iOS开发指南-Objective—C基础-界面旋转-33" ></div> 
+  <div id="SOHUCS" sid="新浪微博4.0版本移植填坑记录" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyu6avmX8"; 
