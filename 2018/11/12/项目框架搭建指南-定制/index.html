@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 入门 | 小豆子的博客</title>
+  <title>项目框架搭建指南-定制 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小豆子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/%E5%85%A5%E9%97%A8/index.html">
+  <meta name="description" content="项目框架搭建指南-定制这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。  UserModel用户模型是个绕不过去的东西，涉及登录注册就需要用到。  基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。 Config全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。这里需要讲一下的就是配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目框架搭建指南-定制">
+<meta property="og:url" content="http://yoursite.com/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
-<meta property="og:locale">
-<meta property="article:author" content="小豆子">
+<meta property="og:description" content="项目框架搭建指南-定制这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。  UserModel用户模型是个绕不过去的东西，涉及登录注册就需要用到。  基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。 Config全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。这里需要讲一下的就是配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qn.heyim.top/image/181112/3.png">
+<meta property="og:image" content="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png">
+<meta property="article:published_time" content="2018-11-12T07:12:26.000Z">
+<meta property="article:modified_time" content="2022-02-09T15:31:12.098Z">
+<meta property="article:author" content="xiaodouzi">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.heyim.top/image/181112/3.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -45,7 +51,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
+			<img src="http://qn.heyim.top/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">undefined</a></h1>
@@ -57,7 +63,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/categories/tags/">随笔</a></li>
+				<li><a href="/categories/item/">项目</a></li>
+	        
+				<li><a href="/categories/study/">学习</a></li>
+	        
+				<li><a href="/categories/tags/">记录</a></li>
 	        
 				<li><a href="/about/">关于</a></li>
 	        
@@ -83,10 +93,6 @@
 				
 					<a class="github" target="_blank" href="https://github.com/HeYming" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="http://weibo.com/2128765495/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-dou-zi-26" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 					<a class="qq" target="_blank" href="/627583314" title="qq"><i class="icon-qq"></i></a>
 		        
 					<a class="mail" target="_blank" href="/15927680304@163.com" title="mail"><i class="icon-mail"></i></a>
@@ -107,13 +113,17 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
+				<img src="http://qn.heyim.top/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
+			
+				
+			
+				
 			
 				
 			
@@ -128,10 +138,6 @@
 					
 						<a class="github" target="_blank" href="https://github.com/HeYming" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="http://weibo.com/2128765495/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-dou-zi-26" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
 						<a class="qq" target="_blank" href="/627583314" title="qq"><i class="icon-qq"></i></a>
 			        
 						<a class="mail" target="_blank" href="/15927680304@163.com" title="mail"><i class="icon-mail"></i></a>
@@ -143,11 +149,15 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/tags/">随笔</a></li>
+					<li style="width: 20%"><a href="/categories/item/">项目</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/about/">关于</a></li>
+					<li style="width: 20%"><a href="/categories/study/">学习</a></li>
+		        
+					<li style="width: 20%"><a href="/categories/tags/">记录</a></li>
+		        
+					<li style="width: 20%"><a href="/about/">关于</a></li>
 		        
 				</ul>
 			</nav>
@@ -162,439 +172,165 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-项目框架搭建指南-定制" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      项目框架搭建指南-定制
+    </h1>
+  
+
+        
+        <a href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2018-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="项目框架搭建指南-定制"><a href="#项目框架搭建指南-定制" class="headerlink" title="项目框架搭建指南-定制"></a>项目框架搭建指南-定制</h1><p>这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。</p>
+<p><img src="http://qn.heyim.top/image/181112/3.png" alt="3"></p>
+<h2 id="UserModel"><a href="#UserModel" class="headerlink" title="UserModel"></a>UserModel</h2><p>用户模型是个绕不过去的东西，涉及登录注册就需要用到。</p>
+<p><img src="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png" alt="单例"></p>
+<p>基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。</p>
+<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。<br>这里需要讲一下的就是配置文件中最好统一，并且只有一份。有许多第三方框架中有各自的配置文件，可以使用第三方框架的方法，如果自己定义的话，最好在定义名称的时候加上标识符，避免名称冲突。</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这里主要就是各个项目不一样的地方在来进行定制开发，上面讲的这些都是可以通用的。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/HeYming/KKSP">https://github.com/HeYming/KKSP</a></p>
+<p>这是个Swift语言的快速开发框架，欢迎各位下载讨论。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/" class="archive-article-date">
-  	<time datetime="2016-08-15T13:41:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-UIImageView%E5%8A%A8%E7%94%BB/">iOS开发指南-Objective—C基础-UIImageView动画</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-36-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82/" class="archive-article-date">
-  	<time datetime="2016-06-29T14:26:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/29/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-36-%E8%A7%86%E5%9B%BE%E5%92%8C%E5%9B%BE%E5%B1%82/">iOS开发指南-Objective—C基础-36-视图和图层</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
+        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-35-UIView%E7%BB%A7%E6%89%BF/" class="archive-article-date">
-  	<time datetime="2016-06-05T14:49:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-06-05</time>
-</a>
-        </div>
-    	 
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-35-UIView%E7%BB%A7%E6%89%BF/">iOS开发指南-Objective—C基础-35-UIView继承</a>
-    </h1>
+    <a href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          AirPlay使用详解
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">项目框架搭建指南-扩展</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+  
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-34-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86/" class="archive-article-date">
-  	<time datetime="2016-05-17T14:22:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-17</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/17/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-34-%E5%9B%BE%E5%BD%A2%E5%A4%84%E7%90%86/">iOS开发指南-Objective—C基础-34-图形处理</a>
-    </h1>
+  <div id="SOHUCS" sid="项目框架搭建指南-定制" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyu6avmX8"; 
+var conf = "prod_623af84bb3ea59cbe29f751a15dc11e8"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-33-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC/" class="archive-article-date">
-  	<time datetime="2016-05-15T14:27:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/15/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-33-%E7%95%8C%E9%9D%A2%E6%97%8B%E8%BD%AC/">iOS开发指南-Objective—C基础-界面旋转-33</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-32-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-32-StoryBoard-%E5%88%86%E5%89%B2%E8%A7%86%E5%9B%BE%E6%8E%A7%E5%88%B6%E5%99%A8/">iOS开发指南-Objective—C基础-StoryBoard-分割视图控制器-32</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/12/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-31-StoryBoard-%E5%A4%9A%E5%9C%BA%E6%99%AF%E6%95%85%E4%BA%8B%E7%89%88/" class="archive-article-date">
-  	<time datetime="2016-05-12T14:18:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-12</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-29-Interface-Builder-UINavigationcontroller/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:45:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-29-Interface-Builder-UINavigationcontroller/">iOS开发指南-Objective—C基础-Interface-Builder-UINavigationcontroller-29</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-28-Interface-Builder-UIView/" class="archive-article-date">
-  	<time datetime="2016-05-10T14:14:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-28-Interface-Builder-UIView/">iOS开发指南-Objective—C基础-28-Interface-Builder-UIView</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-27-Interface-Builder-UISearchBar/" class="archive-article-date">
-  	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-27-Interface-Builder-UISearchBar/">iOS开发指南-Objective—C基础-27-Interface-Builder-UISearchBar</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">入门</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/tags/%E5%85%A5%E9%97%A8/page/2/">2</a><a class="page-number" href="/tags/%E5%85%A5%E9%97%A8/page/3/">3</a><a class="page-number" href="/tags/%E5%85%A5%E9%97%A8/page/4/">4</a><a class="extend next" rel="next" href="/tags/%E5%85%A5%E9%97%A8/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -605,7 +341,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 小豆子
+    		&copy; 2022 xiaodouzi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -618,9 +354,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
@@ -695,19 +431,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目实战</a>
               </li>
             
             <div class="clearfix"></div>
@@ -770,7 +494,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">大象无形&lt;br&gt;大音希声&lt;br&gt;愿我们共同努力</div>
   	  	
     	</section>
     

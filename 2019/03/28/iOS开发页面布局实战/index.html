@@ -6,23 +6,31 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>从零搭建通用项目-定制框架 | 小豆子的博客</title>
+  <title>iOS开发页面布局实战 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="从零搭建通用项目-定制框架这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。  UserModel用户模型是个绕不过去的东西，涉及登录注册就需要用到。  基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。 Config全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。这里需要讲一下的就是">
+  <meta name="description" content="iOS开发页面布局实战最近新项目中，设计提出了新的标准，要求其他任何尺寸的设备，截图后宽度缩小到750时要与设计图一致。这个时候就要考虑页面布局的比例缩放问题。还是从最初的布局讲起，如何满足这个要求。 一、绝对布局讲起绝对布局，这应该是各位入行来最先接触的布局方式了吧。下面我们来看看绝对布局是如何布局的 1234let view &#x3D; UIView()view.frame &#x3D; CGRect(x: 1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="从零搭建通用项目-定制框架">
-<meta property="og:url" content="http://yoursite.com/2018/11/12/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E9%80%9A%E7%94%A8%E9%A1%B9%E7%9B%AE-%E5%AE%9A%E5%88%B6%E6%A1%86%E6%9E%B6/index.html">
+<meta property="og:title" content="iOS开发页面布局实战">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="从零搭建通用项目-定制框架这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。  UserModel用户模型是个绕不过去的东西，涉及登录注册就需要用到。  基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。 Config全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。这里需要讲一下的就是">
-<meta property="og:locale">
-<meta property="og:image" content="http://qn.heyim.top/image/181112/3.png">
-<meta property="og:image" content="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png">
-<meta property="article:published_time" content="2018-11-12T07:12:26.000Z">
-<meta property="article:modified_time" content="2022-02-09T13:22:38.654Z">
-<meta property="article:author" content="小豆子">
+<meta property="og:description" content="iOS开发页面布局实战最近新项目中，设计提出了新的标准，要求其他任何尺寸的设备，截图后宽度缩小到750时要与设计图一致。这个时候就要考虑页面布局的比例缩放问题。还是从最初的布局讲起，如何满足这个要求。 一、绝对布局讲起绝对布局，这应该是各位入行来最先接触的布局方式了吧。下面我们来看看绝对布局是如何布局的 1234let view &#x3D; UIView()view.frame &#x3D; CGRect(x: 1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/iOS%E6%AF%94%E4%BE%8B%E5%B8%83%E5%B1%80.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/1.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/2.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/5.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/3.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/4.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/6.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/7.png">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/8.JPG">
+<meta property="og:image" content="http://qn.heyim.top/image/190328/9.png">
+<meta property="article:published_time" content="2019-03-28T03:36:41.000Z">
+<meta property="article:modified_time" content="2022-02-09T15:19:21.223Z">
+<meta property="article:author" content="xiaodouzi">
 <meta property="article:tag" content="Objective-C">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qn.heyim.top/image/181112/3.png">
+<meta name="twitter:image" content="http://qn.heyim.top/image/190328/iOS%E6%AF%94%E4%BE%8B%E5%B8%83%E5%B1%80.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -51,7 +59,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
+			<img src="http://qn.heyim.top/image/jpg/head.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">undefined</a></h1>
@@ -63,7 +71,11 @@
 			
 				<li><a href="/">主页</a></li>
 	        
-				<li><a href="/categories/tags/">随笔</a></li>
+				<li><a href="/categories/item/">项目</a></li>
+	        
+				<li><a href="/categories/study/">学习</a></li>
+	        
+				<li><a href="/categories/tags/">记录</a></li>
 	        
 				<li><a href="/about/">关于</a></li>
 	        
@@ -89,10 +101,6 @@
 				
 					<a class="github" target="_blank" href="https://github.com/HeYming" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="http://weibo.com/2128765495/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
-		        
-					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-dou-zi-26" title="zhihu"><i class="icon-zhihu"></i></a>
-		        
 					<a class="qq" target="_blank" href="/627583314" title="qq"><i class="icon-qq"></i></a>
 		        
 					<a class="mail" target="_blank" href="/15927680304@163.com" title="mail"><i class="icon-mail"></i></a>
@@ -113,13 +121,17 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="http://qn.heyim.xyz/image/jpg/head.jpg" class="js-avatar">
+				<img src="http://qn.heyim.top/image/jpg/head.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">undefined</h1>
 			</hgroup>
 			
 			
+			
+				
+			
+				
 			
 				
 			
@@ -134,10 +146,6 @@
 					
 						<a class="github" target="_blank" href="https://github.com/HeYming" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="http://weibo.com/2128765495/profile?rightmod=1&wvr=6&mod=personinfo" title="weibo"><i class="icon-weibo"></i></a>
-			        
-						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/xiao-dou-zi-26" title="zhihu"><i class="icon-zhihu"></i></a>
-			        
 						<a class="qq" target="_blank" href="/627583314" title="qq"><i class="icon-qq"></i></a>
 			        
 						<a class="mail" target="_blank" href="/15927680304@163.com" title="mail"><i class="icon-mail"></i></a>
@@ -149,11 +157,15 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/categories/tags/">随笔</a></li>
+					<li style="width: 20%"><a href="/categories/item/">项目</a></li>
 		        
-					<li style="width: 33.333333333333336%"><a href="/about/">关于</a></li>
+					<li style="width: 20%"><a href="/categories/study/">学习</a></li>
+		        
+					<li style="width: 20%"><a href="/categories/tags/">记录</a></li>
+		        
+					<li style="width: 20%"><a href="/about/">关于</a></li>
 		        
 				</ul>
 			</nav>
@@ -168,35 +180,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-从零搭建通用项目-定制框架" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-iOS开发页面布局实战" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      从零搭建通用项目-定制框架
+      iOS开发页面布局实战
     </h1>
   
 
         
-        <a href="/2018/11/12/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E9%80%9A%E7%94%A8%E9%A1%B9%E7%9B%AE-%E5%AE%9A%E5%88%B6%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2018-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
+        <a href="/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2019-03-28T03:36:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="从零搭建通用项目-定制框架"><a href="#从零搭建通用项目-定制框架" class="headerlink" title="从零搭建通用项目-定制框架"></a>从零搭建通用项目-定制框架</h1><p>这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。</p>
-<p><img src="http://qn.heyim.top/image/181112/3.png" alt="3"></p>
-<h2 id="UserModel"><a href="#UserModel" class="headerlink" title="UserModel"></a>UserModel</h2><p>用户模型是个绕不过去的东西，涉及登录注册就需要用到。</p>
-<p><img src="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png" alt="单例"></p>
-<p>基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。</p>
-<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。<br>这里需要讲一下的就是配置文件中最好统一，并且只有一份。有许多第三方框架中有各自的配置文件，可以使用第三方框架的方法，如果自己定义的话，最好在定义名称的时候加上标识符，避免名称冲突。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这里主要就是各个项目不一样的地方在来进行定制开发，上面讲的这些都是可以通用的。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/HeYming/KKSP">https://github.com/HeYming/KKSP</a></p>
-<p>这是个Swift语言的快速开发框架，欢迎各位下载讨论。</p>
+        <h1 id="iOS开发页面布局实战"><a href="#iOS开发页面布局实战" class="headerlink" title="iOS开发页面布局实战"></a>iOS开发页面布局实战</h1><p>最近新项目中，设计提出了新的标准，要求其他任何尺寸的设备，截图后宽度缩小到750时要与设计图一致。这个时候就要考虑页面布局的比例缩放问题。<br><img src="http://qn.heyim.top/image/190328/iOS%E6%AF%94%E4%BE%8B%E5%B8%83%E5%B1%80.png" alt="比例布局"><br>还是从最初的布局讲起，如何满足这个要求。</p>
+<h2 id="一、绝对布局"><a href="#一、绝对布局" class="headerlink" title="一、绝对布局"></a>一、绝对布局</h2><p>讲起绝对布局，这应该是各位入行来最先接触的布局方式了吧。下面我们来看看绝对布局是如何布局的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/190328/1.png" alt="绝对布局"></p>
+<p>这种布局模式适用于位置固定的地方使用（例如：UINavigationBar）,使用简单便捷，也是使用最多的布局模式。</p>
+<h2 id="二、适应布局"><a href="#二、适应布局" class="headerlink" title="二、适应布局"></a>二、适应布局</h2><p>当大尺寸iPhone开始流行的时候，这个时候为了更好的自适应的适配大尺寸iPhone，就需要用到Center这种布局模式。<br>绝对布局中，frame先设置了x，y坐标系，用来设置视图的起始位置，在frame中，x,y是在视图的左上角。当视图显示在屏幕上时，如果需要修改将视图移动到屏幕中间位置，这个时候在用frame操作就是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.frame = CGRect(x: (UIScreen.main.bounds.size.width-100)/2, y: (UIScreen.main.bounds.size.height - 100)/2, width: 100, height: 100)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/190328/2.png" alt="绝对布局"></p>
+<p>这样的操作就显得比较复杂，这个时候就可以使用Center来移动视图的位置。这里必须明白一点，Center移动视图的参考点是视图的中心点而不是左上角，我们来看下Center如果移动视图</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/190328/5.png" alt="绝对布局"></p>
+<p>这段代码跟上面的代码效果是一样的，可以看到Center需要一个CGPoint来指定视图中心的x,y坐标，这种模式扩宽了布局模式的可能性。</p>
+<h2 id="三、比例布局"><a href="#三、比例布局" class="headerlink" title="三、比例布局"></a>三、比例布局</h2><p>在iPhone 4s之前，以上布局模式已经基本可以满足需求，不用担心大屏幕的尺寸适配问题，但是到了iPhone5后面的时代，屏幕尺寸越来越大，为了适配其他尺寸的屏幕，需要通过屏幕尺寸来进行比例布局。<br>例如：在所有的屏幕上都距左，距右，距上100个像素，高度100个像素</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: UIScreen.main.bounds.size.width-200, height: 100)        view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/190328/3.png" alt="绝对布局"></p>
+<p><img src="http://qn.heyim.top/image/190328/4.png" alt="绝对布局"></p>
+<p>这里面在设置宽度的时候，先取得当前屏幕的宽度，在来根据屏幕的尺寸减去距左和距右的200像素，就能获得适配当前屏幕的宽度。<br>假如现在需求变动为：在所有屏幕上，视图居中，宽高都是屏幕的80%，这个时候就需要用到倍数来进行设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">//设置宽高所占百分比</span><br><span class="line">view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.8, height: self.view.frame.height * 0.8)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/190328/6.png" alt="绝对布局"></p>
+<p><img src="http://qn.heyim.top/image/190328/7.png" alt="绝对布局"></p>
+<p>这个时候已经可以基本满足各种设计需求了。</p>
+<h2 id="四、全尺寸比例视图"><a href="#四、全尺寸比例视图" class="headerlink" title="四、全尺寸比例视图"></a>四、全尺寸比例视图</h2><p>最近项目中，设计在研究美团的时候，发现他们所有尺寸的屏幕在缩小到750像素的时候，都显示的一致。</p>
+<p><img src="http://qn.heyim.top/image/190328/8.JPG" alt="绝对布局"></p>
+<p>为了达成这种效果，需要在设置frame或者比例的时候，在乘以一个系数</p>
+<pre><code>//设置比例
+let YKScale_Width  = UIScreen.main.bounds.size.width / 375.0
+let view = UIView()
+//设置宽高所占百分比
+view.frame = CGRect(x: 0, y: 0, width: 200 * YKScale_Width, height: 200 * YKScale_Width)
+view.backgroundColor = .red
+self.view.addSubview(view)
+//将view移动到屏幕中央显示
+view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
+</code></pre><p>这种模式下。XR的屏幕宽度是414，对应的像素由200变成了220.8，这样就可以在所有的屏幕上都显示的一致。      </p>
+<p><img src="http://qn.heyim.top/image/190328/9.png" alt="绝对布局"></p>
+<p>但这样的方式太过于原始，这个时候推荐一个框架 SwiftyFitsize <a target="_blank" rel="noopener" href="https://github.com/LinXunFeng/SwiftyFitsize">https://github.com/LinXunFeng/SwiftyFitsize</a><br>这个框架简化了设置比例的过程，具体情况还是需要根据需求再来选择采用那种方式。</p>
 
       
 
@@ -222,7 +261,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
+        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
         		</li>
       		
 		</ul>
@@ -277,7 +316,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2018/11/12/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E9%80%9A%E7%94%A8%E9%A1%B9%E7%9B%AE-%E5%AE%9A%E5%88%B6%E6%A1%86%E6%9E%B6/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +330,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          AirPlay使用详解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/08/27/%E4%BB%8E%E9%9B%B6%E6%90%AD%E5%BB%BA%E9%80%9A%E7%94%A8%E9%A1%B9%E7%9B%AE-%E6%89%A9%E5%B1%95%E6%A1%86%E6%9E%B6/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">从零搭建通用项目-扩展框架</div>
+    <a href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">AirPlay使用详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -317,7 +347,7 @@
   
 
   
-  <div id="SOHUCS" sid="从零搭建通用项目-定制框架" ></div> 
+  <div id="SOHUCS" sid="iOS开发页面布局实战" ></div> 
 <script type="text/javascript"> 
 (function(){ 
 var appid = "cyu6avmX8"; 
@@ -337,7 +367,7 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 小豆子
+    		&copy; 2022 xiaodouzi
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -427,19 +457,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">入门</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">项目实战</a>
               </li>
             
             <div class="clearfix"></div>
@@ -502,7 +520,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">大象无形&lt;br&gt;大音希声&lt;br&gt;愿我们共同努力</div>
   	  	
     	</section>
     
