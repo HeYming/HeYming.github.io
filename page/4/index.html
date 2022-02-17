@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="xiaodouzi">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
@@ -167,6 +167,639 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-iOS开发指南-Objective—C基础-24-Interface-Builder-UIPickerView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-24-Interface-Builder-UIPickerView/">iOS开发指南-Objective—C基础-Interface-Builder-UIPickerView-24</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-24-Interface-Builder-UIPickerView/" class="archive-article-date">
+  	<time datetime="2016-05-09T14:04:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIPickerView-选择器视图"><a href="#UIPickerView-选择器视图" class="headerlink" title="UIPickerView 选择器视图"></a>UIPickerView 选择器视图</h1><p>#1.属性</p>
+<p>##1.    numberOfComponents：返回UIPickerView当前的列数</p>
+<pre><code>NSInteger num = _pickerView.numberOfComponents;
+NSLog( @&quot;%d&quot;, num);
+</code></pre><p>##2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</p>
+<pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
+NSLog(@&quot;%d&quot;,numInCp);
+</code></pre><p>##3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</p>
+<pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
+NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
+</code></pre><p> <img src="http://qn.heyim.top/image/160509/1.png" alt="1"></p>
+<p>#2.    delegate：</p>
+<p>##2.0 设置UIPickerView代理</p>
+<pre><code>_pickerView.delegate = self;
+</code></pre><p>##2.1 设置UIPickView每行显示的内容</p>
+<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+&#123;
+    return @&quot;showData&quot;;
+&#125;
+</code></pre><p><img src="http://qn.heyim.top/image/160509/2.png" alt="2"></p>
+<p>##2.2    返回一个视图，用来设置pickerView的每行显示的内容。</p>
+<pre><code>-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+&#123;
+    UIView *myView=[[UIView alloc]init];
+    myView.backgroundColor = [UIColor redColor];
+    return myView;
+&#125;
+</code></pre><p>效果：</p>
+<p><img src="http://qn.heyim.top/image/160509/3.png" alt="3"></p>
+<p>#3.    dataSource：数据源</p>
+<p>##1.设置每列显示3行</p>
+<pre><code>// pragma mark  - dataSource method
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+&#123;
+    return 3;
+&#125;
+// 设置显示2列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+&#123;
+    return 2; 
+</code></pre><p>}</p>
+<p>##2. showsSelectionIndicator：是否显示指示器，默认为NO  </p>
+<pre><code>_pickerView.showsSelectionIndicator = NO;
+</code></pre><p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
+<p><img src="http://qn.heyim.top/image/160509/4.png" alt="4"></p>
+<p>##3.当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
+<pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+</code></pre><p>##4. 返回第component列每一行的高度</p>
+<pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
+</code></pre><p>##5.刷新某一列的数据</p>
+<p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
+<pre><code>[pickerView reloadComponent:1];
+</code></pre><p>##6. 刷新所有列的数据 </p>
+<pre><code>- (void)reloadAllComponents;
+</code></pre><p>##7. 返回选中的是第component列的第几行。</p>
+<pre><code>- (NSInteger)selectedRowInComponent:(NSInteger)component;                                   
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/09/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-24-Interface-Builder-UIPickerView/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-23-Interface-Builder-UIToolBar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-23-Interface-Builder-UIToolBar/">iOS开发指南-Objective—C基础-23-Interface-Builder-UIToolBar</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-23-Interface-Builder-UIToolBar/" class="archive-article-date">
+  	<time datetime="2016-05-05T14:13:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIToolBar-工具栏"><a href="#UIToolBar-工具栏" class="headerlink" title="UIToolBar 工具栏"></a>UIToolBar 工具栏</h1><p><em>ps：感觉这个没啥好写的，都是使用的方法，属性和代理，就直接找DEMO写上去了</em></p>
+<pre><code>//创建toolbar
+UIToolbar *toolBar = [[[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 420.0f, 320.0f, 40.0f) ] autorelease];
+
+//创建barbuttonitem
+UIBarButtonItem *item1 = [[[UIBarButtonItem alloc] initWithTitle:@&quot;收藏&quot; style:UIBarButtonItemStyleBordered target:self action:@selector(test:)] autorelease];
+
+//创建barbuttonitem
+UIBarButtonItem *item2 = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:nil] autorelease];
+
+//创建一个segmentController
+UISegmentedControl *seg = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@&quot;牛扒&quot;, @&quot;排骨&quot;, nil] ] autorelease];
+
+//设置style
+[seg setSegmentedControlStyle:UISegmentedControlSegmentCenter];
+
+[seg addTarget:self action:@selector(segmentControllerItem:) forControlEvents:UIControlEventValueChanged];
+
+//创建一个内容是view的uibarbuttonitem
+UIBarButtonItem *itemSeg = [[[UIBarButtonItem alloc] initWithCustomView:seg] autorelease];
+
+//创建barbuttonitem,样式是flexible,这个种barbuttonitem用于两个barbuttonitem之间
+//调整两个item之间的距离.flexible表示距离是动态的,fixed表示是固定的
+UIBarButtonItem *flexible = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil] autorelease];
+
+//把item添加到toolbar里
+[toolBar setItems:[NSArray arrayWithObjects:item1,flexible,itemSeg,flexible,item2, nil] animated:YES];
+
+//把toolbar添加到view上
+[self.view addSubview:toolBar];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-23-Interface-Builder-UIToolBar/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-22-Interface-Builder-UIActionSheet" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-22-Interface-Builder-UIActionSheet/">iOS开发指南-Objective—C基础-22-Interface-Builder-UIActionSheet</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-22-Interface-Builder-UIActionSheet/" class="archive-article-date">
+  	<time datetime="2016-05-05T14:03:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIActionSheet"><a href="#UIActionSheet" class="headerlink" title="UIActionSheet"></a>UIActionSheet</h1><h2 id="一、初始化方法"><a href="#一、初始化方法" class="headerlink" title="一、初始化方法"></a>一、初始化方法</h2><pre><code>- (instancetype)initWithTitle:(NSString *)title delegate:(id&lt;UIActionSheetDelegate&gt;)delegate cancelButtonTitle:(NSString *)cancelButtonTitle destructiveButtonTitle:(NSString *)destructiveButtonTitle otherButtonTitles:(NSString *)otherButtonTitles, ...;
+</code></pre><p>参数说明：</p>
+<p>title：视图标题</p>
+<p>delegate：设置代理</p>
+<p>cancelButtonTitle：取消按钮的标题</p>
+<p>destructiveButtonTitle：特殊标记的按钮的标题</p>
+<p>otherButtonTitles：其他按钮的标题</p>
+<h2 id="二、常用方法和属性介绍"><a href="#二、常用方法和属性介绍" class="headerlink" title="二、常用方法和属性介绍"></a>二、常用方法和属性介绍</h2><pre><code>@property(nonatomic,copy) NSString *title;
+</code></pre><p>设置标题</p>
+<pre><code>@property(nonatomic) UIActionSheetStyle actionSheetStyle;
+</code></pre><p>设置风格，枚举如下：</p>
+<pre><code>typedef NS_ENUM(NSInteger, UIActionSheetStyle) &#123;
+    UIActionSheetStyleAutomatic        = -1,      
+    UIActionSheetStyleDefault          = UIBarStyleDefault,
+    UIActionSheetStyleBlackTranslucent = UIBarStyleBlackTranslucent,
+    UIActionSheetStyleBlackOpaque      = UIBarStyleBlackOpaque,
+&#125;;
+
+- (NSInteger)addButtonWithTitle:(NSString *)title;
+</code></pre><p>添加一个按钮，会返回按钮的索引</p>
+<pre><code>- (NSString *)buttonTitleAtIndex:(NSInteger)buttonIndex;
+</code></pre><p>获取按钮标题</p>
+<pre><code>@property(nonatomic,readonly) NSInteger numberOfButtons;
+</code></pre><p>获取按钮数量</p>
+<pre><code>@property(nonatomic) NSInteger cancelButtonIndex;
+</code></pre><p>设置取消按钮的索引值</p>
+<pre><code>@property(nonatomic) NSInteger destructiveButtonIndex;
+</code></pre><p>设置特殊标记</p>
+<pre><code>@property(nonatomic,readonly,getter=isVisible) BOOL visible;
+</code></pre><p>视图当前是否可见</p>
+<p>下面是几种弹出方式，会根据风格不同展现不同的方式</p>
+<pre><code>- (void)showFromToolbar:(UIToolbar *)view;
+- (void)showFromTabBar:(UITabBar *)view;
+- (void)showFromBarButtonItem:(UIBarButtonItem *)item animated:(BOOL)animated ;
+- (void)showFromRect:(CGRect)rect inView:(UIView *)view animated:(BOOL)animated ;
+- (void)showInView:(UIView *)view;
+
+
+
+- (void)dismissWithClickedButtonIndex:(NSInteger)buttonIndex animated:(BOOL)animated;
+</code></pre><p>使用代码将视图收回</p>
+<h2 id="三、UIActionSheet代理方法"><a href="#三、UIActionSheet代理方法" class="headerlink" title="三、UIActionSheet代理方法"></a>三、UIActionSheet代理方法</h2><pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮时触发的方法</p>
+<pre><code>- (void)willPresentActionSheet:(UIActionSheet *)actionSheet; 
+</code></pre><p>视图将要弹出时触发的方法</p>
+<pre><code>- (void)didPresentActionSheet:(UIActionSheet *)actionSheet;
+</code></pre><p>视图已经弹出式触发的方法</p>
+<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮后，视图将要收回时触发的方法</p>
+<pre><code>- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex;
+</code></pre><p>点击按钮后，视图已经收回时触发的方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/05/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-22-Interface-Builder-UIActionSheet/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-21-Interface-Builder-UIAlterView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-21-Interface-Builder-UIAlterView/">iOS开发指南-Objective—C基础-21-Interface-Builder-UIAlterView</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-21-Interface-Builder-UIAlterView/" class="archive-article-date">
+  	<time datetime="2016-05-04T13:15:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIAlterView-提醒视图"><a href="#UIAlterView-提醒视图" class="headerlink" title="UIAlterView 提醒视图"></a>UIAlterView 提醒视图</h1><h2 id="1-Title"><a href="#1-Title" class="headerlink" title="1.Title"></a>1.Title</h2><p>获取或设置UIAlertView上的标题。</p>
+<h2 id="2-Message"><a href="#2-Message" class="headerlink" title="2.Message"></a>2.Message</h2><p>获取或设置UIAlertView上的消息</p>
+<pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+alertView.title = @&quot;T&quot;;
+alertView.message = @&quot;M&quot;;
+
+[alertView show];
+</code></pre><p> <img src="http://qn.heyim.top/image/160504/1.png" alt="1"></p>
+<h2 id="3-numberOfButtons-只读"><a href="#3-numberOfButtons-只读" class="headerlink" title="3.numberOfButtons (只读)"></a>3.numberOfButtons (只读)</h2><p>返回UIAlertView上有多少按钮.</p>
+<pre><code>UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@&quot;Title&quot; message:@&quot;message&quot; delegate:self cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+    NSLog(@&quot;%d&quot;,alertView.numberOfButtons);
+[alertView show];
+</code></pre><p> <img src="http://qn.heyim.top/image/160504/2.png" alt="2"></p>
+<h2 id="4-cancelButtonIndex"><a href="#4-cancelButtonIndex" class="headerlink" title="4.cancelButtonIndex"></a>4.cancelButtonIndex</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@&quot;提示&quot;</span><br><span class="line">                                                				  message:@&quot;请选择一个按钮：&quot;</span><br><span class="line">                                                				 delegate:nil</span><br><span class="line">                                        			cancelButtonTitle:@&quot;取消&quot;</span><br><span class="line">                                       	 otherButtonTitles:@&quot;按钮一&quot;, @&quot;按钮二&quot;, @&quot;按钮三&quot;,nil];</span><br><span class="line">   [alert show];</span><br><span class="line">NSLog(@&quot;UIAlertView中取消按钮的角标是%d&quot;,alert.cancelButtonIndex);</span><br></pre></td></tr></table></figure>
+<p>效果：</p>
+<p><img src="http://qn.heyim.top/image/160504/3.png" alt="3"></p>
+<p>注意不要认为取消按钮的角标是4，“取消”，“按钮一”，“按钮二”，“按钮三”的索引buttonIndex分别是0，1，2，3</p>
+<h2 id="5-alertViewStyle"><a href="#5-alertViewStyle" class="headerlink" title="5. alertViewStyle"></a>5. alertViewStyle</h2><p>###5.1 UIAlertViewStyleLoginAndPasswordInput</p>
+<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+
+alert.alertViewStyle = UIAlertViewStyleLoginAndPasswordInput;
+
+// 弹出UIAlertView
+ [alert show];
+</code></pre><p> <img src="http://qn.heyim.top/image/160504/4.png" alt="4"></p>
+<p>###5.2 UIAlertViewStylePlainTextInput</p>
+<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+
+alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+
+// 弹出UIAlertView
+ [alert show];
+</code></pre><p><img src="http://qn.heyim.top/image/160504/5.png" alt="5"></p>
+<p>###5.3UIAlertViewStyleSecureTextInput</p>
+<pre><code>UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@&quot;产品信息展示&quot; message:p.name delegate:nil cancelButtonTitle:@&quot;取消&quot; otherButtonTitles:@&quot;确定&quot;, nil];
+
+alert.alertViewStyle = UIAlertViewStyleSecureTextInput;
+
+// 弹出UIAlertView
+ [alert show];
+</code></pre><p><img src="http://qn.heyim.top/image/160504/6.png" alt="6"></p>
+<h2 id="6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex"><a href="#6-UITextField-textFieldAtIndex-NSInteger-textFieldIndex" class="headerlink" title="6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex"></a>6. - (UITextField *)textFieldAtIndex:(NSInteger)textFieldIndex</h2><p>返回textFieldIndex角标对应的文本框。<br>取出文本框文字  </p>
+<pre><code>[alert textFieldAtIndex:0].text
+</code></pre><h2 id="7-手动的取消对话框"><a href="#7-手动的取消对话框" class="headerlink" title="7.手动的取消对话框"></a>7.手动的取消对话框</h2><pre><code>[alert dismissWithClickedButtonIndex:0 animated:YES];
+</code></pre><h2 id="8-delegate"><a href="#8-delegate" class="headerlink" title="8. delegate"></a>8. delegate</h2><p>作为UIAlertView的代理，必须遵守UIAlertViewDelegate。</p>
+<p>###1.当点击UIAlertView上的按钮时，就会调用，并且当方法调完后，UIAlertView会自动消失。</p>
+<pre><code>- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+</code></pre><p>###2.当UIAlertView即将出现的时候调用</p>
+<pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView; 
+</code></pre><p>###3. 当UIAlertView完全出现的时候调用</p>
+<pre><code>- (void)didPresentAlertView:(UIAlertView *)alertView;  
+</code></pre><p>###4. 当UIAlertView即将消失的时候调用</p>
+<pre><code>- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex; 
+</code></pre><p>###5. 当UIAlertView完全消失的时候调用</p>
+<pre><code>- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex;  
+</code></pre><h2 id="9-注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。"><a href="#9-注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。" class="headerlink" title="9.注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。"></a>9.注意UIAlertView调用show显示出来的时候，系统会自动强引用它，不会被释放。</h2><h2 id="10-为UIAlertView添加子视图"><a href="#10-为UIAlertView添加子视图" class="headerlink" title="10. 为UIAlertView添加子视图"></a>10. 为UIAlertView添加子视图</h2><p>在为UIAlertView对象太添加子视图的过程中，有点是需要注意的地方，如果删除按钮，也就是取消UIAlerView视图中所有的按钮的时候，可能会导致整个显示结构失衡。按钮占用的空间不会消失，我们也可以理解为这些按钮没有真正的删除，仅仅是他不可见了而已。如果在UIAlertview对象中仅仅用来显示文本，那么，可以在消息的开头添加换行符（@”\n）有助于平衡按钮底部和顶部的空间。<br>下面的代码用来演示如何为UIAlertview对象添加子视图的方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">UIAlertView*alert = [[UIAlertView alloc]initWithTitle:@&quot;请等待&quot; </span><br><span class="line">                                                 message:nil</span><br><span class="line">                                                 delegate:nil   </span><br><span class="line">                                                 cancelButtonTitle:nil </span><br><span class="line">                                                 otherButtonTitles:nil];  </span><br><span class="line">[alert show];</span><br><span class="line">UIActivityIndicatorView*activeView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];</span><br><span class="line">activeView.center = CGPointMake(alert.bounds.size.width / 2.0f, alert.bounds.size.height - 40.0f);  </span><br><span class="line">[activeView startAnimating];  </span><br><span class="line">[alert addSubview:activeView];  </span><br></pre></td></tr></table></figure>
+<p><img src="http://qn.heyim.top/image/160504/7.png" alt="7"></p>
+<h2 id="11-UIAlertView小例子"><a href="#11-UIAlertView小例子" class="headerlink" title="11. UIAlertView小例子"></a>11. UIAlertView小例子</h2><p>  UIAlertView默认情况下所有的text是居中对齐的。 那如果需要将文本向左对齐或者添加其他控件比如输入框时该怎么办呢？ 不用担心， iPhone SDK还是很灵活的， 有很多delegate消息供调用程序使用。 所要做的就是在</p>
+<pre><code>- (void)willPresentAlertView:(UIAlertView *)alertView
+</code></pre><p>中按照自己的需要修改或添加即可， 比如需要将消息文本左对齐，下面的代码即可实现:</p>
+<pre><code>-(void) willPresentAlertView:(UIAlertView *)alertView
+&#123;
+      for( UIView * view in alertView.subviews )
+      &#123;
+            if( [view isKindOfClass:[UILabel class]] )
+            &#123;
+                  UILabel* label = (UILabel*) view;
+                  label.textAlignment=UITextAlignmentLeft;
+            &#125;
+      &#125;
+&#125;
+</code></pre><p><img src="http://qn.heyim.top/image/160504/8.png" alt="8"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-21-Interface-Builder-UIAlterView/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-20-Interface-Builder-UIScrollView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-20-Interface-Builder-UIScrollView/">iOS开发指南-Objective—C基础-20-Interface-Builder-UIScrollView</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-20-Interface-Builder-UIScrollView/" class="archive-article-date">
+  	<time datetime="2016-05-04T12:50:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIScrollView-可滚动视图"><a href="#UIScrollView-可滚动视图" class="headerlink" title="UIScrollView 可滚动视图"></a>UIScrollView 可滚动视图</h1><h2 id="1-contentOffset"><a href="#1-contentOffset" class="headerlink" title="1.    contentOffset"></a>1.    contentOffset</h2><p>默认CGPointZero，用来设置scrollView的滚动偏移量。</p>
+<pre><code>// 设置scrollView的滚动偏移量
+scrollView.contentOffset = CGPointMake(0, 200);
+</code></pre><h2 id="2-contentSize"><a href="#2-contentSize" class="headerlink" title="2.    contentSize"></a>2.    contentSize</h2><p>默认CGSizeZero，用来设置scrollView的滚动范围。</p>
+<pre><code>// 设置scrollView的滚动范围
+scrollView.contentSize = CGSizeMake( self.view.bounds.size.width, self.view.bounds.size.height * 2);
+</code></pre><h2 id="3-contentInset"><a href="#3-contentInset" class="headerlink" title="3.    contentInset"></a>3.    contentInset</h2><p>默认 UIEdgeInsetsZero，用来设置scrollView的额外滚动区域。</p>
+<pre><code>// 设置scrollView的额外顶部滚动区域:(UIEdgeInsetsMake是逆时针设置，上左下右)
+scrollView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
+</code></pre><h2 id="4-bounces"><a href="#4-bounces" class="headerlink" title="4.    bounces"></a>4.    bounces</h2><p>默认为YES，用来设置scrollView的弹簧效果</p>
+<pre><code>// 取消scrollView的弹簧效果
+scrollView.bounces = NO;
+</code></pre><h2 id="5-pagingEnabled"><a href="#5-pagingEnabled" class="headerlink" title="5.pagingEnabled"></a>5.pagingEnabled</h2><p>默认为NO，用来设置scrollView是否开启分页.</p>
+<pre><code>// 开启分页
+scrollView.pagingEnabled = YES;
+</code></pre><h2 id="6-scrollEnabled"><a href="#6-scrollEnabled" class="headerlink" title="6.scrollEnabled"></a>6.scrollEnabled</h2><p>默认为YES，用来设置scrollView是否允许滚动.</p>
+<pre><code>// scrollView禁止滚动
+scrollView.scrollEnabled = NO;
+</code></pre><h2 id="7-showsHorizontalScrollIndicator"><a href="#7-showsHorizontalScrollIndicator" class="headerlink" title="7.showsHorizontalScrollIndicator"></a>7.showsHorizontalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示水平滚动条.</p>
+<pre><code>// 隐藏水平滚动条
+scrollView.showsHorizontalScrollIndicator = NO;
+</code></pre><h2 id="8-showsVerticalScrollIndicator"><a href="#8-showsVerticalScrollIndicator" class="headerlink" title="8.showsVerticalScrollIndicator"></a>8.showsVerticalScrollIndicator</h2><p>默认为YES，用来设置scrollView是否显示垂直滚动条.</p>
+<pre><code>// 隐藏垂直滚动条
+scrollView.showsVerticalScrollIndicator = NO;
+</code></pre><h2 id="9-minimumZoomScale"><a href="#9-minimumZoomScale" class="headerlink" title="9.minimumZoomScale"></a>9.minimumZoomScale</h2><p>默认1.0，用来设置scrollView最少缩小比例.</p>
+<pre><code>// 设置scrollView允许子视图的最大放大比例
+scrollView.maximumZoomScale = 2;
+</code></pre><h2 id="10-maximumZoomScale"><a href="#10-maximumZoomScale" class="headerlink" title="10.maximumZoomScale"></a>10.maximumZoomScale</h2><p>默认1.0，用来设置scrollView最大放大比例.</p>
+<pre><code>// 设置scrollView允许子视图的最小缩放比例
+scrollView.minimumZoomScale = 0.8;
+</code></pre><h2 id="11-delegate"><a href="#11-delegate" class="headerlink" title="11. delegate"></a>11. delegate</h2><p>类要遵守UIScrollViewDelegate协议</p>
+<pre><code>scrollView.delegate = self;　声明scrollView的代理是我， 这个方法在UIScrollViewDelegate里所以我们要遵守UIScrollViewDelegate这个协议
+</code></pre><p>###11.1当scrollView的偏移量一改变就会调用这个方法，即滚动scrollView就会调用。</p>
+<pre><code>- (void)scrollViewDidScroll:(UIScrollView *)scrollView;                                               
+</code></pre><p>###11.2 当scrollView缩放时，就会调用这个方法</p>
+<pre><code>- (void)scrollViewDidZoom:(UIScrollView *)scrollView NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.3 即将拖拽的时候调用.</p>
+<pre><code>- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+</code></pre><p>###11.4 即将停止拖拽的时候调用</p>
+<pre><code>- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset NS_AVAILABLE_IOS(5_0);
+</code></pre><p>###11.5 停止拖拽的时候调用。</p>
+<pre><code>- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+</code></pre><p>###11.6 即将减速完成的时候调用。</p>
+<pre><code>- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;   
+</code></pre><p>###11.7 减速完成的时候调用</p>
+<pre><code>- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;     
+</code></pre><p>###11.8 返回需要缩放哪个视图，这个视图必须是scrollView里的子视图。</p>
+<pre><code>- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
+
+// 列如：
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+&#123;
+    return scrollView.subviews[0];
+&#125;
+</code></pre><p>###11.9 scrollView即将开始缩放</p>
+<pre><code>- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(UIView *)view NS_AVAILABLE_IOS(3_2); 
+</code></pre><p>###11.10 scrollView完成缩放</p>
+<pre><code>- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(float)scale; 
+</code></pre><p>###11.11没有开启分页的时候，代理方法调用顺序：</p>
+<p>scrollViewWillBeginDragging –&gt; scrollViewDidScroll -&gt; scrollViewWillEndDragging -&gt; scrollViewDidEndDragging</p>
+<p>###11.12 开启分页的时候，代理方法调用顺序</p>
+<p>scrollViewWillBeginDragging -&gt; scrollViewDidScroll -&gt; scrollViewDidEndDragging -&gt;scrollViewWillBeginDecelerating -&gt;scrollViewDidScroll -&gt; scrollViewDidEndDecelerating</p>
+<h2 id="12-directionalLockEnabled"><a href="#12-directionalLockEnabled" class="headerlink" title="12. directionalLockEnabled"></a>12. directionalLockEnabled</h2><p>指定控件是否只能在一个方向上滚动</p>
+<h2 id="13-decelerationRate"><a href="#13-decelerationRate" class="headerlink" title="13. decelerationRate"></a>13. decelerationRate</h2><p>改变scrollerView的减速点位置</p>
+<h2 id="14-tracking"><a href="#14-tracking" class="headerlink" title="14. tracking  "></a>14. tracking  </h2><p>监控当前目标是否正在被跟踪</p>
+<h2 id="15-dragging"><a href="#15-dragging" class="headerlink" title="15. dragging "></a>15. dragging </h2><p>改变scrollerView的减速点位置                         </p>
+<h2 id="16-delaysContentTouches"><a href="#16-delaysContentTouches" class="headerlink" title="16. delaysContentTouches"></a>16. delaysContentTouches</h2><p>控制视图是否延时调用开始滚动的方法         </p>
+<h2 id="17-canCancelContentTouches"><a href="#17-canCancelContentTouches" class="headerlink" title="17. canCancelContentTouches "></a>17. canCancelContentTouches </h2><p>控制控件是否接触取消touch的事件 </p>
+<h2 id="18-indicatorStyle"><a href="#18-indicatorStyle" class="headerlink" title="18. indicatorStyle"></a>18. indicatorStyle</h2><p>设定滚动条的样式</p>
+<h2 id="19-decelerating"><a href="#19-decelerating" class="headerlink" title="19. decelerating"></a>19. decelerating</h2><p>监控当前目标是否正在减速</p>
+<h1 id="UIPageControl-翻页控件"><a href="#UIPageControl-翻页控件" class="headerlink" title="UIPageControl 翻页控件"></a>UIPageControl 翻页控件</h1><p>既然说到 UIScrollView ，必须要写个滚动图的案例了。重点介绍 UIPageControl 翻页控件。</p>
+<h2 id="1-numberOfPages-设置有多少页-默认为0"><a href="#1-numberOfPages-设置有多少页-默认为0" class="headerlink" title="1.    numberOfPages // 设置有多少页 默认为0"></a>1.    numberOfPages // 设置有多少页 默认为0</h2><pre><code>//  设置页数
+[pageControl setNumberOfPages:kImageCount];
+</code></pre><h2 id="2-currentPage-设置当前页"><a href="#2-currentPage-设置当前页" class="headerlink" title="2.    currentPage  // 设置当前页"></a>2.    currentPage  // 设置当前页</h2><pre><code>[pageControl setCurrentPage:0];
+</code></pre><h2 id="3-pageIndicatorTintColor-设置页码指示器颜色"><a href="#3-pageIndicatorTintColor-设置页码指示器颜色" class="headerlink" title="3.    pageIndicatorTintColor // 设置页码指示器颜色"></a>3.    pageIndicatorTintColor // 设置页码指示器颜色</h2><pre><code>[pageControl setPageIndicatorTintColor:[UIColor blackColor]];
+</code></pre><h2 id="4-currentPageIndicatorTintColor-设置当前页码指示器颜色"><a href="#4-currentPageIndicatorTintColor-设置当前页码指示器颜色" class="headerlink" title="4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色"></a>4.    currentPageIndicatorTintColor // 设置当前页码指示器颜色</h2><pre><code>[pageControl setCurrentPageIndicatorTintColor:[UIColor redColor]];
+</code></pre><h2 id="5-添加分页控件的监听事件（监听值改变事件）"><a href="#5-添加分页控件的监听事件（监听值改变事件）" class="headerlink" title="5.    添加分页控件的监听事件（监听值改变事件）"></a>5.    添加分页控件的监听事件（监听值改变事件）</h2><pre><code>[pageControl addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
+</code></pre><p><em>ps:占个坑 我要回来补个demo</em></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/04/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-20-Interface-Builder-UIScrollView/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
   
     <article id="post-iOS开发指南-Objective—C基础-19-Interface Builder-UIWebView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -1115,844 +1748,9 @@ UIColor *color = [[UIColor alloc] initWithPatternImage:hogeImage];
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/" class="archive-article-date">
-  	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIPicker-选择器"><a href="#UIPicker-选择器" class="headerlink" title="UIPicker 选择器"></a>UIPicker 选择器</h1><h2 id="1-numberOfComponents：返回UIPickerView当前的列数"><a href="#1-numberOfComponents：返回UIPickerView当前的列数" class="headerlink" title="1.    numberOfComponents：返回UIPickerView当前的列数"></a>1.    numberOfComponents：返回UIPickerView当前的列数</h2><pre><code>NSInteger num = _pickerView.numberOfComponents;
-NSLog( @&quot;%d&quot;, num);
-</code></pre><h2 id="2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。"><a href="#2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。" class="headerlink" title="2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。"></a>2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</h2><pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
-NSLog(@&quot;%d&quot;,numInCp);
-</code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
-NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
-</code></pre><p><img src="http://qn.heyim.top/image/16042702/1.png" alt="1"></p>
-<h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
-<pre><code>_pickerView.delegate = self;
-// 设置UIPickView每行显示的内容
-</code></pre><p>###4.1</p>
-<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-&#123;
-    return @&quot;showData&quot;;
-&#125;
-</code></pre><p><img src="http://qn.heyim.top/image/16042702/2.png" alt="2"></p>
-<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
-
-// 返回一个视图，用来设置pickerView的每行显示的内容。
--(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
-&#123;
-    UIView *myView=[[UIView alloc]init];
-    myView.backgroundColor = [UIColor redColor];
-    return myView;
-&#125;
-</code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.top/image/16042702/3.png" alt="3"></p>
-<h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
-// 设置每列显示3行
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-&#123;
-    return 3;
-&#125;
-// 设置显示2列
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-&#123;
-    return 2; 
-&#125;
-</code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
-</code></pre><p><img src="http://qn.heyim.top/image/16042702/4.png" alt="4"></p>
-<p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
-<h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
-</code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
-<h2 id="8-返回第component列每一行的高度"><a href="#8-返回第component列每一行的高度" class="headerlink" title="8. 返回第component列每一行的高度"></a>8. 返回第component列每一行的高度</h2><pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
-</code></pre><h2 id="9-刷新某一列的数据"><a href="#9-刷新某一列的数据" class="headerlink" title="9.刷新某一列的数据"></a>9.刷新某一列的数据</h2><p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
-<pre><code>[pickerView reloadComponent:1];
-</code></pre><h2 id="10-刷新所有列的数据"><a href="#10-刷新所有列的数据" class="headerlink" title="10. 刷新所有列的数据 "></a>10. 刷新所有列的数据 </h2><pre><code>- (void)reloadAllComponents;
-</code></pre><h2 id="11-返回选中的是第component列的第几行。"><a href="#11-返回选中的是第component列的第几行。" class="headerlink" title="11. 返回选中的是第component列的第几行。"></a>11. 返回选中的是第component列的第几行。</h2><pre><code>-(NSInteger)selectedRowInComponent:(NSInteger)component;                                   
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/" class="archive-article-date">
-  	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIDatePicker-日期选择器"><a href="#UIDatePicker-日期选择器" class="headerlink" title="UIDatePicker 日期选择器"></a>UIDatePicker 日期选择器</h1><h2 id="1-Locale"><a href="#1-Locale" class="headerlink" title="1.    Locale"></a>1.    Locale</h2><p>设置DatePicker的地区,即设置DatePicker显示的语言。</p>
-<pre><code>// 1.跟踪所有可用的地区，取出想要的地区
-    NSLog(@&quot;%@&quot;, [NSLocale availableLocaleIdentifiers]);
-
-// 2. 设置日期选择控件的地区
-[datePicker setLocale:[[NSLocale
-alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
-</code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.top/image/16042701/1.png" alt="1"></p>
-<pre><code>// 2) 设置日期选择控件的地区
-[datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
-</code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.top/image/16042701/2.png" alt="2"> </p>
-<h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
-<pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
-</code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
-<pre><code>默认为设置为：[datePicker setTimeZone:[NSTimeZone defaultTimeZone]];
-</code></pre><h2 id="4-date"><a href="#4-date" class="headerlink" title="4.    date"></a>4.    date</h2><p>设置DatePicker的日期。</p>
-<pre><code>默认设置为: [datePicker setDate:[NSDate date]];
-</code></pre><h2 id="5-minimumDate"><a href="#5-minimumDate" class="headerlink" title="5.    minimumDate"></a>5.    minimumDate</h2><p>设置DatePicker的允许的最小日期。</p>
-<h2 id="6-maximumDate"><a href="#6-maximumDate" class="headerlink" title="6.    maximumDate"></a>6.    maximumDate</h2><p>设置DatePicker的允许的最大日期。</p>
-<h2 id="7-countDownDuration"><a href="#7-countDownDuration" class="headerlink" title="7.    countDownDuration"></a>7.    countDownDuration</h2><p>设置DatePicker的倒计时间.</p>
-<pre><code>// 1) 设置日期选择的模
-[self.datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-
-// 2) 设置倒计时的时长
-// 注意：设置倒计时时长需要在确定模式之后指定
-// 倒计时的时长，以秒为单位
-[self.datePicker setCountDownDuration:10 * 60];
-</code></pre><p>效果：</p>
-<p><img src="http://qn.heyim.top/image/16042701/3.png" alt="3"></p>
-<h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
-<pre><code>// 设置分钟间隔
-    datePicker.minuteInterval = 15;
-</code></pre><h2 id="9-datePickerMode"><a href="#9-datePickerMode" class="headerlink" title="9.    datePickerMode"></a>9.    datePickerMode</h2><p>9.1    </p>
-<pre><code>UIDatePickerModeTime,  // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
-显示小时，分钟和AM/PM,这个的名称是根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeTime];
-</code></pre><p>效果图：</p>
-<p><img src="http://qn.heyim.top/image/16042701/4.png" alt="4"> </p>
-<p>9.2    </p>
-<pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
-显示年月日，名称根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeDate];
-</code></pre><p>效果图： </p>
-<p><img src="http://qn.heyim.top/image/16042701/5.png" alt="5"></p>
-<p>9.3 默认是显示这种模式</p>
-<pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
-显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
-[datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
-</code></pre><p>效果图：</p>
-<p><img src="http://qn.heyim.top/image/16042701/6.png" alt="6"></p>
-<p> 9.4  </p>
-<pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
-显示小时和分钟
-[datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
-</code></pre><p><img src="http://qn.heyim.top/image/16042701/7.png" alt="7"></p>
-<h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
-<pre><code>// 不用设置宽高，因为它的宽高是固定的
-UIDatePicker *datePicker = [[UIDatePicker alloc] init];
-</code></pre><p>10.2常用设置</p>
-<pre><code>// 设置区域为中国简体中文
-datePicker.locale = [[NSLocale alloc] 
-                            initWithLocaleIdentifier:@&quot;zh_CN&quot;];
-// 设置picker的显示模式：只显示日期
-datePicker.datePickerMode = UIDatePickerModeDate;
-</code></pre><p>10.3UIDatePicker需要监听值的改变</p>
-<pre><code>[datePicker addTarget:self action:@selector(dateChange:) 
-forControlEvents:UIControlEventValueChanged];
-</code></pre><p>11.UIDatePicker使用教程二。</p>
-<p>11.1日期范围</p>
-<p>你可以通过设置mininumDate 和 maxinumDate 属性，来指定使用的日期范围。如果用户试图滚动到超出这一范围的日期，表盘会回滚到最近的有效日期。两个方法都需要NSDate 对象作参数：</p>
-<pre><code>NSDate* minDate = [[NSDate alloc]initWithString:@&quot;1900-01-01 00:00:00 -0500&quot;];  
-NSDate* maxDate = [[NSDate alloc]initWithString:@&quot;2099-01-01 00:00:00 -0500&quot;];           
-datePicker.minimumDate = minDate;  
-datePicker.maximumDate = maxDate;
-</code></pre><p>11.2 如果两个日期范围属性中任何一个未被设置，则默认行为将会允许用户选择过去或未来的任意日期。这在某些情况下很有用处，比如，当选择生日时，可以是过去的任意日期，但终止与当前日期。如果你希望设置默认显示的日期，可以使用date属性：</p>
-<pre><code>datePicker.date = minDate;  
-</code></pre><p>11.3 此外，你还可以用 setDate 方法。如果选择了使用动画，则表盘会滚动到你指定的日期：</p>
-<pre><code>[ datePicker setDate:maxDate animated:YES];
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-12-Cocoa-Touch-UITextView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/" class="archive-article-date">
-  	<time datetime="2016-04-27T13:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UITextView-文本块"><a href="#UITextView-文本块" class="headerlink" title="UITextView 文本块"></a>UITextView 文本块</h1><h2 id="1-text-设置textView中文本"><a href="#1-text-设置textView中文本" class="headerlink" title="1.    text: 设置textView中文本"></a>1.    text: 设置textView中文本</h2><pre><code>_textView.text = @&quot;Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.&quot;; // 设置它显示的内容
-</code></pre><h2 id="2-font-设置textView中文字的字体"><a href="#2-font-设置textView中文字的字体" class="headerlink" title="2.    font:设置textView中文字的字体"></a>2.    font:设置textView中文字的字体</h2><pre><code>_textView.font = [UIFont fontWithName:@&quot;Arial&quot; size:18.0]; // 设置字体名字和字体大小
-</code></pre><h2 id="3-textColor-设置textView中文本的颜色"><a href="#3-textColor-设置textView中文本的颜色" class="headerlink" title="3.    textColor:设置textView中文本的颜色"></a>3.    textColor:设置textView中文本的颜色</h2><pre><code>_textView.textColor = [UIColor blackColor]; // 设置textview里面的字体颜色
-</code></pre><h2 id="4-textAlignment-设置textView的文本的排列方式"><a href="#4-textAlignment-设置textView的文本的排列方式" class="headerlink" title="4.    textAlignment:设置textView的文本的排列方式"></a>4.    textAlignment:设置textView的文本的排列方式</h2><pre><code>_textView.textAlignment = NSTextAlignmentCenter; // textView中的文本排列，默认靠左
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/1.png" alt="1"></p>
-<h2 id="5-backgroundColor-设置textView的背景颜色"><a href="#5-backgroundColor-设置textView的背景颜色" class="headerlink" title="5.    backgroundColor:设置textView的背景颜色"></a>5.    backgroundColor:设置textView的背景颜色</h2><pre><code>_textView.backgroundColor = [UIColor grayColor]; // 设置浅灰色的背景色，默认为白色
-</code></pre><h2 id="6-delegate-设置代理"><a href="#6-delegate-设置代理" class="headerlink" title="6.    delegate:设置代理"></a>6.    delegate:设置代理</h2><pre><code>_textView.delegate = self; // 设置代理
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/2.png" alt="2"></p>
-<h2 id="7-editable-设置textView是否可被输入"><a href="#7-editable-设置textView是否可被输入" class="headerlink" title="7.    editable:设置textView是否可被输入"></a>7.    editable:设置textView是否可被输入</h2><pre><code>_textView.editable = NO; // textView是否可被输入，默认为YES
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/3.png" alt="3"></p>
-<h2 id="8-attributedText-设置默认插入textView的文字"><a href="#8-attributedText-设置默认插入textView的文字" class="headerlink" title="8.    attributedText:设置默认插入textView的文字"></a>8.    attributedText:设置默认插入textView的文字</h2><pre><code>_textView.attributedText = [[NSAttributedString alloc]initWithString:@&quot;attributedText__-abc&quot;]; // 可以方便将文本插入到UITextView中。
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/4.png" alt="4"></p>
-<h2 id="9-inputView-设置从底部弹出的视图"><a href="#9-inputView-设置从底部弹出的视图" class="headerlink" title="9.    inputView:设置从底部弹出的视图"></a>9.    inputView:设置从底部弹出的视图</h2><pre><code>_textView.inputView = [[UIDatePicker alloc]init]; // 弹出视图，默认为键盘
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/5.png" alt="5"></p>
-<h2 id="10-inputAccessoryView-设置弹出视图上方的辅助视图"><a href="#10-inputAccessoryView-设置弹出视图上方的辅助视图" class="headerlink" title="10.    inputAccessoryView:设置弹出视图上方的辅助视图"></a>10.    inputAccessoryView:设置弹出视图上方的辅助视图</h2><pre><code>_textView.inputAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; // 弹出视图上方的辅助视图
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/6.png" alt="6"></p>
-<h2 id="11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"><a href="#11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本" class="headerlink" title="11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"></a>11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本</h2><pre><code>_textView.clearsOnInsertion = YES; // clearsOnInsertion，默认为NO
-</code></pre><p><img src="http://qn.heyim.xyz/image/160427/7.png" alt="7"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/" class="archive-article-date">
-  	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UITextField-文本框"><a href="#UITextField-文本框" class="headerlink" title="UITextField 文本框"></a>UITextField 文本框</h1><h2 id="enablesReturnKeyAutomatically"><a href="#enablesReturnKeyAutomatically" class="headerlink" title="enablesReturnKeyAutomatically"></a>enablesReturnKeyAutomatically</h2><p>默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。</p>
-<h2 id="borderStyle"><a href="#borderStyle" class="headerlink" title="borderStyle"></a>borderStyle</h2><p>设置边框样式，只有设置了才会显示边框样式　</p>
-<pre><code>text.borderStyle = UITextBorderStyleRoundedRect;
-　typedef enum &#123;
-  UITextBorderStyleNone, 
-  UITextBorderStyleLine,
-  UITextBorderStyleBezel,
-  UITextBorderStyleRoundedRect  
-&#125; UITextBorderStyle;                                                      
-</code></pre><h2 id="backgroundColor"><a href="#backgroundColor" class="headerlink" title="backgroundColor　"></a>backgroundColor　</h2><p>设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉　</p>
-<pre><code>text.backgroundColor = [UIColor whiteColor];
-</code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><p>设置背景</p>
-<pre><code>text.background = [UIImage imageNamed:@&quot;dd.png&quot;];//UITextField 的背景，注意只有UITextBorderStyleNone的时候改属性有效
-</code></pre><p>设置enable为no时，textfield的背景 </p>
-<pre><code>text.disabledBackground = [UIImage imageNamed:@&quot;cc.png&quot;];
-</code></pre><h2 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h2><p>当输入框没有内容时， 提示内容为password</p>
-<pre><code>text.placeholder = @&quot;password&quot;;
-</code></pre><h2 id="font"><a href="#font" class="headerlink" title="font"></a>font</h2><p>设置输入框内容的字体样式和大小</p>
-<pre><code>text.font = [UIFont fontWithName:@&quot;Arial&quot; size:20.0f];
-</code></pre><h2 id="textColor"><a href="#textColor" class="headerlink" title="textColor"></a>textColor</h2><p>设置字体颜色</p>
-<pre><code>text.textColor = [UIColor redColor];
-</code></pre><h2 id="clearButtonMode"><a href="#clearButtonMode" class="headerlink" title="clearButtonMode"></a>clearButtonMode</h2><p>输入框中是否有个叉号，在什么时候显示，用于一次性删除输入框中的内容</p>
-<pre><code>text.clearButtonMode = UITextFieldViewModeAlways; 
-typedef enum &#123;
-    UITextFieldViewModeNever,　重不出现
-    UITextFieldViewModeWhileEditing, 编辑时出现
-    UITextFieldViewModeUnlessEditing,　除了编辑外都出现
-    UITextFieldViewModeAlways 　一直出现
-&#125; UITextFieldViewMode;
-</code></pre><h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p>输入框中一开始就有的文字</p>
-<pre><code>text.text = @&quot;一开始就在输入框的文字&quot;;
-</code></pre><h2 id="secureTextEntry"><a href="#secureTextEntry" class="headerlink" title="secureTextEntry"></a>secureTextEntry</h2><p>每输入一个字符就变成点 用来输入密码时，设置这个属性。</p>
-<pre><code>text.secureTextEntry = YES;
-</code></pre><h2 id="autocorrectionType"><a href="#autocorrectionType" class="headerlink" title="autocorrectionType"></a>autocorrectionType</h2><p>是否纠错</p>
-<pre><code>text.autocorrectionType = UITextAutocorrectionTypeNo;
-typedef enum &#123;
-    UITextAutocorrectionTypeDefault, 默认
-    UITextAutocorrectionTypeNo, 　不自动纠错
-    UITextAutocorrectionTypeYes,　自动纠错
-&#125; UITextAutocorrectionType;
-</code></pre><h2 id="clearsOnBeginEditing"><a href="#clearsOnBeginEditing" class="headerlink" title="clearsOnBeginEditing"></a>clearsOnBeginEditing</h2><p>再次编辑就清空</p>
-<pre><code>text.clearsOnBeginEditing = YES; 
-</code></pre><h2 id="textAlignment"><a href="#textAlignment" class="headerlink" title="textAlignment"></a>textAlignment</h2><p>内容对齐方式</p>
-<pre><code>text.textAlignment = UITextAlignmentLeft;
-</code></pre><h2 id="contentVerticalAlignment"><a href="#contentVerticalAlignment" class="headerlink" title="contentVerticalAlignment"></a>contentVerticalAlignment</h2><p>内容的垂直对齐方式  UITextField继承自UIControl,此类中有一个属性contentVerticalAlignment</p>
-<pre><code>text.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-</code></pre><h2 id="adjustsFontSizeToFitWidth"><a href="#adjustsFontSizeToFitWidth" class="headerlink" title="adjustsFontSizeToFitWidth"></a>adjustsFontSizeToFitWidth</h2><p>设置为YES时文本会自动缩小以适应文本窗口大小.默认是保持原来大小,而让长文本滚动　</p>
-<pre><code>textFied.adjustsFontSizeToFitWidth = YES;
-//设置自动缩小显示的最小字体大小
-text.minimumFontSize = 20;
-</code></pre><h2 id="keyboardType"><a href="#keyboardType" class="headerlink" title="keyboardType"></a>keyboardType</h2><p>设置键盘的样式</p>
-<pre><code>text.keyboardType = UIKeyboardTypeNumberPad;
-typedef enum &#123;
-    UIKeyboardTypeDefault,     　默认键盘，支持所有字符         
-    UIKeyboardTypeASCIICapable,　支持ASCII的默认键盘
-    UIKeyboardTypeNumbersAndPunctuation,　标准电话键盘，支持＋＊＃字符
-    UIKeyboardTypeURL,            URL键盘，支持.com按钮 只支持URL字符
-    UIKeyboardTypeNumberPad,            　数字键盘
-    UIKeyboardTypePhonePad,　 　电话键盘
-    UIKeyboardTypeNamePhonePad, 　电话键盘，也支持输入人名
-    UIKeyboardTypeEmailAddress, 　用于输入电子 邮件地址的键盘     
-    UIKeyboardTypeDecimalPad,   　数字键盘 有数字和小数点
-    UIKeyboardTypeTwitter,      　优化的键盘，方便输入@、#字符
-    UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, 
-&#125; UIKeyboardType;
-</code></pre><h2 id="autocapitalizationType"><a href="#autocapitalizationType" class="headerlink" title="autocapitalizationType"></a>autocapitalizationType</h2><p>首字母是否大写</p>
-<pre><code>text.autocapitalizationType = UITextAutocapitalizationTypeNone;
-typedef enum &#123;
-    UITextAutocapitalizationTypeNone, 不自动大写
-    UITextAutocapitalizationTypeWords,　单词首字母大写
-    UITextAutocapitalizationTypeSentences,　句子的首字母大写
-    UITextAutocapitalizationTypeAllCharacters, 所有字母都大写
-&#125; UITextAutocapitalizationType;
-</code></pre><h2 id="returnKeyType"><a href="#returnKeyType" class="headerlink" title="returnKeyType"></a>returnKeyType</h2><p>return键变成什么键</p>
-<pre><code>text.returnKeyType =UIReturnKeyDone;
-typedef enum &#123;
-    UIReturnKeyDefault, 默认 灰色按钮，标有Return
-    UIReturnKeyGo,    　标有Go的蓝色按钮
-    UIReturnKeyGoogle,标有Google的蓝色按钮，用语搜索
-    UIReturnKeyJoin,标有Join的蓝色按钮
-    UIReturnKeyNext,标有Next的蓝色按钮
-    UIReturnKeyRoute,标有Route的蓝色按钮
-    UIReturnKeySearch,标有Search的蓝色按钮
-    UIReturnKeySend,标有Send的蓝色按钮
-    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
-    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
-    UIReturnKeyEmergencyCall, 紧急呼叫按钮
-&#125; UIReturnKeyType;
-</code></pre><h2 id="keyboardAppearance"><a href="#keyboardAppearance" class="headerlink" title="keyboardAppearance"></a>keyboardAppearance</h2><p>键盘外观</p>
-<pre><code>textView.keyboardAppearance=UIKeyboardAppearanceDefault；
-typedef enum &#123;
-UIKeyboardAppearanceDefault， 默认外观，浅灰色
-UIKeyboardAppearanceAlert，　 　深灰 石墨色
-&#125; UIReturnKeyType;
-</code></pre><h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><p>设置代理 用于实现协议</p>
-<pre><code>text.delegate = self;
-</code></pre><h2 id="rightView"><a href="#rightView" class="headerlink" title="rightView"></a>rightView</h2><p>最右侧加图片是以下代码　 左侧类似</p>
-<pre><code>UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;right.png&quot;]];
-text.rightView=image;
-text.rightViewMode = UITextFieldViewModeAlways; 
-typedef enum &#123;
-    UITextFieldViewModeNever,
-    UITextFieldViewModeWhileEditing,
-    UITextFieldViewModeUnlessEditing,
-    UITextFieldViewModeAlways
-&#125; UITextFieldViewMode;
-</code></pre><h2 id="editing"><a href="#editing" class="headerlink" title="editing"></a>editing</h2><p>是否允许编辑。</p>
-<h2 id="界面重写绘制行为"><a href="#界面重写绘制行为" class="headerlink" title="界面重写绘制行为"></a>界面重写绘制行为</h2><p>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写。</p>
-<pre><code>– textRectForBounds:　　  　//重写来重置文字区域
-– drawTextInRect:　　      　//改变绘文字属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
-– placeholderRectForBounds:　　//重写来重置占位符区域
-– drawPlaceholderInRect:　　//重写改变绘制占位符属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
-– borderRectForBounds:　　//重写来重置边缘区域
-– editingRectForBounds:　　//重写来重置编辑区域
-– clearButtonRectForBounds:　　//重写来重置clearButton位置,改变size可能导致button的图片失真
-– leftViewRectForBounds:
-– rightViewRectForBounds:
-</code></pre><h2 id="调整键盘"><a href="#调整键盘" class="headerlink" title="调整键盘"></a>调整键盘</h2><pre><code>inputView //代替标准的系统键盘
-inputAccessoryView //编辑时显示在系统键盘或用户自定义的inputView上面的视图
-</code></pre><h2 id="delegate-1"><a href="#delegate-1" class="headerlink" title="delegate"></a>delegate</h2><p>类要遵守UITextFieldDelegate协议</p>
-<pre><code>text.delegate = self;　声明text的代理是我，我会去实现把键盘往下收的方法 这个方法在UITextFieldDelegate里所以我们要遵守UITextFieldDelegate这个协议
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-&#123;
-    [text resignFirstResponder];    //主要是[receiver resignFirstResponder]在哪调用就能把receiver（text）对应的键盘往下收
-return YES;
-&#125;
-
-代理方法 
-- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField&#123;　
-　　
-//返回一个BOOL值，YES代表允许编辑，NO不允许编辑.　
-    return YES;　
-&#125;　
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField&#123;　
- //开始编辑时触发，文本字段将成为first responder　
-&#125;　
-
-- (BOOL)textFieldShouldEndEditing:(UITextField *)textField&#123;　
-//返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder　
-　 //要想在用户结束编辑时阻止文本字段消失，可以返回NO　，返回NO，点击键盘的返回按钮会无效果。
-　 //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息　
-　 
-    return NO;　
-&#125;　
-- (void)textFieldDidEndEditing:(UITextField *)textField;&#123;
-
-&#125;// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
-
-- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string&#123;　
-//当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。　
-//这对于想要加入撤销选项的应用程序特别有用　
-//可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。　　 
-//要防止文字被改变可以返回NO　
-//这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中　
-
-　   return YES;　
-&#125;　
-
-- (BOOL)textFieldShouldClear:(UITextField *)textField&#123;　
-
-//返回一个BOOL值指明是否允许根据用户请求清除内容　
-//可以设置在特定条件下才允许清除内容　
-
-　   return YES;　
-&#125;　
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField&#123;　
-
-//返回一个BOOL值，指明是否允许在按下回车键时结束编辑　
- //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];
-//查一下resign这个单词的意思就明白这个方法了　
-　   return YES;　
-&#125;　
-</code></pre><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>UITextField派生自UIControl，所以UIControl类中的通知系统在文本字段中也可以使用。除了UIControl类的标准事件，你还可以使用下列UITextField类特有的事件</p>
-<pre><code>UITextFieldTextDidBeginEditingNotification
-UITextFieldTextDidChangeNotification
-UITextFieldTextDidEndEditingNotification
-</code></pre><p>当文本字段退出编辑模式时触发。通知的object属性存储了最终文本。</p>
-<p>因为文本字段要使用键盘输入文字，所以下面这些事件发生时，也会发送动作通知</p>
-<pre><code>UIKeyboardWillShowNotification 　//键盘显示之前发送
-UIKeyboardDidShowNotification  　//键盘显示之后发送
-UIKeyboardWillHideNotification 　//键盘隐藏之前发送
-UIKeyboardDidHideNotification  　//键盘隐藏之后发送
-</code></pre><h2 id="Stroyboard中："><a href="#Stroyboard中：" class="headerlink" title="Stroyboard中："></a>Stroyboard中：</h2><pre><code>1、Text ：设置文本框的默认文本。
-2、Placeholder ： 可以在文本框中显示灰色的字，用于提示用户应该在这个文本框输入什么内容。当这个文本框中输入了数据时，用于提示的灰色的字将会自动消失。
-3、Background ：
-4、Disabled ： 若选中此项，用户将不能更改文本框内容。
-5、接下来是三个按钮，用来设置对齐方式。
-6、Border Style ： 选择边界风格。
-7、Clear Button ： 这是一个下拉菜单，你可以选择清除按钮什么时候出现，所谓清除按钮就是出一个现在文本框右边的小 X ，你可以有以下选择：
-    7.1 Never appears ： 从不出现
-    7.2 Appears while editing ： 编辑时出现
-    7.3 Appears unless editing ： 
-    7.4 Is always visible ： 总是可见
-8、Clear when editing begins ： 若选中此项，则当开始编辑这个文本框时，文本框中之前的内容会被清除掉。比如，你现在这个文本框 A 中输入了 &quot;What&quot; ，之后去编辑文本框 B，若再回来编辑文本框 A ，则其中的 &quot;What&quot; 会被立即清除。
-9、Text Color ： 设置文本框中文本的颜色。
-10、Font ： 设置文本的字体与字号。
-11、Min Font Size ： 设置文本框可以显示的最小字体（不过我感觉没什么用）
-12、Adjust To Fit ： 指定当文本框尺寸减小时，文本框中的文本是否也要缩小。选择它，可以使得全部文本都可见，即使文本很长。但是这个选项要跟 Min Font Size 配合使用，文本再缩小，也不会小于设定的 Min Font Size 。
-接下来的部分用于设置键盘如何显示。
-13、Captitalization ： 设置大写。下拉菜单中有四个选项：
-    13.1 None ： 不设置大写
-    13.2 Words ： 每个单词首字母大写，这里的单词指的是以空格分开的字符串
-    13.3 Sentances ： 每个句子的第一个字母大写，这里的句子是以句号加空格分开的字符串
-    13.4 All Characters ： 所以字母大写
-14、Correction ： 检查拼写，默认是 YES 。
-15、Keyboard ： 选择键盘类型，比如全数字、字母和数字等。
-16、Appearance：
-17、Return Key ： 选择返回键，可以选择 Search 、 Return 、 Done 等。
-18、Auto-enable Return Key ： 如选择此项，则只有至少在文本框输入一个字符后键盘的返回键才有效。
-19、Secure ： 当你的文本框用作密码输入框时，可以选择这个选项，此时，字符显示为星号。
-20.Alignment Horizontal 水平对齐方式
-21.Alignment Vertical 垂直对齐方式
-22.用于返回一个BOOL值　输入框是否 Selected(选中) Enabled(可用) Highlighted(高亮)
-</code></pre><h2 id="UITextField实例一-：-UITextField限制字符-只为数字"><a href="#UITextField实例一-：-UITextField限制字符-只为数字" class="headerlink" title="UITextField实例一 ： UITextField限制字符 (只为数字)"></a>UITextField实例一 ： UITextField限制字符 (只为数字)</h2><p>ios代码  </p>
-<pre><code>#define ALPHA @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz &quot;  
-#define NUMBERS @&quot;0123456789n&quot;  
-#define ALPHANUM @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 &quot;  
-#define NUMBERSPERIOD @&quot;0123456789.&quot;  
-
-
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
-&#123;  
-    NSCharacterSet *cs;  
-    cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERSPERIOD ] invertedSet]; //invertedSet 方法是去反字符,把所有的除了数字的字符都找出来  
-
-    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@&quot;&quot;];  //componentsSeparatedByCharactersInSet 方法是把输入框输入的字符string 根据cs中字符一个一个去除cs字符并分割成单字符并转化为 NSArray, 然后componentsJoinedByString 是把NSArray 的字符通过 &quot;&quot;无间隔连接成一个NSString字符 赋给filtered.就是只剩数字了.  
-
-
-    BOOL basicTest = [string isEqualToString:filtered];  
-    if(!basicTest)   
-      &#123;  
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot;  
-                                                            message:@&quot;请输入数字&quot;  
-                                                           delegate:nil  
-                                                  cancelButtonTitle:@&quot;确定&quot;  
-                                                  otherButtonTitles:nil];  
-
-        [alert show];  
-        [alert release];  
-        return NO;  
-    &#125;    
-    // Add any predicate testing here  
-    return basicTest;  
-&#125;  
-
-#define NUMBERS @”0123456789n” （这个代表可以输入数字和换行，请注意这个n，如果不写这个，Done按键将不会触发，如果用在SearchBar中，将会不触发Search事件，因为你自己限制不让输入n，好惨，我在项目中才发现的。） 所以，如果你要限制输入英文和数字的话，就可以把这个定义为： #define kAlphaNum @”ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789″。 当然，你还可以在以上方法return之前，做一提示的，比如提示用户只能输入数字之类的。如果你觉得有需要的话。
-</code></pre><h2 id="实例：限制只能输入一定长度的字符"><a href="#实例：限制只能输入一定长度的字符" class="headerlink" title="实例：限制只能输入一定长度的字符"></a>实例：限制只能输入一定长度的字符</h2><p>ios代码  </p>
-<pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   
-&#123;　
-//string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反  
-    if ([string isEqualToString:@&quot;n&quot;])　//按回车可以改变  
-    &#123;   
-        return YES;   
-    &#125;   
-
-    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容  
-
-    if (self.myTextField == textField)　//判断是否时我们想要限定的那个输入框  
-    &#123;   
-        if ([toBeString length] &gt; 20) &#123; //如果输入框内容大于20则弹出警告  
-  textField.text = [toBeString substringToIndex:20];   
-            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@&quot;超过最大字数不能输入了&quot; delegate:nil cancelButtonTitle:@&quot;Ok&quot; otherButtonTitles:nil, nil] autorelease];   
-            [alert show];   
-            return NO;   
-        &#125;   
-    &#125;   
-    return YES;   
-&#125;  
-</code></pre><h2 id="UITextField实例二："><a href="#UITextField实例二：" class="headerlink" title="UITextField实例二："></a>UITextField实例二：</h2><p>在UISearchBar中,当输入信息改变时,它就会调用textDidChange函数,但是UITextField没有这个功能,唯一与这个类似的shouldChangeCharactersInRange函数,也是在文件还没有改变前就调用了,而不是在改变后调用,要想实现这个功能,我们可以增加事件监听的方式.先来看看objective-c提供的接口:</p>
-<p>ios代码  </p>
-<pre><code>// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event. 
-</code></pre><p>给特殊事件添加目标或者方法，你能够调用这个方法多次，给特殊事件指定很多目标或者方法</p>
-<pre><code>// passing in nil as the target goes up the responder chain. The action may optionally include the sender and the event in that order  
-</code></pre><p>给target传递空，会建立响应链，在这行命令，方法可以选择包含方法发送者和事件两个参数。</p>
-<pre><code>// the action cannot be NULL.   方法不能为空。
-- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;  
-</code></pre><p>怎么去使用这个接口呢?主要分为两步,第一步就是在UItextField组件中增加对文件编辑改变时事件的监听,然后再实现监听器监听到事件时,所调用的方法.</p>
-<p>ios代码  </p>
-<pre><code>//第一步,对组件增加监听器 可以在viewDidLoad 方法中加入 textField 为你自定义输入框的名称  
-[textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];  
-
-//第二步,实现回调函数  
-- (void) textFieldDidChange:(id) sender &#123;  
-    UITextField *_field = (UITextField *)sender;  
-    NSLog(@&quot;%@&quot;,[_field text]);  
-&#125;  
-</code></pre><h2 id="UITextField实例三："><a href="#UITextField实例三：" class="headerlink" title="UITextField实例三："></a>UITextField实例三：</h2><p>UITextField控件处理键盘弹出时遮住输入框的问题<br>打开键盘卷动文本字段<br>默认情况下打开键盘会遮住下面的view，带来一点点困扰，不过这不是什么大问题，我们使用点小小的手段就可以解决。</p>
-<p>首先我们要知道键盘的高度是固定不变的，不过在IOS 5.0 以后键盘的高度貌似不是216了，不过不要紧，我们调整调整就是了：</p>
-<pre><code>                 iPhone    ipad
-竖屏(portrait)    216        264
-横屏(landScape)    140        352
-</code></pre><p>我们采取的方法就是在textField(有可能是其他控件)接收到弹出键盘事件时把self.view整体上移216px了(我们就以iPhone竖屏为例了)。<br>首先我们要设置textField的代理，我们就设为当前控制器了。</p>
-<p>ios代码  </p>
-<pre><code>textField,delegate=self;  
-</code></pre><p>然后我们在当前控制器实现下面两个委托方法：</p>
-<p>ios代码  </p>
-<pre><code>- (void)textFieldDidBeginEditing:(UITextField *)textField  
-&#123; //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
-       NSTimeInterval animationDuration = 0.30f;      
-      CGRect frame = self.view.frame;  
-      frame.origin.y -=216;  
-      frame.size.height +=216;  
-      self.view.frame = frame;  
-       [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
-       [UIView setAnimationDuration:animationDuration];  
-       self.view.frame = frame;                  
-       [UIView commitAnimations];                  
-&#125;  
-</code></pre><p>ios代码</p>
-<pre><code>- (BOOL)textFieldShouldReturn:(UITextField *)textField   
-&#123;//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
-        NSTimeInterval animationDuration = 0.30f;  
-        CGRect frame = self.view.frame;      
-        frame.origin.y +=216;        
-        frame.size. height -=216;     
-        self.view.frame = frame;  
-    //self.view移回原位置    
-    [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
-    [UIView setAnimationDuration:animationDuration];  
-        self.view.frame = frame;                  
-        [UIView commitAnimations];  
-        [textField resignFirstResponder];     
-&#125;     
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/" class="archive-article-date">
-  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
-若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
-</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
-若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
-</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
-</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
-</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
-@property(nonatomic) double maximumValue; //默认为100
-</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
-</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
-</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
-</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
-</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
-</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
-</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)incrementImageForState:(UIControlState)state;
-</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
-- (UIImage *)decrementImageForState:(UIControlState)state;
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1964,10 +1762,10 @@ UIKeyboardDidHideNotification  　//键盘隐藏之后发送
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 xiaodouzi
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" target="_blank">Hexo</a> <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备19004515号-3</a> <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备19004515号-2</a>
       	</div>
     </div>
   </div>

@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="小豆子的博客">
 <meta property="og:description" content="我的征程是星辰大海">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="xiaodouzi">
+<meta property="article:author" content="小豆子">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
@@ -167,6 +167,841 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">iOS开发指南-Objective—C基础-14-Cocoa-Touch-UIPicker</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/" class="archive-article-date">
+  	<time datetime="2016-04-27T14:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIPicker-选择器"><a href="#UIPicker-选择器" class="headerlink" title="UIPicker 选择器"></a>UIPicker 选择器</h1><h2 id="1-numberOfComponents：返回UIPickerView当前的列数"><a href="#1-numberOfComponents：返回UIPickerView当前的列数" class="headerlink" title="1.    numberOfComponents：返回UIPickerView当前的列数"></a>1.    numberOfComponents：返回UIPickerView当前的列数</h2><pre><code>NSInteger num = _pickerView.numberOfComponents;
+NSLog( @&quot;%d&quot;, num);
+</code></pre><h2 id="2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。"><a href="#2-NSInteger-numberOfRowsInComponent-NSInteger-component-返回component列中有多少行。" class="headerlink" title="2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。"></a>2. - (NSInteger)numberOfRowsInComponent:(NSInteger)component; 返回component列中有多少行。</h2><pre><code>NSInteger numInCp = [_pickerView numberOfRowsInComponent:0];
+NSLog(@&quot;%d&quot;,numInCp);
+</code></pre><h2 id="3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。"><a href="#3-CGSize-rowSizeForComponent-NSInteger-component-返回component中一行的尺寸。" class="headerlink" title="3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。"></a>3. -  (CGSize)rowSizeForComponent:(NSInteger)component; 返回component中一行的尺寸。</h2><pre><code>CGSize size = [_pickerView rowSizeForComponent:0];
+NSLog(@&quot;%@&quot;, NSStringFromCGSize(size));
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/1.png" alt="1"></p>
+<h2 id="4-delegate："><a href="#4-delegate：" class="headerlink" title="4.    delegate："></a>4.    delegate：</h2><p>###4.1 设置UIPickerView代理</p>
+<pre><code>_pickerView.delegate = self;
+// 设置UIPickView每行显示的内容
+</code></pre><p>###4.1</p>
+<pre><code> - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+&#123;
+    return @&quot;showData&quot;;
+&#125;
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/2.png" alt="2"></p>
+<h2 id="4-2"><a href="#4-2" class="headerlink" title="4.2    "></a>4.2    </h2><pre><code>- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view;
+
+// 返回一个视图，用来设置pickerView的每行显示的内容。
+-(UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view
+&#123;
+    UIView *myView=[[UIView alloc]init];
+    myView.backgroundColor = [UIColor redColor];
+    return myView;
+&#125;
+</code></pre><p>效果：</p>
+<p><img src="http://qn.heyim.top/image/16042702/3.png" alt="3"></p>
+<h2 id="5-dataSource：数据源"><a href="#5-dataSource：数据源" class="headerlink" title="5.    dataSource：数据源"></a>5.    dataSource：数据源</h2><pre><code>#pragma mark  - dataSource method
+// 设置每列显示3行
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+&#123;
+    return 3;
+&#125;
+// 设置显示2列
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+&#123;
+    return 2; 
+&#125;
+</code></pre><h2 id="6-showsSelectionIndicator：是否显示指示器，默认为NO"><a href="#6-showsSelectionIndicator：是否显示指示器，默认为NO" class="headerlink" title="6. showsSelectionIndicator：是否显示指示器，默认为NO  "></a>6. showsSelectionIndicator：是否显示指示器，默认为NO  </h2><pre><code>_pickerView.showsSelectionIndicator = NO;
+</code></pre><p><img src="http://qn.heyim.top/image/16042702/4.png" alt="4"></p>
+<p>注意：设置UIPickerView的行数与列数需要设置数据源，遵守UIPickerViewDataSource，设置UIPickerView的内容需要设置代理，并且遵守代理方法UIPickerViewDelegate。</p>
+<h2 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h2><pre><code>-(void)pickerView:(UIPickerView*)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component;
+</code></pre><p>当点击UIPickerView的某一列中某一行的时候，就会调用这个方法。</p>
+<h2 id="8-返回第component列每一行的高度"><a href="#8-返回第component列每一行的高度" class="headerlink" title="8. 返回第component列每一行的高度"></a>8. 返回第component列每一行的高度</h2><pre><code>- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component;
+</code></pre><h2 id="9-刷新某一列的数据"><a href="#9-刷新某一列的数据" class="headerlink" title="9.刷新某一列的数据"></a>9.刷新某一列的数据</h2><p>一旦调用了这个方法，就会重新给数据源发送消息计算这列的行数、重新给代理发送消息获得这列的内容</p>
+<pre><code>[pickerView reloadComponent:1];
+</code></pre><h2 id="10-刷新所有列的数据"><a href="#10-刷新所有列的数据" class="headerlink" title="10. 刷新所有列的数据 "></a>10. 刷新所有列的数据 </h2><pre><code>- (void)reloadAllComponents;
+</code></pre><h2 id="11-返回选中的是第component列的第几行。"><a href="#11-返回选中的是第component列的第几行。" class="headerlink" title="11. 返回选中的是第component列的第几行。"></a>11. 返回选中的是第component列的第几行。</h2><pre><code>-(NSInteger)selectedRowInComponent:(NSInteger)component;                                   
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-14-Cocoa-Touch-UIPicker/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">iOS开发指南-Objective—C基础-13-Cocoa-Touch-UIDatePicker</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/" class="archive-article-date">
+  	<time datetime="2016-04-27T14:09:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIDatePicker-日期选择器"><a href="#UIDatePicker-日期选择器" class="headerlink" title="UIDatePicker 日期选择器"></a>UIDatePicker 日期选择器</h1><h2 id="1-Locale"><a href="#1-Locale" class="headerlink" title="1.    Locale"></a>1.    Locale</h2><p>设置DatePicker的地区,即设置DatePicker显示的语言。</p>
+<pre><code>// 1.跟踪所有可用的地区，取出想要的地区
+    NSLog(@&quot;%@&quot;, [NSLocale availableLocaleIdentifiers]);
+
+// 2. 设置日期选择控件的地区
+[datePicker setLocale:[[NSLocale
+alloc]initWithLocaleIdentifier:@&quot;zh_Hans_CN&quot;]];
+</code></pre><p>效果：</p>
+<p><img src="http://qn.heyim.top/image/16042701/1.png" alt="1"></p>
+<pre><code>// 2) 设置日期选择控件的地区
+[datePicker setLocale:[[NSLocale alloc]initWithLocaleIdentifier:@&quot;en_SC&quot;]];
+</code></pre><p>效果：</p>
+<p><img src="http://qn.heyim.top/image/16042701/2.png" alt="2"> </p>
+<h2 id="2-Calendar"><a href="#2-Calendar" class="headerlink" title="2.    Calendar"></a>2.    Calendar</h2><p>设置DatePicker的日历。<br>默认为当天。</p>
+<pre><code>[datePicker setCalendar:[NSCalendar currentCalendar]];
+</code></pre><h2 id="3-timeZone"><a href="#3-timeZone" class="headerlink" title="3.    timeZone"></a>3.    timeZone</h2><p>设置DatePicker的时区。</p>
+<pre><code>默认为设置为：[datePicker setTimeZone:[NSTimeZone defaultTimeZone]];
+</code></pre><h2 id="4-date"><a href="#4-date" class="headerlink" title="4.    date"></a>4.    date</h2><p>设置DatePicker的日期。</p>
+<pre><code>默认设置为: [datePicker setDate:[NSDate date]];
+</code></pre><h2 id="5-minimumDate"><a href="#5-minimumDate" class="headerlink" title="5.    minimumDate"></a>5.    minimumDate</h2><p>设置DatePicker的允许的最小日期。</p>
+<h2 id="6-maximumDate"><a href="#6-maximumDate" class="headerlink" title="6.    maximumDate"></a>6.    maximumDate</h2><p>设置DatePicker的允许的最大日期。</p>
+<h2 id="7-countDownDuration"><a href="#7-countDownDuration" class="headerlink" title="7.    countDownDuration"></a>7.    countDownDuration</h2><p>设置DatePicker的倒计时间.</p>
+<pre><code>// 1) 设置日期选择的模
+[self.datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
+
+// 2) 设置倒计时的时长
+// 注意：设置倒计时时长需要在确定模式之后指定
+// 倒计时的时长，以秒为单位
+[self.datePicker setCountDownDuration:10 * 60];
+</code></pre><p>效果：</p>
+<p><img src="http://qn.heyim.top/image/16042701/3.png" alt="3"></p>
+<h2 id="8-minuteInterval"><a href="#8-minuteInterval" class="headerlink" title="8.    minuteInterval"></a>8.    minuteInterval</h2><p>你可以将分钟表盘设置为以不同的时间间隔来显示分钟，前提是该间隔要能够让60整除。默认间隔是一分钟。如果要使用不同的间隔，需要改变 minuteInterval属性：</p>
+<pre><code>// 设置分钟间隔
+    datePicker.minuteInterval = 15;
+</code></pre><h2 id="9-datePickerMode"><a href="#9-datePickerMode" class="headerlink" title="9.    datePickerMode"></a>9.    datePickerMode</h2><p>9.1    </p>
+<pre><code>UIDatePickerModeTime,  // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
+显示小时，分钟和AM/PM,这个的名称是根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeTime];
+</code></pre><p>效果图：</p>
+<p><img src="http://qn.heyim.top/image/16042701/4.png" alt="4"> </p>
+<p>9.2    </p>
+<pre><code>UIDatePickerModeDate,           // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
+显示年月日，名称根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeDate];
+</code></pre><p>效果图： </p>
+<p><img src="http://qn.heyim.top/image/16042701/5.png" alt="5"></p>
+<p>9.3 默认是显示这种模式</p>
+<pre><code>UIDatePickerModeDateAndTime,    // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
+显示日期，小时，分钟，和AM/PM,名称是根据本地设置的
+[datePicker setDatePickerMode:UIDatePickerModeDateAndTime];      
+</code></pre><p>效果图：</p>
+<p><img src="http://qn.heyim.top/image/16042701/6.png" alt="6"></p>
+<p> 9.4  </p>
+<pre><code>UIDatePickerModeCountDownTimer  // Displays hour and minute (e.g. 1 | 53)
+显示小时和分钟
+[datePicker setDatePickerMode:UIDatePickerModeCountDownTimer];
+</code></pre><p><img src="http://qn.heyim.top/image/16042701/7.png" alt="7"></p>
+<h2 id="10-UIDatePicker使用教程一。"><a href="#10-UIDatePicker使用教程一。" class="headerlink" title="10.    UIDatePicker使用教程一。"></a>10.    UIDatePicker使用教程一。</h2><p>10.1初始化</p>
+<pre><code>// 不用设置宽高，因为它的宽高是固定的
+UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+</code></pre><p>10.2常用设置</p>
+<pre><code>// 设置区域为中国简体中文
+datePicker.locale = [[NSLocale alloc] 
+                            initWithLocaleIdentifier:@&quot;zh_CN&quot;];
+// 设置picker的显示模式：只显示日期
+datePicker.datePickerMode = UIDatePickerModeDate;
+</code></pre><p>10.3UIDatePicker需要监听值的改变</p>
+<pre><code>[datePicker addTarget:self action:@selector(dateChange:) 
+forControlEvents:UIControlEventValueChanged];
+</code></pre><p>11.UIDatePicker使用教程二。</p>
+<p>11.1日期范围</p>
+<p>你可以通过设置mininumDate 和 maxinumDate 属性，来指定使用的日期范围。如果用户试图滚动到超出这一范围的日期，表盘会回滚到最近的有效日期。两个方法都需要NSDate 对象作参数：</p>
+<pre><code>NSDate* minDate = [[NSDate alloc]initWithString:@&quot;1900-01-01 00:00:00 -0500&quot;];  
+NSDate* maxDate = [[NSDate alloc]initWithString:@&quot;2099-01-01 00:00:00 -0500&quot;];           
+datePicker.minimumDate = minDate;  
+datePicker.maximumDate = maxDate;
+</code></pre><p>11.2 如果两个日期范围属性中任何一个未被设置，则默认行为将会允许用户选择过去或未来的任意日期。这在某些情况下很有用处，比如，当选择生日时，可以是过去的任意日期，但终止与当前日期。如果你希望设置默认显示的日期，可以使用date属性：</p>
+<pre><code>datePicker.date = minDate;  
+</code></pre><p>11.3 此外，你还可以用 setDate 方法。如果选择了使用动画，则表盘会滚动到你指定的日期：</p>
+<pre><code>[ datePicker setDate:maxDate animated:YES];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-13-Cocoa-Touch-UIDatePicker/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-12-Cocoa-Touch-UITextView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">iOS开发指南-Objective—C基础-Cocoa-Touch-UITextView-12</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/" class="archive-article-date">
+  	<time datetime="2016-04-27T13:33:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UITextView-文本块"><a href="#UITextView-文本块" class="headerlink" title="UITextView 文本块"></a>UITextView 文本块</h1><h2 id="1-text-设置textView中文本"><a href="#1-text-设置textView中文本" class="headerlink" title="1.    text: 设置textView中文本"></a>1.    text: 设置textView中文本</h2><pre><code>_textView.text = @&quot;Now is the time for all good developers to come to serve their country.\n\nNow is the time for all good developers to come to serve their country.&quot;; // 设置它显示的内容
+</code></pre><h2 id="2-font-设置textView中文字的字体"><a href="#2-font-设置textView中文字的字体" class="headerlink" title="2.    font:设置textView中文字的字体"></a>2.    font:设置textView中文字的字体</h2><pre><code>_textView.font = [UIFont fontWithName:@&quot;Arial&quot; size:18.0]; // 设置字体名字和字体大小
+</code></pre><h2 id="3-textColor-设置textView中文本的颜色"><a href="#3-textColor-设置textView中文本的颜色" class="headerlink" title="3.    textColor:设置textView中文本的颜色"></a>3.    textColor:设置textView中文本的颜色</h2><pre><code>_textView.textColor = [UIColor blackColor]; // 设置textview里面的字体颜色
+</code></pre><h2 id="4-textAlignment-设置textView的文本的排列方式"><a href="#4-textAlignment-设置textView的文本的排列方式" class="headerlink" title="4.    textAlignment:设置textView的文本的排列方式"></a>4.    textAlignment:设置textView的文本的排列方式</h2><pre><code>_textView.textAlignment = NSTextAlignmentCenter; // textView中的文本排列，默认靠左
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/1.png" alt="1"></p>
+<h2 id="5-backgroundColor-设置textView的背景颜色"><a href="#5-backgroundColor-设置textView的背景颜色" class="headerlink" title="5.    backgroundColor:设置textView的背景颜色"></a>5.    backgroundColor:设置textView的背景颜色</h2><pre><code>_textView.backgroundColor = [UIColor grayColor]; // 设置浅灰色的背景色，默认为白色
+</code></pre><h2 id="6-delegate-设置代理"><a href="#6-delegate-设置代理" class="headerlink" title="6.    delegate:设置代理"></a>6.    delegate:设置代理</h2><pre><code>_textView.delegate = self; // 设置代理
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/2.png" alt="2"></p>
+<h2 id="7-editable-设置textView是否可被输入"><a href="#7-editable-设置textView是否可被输入" class="headerlink" title="7.    editable:设置textView是否可被输入"></a>7.    editable:设置textView是否可被输入</h2><pre><code>_textView.editable = NO; // textView是否可被输入，默认为YES
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/3.png" alt="3"></p>
+<h2 id="8-attributedText-设置默认插入textView的文字"><a href="#8-attributedText-设置默认插入textView的文字" class="headerlink" title="8.    attributedText:设置默认插入textView的文字"></a>8.    attributedText:设置默认插入textView的文字</h2><pre><code>_textView.attributedText = [[NSAttributedString alloc]initWithString:@&quot;attributedText__-abc&quot;]; // 可以方便将文本插入到UITextView中。
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/4.png" alt="4"></p>
+<h2 id="9-inputView-设置从底部弹出的视图"><a href="#9-inputView-设置从底部弹出的视图" class="headerlink" title="9.    inputView:设置从底部弹出的视图"></a>9.    inputView:设置从底部弹出的视图</h2><pre><code>_textView.inputView = [[UIDatePicker alloc]init]; // 弹出视图，默认为键盘
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/5.png" alt="5"></p>
+<h2 id="10-inputAccessoryView-设置弹出视图上方的辅助视图"><a href="#10-inputAccessoryView-设置弹出视图上方的辅助视图" class="headerlink" title="10.    inputAccessoryView:设置弹出视图上方的辅助视图"></a>10.    inputAccessoryView:设置弹出视图上方的辅助视图</h2><pre><code>_textView.inputAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure]; // 弹出视图上方的辅助视图
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/6.png" alt="6"></p>
+<h2 id="11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"><a href="#11-clearsOnInsertion-设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本" class="headerlink" title="11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本"></a>11.    clearsOnInsertion:设置textView获得焦点，在用户使用虚拟键盘进行输入时，清除之前的文本</h2><pre><code>_textView.clearsOnInsertion = YES; // clearsOnInsertion，默认为NO
+</code></pre><p><img src="http://qn.heyim.xyz/image/160427/7.png" alt="7"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-12-Cocoa-Touch-UITextView/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">iOS开发指南-Objective—C基础-11-Cocoa-Touch-UITextField</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/" class="archive-article-date">
+  	<time datetime="2016-04-27T13:02:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UITextField-文本框"><a href="#UITextField-文本框" class="headerlink" title="UITextField 文本框"></a>UITextField 文本框</h1><h2 id="enablesReturnKeyAutomatically"><a href="#enablesReturnKeyAutomatically" class="headerlink" title="enablesReturnKeyAutomatically"></a>enablesReturnKeyAutomatically</h2><p>默认为No,如果设置为Yes,文本框中没有输入任何字符的话，右下角的返回按钮是disabled的。</p>
+<h2 id="borderStyle"><a href="#borderStyle" class="headerlink" title="borderStyle"></a>borderStyle</h2><p>设置边框样式，只有设置了才会显示边框样式　</p>
+<pre><code>text.borderStyle = UITextBorderStyleRoundedRect;
+　typedef enum &#123;
+  UITextBorderStyleNone, 
+  UITextBorderStyleLine,
+  UITextBorderStyleBezel,
+  UITextBorderStyleRoundedRect  
+&#125; UITextBorderStyle;                                                      
+</code></pre><h2 id="backgroundColor"><a href="#backgroundColor" class="headerlink" title="backgroundColor　"></a>backgroundColor　</h2><p>设置输入框的背景颜色，此时设置为白色 如果使用了自定义的背景图片边框会被忽略掉　</p>
+<pre><code>text.backgroundColor = [UIColor whiteColor];
+</code></pre><h2 id="background"><a href="#background" class="headerlink" title="background"></a>background</h2><p>设置背景</p>
+<pre><code>text.background = [UIImage imageNamed:@&quot;dd.png&quot;];//UITextField 的背景，注意只有UITextBorderStyleNone的时候改属性有效
+</code></pre><p>设置enable为no时，textfield的背景 </p>
+<pre><code>text.disabledBackground = [UIImage imageNamed:@&quot;cc.png&quot;];
+</code></pre><h2 id="placeholder"><a href="#placeholder" class="headerlink" title="placeholder"></a>placeholder</h2><p>当输入框没有内容时， 提示内容为password</p>
+<pre><code>text.placeholder = @&quot;password&quot;;
+</code></pre><h2 id="font"><a href="#font" class="headerlink" title="font"></a>font</h2><p>设置输入框内容的字体样式和大小</p>
+<pre><code>text.font = [UIFont fontWithName:@&quot;Arial&quot; size:20.0f];
+</code></pre><h2 id="textColor"><a href="#textColor" class="headerlink" title="textColor"></a>textColor</h2><p>设置字体颜色</p>
+<pre><code>text.textColor = [UIColor redColor];
+</code></pre><h2 id="clearButtonMode"><a href="#clearButtonMode" class="headerlink" title="clearButtonMode"></a>clearButtonMode</h2><p>输入框中是否有个叉号，在什么时候显示，用于一次性删除输入框中的内容</p>
+<pre><code>text.clearButtonMode = UITextFieldViewModeAlways; 
+typedef enum &#123;
+    UITextFieldViewModeNever,　重不出现
+    UITextFieldViewModeWhileEditing, 编辑时出现
+    UITextFieldViewModeUnlessEditing,　除了编辑外都出现
+    UITextFieldViewModeAlways 　一直出现
+&#125; UITextFieldViewMode;
+</code></pre><h2 id="text"><a href="#text" class="headerlink" title="text"></a>text</h2><p>输入框中一开始就有的文字</p>
+<pre><code>text.text = @&quot;一开始就在输入框的文字&quot;;
+</code></pre><h2 id="secureTextEntry"><a href="#secureTextEntry" class="headerlink" title="secureTextEntry"></a>secureTextEntry</h2><p>每输入一个字符就变成点 用来输入密码时，设置这个属性。</p>
+<pre><code>text.secureTextEntry = YES;
+</code></pre><h2 id="autocorrectionType"><a href="#autocorrectionType" class="headerlink" title="autocorrectionType"></a>autocorrectionType</h2><p>是否纠错</p>
+<pre><code>text.autocorrectionType = UITextAutocorrectionTypeNo;
+typedef enum &#123;
+    UITextAutocorrectionTypeDefault, 默认
+    UITextAutocorrectionTypeNo, 　不自动纠错
+    UITextAutocorrectionTypeYes,　自动纠错
+&#125; UITextAutocorrectionType;
+</code></pre><h2 id="clearsOnBeginEditing"><a href="#clearsOnBeginEditing" class="headerlink" title="clearsOnBeginEditing"></a>clearsOnBeginEditing</h2><p>再次编辑就清空</p>
+<pre><code>text.clearsOnBeginEditing = YES; 
+</code></pre><h2 id="textAlignment"><a href="#textAlignment" class="headerlink" title="textAlignment"></a>textAlignment</h2><p>内容对齐方式</p>
+<pre><code>text.textAlignment = UITextAlignmentLeft;
+</code></pre><h2 id="contentVerticalAlignment"><a href="#contentVerticalAlignment" class="headerlink" title="contentVerticalAlignment"></a>contentVerticalAlignment</h2><p>内容的垂直对齐方式  UITextField继承自UIControl,此类中有一个属性contentVerticalAlignment</p>
+<pre><code>text.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+</code></pre><h2 id="adjustsFontSizeToFitWidth"><a href="#adjustsFontSizeToFitWidth" class="headerlink" title="adjustsFontSizeToFitWidth"></a>adjustsFontSizeToFitWidth</h2><p>设置为YES时文本会自动缩小以适应文本窗口大小.默认是保持原来大小,而让长文本滚动　</p>
+<pre><code>textFied.adjustsFontSizeToFitWidth = YES;
+//设置自动缩小显示的最小字体大小
+text.minimumFontSize = 20;
+</code></pre><h2 id="keyboardType"><a href="#keyboardType" class="headerlink" title="keyboardType"></a>keyboardType</h2><p>设置键盘的样式</p>
+<pre><code>text.keyboardType = UIKeyboardTypeNumberPad;
+typedef enum &#123;
+    UIKeyboardTypeDefault,     　默认键盘，支持所有字符         
+    UIKeyboardTypeASCIICapable,　支持ASCII的默认键盘
+    UIKeyboardTypeNumbersAndPunctuation,　标准电话键盘，支持＋＊＃字符
+    UIKeyboardTypeURL,            URL键盘，支持.com按钮 只支持URL字符
+    UIKeyboardTypeNumberPad,            　数字键盘
+    UIKeyboardTypePhonePad,　 　电话键盘
+    UIKeyboardTypeNamePhonePad, 　电话键盘，也支持输入人名
+    UIKeyboardTypeEmailAddress, 　用于输入电子 邮件地址的键盘     
+    UIKeyboardTypeDecimalPad,   　数字键盘 有数字和小数点
+    UIKeyboardTypeTwitter,      　优化的键盘，方便输入@、#字符
+    UIKeyboardTypeAlphabet = UIKeyboardTypeASCIICapable, 
+&#125; UIKeyboardType;
+</code></pre><h2 id="autocapitalizationType"><a href="#autocapitalizationType" class="headerlink" title="autocapitalizationType"></a>autocapitalizationType</h2><p>首字母是否大写</p>
+<pre><code>text.autocapitalizationType = UITextAutocapitalizationTypeNone;
+typedef enum &#123;
+    UITextAutocapitalizationTypeNone, 不自动大写
+    UITextAutocapitalizationTypeWords,　单词首字母大写
+    UITextAutocapitalizationTypeSentences,　句子的首字母大写
+    UITextAutocapitalizationTypeAllCharacters, 所有字母都大写
+&#125; UITextAutocapitalizationType;
+</code></pre><h2 id="returnKeyType"><a href="#returnKeyType" class="headerlink" title="returnKeyType"></a>returnKeyType</h2><p>return键变成什么键</p>
+<pre><code>text.returnKeyType =UIReturnKeyDone;
+typedef enum &#123;
+    UIReturnKeyDefault, 默认 灰色按钮，标有Return
+    UIReturnKeyGo,    　标有Go的蓝色按钮
+    UIReturnKeyGoogle,标有Google的蓝色按钮，用语搜索
+    UIReturnKeyJoin,标有Join的蓝色按钮
+    UIReturnKeyNext,标有Next的蓝色按钮
+    UIReturnKeyRoute,标有Route的蓝色按钮
+    UIReturnKeySearch,标有Search的蓝色按钮
+    UIReturnKeySend,标有Send的蓝色按钮
+    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
+    UIReturnKeyYahoo,标有Yahoo的蓝色按钮
+    UIReturnKeyEmergencyCall, 紧急呼叫按钮
+&#125; UIReturnKeyType;
+</code></pre><h2 id="keyboardAppearance"><a href="#keyboardAppearance" class="headerlink" title="keyboardAppearance"></a>keyboardAppearance</h2><p>键盘外观</p>
+<pre><code>textView.keyboardAppearance=UIKeyboardAppearanceDefault；
+typedef enum &#123;
+UIKeyboardAppearanceDefault， 默认外观，浅灰色
+UIKeyboardAppearanceAlert，　 　深灰 石墨色
+&#125; UIReturnKeyType;
+</code></pre><h2 id="delegate"><a href="#delegate" class="headerlink" title="delegate"></a>delegate</h2><p>设置代理 用于实现协议</p>
+<pre><code>text.delegate = self;
+</code></pre><h2 id="rightView"><a href="#rightView" class="headerlink" title="rightView"></a>rightView</h2><p>最右侧加图片是以下代码　 左侧类似</p>
+<pre><code>UIImageView *image=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@&quot;right.png&quot;]];
+text.rightView=image;
+text.rightViewMode = UITextFieldViewModeAlways; 
+typedef enum &#123;
+    UITextFieldViewModeNever,
+    UITextFieldViewModeWhileEditing,
+    UITextFieldViewModeUnlessEditing,
+    UITextFieldViewModeAlways
+&#125; UITextFieldViewMode;
+</code></pre><h2 id="editing"><a href="#editing" class="headerlink" title="editing"></a>editing</h2><p>是否允许编辑。</p>
+<h2 id="界面重写绘制行为"><a href="#界面重写绘制行为" class="headerlink" title="界面重写绘制行为"></a>界面重写绘制行为</h2><p>除了UITextField对象的风格选项，你还可以定制化UITextField对象，为他添加许多不同的重写方法，来改变文本字段的显示行为。这些方法都会返回一个CGRect结构，制定了文本字段每个部件的边界范围。以下方法都可以重写。</p>
+<pre><code>– textRectForBounds:　　  　//重写来重置文字区域
+– drawTextInRect:　　      　//改变绘文字属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
+– placeholderRectForBounds:　　//重写来重置占位符区域
+– drawPlaceholderInRect:　　//重写改变绘制占位符属性.重写时调用super可以按默认图形属性绘制,若自己完全重写绘制函数，就不用调用super了.
+– borderRectForBounds:　　//重写来重置边缘区域
+– editingRectForBounds:　　//重写来重置编辑区域
+– clearButtonRectForBounds:　　//重写来重置clearButton位置,改变size可能导致button的图片失真
+– leftViewRectForBounds:
+– rightViewRectForBounds:
+</code></pre><h2 id="调整键盘"><a href="#调整键盘" class="headerlink" title="调整键盘"></a>调整键盘</h2><pre><code>inputView //代替标准的系统键盘
+inputAccessoryView //编辑时显示在系统键盘或用户自定义的inputView上面的视图
+</code></pre><h2 id="delegate-1"><a href="#delegate-1" class="headerlink" title="delegate"></a>delegate</h2><p>类要遵守UITextFieldDelegate协议</p>
+<pre><code>text.delegate = self;　声明text的代理是我，我会去实现把键盘往下收的方法 这个方法在UITextFieldDelegate里所以我们要遵守UITextFieldDelegate这个协议
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+&#123;
+    [text resignFirstResponder];    //主要是[receiver resignFirstResponder]在哪调用就能把receiver（text）对应的键盘往下收
+return YES;
+&#125;
+
+代理方法 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField&#123;　
+　　
+//返回一个BOOL值，YES代表允许编辑，NO不允许编辑.　
+    return YES;　
+&#125;　
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField&#123;　
+ //开始编辑时触发，文本字段将成为first responder　
+&#125;　
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField&#123;　
+//返回BOOL值，指定是否允许文本字段结束编辑，当编辑结束，文本字段会让出first responder　
+　 //要想在用户结束编辑时阻止文本字段消失，可以返回NO　，返回NO，点击键盘的返回按钮会无效果。
+　 //这对一些文本字段必须始终保持活跃状态的程序很有用，比如即时消息　
+　 
+    return NO;　
+&#125;　
+- (void)textFieldDidEndEditing:(UITextField *)textField;&#123;
+
+&#125;// 上面返回YES后执行;上面返回NO时有可能强制执行(e.g. view removed from window)
+
+- (BOOL)textField:(UITextField*)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string&#123;　
+//当用户使用自动更正功能，把输入的文字修改为推荐的文字时，就会调用这个方法。　
+//这对于想要加入撤销选项的应用程序特别有用　
+//可以跟踪字段内所做的最后一次修改，也可以对所有编辑做日志记录,用作审计用途。　　 
+//要防止文字被改变可以返回NO　
+//这个方法的参数中有一个NSRange对象，指明了被改变文字的位置，建议修改的文本也在其中　
+
+　   return YES;　
+&#125;　
+
+- (BOOL)textFieldShouldClear:(UITextField *)textField&#123;　
+
+//返回一个BOOL值指明是否允许根据用户请求清除内容　
+//可以设置在特定条件下才允许清除内容　
+
+　   return YES;　
+&#125;　
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField&#123;　
+
+//返回一个BOOL值，指明是否允许在按下回车键时结束编辑　
+ //如果允许要调用resignFirstResponder 方法，这回导致结束编辑，而键盘会被收起[textField resignFirstResponder];
+//查一下resign这个单词的意思就明白这个方法了　
+　   return YES;　
+&#125;　
+</code></pre><h2 id="通知"><a href="#通知" class="headerlink" title="通知"></a>通知</h2><p>UITextField派生自UIControl，所以UIControl类中的通知系统在文本字段中也可以使用。除了UIControl类的标准事件，你还可以使用下列UITextField类特有的事件</p>
+<pre><code>UITextFieldTextDidBeginEditingNotification
+UITextFieldTextDidChangeNotification
+UITextFieldTextDidEndEditingNotification
+</code></pre><p>当文本字段退出编辑模式时触发。通知的object属性存储了最终文本。</p>
+<p>因为文本字段要使用键盘输入文字，所以下面这些事件发生时，也会发送动作通知</p>
+<pre><code>UIKeyboardWillShowNotification 　//键盘显示之前发送
+UIKeyboardDidShowNotification  　//键盘显示之后发送
+UIKeyboardWillHideNotification 　//键盘隐藏之前发送
+UIKeyboardDidHideNotification  　//键盘隐藏之后发送
+</code></pre><h2 id="Stroyboard中："><a href="#Stroyboard中：" class="headerlink" title="Stroyboard中："></a>Stroyboard中：</h2><pre><code>1、Text ：设置文本框的默认文本。
+2、Placeholder ： 可以在文本框中显示灰色的字，用于提示用户应该在这个文本框输入什么内容。当这个文本框中输入了数据时，用于提示的灰色的字将会自动消失。
+3、Background ：
+4、Disabled ： 若选中此项，用户将不能更改文本框内容。
+5、接下来是三个按钮，用来设置对齐方式。
+6、Border Style ： 选择边界风格。
+7、Clear Button ： 这是一个下拉菜单，你可以选择清除按钮什么时候出现，所谓清除按钮就是出一个现在文本框右边的小 X ，你可以有以下选择：
+    7.1 Never appears ： 从不出现
+    7.2 Appears while editing ： 编辑时出现
+    7.3 Appears unless editing ： 
+    7.4 Is always visible ： 总是可见
+8、Clear when editing begins ： 若选中此项，则当开始编辑这个文本框时，文本框中之前的内容会被清除掉。比如，你现在这个文本框 A 中输入了 &quot;What&quot; ，之后去编辑文本框 B，若再回来编辑文本框 A ，则其中的 &quot;What&quot; 会被立即清除。
+9、Text Color ： 设置文本框中文本的颜色。
+10、Font ： 设置文本的字体与字号。
+11、Min Font Size ： 设置文本框可以显示的最小字体（不过我感觉没什么用）
+12、Adjust To Fit ： 指定当文本框尺寸减小时，文本框中的文本是否也要缩小。选择它，可以使得全部文本都可见，即使文本很长。但是这个选项要跟 Min Font Size 配合使用，文本再缩小，也不会小于设定的 Min Font Size 。
+接下来的部分用于设置键盘如何显示。
+13、Captitalization ： 设置大写。下拉菜单中有四个选项：
+    13.1 None ： 不设置大写
+    13.2 Words ： 每个单词首字母大写，这里的单词指的是以空格分开的字符串
+    13.3 Sentances ： 每个句子的第一个字母大写，这里的句子是以句号加空格分开的字符串
+    13.4 All Characters ： 所以字母大写
+14、Correction ： 检查拼写，默认是 YES 。
+15、Keyboard ： 选择键盘类型，比如全数字、字母和数字等。
+16、Appearance：
+17、Return Key ： 选择返回键，可以选择 Search 、 Return 、 Done 等。
+18、Auto-enable Return Key ： 如选择此项，则只有至少在文本框输入一个字符后键盘的返回键才有效。
+19、Secure ： 当你的文本框用作密码输入框时，可以选择这个选项，此时，字符显示为星号。
+20.Alignment Horizontal 水平对齐方式
+21.Alignment Vertical 垂直对齐方式
+22.用于返回一个BOOL值　输入框是否 Selected(选中) Enabled(可用) Highlighted(高亮)
+</code></pre><h2 id="UITextField实例一-：-UITextField限制字符-只为数字"><a href="#UITextField实例一-：-UITextField限制字符-只为数字" class="headerlink" title="UITextField实例一 ： UITextField限制字符 (只为数字)"></a>UITextField实例一 ： UITextField限制字符 (只为数字)</h2><p>ios代码  </p>
+<pre><code>#define ALPHA @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz &quot;  
+#define NUMBERS @&quot;0123456789n&quot;  
+#define ALPHANUM @&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 &quot;  
+#define NUMBERSPERIOD @&quot;0123456789.&quot;  
+
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string  
+&#123;  
+    NSCharacterSet *cs;  
+    cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERSPERIOD ] invertedSet]; //invertedSet 方法是去反字符,把所有的除了数字的字符都找出来  
+
+    NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@&quot;&quot;];  //componentsSeparatedByCharactersInSet 方法是把输入框输入的字符string 根据cs中字符一个一个去除cs字符并分割成单字符并转化为 NSArray, 然后componentsJoinedByString 是把NSArray 的字符通过 &quot;&quot;无间隔连接成一个NSString字符 赋给filtered.就是只剩数字了.  
+
+
+    BOOL basicTest = [string isEqualToString:filtered];  
+    if(!basicTest)   
+      &#123;  
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@&quot;提示&quot;  
+                                                            message:@&quot;请输入数字&quot;  
+                                                           delegate:nil  
+                                                  cancelButtonTitle:@&quot;确定&quot;  
+                                                  otherButtonTitles:nil];  
+
+        [alert show];  
+        [alert release];  
+        return NO;  
+    &#125;    
+    // Add any predicate testing here  
+    return basicTest;  
+&#125;  
+
+#define NUMBERS @”0123456789n” （这个代表可以输入数字和换行，请注意这个n，如果不写这个，Done按键将不会触发，如果用在SearchBar中，将会不触发Search事件，因为你自己限制不让输入n，好惨，我在项目中才发现的。） 所以，如果你要限制输入英文和数字的话，就可以把这个定义为： #define kAlphaNum @”ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789″。 当然，你还可以在以上方法return之前，做一提示的，比如提示用户只能输入数字之类的。如果你觉得有需要的话。
+</code></pre><h2 id="实例：限制只能输入一定长度的字符"><a href="#实例：限制只能输入一定长度的字符" class="headerlink" title="实例：限制只能输入一定长度的字符"></a>实例：限制只能输入一定长度的字符</h2><p>ios代码  </p>
+<pre><code>- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;   
+&#123;　
+//string就是此时输入的那个字符 textField就是此时正在输入的那个输入框 返回YES就是可以改变输入框的值 NO相反  
+    if ([string isEqualToString:@&quot;n&quot;])　//按回车可以改变  
+    &#123;   
+        return YES;   
+    &#125;   
+
+    NSString * toBeString = [textField.text stringByReplacingCharactersInRange:range withString:string]; //得到输入框的内容  
+
+    if (self.myTextField == textField)　//判断是否时我们想要限定的那个输入框  
+    &#123;   
+        if ([toBeString length] &gt; 20) &#123; //如果输入框内容大于20则弹出警告  
+  textField.text = [toBeString substringToIndex:20];   
+            UIAlertView *alert = [[[UIAlertView alloc] initWithTitle:nil message:@&quot;超过最大字数不能输入了&quot; delegate:nil cancelButtonTitle:@&quot;Ok&quot; otherButtonTitles:nil, nil] autorelease];   
+            [alert show];   
+            return NO;   
+        &#125;   
+    &#125;   
+    return YES;   
+&#125;  
+</code></pre><h2 id="UITextField实例二："><a href="#UITextField实例二：" class="headerlink" title="UITextField实例二："></a>UITextField实例二：</h2><p>在UISearchBar中,当输入信息改变时,它就会调用textDidChange函数,但是UITextField没有这个功能,唯一与这个类似的shouldChangeCharactersInRange函数,也是在文件还没有改变前就调用了,而不是在改变后调用,要想实现这个功能,我们可以增加事件监听的方式.先来看看objective-c提供的接口:</p>
+<p>ios代码  </p>
+<pre><code>// add target/action for particular event. you can call this multiple times and you can specify multiple target/actions for a particular event. 
+</code></pre><p>给特殊事件添加目标或者方法，你能够调用这个方法多次，给特殊事件指定很多目标或者方法</p>
+<pre><code>// passing in nil as the target goes up the responder chain. The action may optionally include the sender and the event in that order  
+</code></pre><p>给target传递空，会建立响应链，在这行命令，方法可以选择包含方法发送者和事件两个参数。</p>
+<pre><code>// the action cannot be NULL.   方法不能为空。
+- (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;  
+</code></pre><p>怎么去使用这个接口呢?主要分为两步,第一步就是在UItextField组件中增加对文件编辑改变时事件的监听,然后再实现监听器监听到事件时,所调用的方法.</p>
+<p>ios代码  </p>
+<pre><code>//第一步,对组件增加监听器 可以在viewDidLoad 方法中加入 textField 为你自定义输入框的名称  
+[textField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];  
+
+//第二步,实现回调函数  
+- (void) textFieldDidChange:(id) sender &#123;  
+    UITextField *_field = (UITextField *)sender;  
+    NSLog(@&quot;%@&quot;,[_field text]);  
+&#125;  
+</code></pre><h2 id="UITextField实例三："><a href="#UITextField实例三：" class="headerlink" title="UITextField实例三："></a>UITextField实例三：</h2><p>UITextField控件处理键盘弹出时遮住输入框的问题<br>打开键盘卷动文本字段<br>默认情况下打开键盘会遮住下面的view，带来一点点困扰，不过这不是什么大问题，我们使用点小小的手段就可以解决。</p>
+<p>首先我们要知道键盘的高度是固定不变的，不过在IOS 5.0 以后键盘的高度貌似不是216了，不过不要紧，我们调整调整就是了：</p>
+<pre><code>                 iPhone    ipad
+竖屏(portrait)    216        264
+横屏(landScape)    140        352
+</code></pre><p>我们采取的方法就是在textField(有可能是其他控件)接收到弹出键盘事件时把self.view整体上移216px了(我们就以iPhone竖屏为例了)。<br>首先我们要设置textField的代理，我们就设为当前控制器了。</p>
+<p>ios代码  </p>
+<pre><code>textField,delegate=self;  
+</code></pre><p>然后我们在当前控制器实现下面两个委托方法：</p>
+<p>ios代码  </p>
+<pre><code>- (void)textFieldDidBeginEditing:(UITextField *)textField  
+&#123; //当点触textField内部，开始编辑都会调用这个方法。textField将成为first responder   
+       NSTimeInterval animationDuration = 0.30f;      
+      CGRect frame = self.view.frame;  
+      frame.origin.y -=216;  
+      frame.size.height +=216;  
+      self.view.frame = frame;  
+       [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
+       [UIView setAnimationDuration:animationDuration];  
+       self.view.frame = frame;                  
+       [UIView commitAnimations];                  
+&#125;  
+</code></pre><p>ios代码</p>
+<pre><code>- (BOOL)textFieldShouldReturn:(UITextField *)textField   
+&#123;//当用户按下ruturn，把焦点从textField移开那么键盘就会消失了  
+        NSTimeInterval animationDuration = 0.30f;  
+        CGRect frame = self.view.frame;      
+        frame.origin.y +=216;        
+        frame.size. height -=216;     
+        self.view.frame = frame;  
+    //self.view移回原位置    
+    [UIView beginAnimations:@&quot;ResizeView&quot; context:nil];  
+    [UIView setAnimationDuration:animationDuration];  
+        self.view.frame = frame;                  
+        [UIView commitAnimations];  
+        [textField resignFirstResponder];     
+&#125;     
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-11-Cocoa-Touch-UITextField/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">iOS开发指南-Objective—C基础-10-Cocoa-Touch UIStepper</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/" class="archive-article-date">
+  	<time datetime="2016-04-27T12:56:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UIStepper-滑块"><a href="#UIStepper-滑块" class="headerlink" title="UIStepper 滑块"></a>UIStepper 滑块</h1><h2 id="设置控制器值是否连续触发变化"><a href="#设置控制器值是否连续触发变化" class="headerlink" title="设置控制器值是否连续触发变化"></a>设置控制器值是否连续触发变化</h2><pre><code>@property(nonatomic,getter=isContinuous) BOOL continuous;
+若设置为YES，则长按会连续触发变化，若设置为NO，只有在按击结束后，才会触发。
+</code></pre><h2 id="设置长按是否一直触发变化"><a href="#设置长按是否一直触发变化" class="headerlink" title="设置长按是否一直触发变化"></a>设置长按是否一直触发变化</h2><pre><code>@property(nonatomic) BOOL autorepeat; 
+若设置为YES，则长按值会一直改变，若设置为NO，则一次点击只会改变一次值
+</code></pre><h2 id="设置控制器的值是否循环-到达边界后，重头开始，默认为NO"><a href="#设置控制器的值是否循环-到达边界后，重头开始，默认为NO" class="headerlink" title="设置控制器的值是否循环(到达边界后，重头开始，默认为NO)"></a>设置控制器的值是否循环(到达边界后，重头开始，默认为NO)</h2><pre><code>@property(nonatomic) BOOL wraps;
+</code></pre><h2 id="设置控制器的值"><a href="#设置控制器的值" class="headerlink" title="设置控制器的值"></a>设置控制器的值</h2><pre><code>@property(nonatomic) double value; 
+</code></pre><h2 id="设置控制器的最大值和最小值"><a href="#设置控制器的最大值和最小值" class="headerlink" title="设置控制器的最大值和最小值"></a>设置控制器的最大值和最小值</h2><pre><code>@property(nonatomic) double minimumValue;//默认为0
+@property(nonatomic) double maximumValue; //默认为100
+</code></pre><h2 id="设置控制器的步长"><a href="#设置控制器的步长" class="headerlink" title="设置控制器的步长"></a>设置控制器的步长</h2><pre><code>@property(nonatomic) double stepValue; 
+</code></pre><h2 id="设置控制器风格颜色"><a href="#设置控制器风格颜色" class="headerlink" title="设置控制器风格颜色"></a>设置控制器风格颜色</h2><pre><code>@property(nonatomic,retain) UIColor *tintColor;
+</code></pre><h2 id="设置控制器背景图片"><a href="#设置控制器背景图片" class="headerlink" title="设置控制器背景图片"></a>设置控制器背景图片</h2><pre><code>- (void)setBackgroundImage:(UIImage*)image forState:(UIControlState)state;
+</code></pre><h2 id="获取背景图片"><a href="#获取背景图片" class="headerlink" title="获取背景图片"></a>获取背景图片</h2><pre><code>- (UIImage*)backgroundImageForState:(UIControlState)state;
+</code></pre><h2 id="通过左右按钮的状态设置分割线的图片"><a href="#通过左右按钮的状态设置分割线的图片" class="headerlink" title="通过左右按钮的状态设置分割线的图片"></a>通过左右按钮的状态设置分割线的图片</h2><pre><code>- (void)setDividerImage:(UIImage*)image forLeftSegmentState:(UIControlState)leftState rightSegmentState:(UIControlState)rightState;
+</code></pre><h2 id="获取分割线图片"><a href="#获取分割线图片" class="headerlink" title="获取分割线图片"></a>获取分割线图片</h2><pre><code>- (UIImage*)dividerImageForLeftSegmentState:(UIControlState)state rightSegmentState:(UIControlState)state;
+</code></pre><h2 id="设置和获取加号按钮的图片"><a href="#设置和获取加号按钮的图片" class="headerlink" title="设置和获取加号按钮的图片"></a>设置和获取加号按钮的图片</h2><pre><code>- (void)setIncrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)incrementImageForState:(UIControlState)state;
+</code></pre><h2 id="设置和获取减号按钮的图片"><a href="#设置和获取减号按钮的图片" class="headerlink" title="设置和获取减号按钮的图片"></a>设置和获取减号按钮的图片</h2><pre><code>- (void)setDecrementImage:(UIImage *)image forState:(UIControlState)state;
+- (UIImage *)decrementImageForState:(UIControlState)state;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/27/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-10-Cocoa-Touch%20UIStepper/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
   
     <article id="post-iOS开发指南-Objective—C基础-09-Cocoa-Touch UISlider" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -831,1564 +1666,9 @@ UIBaselineAdjustmentNone,  文本最低端与label中线对齐。
 
 
   
-    <article id="post-iOS开发指南-Objective—C基础-04-Cocoa-Touch 类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-04-Cocoa-Touch%20%E7%B1%BB/">iOS开发指南-Objective—C基础-Cocoa-Touch 类-04</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-04-Cocoa-Touch%20%E7%B1%BB/" class="archive-article-date">
-  	<time datetime="2016-04-25T13:30:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps:写这么多基础类的方法，其实就是以后方便查找和调用。</em></p>
-<h2 id="NSNumber-数字"><a href="#NSNumber-数字" class="headerlink" title="NSNumber 数字"></a>NSNumber 数字</h2><p>如果需要整形，可以使用C语言数据类型int来存储，浮点数类型可以用float来存储，NSNumber主要用来将C语言的数字对象转换为OC对象，方便存入字典和数组。</p>
-<h2 id="NSDate-日期"><a href="#NSDate-日期" class="headerlink" title="NSDate 日期"></a>NSDate 日期</h2><hr>
-<pre><code>//初始化时间段
-NSDate *date = [NSDate date];
-//获取当前时区
-NSTimeZone *zone = [NSTimeZone systemTimeZone];
-//以秒为单位返回当前应用程序与世界标准时间（格林威尼时间）的时差
-NSInteger interval = [zone secondsFromGMTForDate: date];
-//补充时差后为当前时间
-NSDate *localeDate = [date  dateByAddingTimeInterval: interval]
-
-NSString *dateStr=@&quot;2013-08-13 20:28:40&quot;;
-//格式化
-NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss&quot;];
-NSDate *fromdate=[dateFormatter dateFromString:dateStr];
-//时区
-NSTimeZone *fromzone = [NSTimeZone systemTimeZone];
-//同例1
-NSInteger frominterval = [fromzone secondsFromGMTForDate: fromdate];
-NSDate *fromDate = [fromdate  dateByAddingTimeInterval: frominterval];
-NSLog(@&quot;fromdate=%@&quot;,fromDate);
-
-//将NSDate转为NSString
-NSString *strTime = [fromDate description];
-//如果直接将NSDate格式化
-NSDate  *recv = [NSDate dateFromString:recvTime withFormat:@&quot;yyyy-MM-dd HH:mm:ss Z&quot;];
-
-double intervalTime = [fromDate timeIntervalSinceReferenceDate] - [localeDate timeIntervalSinceReferenceDate];
-
-long lTime = (long)intervalTime;
-NSInteger iSeconds = lTime % 60;
-NSInteger iMinutes = (lTime / 60) % 60;
-NSInteger iHours = (lTime / 3600)$;
-NSInteger iDays = lTime/60/60/24;
-NSInteger iMonth = lTime/60/60/24/12;
-NSInteger iYears = lTime/60/60/24/384;
-
-NSLog(@&quot;相差M年d月 或者 d日d时d分d秒&quot;, iYears,iMonth,iDays,iHours,iMinutes,iSeconds);
-
-//与otherDate比较，相同返回YES
-(BOOL)isEqualToDate:(NSDate *)otherDate;
-
-//与anotherDate比较，返回较早的那个日期
-(NSDate *)earlierDate:(NSDate *)anotherDate;
-
-//与anotherDate比较，返回较晚的那个日期
-(NSDate *)laterDate:(NSDate *)anotherDate;
-
-//该方法用于排序时调用
-(NSComparisonResult)compare:(NSDate *)other;
-
-//. 当实例保存的日期值与anotherDate相同时返回NSOrderedSame
-//. 当实例保存的日期值晚于anotherDate时返回NSOrderedDescending
-//. 当实例保存的日期值早于anotherDate时返回NSOrderedAscending
-
-NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-
-NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
-
-NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
-
-NSDateComponents *comps  = [calendar components:unitFlags fromDate:date];
-
-int year = [comps year];
-int month = [comps month];
-int day = [comps day];
-int hour = [comps hour];
-int min = [comps minute];
-int sec = [comps second];
-
-NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-[dateFormatter setDateFormat:@&quot;a&quot;];
-NSString *AMPMtext = [dateFormatter stringFromDate:[NSDate date]];
-[dateFormatter release];
-if ([AMPMtext isEqualToString:@&quot;&quot;])&#123;
-    NSLog(@&quot;24小时制&quot;);
-&#125;
-else &#123;
-    NSLog(@&quot;12小时制&quot;);
-&#125;
-
-NSDate和NSString的转换
-
-用于uidate，picker。。
-
-+(NSDate * ) convertDateFromString:(NSString*)uiDate
-&#123;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
-    [formatter setDateFormat:@&quot;yyyy年MM月dd日&quot;];
-    NSDate *date=[formatter dateFromString:uiDate];
-    return date;
-&#125;
-
-输入的日期字符串形如：@&quot;1992-05-21 13:08:08&quot;
-- (NSDate *)dateFromString:(NSString *)dateString&#123;
-NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
-[dateFormatter setDateFormat: @&quot;yyyy-MM-dd HH:mm:ss&quot;];
-
-
-NSDate *destDate= [dateFormatter dateFromString:dateString];
-
-
-[dateFormatter release];
-return destDate;
-&#125;
-
-- (NSString *)stringFromDate:(NSDate *)date&#123;
-NSDateFormatter *dateFormatter = [[NSDateFormatteralloc] init];
-
-//zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
-
-[dateFormatter setDateFormat:@&quot;yyyy-MM-dd HH:mm:ss zzz&quot;];
-
-NSString *destDateString = [dateFormatter stringFromDate:date];
-
-
-[dateFormatter release];
-return destDateString;
-&#125;
-
-- (IBAction)handleDidPressBtn1&#123;
-NSLog(@&quot;%@/n&quot;, [selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]);
-NSLog(@&quot;%@/n&quot;, [selfstringFromDate:[selfdateFromString:@&quot;2011-08-09 12:02:01&quot;]]);
-&#125;
-
-输出结果如下：
-2011-08-09 04:02:01 +0000
-2011-08-09 12:02:01 GMT+08:00
-</code></pre><h2 id="NSURL-URL"><a href="#NSURL-URL" class="headerlink" title="NSURL URL"></a>NSURL URL</h2><p>可以用于管理和提取连接地址信息</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[myUrl host]</span><br></pre></td></tr></table></figure>
-<h2 id="其他资料"><a href="#其他资料" class="headerlink" title="其他资料"></a>其他资料</h2><hr>
-<pre><code>NSString
-*******************************************************************************************/
-//一、NSString    
-/*----------------创建字符串的方法----------------*/
-
-//1、创建常量字符串。
-NSString *astring = @&quot;This is a String!&quot;;
-
-
-//2、创建空字符串，给予赋值。
-
-NSString *astring = [[NSString alloc] init];
-astring = @&quot;This is a String!&quot;;
-[astring release];
-NSLog(@&quot;astring:%@&quot;,astring);
-//
-
-NSString *astring = [[NSString alloc] init];
-NSLog(@&quot;0x%.8x&quot;, astring);
-astring=@&quot;This is a String!&quot;;
-NSLog(@&quot;0x%.8x&quot;, astring);
-[astring release];
-NSLog(@&quot;astring:%@&quot;,astring);
-
-
-
-
-//3、在以上方法中，提升速度:initWithString方法
-
-NSString *astring = [[NSString alloc] initWithString:@&quot;This is a String!&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//4、用标准c创建字符串:initWithCString方法
-
-char *Cstring = &quot;This is a String!&quot;;
-NSString *astring = [[NSString alloc] initWithCString:Cstring];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//5、创建格式化字符串:占位符（由一个%加一个字符组成）
-
-int i = 1;
-int j = 2;
-NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@&quot;%d.This is %i string!&quot;,i,j]];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-
-//6、创建临时字符串
-
-NSString *astring;
-astring = [NSString stringWithCString:&quot;This is a temporary string&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-
-
-/*----------------从文件读取字符串:initWithContentsOfFile方法----------------*/    
-
-NSString *path = @&quot;astring.text&quot;;
-NSString *astring = [[NSString alloc] initWithContentsOfFile:path];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-/*----------------写字符串到文件:writeToFile方法----------------*/    
-
-
-NSString *astring = [[NSString alloc] initWithString:@&quot;This is a String!&quot;];
-NSLog(@&quot;astring:%@&quot;,astring);
-NSString *path = @&quot;astring.text&quot;;    
-[astring writeToFile: path atomically: YES];
-[astring release];    
-
-
-/*----------------比较两个字符串----------------*/        
-
-//用C比较:strcmp函数
-
-char string1[] = &quot;string!&quot;;
-char string2[] = &quot;string!&quot;;
-if(strcmp(string1, string2) = = 0)
-&#123;
-NSLog(@&quot;1&quot;);
-&#125;
-
-//isEqualToString方法    
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 isEqualToString:astring02];
-NSLog(@&quot;result:%d&quot;,result);
-
-//compare方法(comparer返回的三种值)    
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;    
-BOOL result = [astring01 compare:astring02] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);    
-//NSOrderedSame判断两者内容是否相同
-
-NSString *astring01 = @&quot;This is a String!&quot;;
-NSString *astring02 = @&quot;this is a String!&quot;;
-BOOL result = [astring01 compare:astring02] = = NSOrderedAscending;    
-NSLog(@&quot;result:%d&quot;,result);
-//NSOrderedAscending判断两对象值的大小(按字母顺序进行比较，astring02大于astring01为真)
-
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 compare:astring02] = = NSOrderedDescending;    
-NSLog(@&quot;result:%d&quot;,result);     
-//NSOrderedDescending判断两对象值的大小(按字母顺序进行比较，astring02小于astring01为真)
-
-//不考虑大小写比较字符串1
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 caseInsensitiveCompare:astring02] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);     
-//NSOrderedDescending判断两对象值的大小(按字母顺序进行比较，astring02小于astring01为真)
-
-//不考虑大小写比较字符串2
-NSString *astring01 = @&quot;this is a String!&quot;;
-NSString *astring02 = @&quot;This is a String!&quot;;
-BOOL result = [astring01 compare:astring02
-options:NSCaseInsensitiveSearch | NSNumericSearch] = = NSOrderedSame;    
-NSLog(@&quot;result:%d&quot;,result);     
-
-//NSCaseInsensitiveSearch:不区分大小写比较 NSLiteralSearch:进行完全比较，区分大小写 NSNumericSearch:比较字符串的字符个数，而不是字符值。
-
-
-/*----------------改变字符串的大小写----------------*/    
-
-NSString *string1 = @&quot;A String&quot;; 
-NSString *string2 = @&quot;String&quot;; 
-NSLog(@&quot;string1:%@&quot;,[string1 uppercaseString]);//大写
-NSLog(@&quot;string2:%@&quot;,[string2 lowercaseString]);//小写
-NSLog(@&quot;string2:%@&quot;,[string2 capitalizedString]);//首字母大小
-
-
-/*----------------在串中搜索子串----------------*/        
-
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = @&quot;string&quot;;
-NSRange range = [string1 rangeOfString:string2];
-int location = range.location;
-int leight = range.length;
-NSString *astring = [[NSString alloc] initWithString:[NSString stringWithFormat:@&quot;Location:%i,Leight:%i&quot;,location,leight]];
-NSLog(@&quot;astring:%@&quot;,astring);
-[astring release];
-
-
-/*----------------抽取子串 ----------------*/        
-
-//-substringToIndex: 从字符串的开头一直截取到指定的位置，但不包括该位置的字符
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringToIndex:3];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-//-substringFromIndex: 以指定位置开始（包括指定位置的字符），并包括之后的全部字符
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringFromIndex:3];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-//-substringWithRange: //按照所给出的位置，长度，任意地从字符串中截取子串
-NSString *string1 = @&quot;This is a string&quot;;
-NSString *string2 = [string1 substringWithRange:NSMakeRange(0, 4)];
-NSLog(@&quot;string2:%@&quot;,string2);
-
-
-//扩展路径
-
-NSString *Path = @&quot;~/NSData.txt&quot;;
-NSString *absolutePath = [Path stringByExpandingTildeInPath];
-NSLog(@&quot;absolutePath:%@&quot;,absolutePath);
-NSLog(@&quot;Path:%@&quot;,[absolutePath stringByAbbreviatingWithTildeInPath]);
-
-//文件扩展名
-NSString *Path = @&quot;~/NSData.txt&quot;;
-NSLog(@&quot;Extension:%@&quot;,[Path pathExtension]);
-
-/*******************************************************************************************
-NSMutableString
-*******************************************************************************************/    
-
-/*---------------给字符串分配容量----------------*/
-//stringWithCapacity:
-NSMutableString *String;
-String = [NSMutableString stringWithCapacity:40];
-
-
-/*---------------在已有字符串后面添加字符----------------*/    
-
-//appendString: and appendFormat:
-
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-//[String1 appendString:@&quot;, I will be adding some character&quot;];
-[String1 appendFormat:[NSString stringWithFormat:@&quot;, I will be adding some character&quot;]];
-NSLog(@&quot;String1:%@&quot;,String1);
-*/
-
-
-/*--------在已有字符串中按照所给出范围和长度删除字符------*/    
-/*
-//deleteCharactersInRange:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 deleteCharactersInRange:NSMakeRange(0, 5)];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------在已有字符串后面在所指定的位置中插入给出的字符串------*/
-
-//-insertString: atIndex:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 insertString:@&quot;Hi! &quot; atIndex:0];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------将已有的空符串换成其它的字符串------*/
-
-//-setString:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 setString:@&quot;Hello Word!&quot;];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*--------按照所给出的范围，和字符串替换的原有的字符------*/
-
-//-setString:
-NSMutableString *String1 = [[NSMutableString alloc] initWithString:@&quot;This is a NSMutableString&quot;];
-[String1 replaceCharactersInRange:NSMakeRange(0, 4) withString:@&quot;That&quot;];
-NSLog(@&quot;String1:%@&quot;,String1);
-
-
-
-/*-------------判断字符串内是否还包含别的字符串(前缀，后缀)-------------*/
-//01：检查字符串是否以另一个字符串开头- (BOOL) hasPrefix: (NSString *) aString;
-NSString *String1 = @&quot;NSStringInformation.txt&quot;;
-[String1 hasPrefix:@&quot;NSString&quot;] = = 1 ?  NSLog(@&quot;YES&quot;) : NSLog(@&quot;NO&quot;);
-[String1 hasSuffix:@&quot;.txt&quot;] = = 1 ?  NSLog(@&quot;YES&quot;) : NSLog(@&quot;NO&quot;);
-
-//02：查找字符串某处是否包含其它字符串 - (NSRange) rangeOfString: (NSString *) aString，这一点前面在串中搜索子串用到过;
-
-
-
-/*******************************************************************************************
-NSArray
-*******************************************************************************************/
-
-/*---------------------------创建数组------------------------------*/
-//NSArray *array = [[NSArray alloc] initWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,@&quot;Four&quot;,nil];
-
-self.dataArray = array;
-[array release];
-
-//- (unsigned) Count;数组所包含对象个数；
-NSLog(@&quot;self.dataArray cound:%d&quot;,[self.dataArray count]);
-
-//- (id) objectAtIndex: (unsigned int) index;获取指定索引处的对象;
-NSLog(@&quot;self.dataArray cound 2:%@&quot;,[self.dataArray objectAtIndex:2]);
-
-
-/*--------------------------从一个数组拷贝数据到另一数组(可变数级)----------------------------*/    
-
-//arrayWithArray:
-//NSArray *array1 = [[NSArray alloc] init];
-NSMutableArray *MutableArray = [[NSMutableArray alloc] init];
-NSArray *array = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,nil];
-NSLog(@&quot;array:%@&quot;,array);
-MutableArray = [NSMutableArray arrayWithArray:array];
-NSLog(@&quot;MutableArray:%@&quot;,MutableArray);
-
-array1 = [NSArray arrayWithArray:array];
-NSLog(@&quot;array1:%@&quot;,array1);
-
-
-//Copy
-
-//id obj;
-NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];
-
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-for(int i = 0; i &lt; [oldArray count]; i++)
-&#123;        
-obj = [[oldArray objectAtIndex:i] copy];
-[newArray addObject: obj];
-&#125;
-//     
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];
-
-
-//快速枚举
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-
-for(id obj in oldArray)
-&#123;
-[newArray addObject: obj];
-&#125;
-//     
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];    
-
-
-//Deep copy
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;a&quot;,@&quot;b&quot;,@&quot;c&quot;,@&quot;d&quot;,@&quot;e&quot;,@&quot;f&quot;,@&quot;g&quot;,@&quot;h&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);    
-newArray = (NSMutableArray*)CFPropertyListCreateDeepCopy(kCFAllocatorDefault, (CFPropertyListRef)oldArray, kCFPropertyListMutableContainers);
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];    
-
-
-//Copy and sort
-
-//NSMutableArray *newArray = [[NSMutableArray alloc] init];
-NSArray *oldArray = [NSArray arrayWithObjects:
-@&quot;b&quot;,@&quot;a&quot;,@&quot;e&quot;,@&quot;d&quot;,@&quot;c&quot;,@&quot;f&quot;,@&quot;h&quot;,@&quot;g&quot;,nil];    
-NSLog(@&quot;oldArray:%@&quot;,oldArray);
-NSEnumerator *enumerator;
-enumerator = [oldArray objectEnumerator];
-id obj;
-while(obj = [enumerator nextObject])
-&#123;
-[newArray addObject: obj];
-&#125;
-[newArray sortUsingSelector:@selector(compare:)];
-NSLog(@&quot;newArray:%@&quot;, newArray);
-[newArray release];
-
-
-
-/*---------------------------切分数组------------------------------*/
-
-//从字符串分割到数组－ componentsSeparatedByString:
-NSString *string = [[NSString alloc] initWithString:@&quot;One,Two,Three,Four&quot;];
-NSLog(@&quot;string:%@&quot;,string);    
-NSArray *array = [string componentsSeparatedByString:@&quot;,&quot;];
-NSLog(@&quot;array:%@&quot;,array);
-[string release];
-
-
-//从数组合并元素到字符串- componentsJoinedByString:
-NSArray *array = [[NSArray alloc] initWithObjects:@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,@&quot;Four&quot;,nil];
-NSString *string = [array componentsJoinedByString:@&quot;,&quot;];
-NSLog(@&quot;string:%@&quot;,string);
-
-
-
-/*******************************************************************************************
-NSMutableArray
-*******************************************************************************************/
-/*---------------给数组分配容量----------------*/
-//NSArray *array;
-array = [NSMutableArray arrayWithCapacity:20];
-
-
-
-/*--------------在数组末尾添加对象----------------*/
-//- (void) addObject: (id) anObject;
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-[array addObject:@&quot;Four&quot;];
-NSLog(@&quot;array:%@&quot;,array);
-
-
-
-/*--------------删除数组中指定索引处对象----------------*/    
-//-(void) removeObjectAtIndex: (unsigned) index;    
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-[array removeObjectAtIndex:1];
-NSLog(@&quot;array:%@&quot;,array);
-
-
-
-/*-------------数组枚举---------------*/    
-//- (NSEnumerator *)objectEnumerator;从前向后
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-NSEnumerator *enumerator;
-enumerator = [array objectEnumerator];
-
-id thingie;
-while (thingie = [enumerator nextObject]) &#123;
-NSLog(@&quot;thingie:%@&quot;,thingie);
-&#125;
-
-
-//- (NSEnumerator *)reverseObjectEnumerator;从后向前
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-NSEnumerator *enumerator;
-enumerator = [array reverseObjectEnumerator];
-
-id object;
-while (object = [enumerator nextObject]) &#123;
-NSLog(@&quot;object:%@&quot;,object);
-&#125;
-
-
-//快速枚举
-//NSMutableArray *array = [NSMutableArray arrayWithObjects:
-@&quot;One&quot;,@&quot;Two&quot;,@&quot;Three&quot;,nil];
-for(NSString *string in array)
-&#123;
-NSLog(@&quot;string:%@&quot;,string);
-&#125;
-
-
-
-/*******************************************************************************************
-NSDictionary
-*******************************************************************************************/
-
-/*------------------------------------创建字典------------------------------------*/
-//- (id) initWithObjectsAndKeys;
-
-//NSDictionary *dictionary = [[NSDictionary alloc] initWithObjectsAndKeys:@&quot;One&quot;,@&quot;1&quot;,@&quot;Two&quot;,@&quot;2&quot;,@&quot;Three&quot;,@&quot;3&quot;,nil];
-NSString *string = [dictionary objectForKey:@&quot;One&quot;];
-NSLog(@&quot;string:%@&quot;,string);
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-[dictionary release];
-
-
-/*******************************************************************************************
-NSMutableDictionary
-*******************************************************************************************/
-
-/*------------------------------------创建可变字典------------------------------------*/    
-//创建
-NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
-
-//添加字典
-[dictionary setObject:@&quot;One&quot; forKey:@&quot;1&quot;];
-[dictionary setObject:@&quot;Two&quot; forKey:@&quot;2&quot;];
-[dictionary setObject:@&quot;Three&quot; forKey:@&quot;3&quot;];
-[dictionary setObject:@&quot;Four&quot; forKey:@&quot;4&quot;];
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-
-//删除指定的字典
-[dictionary removeObjectForKey:@&quot;3&quot;];
-NSLog(@&quot;dictionary:%@&quot;,dictionary);
-
-
-/*******************************************************************************************
-NSValue（对任何对象进行包装）
-*******************************************************************************************/
-
-/*--------------------------------将NSRect放入NSArray中------------------------------------*/    
-//将NSRect放入NSArray中
-NSMutableArray *array = [[NSMutableArray alloc] init];
-NSValue *value;
-CGRect rect = CGRectMake(0, 0, 320, 480);    
-value = [NSValue valueWithBytes:&amp;rect objCType:@encode(CGRect)];
-[array addObject:value];
-NSLog(@&quot;array:%@&quot;,array);
-
-//从Array中提取
-value = [array objectAtIndex:0];
-[value getValue:&amp;rect];
-NSLog(@&quot;value:%@&quot;,value);
-
-
-/*******************************************************************************************
-从目录搜索扩展名为jpg的文件
-*******************************************************************************************/
-
-//NSFileManager *fileManager = [NSFileManager defaultManager];
-NSString *home;
-home = @&quot;../Users/&quot;;
-
-NSDirectoryEnumerator *direnum;
-direnum = [fileManager enumeratorAtPath: home];
-
-NSMutableArray *files = [[NSMutableArray alloc] init];
-
-//枚举
-NSString *filename;
-while (filename = [direnum nextObject]) &#123;
-if([[filename pathExtension] hasSuffix:@&quot;jpg&quot;])&#123;
-[files addObject:filename];
-&#125;
-&#125;
-
-//快速枚举
-//for(NSString *filename in direnum)
-//&#123;
-//    if([[filename pathExtension] isEqualToString:@&quot;jpg&quot;])&#123;
-//        [files addObject:filename];
-//    &#125;
-//&#125;
-NSLog(@&quot;files:%@&quot;,files);
-
-//枚举
-NSEnumerator *filenum;
-filenum = [files objectEnumerator];
-while (filename = [filenum nextObject]) &#123;
-NSLog(@&quot;filename:%@&quot;,filename);
-&#125;
-
-//快速枚举
-//for(id object in files)
-//&#123;
-//    NSLog(@&quot;object:%@&quot;,object);
-//&#125;
-</code></pre><p><em>ps:终于讲完了基础类型，为嘛感觉少了NSInteger类型</em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/25/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-04-Cocoa-Touch%20%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-03-Cocoa-Touch 类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-03-Cocoa-Touch%20%E7%B1%BB/">iOS开发指南-Objective—C基础-03-Cocoa-Touch 类</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-03-Cocoa-Touch%20%E7%B1%BB/" class="archive-article-date">
-  	<time datetime="2016-04-22T12:21:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps：接着上次继续，上次没有介绍Cocoa Touch中类，本次接着介绍。</em></p>
-<h1 id="Cocoa-Touch中的类"><a href="#Cocoa-Touch中的类" class="headerlink" title="Cocoa Touch中的类"></a>Cocoa Touch中的类</h1><h2 id="核心类"><a href="#核心类" class="headerlink" title="核心类"></a>核心类</h2><blockquote>
-<ul>
-<li>根类（NSObject）        根类是所有类的子类。几乎所有Objective-C类都是从它派生而来的。</li>
-<li>应用程序类（NSApplication）    为iOS程序运行期间的控制和协作工作提供支持。通过[UIApplication sharedApplication]来获取单例指针</li>
-<li>窗口类（UIWindow）    UIWindow提供了一个用于管理和显示视图的容器，主要功能有提供一个区域来显示视图和将事件分发给视图。当接收到一个触摸事件的时候，是从底层开始一直往视图层寻找可以执行的对象。</li>
-<li>视图（UIView）    UIView类定义了一个矩形区域，并管理该区域内所有的屏幕显示。</li>
-</ul>
-</blockquote>
-<hr>
-<pre><code>// 从父控件中移除一个控件
-- (void)removeFromSuperview;
-
-// 添加一个子控件(可以将子控件插入到subviews数组中index这个位置)
-- (void)insertSubview:(UIView *)view atIndex:(NSInteger)index;
-
-// 交换subviews数组中所存放子控件的位置
-- (void)exchangeSubviewAtIndex:(NSInteger)index1 withSubviewAtIndex:(NSInteger)index2;
-
-// 添加一个子控件(新添加的控件默认都在subviews数组的后面, 新添加的控件默认都显示在最上面\最顶部)
-- (void)addSubview:(UIView *)view;
-
-// 添加一个子控件view(被挡在siblingSubview的下面)
-- (void)insertSubview:(UIView *)view belowSubview:(UIView *)siblingSubview;
-
-// 添加一个子控件view(盖在siblingSubview的上面)
-- (void)insertSubview:(UIView *)view aboveSubview:(UIView *)siblingSubview;
-
-// 将某个子控件拉到最上面(最顶部)来显示
-- (void)bringSubviewToFront:(UIView *)view;
-
-// 将某个子控件拉到最下面(最底部)来显示
-- (void)sendSubviewToBack:(UIView *)view;
-
-/**系统自动调用(留给子类去实现)**/
-- (void)didAddSubview:(UIView *)subview;
-- (void)willRemoveSubview:(UIView *)subview;
-
-- (void)willMoveToSuperview:(UIView *)newSuperview;
-- (void)didMoveToSuperview;
-- (void)willMoveToWindow:(UIWindow *)newWindow;
-- (void)didMoveToWindow;
-/**系统自动调用**/
-
-// 是不是view的子控件或者子控件的子控件(是否为view的后代)
-- (BOOL)isDescendantOfView:(UIView *)view;  // returns YES for self.
-
-// 通过tag获得对应的子控件(也可以或者子控件的子控件)
-- (UIView *)viewWithTag:(NSInteger)tag;     // recursive search. includes self
-
-/**系统自动调用(留给子类去实现)**/
-// 控件的frame发生改变的时候就会调用,一般在这里重写布局子控件的位置和尺寸
-// 重写了这个写方法后,一定调用[super layoutSubviews];
-- (void)layoutSubviews;
-</code></pre><blockquote>
-<ul>
-<li>响应者（UIResponder）        表示一个可以接收事件的对象</li>
-<li>屏幕控件（UIControl）        由UIView派生而来，几乎是所有具有触摸效果的控件的父类</li>
-<li>视图控制器（UIViewController）    用于显示view的界面，同事包含view加载、卸载事件的重定义功能。</li>
-</ul>
-</blockquote>
-<hr>
-<pre><code>/**
- *  view加载完毕
- */
-- (void)viewDidLoad
-
-/**
- *  view即将显示到window上
- */
-- (void)viewWillAppear:(BOOL)animated
-
-/**
- *  view显示完毕(已经显示到窗口)
- */
-- (void)viewDidAppear:(BOOL)animated
-
-/**
- *  view即将从window上移除(即将看不见)
- */
-- (void)viewWillDisappear:(BOOL)animated
-
-/**
- *  view从window上完全移除(完全看不见)
- */
-- (void)viewDidDisappear:(BOOL)animated
-
-/**
-*  view即将销毁的时候调用
-*/
-- (void)viewWillUnload
-
-/**
- *  view销毁完毕的时候调用
- */
-- (void)viewDidUnload
-
-/**
- *  当接收到内存警告的时候
- */
-- (void)didReceiveMemoryWarning
-</code></pre><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p><em>ps：我说前面基本类型怎么没有讲，原来放到这里了。</em></p>
-<h2 id="NSString-NSMutableString-字符串类型"><a href="#NSString-NSMutableString-字符串类型" class="headerlink" title="NSString/NSMutableString 字符串类型"></a>NSString/NSMutableString 字符串类型</h2><p><strong>NSString的一些用法</strong></p>
-<pre><code>//1.int类型换换成字符串
-int a = 10;
-NSString * str1 = [NSString stringWithFormat:@&quot;%d&quot;,a];
-NSLog(@&quot;str1 %@&quot;,str1);
-
-//2.float -&gt; NSString
-float f = 2.4;
-NSString * str3 = [NSString stringWithFormat:@&quot;%.1f&quot;,f];
-NSLog(@&quot;str3 %@&quot;,str3);
-
-//3.double - &gt;NSstring
-double d = 65.9898;
-NSString * str4 = [NSString stringWithFormat:@&quot;%.4f&quot;,d];
-NSLog(@&quot;str4 %@&quot;,str4);
-
-//4.char - &gt; NSString
-char c = &apos;c&apos;;
-NSString * str5 = [NSString stringWithFormat:@&quot;%c&quot;,c];
-NSLog(@&quot;str5 %@&quot;,str5);
-
-//5.NSString -&gt; int
-NSString * str6 = @&quot;1&quot;;
-int i1 = [str6 intValue];
-NSLog(@&quot;i1 %d&quot;,i1);
-
-//5.NSString -&gt; float
-NSString * str7 = @&quot;9.8&quot;;
-float f1 = [str7 floatValue];
-NSLog(@&quot;f1 %.1f&quot;,f1);
-
-//6.NSString -&gt; double
-NSString * str8 = @&quot;8.88&quot;;
-double d1 = [str8 doubleValue];
-NSLog(@&quot;d1 %.2f&quot;,d1);
-
-//注意:当你要把字符串转换成某种基本数据类型的时候,一定要确定你要转化你的数据是正确
-NSString * str9 = @&quot;i386&quot;;
-int i2 = [str9 intValue];
-NSLog(@&quot;is %d&quot;,i2);
-
-//7.将字符串中的字母转换成大写
-NSString * str10 = @&quot;china&quot;;
-NSString * tmpStr1 = [str10 uppercaseString];
-NSLog(@&quot;tmpStr1 %@ str10 %@&quot;,tmpStr1,str10);
-
-//8.将字符中的字母转换成小写
-NSString * str11 = @&quot;CHINA&quot;;
-NSString * tmpStr2 = [str11 lowercaseString];
-NSLog(@&quot;tmpStr2 %@&quot;,tmpStr2);
-
-//9.将首字母大写
-NSString * str12 = @&quot;china&quot;;
-NSString * tmpStr3 = [str12 capitalizedString];
-NSLog(@&quot;tmpStr3  %@&quot;,tmpStr3);
-
-10.定义一个字符串a, 截取a 的某一个部分，复制给b, b必须是int型
-NSString *a = @&quot;1.2.30&quot;;
-int  b= [[a substringWithRange:NSMakeRange(4,2)] intValue];
-NSLog(@&quot;a:%@  \n&quot;,a  );
-NSLog(@&quot;b:%d&quot;,b  );
-解析如下：substringWithRange: 专门截取字符串的一块肉
-NSMakeRange(4,2)    从第4个字符开始截取，长度为2个字符，（字符串都是从第0个字符开始数的哦～！）
-b = [a intValue]; 将 a 转换为 整数型
-b = [a floatValue];   将 a 转换为 小数型
-b = [a boolValue]; 将 a 转换为 布尔型（true /  false）
-b = [a integerValue]; 将 a 转换为 整数型
-b = [a longLongValue]; 将 a 转换为 长整型
-
-11。 字符串截取到第n位  （substringToIndex: n）(第n 位不算再内)
-- (void)viewDidLoad
-&#123;
-    NSString  *a = @&quot;i like long dress&quot;;
-    NSString *b = [a substringToIndex:4];
-    NSLog(@&quot;\n b: %@&quot;,b);
-&#125;
-
-12。字符串从第n 位开始截取,直到最后 （substringFromIndex:n）（包括第 n 位）
-- (void)viewDidLoad
-&#123;
-    NSString  *a = @&quot;i like long dress&quot;;
-    NSString *b = [a substringFromIndex:4];
-    NSLog(@&quot;\n b: %@&quot;,b);
-&#125;
-</code></pre><h2 id="NSArray-NSMutableArray-数组"><a href="#NSArray-NSMutableArray-数组" class="headerlink" title="NSArray/NSMutableArray    数组"></a>NSArray/NSMutableArray    数组</h2><pre><code>//创建数组对象，nsarray不可变数组
-//c语言的数组可以存放任何类型的数据，同一个数组只能有同一种数据类型
-//oc语言的数组只能存放对象，可以存放任意对象
-// [nsnull null] == 空对象
-//nsarray *arr = [[nsarray alloc] initwithobjects:@&quot;123&quot;,@&quot;345&quot;,@&quot;abc&quot;, nil];
-nsarray *arr1 = @[@&quot;1 2 3&quot;, @&quot;345&quot;, [nsnull null], @&quot;789&quot;];
-nsarray *arr3 = [[nsarray alloc] initwitharray:arr1];
-nslog(@&quot;arr = %@&quot;,arr3);
-
-//将c数组转换为oc数组对象
-//oc不允许将nil插入到数组中,因为nil作用是数组的结束标记
-NSString *carr[10] = &#123;@&quot;123&quot;, @&quot;456&quot;, @&quot;789&quot;&#125;;
-NSArray *arr4 = [[NSArray alloc] initWithObjects:carr count:2];
-NSLog(@&quot;arr4 = %@&quot;,arr4);
-//获取元素个数
-NSUInteger count = [arr4 count];
-NSLog(@&quot;count = %ld&quot;,count);
-//获取指定下标元素
-NSLog(@&quot;%@&quot;,[arr3 objectAtIndex:1]);
-//获取第一个元素或者最后一个元素
-id arrf = [arr3 firstObject];
-id arrl = [arr3 lastObject];
-NSLog(@&quot;%@ %@&quot;,arrf,arrl);
-//获取子集
-NSArray *arr2 = @[@&quot;111&quot;, @&quot;222&quot;, @&quot;333&quot;, @&quot;444&quot;, @&quot;555&quot;, @&quot;666&quot;];
-
-//取出连续范围的元素作为子集内容
-NSArray *sub1 = [arr2 subarrayWithRange:NSMakeRange(1, 3)];
-
-NSLog(@&quot;sub1 = %@&quot;, sub1);
-//获取任意元素作为子集
-//1.列出所需要元素的下标清单
-NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
-//1-1.将要获取元素的下标写入清单
-for (NSInteger i = 0; i &lt; [arr2 count]; i++)
-&#123;
-if (i % 2 != 0)
-&#123;
-[indexs addIndex:i];
-&#125;
-&#125;
-
-//2.将清单交给数组
-//id obj =[arr2 objectAtIndex:0]; //获取单个元素,返回单个元素
-NSArray *sub2 = [arr2 objectsAtIndexes:indexs];//获取下标清单里的所有元素,返回一个元素集合(数组)
-
-NSLog(@&quot;sub2 = %@&quot;, sub2);
-
-//获取最长字符串和最小字符串
-//快速枚举
-NSArray *arr5 = @[@&quot;123456789&quot;, @&quot;222&quot;, @&quot;333&quot;, @&quot;errr&quot;, @&quot;444&quot;, @&quot;5&quot;, @&quot;666&quot;];
-NSInteger maxLength = [arr5[0] length];
-NSInteger minLength = [arr5[0] length];
-NSString *maxString = nil;
-NSString *minString = nil;
-
-for (id obj in arr5) &#123;
-
-if (maxLength &lt;= [obj length]) &#123;
-
-maxLength = [obj length];
-maxString = obj;
-&#125;
-
-if (minLength &gt;= [obj length]) &#123;
-
-minLength = [obj length];
-minString = obj;
-&#125;
-&#125;
-NSLog(@&quot;maxString = %@, minString = %@&quot;,maxString,minString);
-#if 0
-//创建可变数组对象
-NSMutableArray *arr1 = [[NSMutableArray alloc] initWithCapacity:30];
-NSMutableArray *arr2 = [NSMutableArray arrayWithCapacity:30];
-
-//添加元素
-[arr1 addObject:@&quot;123&quot;];
-[arr1 addObject:@&quot;456&quot;];
-
-[arr2 addObjectsFromArray:arr1];
-[arr2 addObject:@&quot;789&quot;];
-[arr2 addObject:@&quot;789&quot;];
-[arr2 addObject:@&quot;789&quot;];
-
-NSLog(@&quot;arr1 = %@&quot;,arr1);
-NSLog(@&quot;arr2 = %@&quot;,arr2);
-
-//插入元素
-//插入下标的范围: 0&lt;=index&lt;=count
-[arr1 insertObject:@&quot;aaa&quot; atIndex:1];
-[arr1 insertObject:@&quot;bbb&quot; atIndex:[arr1 count]];
-NSLog(@&quot;arr1 = %@&quot;,arr1);
-
-//删除
-[arr2 removeAllObjects];//删除所有元素
-[arr2 removeLastObject];//删除最后一个元素
-[arr2 removeObject:@&quot;789&quot;];//删除指定对象，会将所有对象删除
-[arr2 removeObject:@&quot;789&quot; inRange:NSMakeRange(1, 2)];//删除指定范围中的指定对象
-[arr2 removeObjectAtIndex:0];//删除指定下标的元素
-[arr2 removeObjectsInRange:NSMakeRange(2, 2)];//删除指定范围中得元素
-[arr2 removeObjectIdenticalTo:@&quot;789&quot;];
-[arr2 removeObjectIdenticalTo:@&quot;789&quot; inRange:NSMakeRange(2, 1)];
-//如果要删除不连续的元素，则先把要删除的元素放在一个清单中，然后再删除该清单
-//比如要删下标为偶数的
-
-NSMutableIndexSet *indexs = [NSMutableIndexSet indexSet];
-
-for (int i = 0; i &lt; [arr2 count]; i++) &#123;
-
-if (i % 2 == 0) &#123;
-
-[indexs addIndex:i];
-&#125;
-
-&#125;
-//删除清单中得元素
-[arr2 removeObjectsAtIndexes:indexs];
-
-
-//修改数组中得内容
-[arr2 replaceObjectAtIndex:2 withObject:@&quot;aaa&quot;];
-NSArray *arr = @[@&quot;qqqq&quot;,@&quot;www&quot;,@&quot;ee&quot;];
-[arr2 replaceObjectsAtIndexes:indexs withObjects:arr];
-// qq, 789, ww, 456, ee
-[arr2 replaceObjectsInRange:NSMakeRange(1, 3) withObjectsFromArray:arr];// qq, qq, ww, ee, ee,在指定范围内，修改数组中得内容。
-
-//交换数组中得内容
-[arr2 exchangeObjectAtIndex:1 withObjectAtIndex:3];
-//用oc对c语言中得数组进行排序
-for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
-
-    for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
-        for (int j = i + 1; j &lt; [arr2 count]; ++j) &#123;
-            if ([arr2[i] length] &gt; [arr2[j] length]) &#123;
-                [arr2 exchangeObjectAtIndex:i withObjectAtIndex:j];
-            &#125;
-        &#125;
-    &#125;
-&#125;
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/22/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-03-Cocoa-Touch%20%E7%B1%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-02-Cocoa Touch框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-02-Cocoa%20Touch%E6%A1%86%E6%9E%B6/">iOS开发指南-Objective—C基础-02-Cocoa Touch框架</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-02-Cocoa%20Touch%E6%A1%86%E6%9E%B6/" class="archive-article-date">
-  	<time datetime="2016-04-21T14:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps:终于迎来第二章，本章节书中只是简单的介绍，我就随意自己总结下。</em></p>
-<h1 id="Cocoa-Touch-基础"><a href="#Cocoa-Touch-基础" class="headerlink" title="Cocoa Touch 基础"></a>Cocoa Touch 基础</h1><p>Cocoa Touch 框架是苹果提供的一套用于iOS设备开发的API。</p>
-<p><strong> 技术层级 </strong></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Cocoa Touch</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">多媒体</td>
-</tr>
-<tr>
-<td style="text-align:center">核心服务</td>
-</tr>
-<tr>
-<td style="text-align:center">核心OS</td>
-</tr>
-</tbody>
-</table>
-<p><strong> Cocoa Touch 包含的框架 </strong></p>
-<ol>
-<li>UIkit     负责启动和结束应用程序，控制界面和多点触摸等等</li>
-<li>Map        Kit 添加内嵌地图</li>
-<li>Game Kit    用于游戏框架    </li>
-<li>Message UI等    用于访问内部程序</li>
-<li>iAd        添加广告</li>
-</ol>
-<p><strong> 多媒体 包含的框架 </strong></p>
-<ol>
-<li>AV Foundation    播放视频和音频</li>
-<li>CoreAudio    用于播放音频和录音</li>
-<li>CoreImage    添加高级图像处理功能</li>
-<li>CoreGraphics    用于绘画和合成图像</li>
-<li>CoreText    用于精确的文本控制，一般用于富文本编辑</li>
-<li>ImageI/O    用于导入和导出图片</li>
-<li>QuarterCore        用于创建动画</li>
-</ol>
-<p><strong> 核心服务 包含的框架 </strong></p>
-<ol>
-<li>Accounts    存储账户信息</li>
-<li>Address Book    直接访问操作通讯录</li>
-<li>CFNetwork     进行网络请求</li>
-<li>Core Data     基于SQLite的一个关系型数据库</li>
-<li>Core Foundation        C语言的开发框架</li>
-<li>Foundation        C语言的封装框架，用于支持数组字典等NS类型</li>
-<li>Event Kit        访问日历信息</li>
-<li>Core Location        定位</li>
-<li>Core Motion        加速计和陀螺仪调用</li>
-<li>Quick Look        文件浏览        </li>
-<li>Store Kit        创建购买失误</li>
-<li>SystemConfiguration        访问当前网络连接信息</li>
-</ol>
-<h1 id="iOS-程序的生命周期"><a href="#iOS-程序的生命周期" class="headerlink" title="iOS 程序的生命周期"></a>iOS 程序的生命周期</h1><h3 id="程序状态"><a href="#程序状态" class="headerlink" title="程序状态"></a>程序状态</h3><ol>
-<li>Not running     没有运行</li>
-<li>Inaction    前台运行但不接收事件</li>
-<li>Action     正在运行，并接收事件</li>
-<li>Background     后台运行并且还在执行代码</li>
-<li>Suspended     应用处于后台并且没有执行代码</li>
-</ol>
-<h3 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h3><p>当APP运行后就会执行Main 函数，然后就会初始化UIApplication对象并设置其为代理。</p>
-<pre><code>//程序启动完成会调用
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-
-//程序将失去焦点
-- (void)applicationWillResignActive:(UIApplication *)application
-
-//进入的后台
-- (void)applicationDidEnterBackground:(UIApplication *)application
-
-//应用将显示到前台
-- (void)applicationWillEnterForeground:(UIApplication *)application
-
-//程序获取焦点
-- (void)applicationDidBecomeActive:(UIApplication *)application
-
-//程序结束退出
-- (void)applicationWillTerminate:(UIApplication *)application
-
-//判断是否第一次安装  是：YES   否：NO
-- (BOOL)isFirstInstall
-</code></pre><h3 id="UIViewController"><a href="#UIViewController" class="headerlink" title="UIViewController"></a>UIViewController</h3><pre><code>初始化一个UIViewController 会创建一个 View，必须将View放置在一个Window 上才会显示在屏幕上。
-/**
- *  view加载完毕
- */
-- (void)viewDidLoad
-
-/**
- *  view即将显示到window上
- */
-- (void)viewWillAppear:(BOOL)animated
-
-/**
- *  view显示完毕(已经显示到窗口)
- */
-- (void)viewDidAppear:(BOOL)animated
-
-/**
- *  view即将从window上移除(即将看不见)
- */
-- (void)viewWillDisappear:(BOOL)animated
-
-/**
- *  view从window上完全移除(完全看不见)
- */
-- (void)viewDidDisappear:(BOOL)animated
-
-/**
- *  view即将销毁的时候调用
- */
-- (void)viewWillUnload
-
-/**
- *  view销毁完毕的时候调用
- */
-- (void)viewDidUnload
-
-/**
- *  当接收到内存警告的时候
- */
-- (void)didReceiveMemoryWarning    
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/21/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-02-Cocoa%20Touch%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-01-数据类型" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-01-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">iOS开发指南-Objective—C基础-01-数据类型</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-01-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="archive-article-date">
-  	<time datetime="2016-04-20T14:57:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><em>ps:本文大部分内容来自《iOS8开发指南》（2015版）</em></p>
-<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>这本书买了很久，基本上当字典来翻，现在将其中部分内容按照自己的理解写出来。也算是系统的复习一下。</p>
-<blockquote>
-<ul>
-<li>iOS 全称 iPhone OS，居然面试的时候有人问这个，我之前还真的不知道。</li>
-</ul>
-</blockquote>
-<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><ul>
-<li>command + ‘]’     缩进</li>
-<li>command + ‘[’        反向缩进</li>
-<li>control + ‘.’        智能提示</li>
-<li>control + ‘i’        校正代码格式</li>
-<li>shift + command + ‘Y’        掉出调试对话框</li>
-</ul>
-<h1 id="编译器指令"><a href="#编译器指令" class="headerlink" title="编译器指令"></a>编译器指令</h1><table>
-<thead>
-<tr>
-<th style="text-align:center">指令</th>
-<th style="text-align:center">含义</th>
-<th style="text-align:center">例子</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">@”chars”</td>
-<td style="text-align:center">创建字符串对象</td>
-<td style="text-align:center">NSString *string = @”string”</td>
-</tr>
-<tr>
-<td style="text-align:center">@class</td>
-<td style="text-align:center">声明对象</td>
-<td style="text-align:center">@int x,y</td>
-</tr>
-<tr>
-<td style="text-align:center">@implementation</td>
-<td style="text-align:center">类的实现部分</td>
-<td style="text-align:center">@implementation NSString;</td>
-</tr>
-<tr>
-<td style="text-align:center">@interface</td>
-<td style="text-align:center">类的声明部分，.h文件中为开放，.m文件中为私有</td>
-<td style="text-align:center">@interface NSString : Object</td>
-</tr>
-<tr>
-<td style="text-align:center">@private</td>
-<td style="text-align:center">变量作用域为私有</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">@protected</td>
-<td style="text-align:center">变量作用域为当前，可以用修饰符进行修饰</td>
-<td style="text-align:center"></td>
-</tr>
-<tr>
-<td style="text-align:center">@public</td>
-<td style="text-align:center">变量作用域为公有</td>
-</tr>
-</tbody>
-</table>
-<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h3 id="int"><a href="#int" class="headerlink" title="int"></a>int</h3><p>整数类型。</p>
-<h3 id="float"><a href="#float" class="headerlink" title="float"></a>float</h3><p>浮点数类型，曾经在开发中有记得float类型数字长度不能超过7位，否则会出现正数7位之后的数据会出错。</p>
-<h3 id="double"><a href="#double" class="headerlink" title="double"></a>double</h3><p>双精度浮点数类型，超过7位的计算就要用double类型了。</p>
-<h3 id="char"><a href="#char" class="headerlink" title="char"></a>char</h3><p>字符常量</p>
-<h3 id="id"><a href="#id" class="headerlink" title="id"></a>id</h3><p>对象类型。可以存储任何类型。</p>
-<h2 id="转义符"><a href="#转义符" class="headerlink" title="转义符"></a>转义符</h2><table>
-<thead>
-<tr>
-<th style="text-align:center">转义字符</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">\n</td>
-<td style="text-align:center">回车换行</td>
-</tr>
-<tr>
-<td style="text-align:center">\t</td>
-<td style="text-align:center">制表位</td>
-</tr>
-<tr>
-<td style="text-align:center">\b</td>
-<td style="text-align:center">退格</td>
-</tr>
-<tr>
-<td style="text-align:center">\r</td>
-<td style="text-align:center">回车</td>
-</tr>
-<tr>
-<td style="text-align:center">\</td>
-<td style="text-align:center">一个反斜杠</td>
-</tr>
-<tr>
-<td style="text-align:center">\’</td>
-<td style="text-align:center">一个单引号</td>
-</tr>
-<tr>
-<td style="text-align:center">\”</td>
-<td style="text-align:center">一个双引号</td>
-</tr>
-</tbody>
-</table>
-<p><em>ps：貌似这本书没有讲NSString 等OC 语法中的特有数据类型</em></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/20/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-01-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-前言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/19/%E5%89%8D%E8%A8%80/">前言</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/19/%E5%89%8D%E8%A8%80/" class="archive-article-date">
-  	<time datetime="2016-04-19T15:24:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>#前言<br>第一篇博客，试着写一下，希望可以坚持下来。</p>
-<hr>
-<p>#计划<br>既然开通了博客，就要干点事情，前期先将iOS的基本知识点进行整理，也是方便自己开发过程中查阅。</p>
-<hr>
-<p>#最后<br>先让我试试怎么传到github上。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/19/%E5%89%8D%E8%A8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
+      <a class="extend prev" rel="prev" href="/page/4/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -2400,10 +1680,10 @@ for (int i = 0; i &lt; [arr2 count]; ++i) &#123;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2022 xiaodouzi
+    		&copy; 2022 小豆子
     	</div>
       	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      		<a href="http://hexo.io/" target="_blank">Hexo</a> <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备19004515号-3</a> <a href="https://beian.miit.gov.cn/" target="_blank">鄂ICP备19004515号-2</a>
       	</div>
     </div>
   </div>
