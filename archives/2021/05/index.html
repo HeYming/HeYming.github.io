@@ -6,19 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Swift学习记录-15 | 小豆子的博客</title>
+  <title>Archives: 2021/5 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Alerts and Action Sheets两种“弹出并询问用户”机制AlertsAction SheetsAlerts在屏幕中间弹出。通常只问两个答案（例如，确定&#x2F;取消、是&#x2F;否等）。可能会破坏您的用户界面，因此请谨慎使用。通常用于“异步”问题（“连接重置”或“网络获取失败”）。 可以有一个文本字段来快速回答（例如密码）Action Sheets通常在 iPhone&#x2F;iPod Touch 上从">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Swift学习记录-15">
-<meta property="og:url" content="http://yoursite.com/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/index.html">
+  <meta name="description" content="我的征程是星辰大海">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小豆子的博客">
+<meta property="og:url" content="http://yoursite.com/archives/2021/05/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="Alerts and Action Sheets两种“弹出并询问用户”机制AlertsAction SheetsAlerts在屏幕中间弹出。通常只问两个答案（例如，确定&#x2F;取消、是&#x2F;否等）。可能会破坏您的用户界面，因此请谨慎使用。通常用于“异步”问题（“连接重置”或“网络获取失败”）。 可以有一个文本字段来快速回答（例如密码）Action Sheets通常在 iPhone&#x2F;iPod Touch 上从">
+<meta property="og:description" content="我的征程是星辰大海">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-03-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-08T11:39:45.958Z">
 <meta property="article:author" content="小豆子">
-<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
@@ -169,47 +166,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Swift学习记录-15" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Swift学习记录-15
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2021/05/14/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/" class="archive-article-date">
+  	<time datetime="2021-05-13T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-14</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2021/05/14/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/">Swift学习记录-17</a>
     </h1>
   
 
-        
-        <a href="/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/" class="archive-article-date">
-  	<time datetime="2021-03-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Alerts-and-Action-Sheets"><a href="#Alerts-and-Action-Sheets" class="headerlink" title="Alerts and Action Sheets"></a>Alerts and Action Sheets</h2><p>两种“弹出并询问用户”机制<br>Alerts<br>Action Sheets<br>Alerts<br>在屏幕中间弹出。<br>通常只问两个答案（例如，确定/取消、是/否等）。<br>可能会破坏您的用户界面，因此请谨慎使用。<br>通常用于“异步”问题（“连接重置”或“网络获取失败”）。 可以有一个文本字段来快速回答（例如密码）<br>Action Sheets<br>通常在 iPhone/iPod Touch 上从屏幕底部滑入，在 iPad 上则在弹出窗口中。<br>可以从条形按钮项或视图中的任何矩形区域显示。 通常会问有两个以上答案的问题。<br>将操作表视为向用户呈现“分支决策”（即下一步做什么？）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">var alert = UIAlertController(</span><br><span class="line">    title: “Redeploy Cassini”,</span><br><span class="line">    message: “Issue commands to Cassini’s guidance system.”,</span><br><span class="line">    preferredStyle: .actionSheet</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Orbit Saturn”,</span><br><span class="line">    style: UIAlertActionStyle.default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // go into orbit around saturn</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Explore Titan”,</span><br><span class="line">    style: .default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        if !self.loggedIn &#123; self.login() &#125;</span><br><span class="line">        // if loggedIn go to titan</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Closeup of Sun”,</span><br><span class="line">    style: .destructive)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        if !loggedIn &#123; self.login() &#125;</span><br><span class="line">        // if loggedIn destroy Cassini by going to Sun</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Cancel”,</span><br><span class="line">    style: .cancel)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">       // do nothing</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">//iPad</span><br><span class="line">alert.modalPresentationStyle = .popover</span><br><span class="line">let ppc = alert.popoverPresentationController</span><br><span class="line">ppc?.barButtonItem = redeployBarButtonItem</span><br><span class="line"></span><br><span class="line">present(alert, animated: true, completion: nil)</span><br></pre></td></tr></table></figure><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var alert = UIAlertController(</span><br><span class="line">    title: “Login Required”,</span><br><span class="line">    message: “Please enter your Cassini guidance system...”,</span><br><span class="line">    preferredStyle: .alert</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Cancel”,</span><br><span class="line">    style: .cancel)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // do nothing</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Login”,</span><br><span class="line">    style: .default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // get password and log in</span><br><span class="line">        if let tf = self.alert.textFields?.first &#123;</span><br><span class="line">            self.loginWithPassword(tf.text)</span><br><span class="line">        &#125;</span><br><span class="line">&#125; )</span><br><span class="line">alert.addTextField(configurationHandler: &#123; textField in</span><br><span class="line">    textField.placeholder = “Guidance System Password”</span><br><span class="line">    textField.isSecureTextEntry = true</span><br><span class="line">&#125;)</span><br><span class="line">present(alert, animated: true, completion: nil)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Notification"><a href="#Notification" class="headerlink" title="Notification"></a>Notification</h2><p>Notifications<br>MVC 幻灯片中的“广播电台”。 用于模型（或全局）到控制器的通信。<br>NotificationCenter<br>通过 NotificationCenter.default 获取默认的“NotificationCenter”<br>如果您想“收听广播电台”，请发送以下消息<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let center = NotificationCenter.default </span><br><span class="line">var observer = center.addObserver(</span><br><span class="line">    forName: Notification.Name.UIContentSizeCategoryDidChange </span><br><span class="line">    object: UIApplication.shared, // or nil</span><br><span class="line">    queue: OperationQueue.main // or nil </span><br><span class="line">) &#123; notification in</span><br><span class="line">    // re-set the fonts of objects using preferred fonts</span><br><span class="line">    // or look at the size category and do something with it ...</span><br><span class="line">    let c = notification.userInfo?[UIContentSizeCategoryNewValueKey]</span><br><span class="line">    // c might be UIContentSizeCategorySmall, for example &#125;</span><br><span class="line">center.removeObserver(observer) // when you’re done listening</span><br></pre></td></tr></table></figure><br>什么是 Notification.Name？<br>在文档中查找此内容，以了解您可以收听哪些 iOS 系统广播电台。 有很多。<br>您将在 Notification.Name 上将它们视为静态变量。<br>您可以使用 Notification.Name(String) 创建自己的电台名称。<br>发送通知<br>任何用 addObserver 添加的闭包都会被执行。<br>要么立即在与 post 相同的队列上（如果队列为零）。<br>或者通过将块发布到使用 addObserver 指定的队列来异步。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NotificationCenter.default.post(</span><br><span class="line">      name: Notification.Name,</span><br><span class="line">    object: Any?,</span><br><span class="line">  userInfo: [AnyHashable:Any]? = nil</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
-<h3 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h3><p>观察 NSObject 子类的属性<br>KVO 的基本思想是注册一个闭包，以便在属性值更改时调用。要完成这项工作需要一些“机制”， NSObject 实现了这个机制，因此继承自 NSObject 的对象可以参与<br>它有什么好处？<br>通常由控制器用来观察其模型或视图，并非每个属性都适用于 KVO，属性必须符合键值编码才能工作，在 iOS 框架中散布着一些兼容的属性，例如 UIView 的 frame 和 center 与 KVO 配合使用，UIView 下的大部分 CALayer 也是如此，当然，您可以使您自己的 NSObject 子类中的属性兼容<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var observation = observed.observe(keyPath: KeyPath) &#123; (observed, change) in </span><br><span class="line">    // code to execute when the property described by keyPath changes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>只要观察仍然在堆中，闭包就会保持活动状态。 闭包的 change 参数是一个 NSKeyValueObservedChange。 NSKeyValueObservedChange 包含旧值和新值。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">labelObservations[label] = label.observe(\.center) &#123; (label, change) in</span><br><span class="line">            self.delegate?.emojiArtViewDidChange(self)</span><br><span class="line">            NotificationCenter.default.post(name: .EmojiArtViewDidChange, object: self)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Application-Lifecycle"><a href="#Application-Lifecycle" class="headerlink" title="Application Lifecycle"></a>Application Lifecycle</h2><h3 id="Not-running"><a href="#Not-running" class="headerlink" title="Not running"></a>Not running</h3><p>此时点击App图标进行启动App</p>
-<h3 id="Foreground"><a href="#Foreground" class="headerlink" title="Foreground"></a>Foreground</h3><h4 id="Inactive"><a href="#Inactive" class="headerlink" title="Inactive"></a>Inactive</h4><p>运行代码，但没有UI事件。<br>您的 AppDelegate 将收到…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(UIApplication,</span><br><span class="line">    will/didFinishLaunchingWithOptions:</span><br><span class="line">        [UIApplicationLaunchOptionsKey:Any]? = nil)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationDidFinishLaunching</span><br></pre></td></tr></table></figure><br>传递的字典（也在 notification.userInfo 中）告诉您启动应用程序的原因。<br>一些例子 …<br>有人要你打开网址<br>你进入了世界的某个地方<br>您正在继续在另一台设备上开始的活动 收到通知（推送或本地）<br>蓝牙连接的设备想与你互动<br>过去，您会在这里构建您的 UI。 例如，您将实例化一个拆分视图控制器并在其中放置一个导航控制器，然后推送您的实际内容视图控制器。<br>但是现在我们使用故事板来完成所有这些。<br>所以很多时候你根本没有实现这个方法</p>
-<h4 id="active"><a href="#active" class="headerlink" title="active"></a>active</h4><p>运行代码，接收和处理UI事件。<br>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationWillResignActive(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationWillResignActive</span><br></pre></td></tr></table></figure><br>您需要在此处“暂停”您的 UI。<br>例如，小行星希望暂停小行星。 这可能是因为有电话打进来。<br>或者你可能正在前往后台的路上。<br>如果您之前“暂停”了您的 UI，您可以在此处重新激活。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func applicationDidBecomeActive(UIApplication)</span><br><span class="line">UIApplicationDidBecomeActive</span><br></pre></td></tr></table></figure></p>
-<h4 id="background"><a href="#background" class="headerlink" title="background"></a>background</h4><p>在有限的时间内运行代码，没有UI事件。<br>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationDidEnterBackground(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationDidEnterBackground</span><br></pre></td></tr></table></figure><br>在这里，您想（快速）压下舱口。 你只能跑 30 秒左右。<br>您可以要求更多时间，但不要滥用（否则系统将开始杀死你）。 准备好自己最终在这里被杀（可能不会发生，但无论如何都要做好准备）。</p>
-<h4 id="Foreground-1"><a href="#Foreground-1" class="headerlink" title="Foreground"></a>Foreground</h4><p>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationWillEnterForeground(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationWillEnterForeground</span><br></pre></td></tr></table></figure><br>你没有被后台状态杀死！ 是时候打开舱口盖了。<br>也许撤消您在 DidEnterBackground 中所做的事情。 您可能很快就会被激活。</p>
-<h3 id="UIApplicationDelegate"><a href="#UIApplicationDelegate" class="headerlink" title="UIApplicationDelegate"></a>UIApplicationDelegate</h3><p>State Restoration（保存您的 UI 状态，以便即使您被杀死也可以恢复它）。<br>Data Protection（可以将文件设置为在用户设备的屏幕被锁定时受到保护）。<br>Open URL（在 Xcode 的 Project Settings 的 Info 选项卡中，您可以注册某些 URL）。<br>Background Fetching（您可以在后台获取和接收结果）。</p>
-<h3 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h3><p>共享实例<br>您的应用程序中有一个 UIApplication 实例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let myApp = UIApplication.shared</span><br></pre></td></tr></table></figure><br>它管理所有全局行为,你永远不需要子类化它,它将您需要参与的所有内容委托给它的 UIApplicationDelegate<br>在另一个应用程序中打开 URL<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func open(URL)</span><br><span class="line">func canOpenURL(URL) -&gt; Bool</span><br></pre></td></tr></table></figure><br>注册接收推送通知<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (un)registerForRemoteNotifications()</span><br></pre></td></tr></table></figure><br>本地通知和推送通知均由 UNNotification 框架处理。</p>
-<p>设置后台获取的获取间隔<br>如果您希望后台获取工作，您必须设置它…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func setMinimumBackgroundFetchInterval(TimeInterval)</span><br><span class="line">UIApplicationBackgroundFetchIntervalMinimum // 通常你会将它设置为 </span><br></pre></td></tr></table></figure><br>在后台要求更多时间<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func beginBackgroundTask(withExpirationHandler: (() -&gt; Void)?) -&gt; UIBackgroundTaskIdentifier </span><br></pre></td></tr></table></figure><br>完成后不要忘记调用 endBackgroundTask(UIBackgroundTaskIdentifier) ！<br>打开“正在使用的网络”微调器（状态栏左上角） var<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isNetworkActivityIndicatorVisible: Bool // 不幸的是只是一个 Bool，小心</span><br></pre></td></tr></table></figure><br>了解事情<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var backgroundTimeRemaining: TimeInterval &#123; get &#125; // 直到你被暂停</span><br><span class="line">var preferredContentSizeCategory: UIContentSizeCategory &#123; get &#125; // 大字体或小字体 var applicationState: UIApplicationState &#123; get &#125; // 前景、背景、活动		</span><br></pre></td></tr></table></figure></p>
-<h3 id="Info-plist"><a href="#Info-plist" class="headerlink" title="Info.plist"></a>Info.plist</h3><p>您的应用程序的许多设置都在 Info.plist 中您可以通过单击 Info.plist 来编辑此文件（在 Xcode 的属性列表编辑器中）<br>您应用程序的许多设置都在 Info.plist 中<br>您可以通过单击 Info.plist 来编辑这个文件（在 Xcode 的属性列表编辑器中），或者您甚至可以将它编辑为原始 XML！但通常您通过在导航器中单击您的项目来编辑 Info.plist 设置.</p>
-<h3 id="Capabilities"><a href="#Capabilities" class="headerlink" title="Capabilities"></a>Capabilities</h3><p>某些功能需要启用<br>这些是服务器和互操作性功能，如 iCloud、Game Center 等。<br>在功能选项卡中打开<br>在您的项目设置中</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -221,7 +207,7 @@
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -234,105 +220,17 @@
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-16/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Swift学习记录-16
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/12/04/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-14/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Swift学习记录-14</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-
-
-
-  
-  
+    </div></section>
   
 
-  
-  <div id="SOHUCS" sid="Swift学习记录-15" ></div> 
-<script type="text/javascript"> 
-(function(){ 
-var appid = "cyu6avmX8"; 
-var conf = "prod_623af84bb3ea59cbe29f751a15dc11e8"; 
-var width = window.innerWidth || document.documentElement.clientWidth; 
-if (width < 960) { 
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-  
-
-  
+    
 
 
           </div>
@@ -355,8 +253,8 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
