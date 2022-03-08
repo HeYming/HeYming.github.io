@@ -168,47 +168,44 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Swift学习记录-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-16" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/12/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-05/">Swift学习记录-05</a>
+      <a class="article-title" href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-16/">Swift学习记录-16</a>
     </h1>
   
 
         
-        <a href="/2019/08/12/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-05/" class="archive-article-date">
-  	<time datetime="2019-08-11T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
+        <a href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-16/" class="archive-article-date">
+  	<time datetime="2021-04-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Thrown-Errors"><a href="#Thrown-Errors" class="headerlink" title="Thrown Errors"></a>Thrown Errors</h2><p>你必须像这样将函数调用放在do{}块中，并使用try这个词来调用它们。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">do &#123;</span><br><span class="line">      try context.save()</span><br><span class="line">&#125; catch let error &#123;</span><br><span class="line">throw error  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Any-amp-AnyObject"><a href="#Any-amp-AnyObject" class="headerlink" title="Any &amp; AnyObject"></a>Any &amp; AnyObject</h2><p>这些类型通常用于兼容旧Objective-C的API，Swift的优点之一是它的强输入，所以通常你要避免使用Any。<br>我们可以用 as? 来尝试转换类型，也可也用 if let 来转换类型</p>
-<h2 id="Other-Interesting-Classes"><a href="#Other-Interesting-Classes" class="headerlink" title="Other Interesting Classes"></a>Other Interesting Classes</h2><h3 id="NSObject"><a href="#NSObject" class="headerlink" title="NSObject"></a>NSObject</h3><p>所有Objective-C类的基类<br>一些高级特性将要求你从NSObject子类化(这样做没有坏处)</p>
-<h3 id="NSNumber"><a href="#NSNumber" class="headerlink" title="NSNumber"></a>NSNumber</h3><p>泛型数字保存类(即引用类型)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let n = NSNumber(35.5) or let n: NSNumber = 35.5</span><br><span class="line">let intified: Int = n.intValue // also doubleValue, boolValue, etc.</span><br></pre></td></tr></table></figure></p>
-<h3 id="Date"><a href="#Date" class="headerlink" title="Date"></a>Date</h3><p>值类型，用于查找当前的日期和时间或存储过去或未来的日期<br>参见Calendar, DateFormatter, DateComponents<br>如果你在UI中显示一个日期，就会有本地化的影响，所以你可以参考这些内容!</p>
-<h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>值类型为“bag o ‘ bits”。用于在iOS SDK中保存/恢复/传输原始数据。</p>
-<h2 id="Views"><a href="#Views" class="headerlink" title="Views"></a>Views</h2><p>一个视图(即UIView的子类)代表一个矩形区域<br>定义绘图的坐标空间<br>以及处理触摸事件</p>
-<p>一个视图只有一个父视图… ‘var superview: UIView?’<br>但它可以有很多(或零)子视图…’var subviews: [UIView]’<br>子视图数组的顺序很重要:数组中后面的顺序在前面的顺序之上<br>一个视图可以将它的子视图剪辑到它自己的边界或不(默认是不)<br>UIWindow<br>UIView位于视图层次结构的最顶端(甚至包括状态栏),通常在整个iOS应用中只有一个UIWindow.</p>
-<p>在Xcode中，层次结构通常是图形化的,但是你可以用代码操作他。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func addSubview(_ view: UIView)</span><br><span class="line">func removeFromSuperview()</span><br></pre></td></tr></table></figure></p>
-<p>UIView初始化的时候，这个View可能来自Storyboard，你需要调用’init(coder: NSCoder)’方法<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func setup() &#123; ... &#125;</span><br><span class="line">override init(frame: CGRect) &#123; </span><br><span class="line">    super.init(frame: frame)</span><br><span class="line">    setup() </span><br><span class="line">&#125;</span><br><span class="line">requiredinit?(coderaDecoder:NSCoder)&#123; </span><br><span class="line">    super.init(coder: aDecoder)</span><br><span class="line">    setup()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>当UIView来自Storyboard的时候，还可以调用’awakeFromNib()’来初始化</p>
-<h2 id="Coordinate-System-Data-Structures"><a href="#Coordinate-System-Data-Structures" class="headerlink" title="Coordinate System Data Structures"></a>Coordinate System Data Structures</h2><h3 id="CGFloat"><a href="#CGFloat" class="headerlink" title="CGFloat"></a>CGFloat</h3><p>对于任何与UIView的坐标系统有关的东西，总是使用CGFloat而不是Double或Float。你可以使用初始化器转换为/从Double或Float，例如，让cgf = CGFloat(Double)</p>
-<h3 id="CGPoint"><a href="#CGPoint" class="headerlink" title="CGPoint"></a>CGPoint</h3><p>简单地说，一个包含两个CGFloat的结构体:x和y。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var point = CGPoint(x: 37.0, y: 55.2)</span><br><span class="line">point.y -= 30</span><br><span class="line">point.x += 20.0</span><br></pre></td></tr></table></figure></p>
-<h3 id="CGSize"><a href="#CGSize" class="headerlink" title="CGSize"></a>CGSize</h3><p>还有一个结构中有两个CGFloat:width和height。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var size = CGSize(width: 100.0, height: 50.0) </span><br><span class="line">size.width += 42.5</span><br><span class="line">size.height += 75</span><br></pre></td></tr></table></figure></p>
-<h3 id="CGRect"><a href="#CGRect" class="headerlink" title="CGRect"></a>CGRect</h3><p>一个带有CGPoint和CGSize的结构体<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct CGRect &#123;</span><br><span class="line">   var origin: CGPoint</span><br><span class="line">   var size: CGSize</span><br><span class="line">&#125;</span><br><span class="line">let rect = CGRect(origin: aCGPoint, size: aCGSize)</span><br></pre></td></tr></table></figure><br>需要注意，UIView的原点在左上方，单位是点，而不是像素</p>
-<h2 id="Custom-Views"><a href="#Custom-Views" class="headerlink" title="Custom Views"></a>Custom Views</h2><p>创建视图<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let labelRect = CGRect(x: 20, y: 20, width: 100, height: 50)</span><br><span class="line">let label = UILabel(frame: labelRect) // UILabel is a subclass of UIView label.text = “Hello”</span><br><span class="line">view.addSubview(label)</span><br></pre></td></tr></table></figure><br>注意尽可能不要调用’draw(CGRect)’方法，如果有需要可以调用’setNeedsDisplay()’方法</p>
-<p>如何绘制一个图像<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">let path = UIBezierPath()</span><br><span class="line">path.move(to: CGPoint(80, 50))</span><br><span class="line">path.addLine(to: CGPoint(140, 150))</span><br><span class="line">path.addLine(to: CGPoint(10, 150))</span><br><span class="line">path.close()</span><br><span class="line">UIColor.green.setFill()</span><br><span class="line">UIColor.red.setStroke()</span><br><span class="line">path.linewidth = 3.0</span><br><span class="line">path.fill()</span><br><span class="line">path.stroke()</span><br></pre></td></tr></table></figure></p>
-<h2 id="Layers"><a href="#Layers" class="headerlink" title="Layers"></a>Layers</h2><p>在UIView下面是一个叫做CALayer的绘图机制，你通常不会关心这个。但是这里有一些有用的API。<br>CALayer中的CA代表“核心动画”。<br>大多数情况下，我们可以在不直接访问这个层的情况下在UIView中做动画。<br>但它是UIView实际动画功能的来源。下周我们将讨论动画。<br>但CALayer也可以做一些很酷的非动画导向的事情，例如…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var cornerRadius: CGFloat//将背景设置为圆角矩形</span><br><span class="line">var borderWidth: CGFloat//在视图周围绘制边框</span><br><span class="line">var borderColor: CGColor ?//边框的颜色(如果有)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Drawing-Text"><a href="#Drawing-Text" class="headerlink" title="Drawing Text"></a>Drawing Text</h2><p>我们一般显示文字用UILabel，如果要在draw中画文字的话，可以调用以下代码<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let text = NSAttributedString(string: “hello”) </span><br><span class="line">text.draw(at: aCGPoint) </span><br><span class="line">let textSize: CGSize = text.size</span><br></pre></td></tr></table></figure></p>
-<h2 id="Fonts"><a href="#Fonts" class="headerlink" title="Fonts"></a>Fonts</h2><p>这里讲如何适配用户自定义字体大小<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let metrics = UIFontMetrics(forTextStyle: .body) </span><br><span class="line">let fontToUse = metrics.scaledFont(for: font)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Drawing-Images"><a href="#Drawing-Images" class="headerlink" title="Drawing Images"></a>Drawing Images</h2><p>一般情况我们会使用UIImageView来展示图片，如果需要在draw中展示图片<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let image: UIImage = ...</span><br><span class="line">image.draw(at point: aCGPoint) // the upper left corner put at aCGPoint image.draw(in rect: aCGRect) // scales the image to fit aCGRect image.drawAsPattern(in rect: aCGRect) // tiles the image into aCGRect</span><br></pre></td></tr></table></figure><br>如果是draw创建的图片，在变更设备方向的时候可能不会随着设备旋转而调整，需要设置’var contentMode: UIViewContentMode’为’.redraw’</p>
-<p>如果你需要重新定位你的子视图位置，可以重写以下方法<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">override func layoutSubviews() &#123;</span><br><span class="line">      super.layoutSubviews()</span><br><span class="line">// reposition my subviews’s frames based on my new bounds </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h2 id="Segues"><a href="#Segues" class="headerlink" title="Segues"></a>Segues</h2><h3 id="Modal"><a href="#Modal" class="headerlink" title="Modal"></a>Modal</h3><p>注意事项<br>我们使用 Modal segue 进行 segue 的视图控制器将接管整个屏幕 这可能会让用户感到相当不安，因此请谨慎使用<br>我们如何设置模态转场？<br>只需 ctrl-drag 从一个按钮到另一个 View Controller 并选择 segue 类型“Modal”<br>如果您需要呈现模态 VC 而不是按钮，请使用手动 segue<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func performSegue(withIdentifier: String, sender: Any?)</span><br></pre></td></tr></table></figure><br> 或者，如果您有视图控制器本身（例如警报或来自 instantiateViewController)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func present(UIViewController, animated: Bool, completion: (() -&gt; Void)? = nil)</span><br></pre></td></tr></table></figure><br>准备模态转场<br>你准备一个模态转场，就像任何其他转场一样<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func prepare(for: UIStoryboardSegue, sender: Any?) &#123;</span><br><span class="line">    if segue.identifier == “GoToMyModalVC” &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;	</span><br></pre></td></tr></table></figure></p>
+<p>从 Modally segued-to 视图控制器那里得到反馈<br>当模态视图控制器“完成”时，它如何将结果传回给演示者？ 如果没有什么可说的，只需忽略转接至 MVC（下一张幻灯片）。<br>如何关闭视图控制器<br>呈现视图控制器负责解除（而不是呈现）。 您可以通过向呈现视图控制器发送此消息来执行此操作<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func dismiss(animated: Bool, completion: (() -&gt; Void)? = nil)</span><br></pre></td></tr></table></figure><br>这将消除它呈现的任何 MVC（如果有的话）。<br>您可以使用此 UIViewController 属性访问您的呈现视图控制器<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var presentingViewController: UIViewController?</span><br></pre></td></tr></table></figure><br>如果你把它发送到一个展示的视图控制器，为了方便，它会转发给它的展示者（除非它本身已经展示了一个 MVC，在这种情况下它会关闭那个 MVC）。但是为了减少代码中的混乱，只向呈现控制器发送解雇。 Unwind Segues（即将推出）会自动关闭（您无需调用上述方法）。<br>控制呈现的视图控制器的外观<br>在水平规则的环境中，这个 var 确定呈现的 VC 的样子<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var modalPresentationStyle: UIModalPresentationStyle</span><br></pre></td></tr></table></figure><br>除了默认的 .fullScreen 之外，还有 .overFullScreen（演示者在后面可见）<br>（这两个使用较小的空间，并且后面有一个“灰色”呈现的视图控制器）在水平紧凑的环境中，这些都将适应始终全屏！<br>模态视图控制器是如何动画到屏幕上的？取决于正在呈现的视图控制器中的此属性…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var modalTransitionStyle: UIModalTransitionStyle</span><br><span class="line">.coverVertical //从屏幕底部向上滑动呈现的模态VC（默认）</span><br><span class="line">.flipHorizontal //翻转呈现视图控制器以显示呈现的模态VC </span><br><span class="line">.crossDissolve //呈现的VC随着呈现的VC淡出而淡出在</span><br><span class="line">.partialCurl // 仅当呈现 VC 是全屏时（并且没有更多的模态呈现）可以通过检查 segue 在情节提要中设置呈现和过渡样式。</span><br></pre></td></tr></table></figure></p>
+<h3 id="Popover"><a href="#Popover" class="headerlink" title="Popover"></a>Popover</h3><p>弹出框在屏幕的其余部分弹出整个 MVC<br>弹出框几乎与 Modal segue 完全相同<br>您仍然 ctrl-drag，您仍然有一个标识符，您仍然可以准备<br>它只是看起来有点不同（但它仍然是“模态的”，因为你不能做任何其他事情）<br>准备 popover segue 时需要注意的事项<br>所有的 segues 都通过 UIPresentationController 管理<br>它记录了导致弹出框出现的原因（条形按钮项或视图中的矩形）您还可以控制允许弹出框箭头指向的方向<br>或者您可以控制弹出框如何适应不同的尺寸类别（例如 iPad 与 iPhone）<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">func prepare(for segue: UIStoryboardSegue, sender: Any?) &#123;</span><br><span class="line">     if let identifier = segue.identifier &#123;</span><br><span class="line">         switch identifier &#123;</span><br><span class="line">             case “Do Something in a Popover Segue”:</span><br><span class="line">                 if let vc = segue.destination as? MyController &#123;</span><br><span class="line">                     if let ppc = vc.popoverPresentationController &#123;</span><br><span class="line">                         ppc.permittedArrowDirections = UIPopoverArrowDirection.any</span><br><span class="line">                         ppc.delegate = self</span><br><span class="line">&#125;</span><br><span class="line">// more preparation here</span><br><span class="line">&#125;</span><br><span class="line">            default: break</span><br><span class="line">        &#125;</span><br><span class="line">&#125; &#125;</span><br></pre></td></tr></table></figure><br>适应不同尺寸等级<br>一件非常有趣的事情是弹出式演示如何“适应”不同的大小类别。 当弹出框在水平紧凑的环境中展示自己时（例如 iPhone），<br>  可能没有足够的空间舒适地显示弹出窗口，因此默认情况下它会“适应”并以全屏模式显示 MVC。<br>但是 popover 呈现控制器的委托可以控制这种“适应”行为。 要么完全阻止它<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func adaptivePresentationStyle(</span><br><span class="line">     for controller: UIPresentationController,</span><br><span class="line">    traitCollection: UITraitCollection </span><br><span class="line">) -&gt; UIModalPresentationStyle &#123;</span><br><span class="line">    return UIModalPresentationStyle.none // don’t adapt</span><br><span class="line">    // the default in horizontally compact environments (iPhone) is .fullScreen</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>或通过修改适应<br>您可以控制用于在适应环境中呈现的视图控制器 最佳示例：围绕呈现的 MVC 包装 UINavigationController    </p>
+<pre><code>func presentationController(controller:UIPresentationController,
+     viewControllerForAdaptivePresentationStyle: UIModalPresentationStyle)
+      -&gt; UIViewController?
+&#123;
+// return a UIViewController to use (e.g. wrap a Navigation Controller around your MVC) 
+&#125;
+</code></pre><p>重要的弹出框问题：大小<br>除非有人另有说明，否则弹出框将变得非常大。<br>呈现的 MVC 最清楚它在弹出框内的“首选”大小。<br>它通过这个属性本身（即在被呈现的 MVC 的控制器中）表达… var preferredContentSize: CGSize<br>MVC 不能保证是那个大小，但系统会尽力而为。<br>您可以设置或覆盖 var 以始终返回适当的大小。</p>
+<h3 id="Unwind-Segue"><a href="#Unwind-Segue" class="headerlink" title="Unwind Segue"></a>Unwind Segue</h3><p>唯一不创建新 MVC 的 segue<br>它只能继续（直接或间接）呈现当前 MVC 的其他 MVC<br>它有什么好处？<br>在导航控制器中跳转卡片堆栈（其他卡片被视为演示者）在向演示者报告信息时关闭模态连接到 MVC</p>
+<p>不是 ctrl-drag 到另一个 MVC，而是 ctrl-drag 到同一个 MVC 中的“Exit”按钮 然后你可以选择你在另一个 MVC 中创建的特殊 @IBAction 方法<br>这意味着“通过退出我并找到实施该方法的演示者来继续”<br>如果没有演示者（直接或间接）实现该方法，则不会发生转场</p>
+<pre><code>@IBAction func close(_ sender: UIBarButtonItem) &#123;
+    dismiss(animated: true) &#123;
+    &#125;
+&#125;
+</code></pre><p>如果可以找到 @IBAction，您（即呈现的 MVC）将可以正常准备<br>然后特殊的 @IBAction 将在另一个 MVC 中调用，并且 MVC 将显示在屏幕上您将在此过程中被解雇（即您将被“取消呈现”并被丢弃）</p>
+<h3 id="Embed-Segue"><a href="#Embed-Segue" class="headerlink" title="Embed Segue"></a>Embed Segue</h3><p>将一个 VC 的 self.view 放入另一个 VC 的视图层次结构中！ 这可能是一种非常强大的封装技术。<br>Xcode 让这一切变得简单<br>将容器视图从对象调色板拖出到您要嵌入的场景中。自动设置从容器 VC 到包含的 VC 的“Embed Segue”。<br>Embed Segue<br>就像其他 segues 一样工作。<br>准备（为segue：，发件人：）等。 人。<br>不过，不要忘记，就像其他迷恋风投的人一样，<br>调用 prepare(for segue:, sender:) 时未设置嵌入式 VC 的outlets。<br>所以我们经常会在prepare中获取一个指向嵌入式VC的指针。                </p>
 
       
 
@@ -243,7 +240,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/12/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-05/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-16/">展开全文 >></a>
         </p>
       
 
@@ -258,60 +255,228 @@
 
 
   
-    <article id="post-Swift学习记录-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-17" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/06/19/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-04/">Swift学习记录-04</a>
+      <a class="article-title" href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/">Swift学习记录-1</a>
     </h1>
   
 
         
-        <a href="/2019/06/19/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-04/" class="archive-article-date">
-  	<time datetime="2019-06-18T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-19</time>
+        <a href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/" class="archive-article-date">
+  	<time datetime="2021-04-15T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h2><h3 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h3><p>协议只能进行声明，没有任何类型的存储和值，Swift提供了多重继承。<br>协议是一种更精准的表达API的方法。不是强制API的调用者传递特定的类、结构或enum，API可以让调用者传递调用者想要的任何类/结构/enum，但也可以要求它们实现API想要的某些方法或属性。API通过协议表达了它希望调用者提供的函数或变量。因此，协议只是方法和属性声明的集合。<br>协议是一种类型，它几乎可以在任何使用其他类型的地方使用:变量、函数参数等。</p>
+        <h2 id="Core-Motion"><a href="#Core-Motion" class="headerlink" title="Core Motion"></a>Core Motion</h2><p>用于访问设备上的运动感应硬件的 API<br>主要输入：加速度计、陀螺仪、磁力计 并非所有设备都有所有输入（例如，只有后来型号的设备才有陀螺仪）<br>用于获取此输入的类是 CMMotionManager<br>每个应用程序仅使用一个实例（否则会影响性能）<br>它是一种“全局资源”，因此可以通过某个类方法获取一个<br>用法<br>1.查看可用的硬件</p>
+<ol>
+<li>开始采样并轮询运动管理器以获取它拥有的最新样本.<br>或<br>1.查看可用的硬件</li>
+<li>设置您希望从硬件报告数据的速率</li>
+<li>注册一个闭包（和一个运行它的队列）以在每次采样时调用</li>
+</ol>
+<p>检查硬件传感器的可用性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;accelerometer,gyro,magnetometer,deviceMotion&#125;Available: Bool</span><br></pre></td></tr></table></figure><br>“device motion”是所有可用的（加速度计、磁力计、陀螺仪）的组合。 </p>
+<p>启动硬件传感器收集数据<br>仅当您要轮询数据时才需要这样做。<br>通常在您的应用程序中的某些架构已经是周期性的（例如动画帧）时使用。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func start&#123;Accelerometer,Gyro,Magnetometer,DeviceMotion&#125;Updates()</span><br></pre></td></tr></table></figure><br>硬件当前是否正在收集数据？<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var &#123;accelerometer,gyro,magnetometer,deviceMotion&#125;Active: Bool</span><br></pre></td></tr></table></figure><br>停止硬件收集数据<br>收集数据会影响性能，因此请在不需要数据的时候停止。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func stop&#123;Accelerometer,Gyro,Magnetometer,DeviceMotion&#125;Updates()</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMAccelerometerData"><a href="#CMAccelerometerData" class="headerlink" title="CMAccelerometerData"></a>CMAccelerometerData</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var accelerometerData: CMAccelerometerData?</span><br><span class="line">var acceleration: CMAcceleration</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct CMAcceleration &#123;</span><br><span class="line">    var x: Double // in g (9.8 m/s/s) </span><br><span class="line">    var y:Double //in g </span><br><span class="line">    var z:Double //in g</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该原始数据包括重力加速度<br>因此，如果设备平放，z 将为 1.0，x 和 y 将为 0.0<br>注册一个块以接收加速度计数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func startAccelerometerUpdatesToQueue(queue: OperationQueue,</span><br><span class="line">                                  withHandler: CMAccelerometerHandler)</span><br><span class="line">typealias CMAccelerationHandler = (CMAccelerometerData?, Error?) -&gt; Void</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMGyroData"><a href="#CMGyroData" class="headerlink" title="CMGyroData"></a>CMGyroData</h3><p>旋转数据的符号遵循右手定则<br>以上数据会有偏差<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var gyroData: CMGyroData?</span><br><span class="line">var rotationRate: CMRotationRate </span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">struct CMRotationRate &#123;</span><br><span class="line">    var x:Double //in radians/s </span><br><span class="line">    var y:Double //in radians/s </span><br><span class="line">    var z:Double //in radians/s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注册一个块以接收 Gyro 数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func startGyroUpdatesToQueue（queue：OperationQueue，</span><br><span class="line">                     withHandler：CMGyroHandler）</span><br><span class="line">typealias CMGyroHandler = (CMGyroData?, Error?) -&gt; Void</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMMagnetometerData"><a href="#CMMagnetometerData" class="headerlink" title="CMMagnetometerData"></a>CMMagnetometerData</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var magnetometerData: CMMagnetometerData?</span><br><span class="line">var magneticField: CMMagneticField </span><br><span class="line">struct CMMagneticField &#123;</span><br><span class="line">    var x:Double //in microteslas </span><br><span class="line">    var y:Double //in microteslas </span><br><span class="line">    var z:Double //in microteslas</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上数据会有偏差<br>注册一个块以接收磁力计数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func startMagnetometerUpdatesToQueue(queue: OperationQueue,</span><br><span class="line">                                 withHandler: CMMagnetometerHandler)</span><br><span class="line">typealias CMMagnetometerHandler = (CMMagnetometerData?, Error?) -&gt; Void</span><br></pre></td></tr></table></figure></p>
+<h3 id="CMDeviceMotion"><a href="#CMDeviceMotion" class="headerlink" title="CMDeviceMotion"></a>CMDeviceMotion</h3><p>CMDeviceMotion 是一个“组合”的运动数据源<br>它使用来自所有硬件的信息来改进每个硬件的数据。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var deviceMotion: CMDeviceMotion?</span><br></pre></td></tr></table></figure><br>CMDeviceMotion 中的加速度数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var gravity：CMAcceleration</span><br><span class="line">var userAcceleration: CMAcceleration // 使用陀螺仪分解重力</span><br></pre></td></tr></table></figure><br>CMDeviceMotion 中的其他信息<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var rotationRate: CMRotationRate //使用加速度计从原始数据中消除偏差</span><br><span class="line">var attitude：CMAttitude // 设备在 3D 空间中的姿态（方向）</span><br><span class="line">class CMAttitude: NSObject &#123;</span><br><span class="line">    var roll：Double //围绕通过顶部/底部的纵轴</span><br><span class="line">    var pitch：Double //围绕通过侧面的横轴</span><br><span class="line">    var yaw: Double  //绕轴以 CofG 为原点，⊥ 向下指向屏幕</span><br><span class="line">&#125;</span><br><span class="line">var heading: Double //以度为单位，其中 0 是北（真或磁取决于框架）</span><br></pre></td></tr></table></figure><br>参考范围<br>CMDeviceMotion 中使用的磁力计可以通过设置其参考系来控制。<br>在调用 startDeviceMotionUpdates 时指定此项。<br>xArbitraryZVertical //默认，不使用磁力计<br>xArbitraryCorrectedZVertical // 使用磁力计（如果可用）随时间校正偏航<br>xMagnetic/TrueNorthZVertical // 使用磁力计作为世界上的设备位置/航向 最后两个可能需要用户校准磁力计。<br>对于 TrueNorth，还需要位置信息（例如 GPS/Wifi/蜂窝）。 对于使用增强现实之类的应用程序，北框是必需的。<br>例如，要获取航向，您必须使用 MagneticNorth 或 TrueNorth 参考系。<br>始终检查以确保您想要的参考框架在设备上可用<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static func availableAttitudeReferenceFrames() -&gt; CMAttitudeReferenceFrame</span><br></pre></td></tr></table></figure><br>queue 可以是您创建的 OperationQueue() 或 Operation.main （或当前）<br>注册一个块以接收 DeviceMotion 数据<br>queue 可以是您创建的 OperationQueue() 或 Operation.mainQueue (或 currentQueue) Errors<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func startDeviceMotionUpdates(using: CMAttitudeReferenceFrame,</span><br><span class="line">                                queue: OperationQueue,</span><br><span class="line">                          withHandler: (CMDeviceMotion?, Error?) -&gt; Void)</span><br></pre></td></tr></table></figure></p>
+<p>设置块执行的速率<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var accelerometerUpdateInterval: TimeInterval</span><br><span class="line">var gyroUpdateInterval: TimeInterval</span><br><span class="line">var magnetometerUpdateInterval: TimeInterval</span><br><span class="line">var deviceMotionUpdateInterval: TimeInterval</span><br></pre></td></tr></table></figure><br>可以添加多个处理程序块即使您只被允许一个 CMMotionManager<br>但是，每个块都将以相同的速率接收数据（如上所述）（当然，也允许多个对象同时轮询。\</p>
+<h3 id="Accelerometer-Over-Time"><a href="#Accelerometer-Over-Time" class="headerlink" title="Accelerometer Over Time"></a>Accelerometer Over Time</h3><p>历史加速度计数据<br>有时您不需要实时查看加速度计。<br>您只想知道过去一段时间内发生了什么。<br>例如，如果您想了解用户的身体运动模式。<br>CMSensorRecorder 类可以记录（以 50hz）然后回放加速度计数据。<br>并非所有设备都支持此功能（iPhone 7 及更高版本、Apple Watch）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isAccelerometerRecordingAvailable() -&gt; Bool // 这个设备是否可以录音</span><br></pre></td></tr></table></figure><br>开始记录数据…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func recordAccelerometer(forDuration: TimeInterval) // 保持这个简短的性能</span><br></pre></td></tr></table></figure><br>正在检索记录的数据…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func accelerometerData(from: Date, to: Date) -&gt; CMSensorDataList // 最长 3 天</span><br></pre></td></tr></table></figure><br>您使用 for in … 枚举 CMSensorDataList 中的 CMAccelerometerData 对象<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for dataPoint: CMRecordedAccelerometerData in sensorDataList &#123; . . . &#125;</span><br><span class="line">```				</span><br><span class="line">### Activity Monitoring</span><br><span class="line">粗略估计用户在做什么</span><br><span class="line">例如，静止、步行、跑步、汽车或骑自行车。</span><br><span class="line">您可以使用 CMMotionActivityManager（不是 CMMotionManager！）来跟踪它。</span><br></pre></td></tr></table></figure><br>func startActivityUpdates(to: OperationQueue, withHandler: (CMMotionActivity?) -&gt; Void)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CMMotionActivity 是上述活动之一。</span><br><span class="line">您还可以使用...查询历史活动</span><br></pre></td></tr></table></figure><br>func queryActivityStarting(from: Date, to: Date, to: OperationQueue, withHandler: …)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">		</span><br><span class="line">### Pedometer</span><br><span class="line">随着时间的推移，获取用户的“step”信息才有意义。</span><br><span class="line">创建一个 CMPedometer，然后将消息发送给它</span><br><span class="line">```		</span><br><span class="line">func startUpdates(from: Date, withHandler: (CMPedometerData?, Error?) -&gt; Void)</span><br><span class="line">```		</span><br><span class="line">从日期允许是过去的（但只记录最后 7 天）。</span><br><span class="line">您的处理程序将使用具有 ... startDate 和 endDate 数据的结构 CMPedometerData 定期调用</span><br><span class="line">numberOfSteps, distance, averageActivePace, and currentPace during the time</span><br><span class="line">也floorsAscended和floorsDescended</span><br><span class="line">高度表</span><br><span class="line">获取相对高度变化。</span><br><span class="line">```		</span><br><span class="line">func startRelativeAltitudeUpdates(to: OperationQueue, withHandler: (CMAltitudeData?, Error?))</span><br><span class="line">```		</span><br><span class="line">CMAltitudeData 既有以米为单位的海拔变化，也有原始大气压力数据。</span><br><span class="line">				</span><br><span class="line">检查硬件传感器的授权状态</span><br><span class="line">一些信息被认为是用户“私人的”（例如健身数据）。</span><br><span class="line">特别是 CMPedometer、CMSensorRecorder、CMMotionActivityManager 和 CMAltmeter。 iOS 会自动询问用户（一次）访问此信息的权限。</span><br><span class="line">您可以随时使用这些静态函数了解状态。 </span><br><span class="line">```		</span><br><span class="line">static func authorizationStatus() -&gt; CMAuthorizationStatus</span><br><span class="line">struct CMAuthorizationStatus &#123;</span><br><span class="line">    case notDetermined // 尚未询问用户</span><br><span class="line">    case restricted // 在设置中禁用健身数据访问</span><br><span class="line">    case denied     // 用户已明确拒绝您的应用访问</span><br><span class="line">    case authorized      // 准备就绪！</span><br><span class="line">&#125;</span><br><span class="line">```		</span><br><span class="line">当您请求数据时，缺乏授权也可能显示为错误。			</span><br><span class="line">		</span><br><span class="line">## UIImagePickerController</span><br><span class="line"></span><br><span class="line">模态视图控制器从相机或照片库中获取媒体，</span><br><span class="line">您使用 present(_:animated:completion:)</span><br><span class="line">用法</span><br><span class="line">1. 创建它并设置它的委托（没有它的委托它不能做任何事情）</span><br><span class="line">2. 配置它（来源、媒体类型、用户可编辑性等）</span><br><span class="line">3. 展示它</span><br><span class="line">4. 当用户完成/取消选择媒体时响应委托方法</span><br><span class="line"></span><br><span class="line">用户能做什么取决于平台</span><br><span class="line">几乎所有设备都有摄像头，但有些可以录制视频，有些不能</span><br><span class="line">您只能在 iPad 上提供相机或照片库（不能同时提供）</span><br><span class="line">与所有与设备相关的 API 一样，我们希望首先检查可用的内容</span><br></pre></td></tr></table></figure><br>static func isSourceTypeAvailable(sourceType: UIImagePickerControllerSourceType) -&gt; Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">源类型是 .photoLibrary 或 .camera 或 .savedPhotosAlbum （相机胶卷）		</span><br><span class="line"></span><br><span class="line">但不要忘记，并非每种来源类型都可以提供视频</span><br><span class="line">所以，你要检查...</span><br></pre></td></tr></table></figure><br>static func availableMediaTypes(for: UIImagePickerControllerSourceType) -&gt; [String]?<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">根据设备，将返回其中一个或多个...</span><br><span class="line">kUTTypeImage // 几乎所有来源都提供了这个，甚至不值得检查 </span><br><span class="line">kUTTypeLivePhoto // 还必须说 kUTTypeImage 才能使这个工作</span><br><span class="line">kUTTypeMovie // 音视频一起，只有部分源提供这个</span><br><span class="line">您可以更详细地了解相机</span><br><span class="line">这些是在 MobileCoreServices 框架中声明的。</span><br></pre></td></tr></table></figure><br>static func isCameraDeviceAvailable(UIImagePickerControllerCameraDevice) -&gt; Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">返回 .rear 或 .front</span><br><span class="line">还有其他特定于相机的审讯，例如</span><br></pre></td></tr></table></figure><br>static func isFlashAvailableForCameraDevice(UIImagePickerControllerCameraDevice) -&gt; Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">在选择器中设置您想要的来源和媒体类型</span><br><span class="line">用于捕获视频的选择器的示例设置 (kUTTypeMovie) ...</span><br><span class="line">（从这里开始，出于篇幅原因，UIImagePickerController 将缩写为 UIIPC。）</span><br></pre></td></tr></table></figure><br>let picker = UIImagePickerController()<br>let mediaTypeMovie = kUTTypeMovie as String<br>picker.delegate = self // self must implement UINavigationControllerDelegate too if UIIPC.isSourceTypeAvailable(.camera) {<br>    picker.sourceType = .camera<br>    if let availableTypes = UIIPC.availableMediaTypesForSourceType(.camera) {<br>        if availableTypes.contains(mediaTypeMovie) {<br>            picker.mediaTypes = [mediaTypeMovie]<br>            // proceed to put the picker up<br>        }<br>    }<br>}<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">可编辑性</span><br></pre></td></tr></table></figure><br>var allowsEditing: Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">如果为true，那么用户将有机会在选择器内编辑图像/视频。</span><br><span class="line">当您的代表被通知用户完成时，您将获得原始版本和编辑版本。</span><br><span class="line">限制视频捕获</span><br></pre></td></tr></table></figure><br>var videoQuality: UIImagePickerControllerQualityType<br>.typeMedium // 默认<br>.typeHigh<br>.type640x480<br>.typeLow<br>.typeIFrame1280x720 // 在某些设备上是原生的<br>.typeIFrame960x540  // 在某些设备上是原生的<br>var videoMaximumDuration: TimeInterval // 默认为 10 分钟<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">出示选择器</span><br></pre></td></tr></table></figure><br>present(picker, animated: true, completion: nil)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">在 iPad 上，如果您不提供相机（只是照片库），则必须使用弹出框呈现。</span><br><span class="line">如果您在 iPad 上提供相机，则首选全屏。 请记住：在 iPad 上，它是相机或照片库（不能同时使用两者）。</span><br><span class="line">用户完成后将通知代表</span><br></pre></td></tr></table></figure><br>func imagePickerController(UIIPC, didFinishPickingMediaWithInfo info: [String:Any]) {<br>    // 在此处从 info 中提取图像/电影数据/元数据，更多内容在下一张幻灯片中<br>    picker.presentingViewController?.dismiss(animated: true) { }<br>}<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">取消发生时也将其关闭</span><br></pre></td></tr></table></figure><br>func imagePickerControllerDidCancel(UIIPC) {<br>    picker.presentingViewController?.dismiss(animated: true) { }<br>}<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">info dictionary包含内容</span><br></pre></td></tr></table></figure><br>UIImagePickerControllerMediaType    // kUTTypeImage, kUTTypeMovie<br>UIImagePickerControllerOriginalImage    //UIImage<br>UIImagePickerControllerEditedImage  // UIImage<br>UIImagePickerControllerImageURL     // URL（在一个临时位置，所以移动它以保留它）<br>UIImagePickerControllerCropRect  // CGRect（在一个 NSValue 中）<br>UIImagePickerControllerMediaMetadata    // 图像信息字典<br>UIImagePickerControllerLivePhoto     // PHLivePhoto<br>UIImagePickerControllerPHAsset  // 一个 PHAsset（参见 PHPhotoLibrary）<br>UIImagePickerControllerMediaURL // 如果是 kUTTypeMovie，视频的 URL<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">将拍摄的图像或视频保存到设备的照片库中</span><br><span class="line">您可以保存到用户的相机胶卷</span><br></pre></td></tr></table></figure><br>func UIImageWriteToSavedPhotosAlbum(<br>    <em> image: UIImage,
+    </em> target: Any?, // 完成写入时将选择器发送到的对象<br>    <em> selector: Selector? // 完成写入后发送到目标的选择器
+    </em> context: UnsafeMutableRawPointer? // 传递给选择器<br>)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">令人遗憾的是，这不是基于闭包的，但它就是这样。</span><br><span class="line">这是一种非常简单方便的方法。</span><br><span class="line">但这仅在用户只是偶尔想要保存图像时才有意义。 否则，您需要与照片应用程序集成：检查 PHPhotoLibrary。 当然，您也可以将图像保存到自己的沙箱中。</span><br><span class="line">如果捕获的图像仅在您自己的应用程序中有意义，您会这样做。</span><br><span class="line"></span><br><span class="line">一般来说，可以使用更复杂的媒体捕获。</span><br><span class="line">这个 UIImagePickerController API 非常简单，但存在更强大的 API。</span><br><span class="line">查看 PHPhotoLibrary 和 AVCaptureDevice。</span><br><span class="line"></span><br><span class="line">叠加视图</span><br></pre></td></tr></table></figure><br>var cameraOverlayView: UIView<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">请务必正确设置此视图的框架。</span><br><span class="line">相机总是全屏的，所以使用 UIScreen.main 的 bounds 属性。</span><br><span class="line">如果您使用底部的内置控件，您可能希望视图更小。</span><br><span class="line">隐藏普通相机控件（在底部）</span><br></pre></td></tr></table></figure><br>var showsCameraControls: Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将在屏幕底部留下空白区域（相机的宽高比为 4:3，与屏幕不同）。 </span><br><span class="line">如果没有控件，您将需要一个带有“拍照”（至少）按钮的覆盖视图。</span><br><span class="line">该按钮应将 takePicture() 或 (startVideoCapture()) 发送到选取器。</span><br><span class="line">拍完照片别忘了关掉。</span><br><span class="line">您可以在拍摄时缩放或平移图像</span><br></pre></td></tr></table></figure><br>var cameraViewTransform: CGAffineTransform<br>```<br>例如，您可能希望将图像放大到全屏（其中一些会被剪裁）。</p>
+<p>处理图像<br>Core Image 是一个强大而高效的框架，用于将滤镜应用于图像。<br>有几百个过滤器可供选择（模糊、深度、比较、颜色、平滑等）。 视觉框架提供强大的图像特征检测（例如人脸、条形码等）。 Core Image 也有一些特征检测 API。<br>查看文档中的 Core Image 和 Vision。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/16/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Swift学习记录-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/">Swift学习记录-15</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/" class="archive-article-date">
+  	<time datetime="2021-03-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Alerts-and-Action-Sheets"><a href="#Alerts-and-Action-Sheets" class="headerlink" title="Alerts and Action Sheets"></a>Alerts and Action Sheets</h2><p>两种“弹出并询问用户”机制<br>Alerts<br>Action Sheets<br>Alerts<br>在屏幕中间弹出。<br>通常只问两个答案（例如，确定/取消、是/否等）。<br>可能会破坏您的用户界面，因此请谨慎使用。<br>通常用于“异步”问题（“连接重置”或“网络获取失败”）。 可以有一个文本字段来快速回答（例如密码）<br>Action Sheets<br>通常在 iPhone/iPod Touch 上从屏幕底部滑入，在 iPad 上则在弹出窗口中。<br>可以从条形按钮项或视图中的任何矩形区域显示。 通常会问有两个以上答案的问题。<br>将操作表视为向用户呈现“分支决策”（即下一步做什么？）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">var alert = UIAlertController(</span><br><span class="line">    title: “Redeploy Cassini”,</span><br><span class="line">    message: “Issue commands to Cassini’s guidance system.”,</span><br><span class="line">    preferredStyle: .actionSheet</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Orbit Saturn”,</span><br><span class="line">    style: UIAlertActionStyle.default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // go into orbit around saturn</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Explore Titan”,</span><br><span class="line">    style: .default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        if !self.loggedIn &#123; self.login() &#125;</span><br><span class="line">        // if loggedIn go to titan</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Closeup of Sun”,</span><br><span class="line">    style: .destructive)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        if !loggedIn &#123; self.login() &#125;</span><br><span class="line">        // if loggedIn destroy Cassini by going to Sun</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Cancel”,</span><br><span class="line">    style: .cancel)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">       // do nothing</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">//iPad</span><br><span class="line">alert.modalPresentationStyle = .popover</span><br><span class="line">let ppc = alert.popoverPresentationController</span><br><span class="line">ppc?.barButtonItem = redeployBarButtonItem</span><br><span class="line"></span><br><span class="line">present(alert, animated: true, completion: nil)</span><br></pre></td></tr></table></figure><br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">var alert = UIAlertController(</span><br><span class="line">    title: “Login Required”,</span><br><span class="line">    message: “Please enter your Cassini guidance system...”,</span><br><span class="line">    preferredStyle: .alert</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Cancel”,</span><br><span class="line">    style: .cancel)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // do nothing</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br><span class="line">alert.addAction(UIAlertAction(</span><br><span class="line">    title: “Login”,</span><br><span class="line">    style: .default)</span><br><span class="line">    &#123; (action: UIAlertAction) -&gt; Void in</span><br><span class="line">        // get password and log in</span><br><span class="line">        if let tf = self.alert.textFields?.first &#123;</span><br><span class="line">            self.loginWithPassword(tf.text)</span><br><span class="line">        &#125;</span><br><span class="line">&#125; )</span><br><span class="line">alert.addTextField(configurationHandler: &#123; textField in</span><br><span class="line">    textField.placeholder = “Guidance System Password”</span><br><span class="line">    textField.isSecureTextEntry = true</span><br><span class="line">&#125;)</span><br><span class="line">present(alert, animated: true, completion: nil)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Notification"><a href="#Notification" class="headerlink" title="Notification"></a>Notification</h2><p>Notifications<br>MVC 幻灯片中的“广播电台”。 用于模型（或全局）到控制器的通信。<br>NotificationCenter<br>通过 NotificationCenter.default 获取默认的“NotificationCenter”<br>如果您想“收听广播电台”，请发送以下消息<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">let center = NotificationCenter.default </span><br><span class="line">var observer = center.addObserver(</span><br><span class="line">    forName: Notification.Name.UIContentSizeCategoryDidChange </span><br><span class="line">    object: UIApplication.shared, // or nil</span><br><span class="line">    queue: OperationQueue.main // or nil </span><br><span class="line">) &#123; notification in</span><br><span class="line">    // re-set the fonts of objects using preferred fonts</span><br><span class="line">    // or look at the size category and do something with it ...</span><br><span class="line">    let c = notification.userInfo?[UIContentSizeCategoryNewValueKey]</span><br><span class="line">    // c might be UIContentSizeCategorySmall, for example &#125;</span><br><span class="line">center.removeObserver(observer) // when you’re done listening</span><br></pre></td></tr></table></figure><br>什么是 Notification.Name？<br>在文档中查找此内容，以了解您可以收听哪些 iOS 系统广播电台。 有很多。<br>您将在 Notification.Name 上将它们视为静态变量。<br>您可以使用 Notification.Name(String) 创建自己的电台名称。<br>发送通知<br>任何用 addObserver 添加的闭包都会被执行。<br>要么立即在与 post 相同的队列上（如果队列为零）。<br>或者通过将块发布到使用 addObserver 指定的队列来异步。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">NotificationCenter.default.post(</span><br><span class="line">      name: Notification.Name,</span><br><span class="line">    object: Any?,</span><br><span class="line">  userInfo: [AnyHashable:Any]? = nil</span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<h3 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h3><p>观察 NSObject 子类的属性<br>KVO 的基本思想是注册一个闭包，以便在属性值更改时调用。要完成这项工作需要一些“机制”， NSObject 实现了这个机制，因此继承自 NSObject 的对象可以参与<br>它有什么好处？<br>通常由控制器用来观察其模型或视图，并非每个属性都适用于 KVO，属性必须符合键值编码才能工作，在 iOS 框架中散布着一些兼容的属性，例如 UIView 的 frame 和 center 与 KVO 配合使用，UIView 下的大部分 CALayer 也是如此，当然，您可以使您自己的 NSObject 子类中的属性兼容<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var observation = observed.observe(keyPath: KeyPath) &#123; (observed, change) in </span><br><span class="line">    // code to execute when the property described by keyPath changes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>只要观察仍然在堆中，闭包就会保持活动状态。 闭包的 change 参数是一个 NSKeyValueObservedChange。 NSKeyValueObservedChange 包含旧值和新值。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">labelObservations[label] = label.observe(\.center) &#123; (label, change) in</span><br><span class="line">            self.delegate?.emojiArtViewDidChange(self)</span><br><span class="line">            NotificationCenter.default.post(name: .EmojiArtViewDidChange, object: self)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Application-Lifecycle"><a href="#Application-Lifecycle" class="headerlink" title="Application Lifecycle"></a>Application Lifecycle</h2><h3 id="Not-running"><a href="#Not-running" class="headerlink" title="Not running"></a>Not running</h3><p>此时点击App图标进行启动App</p>
+<h3 id="Foreground"><a href="#Foreground" class="headerlink" title="Foreground"></a>Foreground</h3><h4 id="Inactive"><a href="#Inactive" class="headerlink" title="Inactive"></a>Inactive</h4><p>运行代码，但没有UI事件。<br>您的 AppDelegate 将收到…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func application(UIApplication,</span><br><span class="line">    will/didFinishLaunchingWithOptions:</span><br><span class="line">        [UIApplicationLaunchOptionsKey:Any]? = nil)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationDidFinishLaunching</span><br></pre></td></tr></table></figure><br>传递的字典（也在 notification.userInfo 中）告诉您启动应用程序的原因。<br>一些例子 …<br>有人要你打开网址<br>你进入了世界的某个地方<br>您正在继续在另一台设备上开始的活动 收到通知（推送或本地）<br>蓝牙连接的设备想与你互动<br>过去，您会在这里构建您的 UI。 例如，您将实例化一个拆分视图控制器并在其中放置一个导航控制器，然后推送您的实际内容视图控制器。<br>但是现在我们使用故事板来完成所有这些。<br>所以很多时候你根本没有实现这个方法</p>
+<h4 id="active"><a href="#active" class="headerlink" title="active"></a>active</h4><p>运行代码，接收和处理UI事件。<br>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationWillResignActive(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationWillResignActive</span><br></pre></td></tr></table></figure><br>您需要在此处“暂停”您的 UI。<br>例如，小行星希望暂停小行星。 这可能是因为有电话打进来。<br>或者你可能正在前往后台的路上。<br>如果您之前“暂停”了您的 UI，您可以在此处重新激活。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func applicationDidBecomeActive(UIApplication)</span><br><span class="line">UIApplicationDidBecomeActive</span><br></pre></td></tr></table></figure></p>
+<h4 id="background"><a href="#background" class="headerlink" title="background"></a>background</h4><p>在有限的时间内运行代码，没有UI事件。<br>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationDidEnterBackground(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationDidEnterBackground</span><br></pre></td></tr></table></figure><br>在这里，您想（快速）压下舱口。 你只能跑 30 秒左右。<br>您可以要求更多时间，但不要滥用（否则系统将开始杀死你）。 准备好自己最终在这里被杀（可能不会发生，但无论如何都要做好准备）。</p>
+<h4 id="Foreground-1"><a href="#Foreground-1" class="headerlink" title="Foreground"></a>Foreground</h4><p>您的 AppDelegate 将收到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func applicationWillEnterForeground(UIApplication)</span><br></pre></td></tr></table></figure><br>您可以观察<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UIApplicationWillEnterForeground</span><br></pre></td></tr></table></figure><br>你没有被后台状态杀死！ 是时候打开舱口盖了。<br>也许撤消您在 DidEnterBackground 中所做的事情。 您可能很快就会被激活。</p>
+<h3 id="UIApplicationDelegate"><a href="#UIApplicationDelegate" class="headerlink" title="UIApplicationDelegate"></a>UIApplicationDelegate</h3><p>State Restoration（保存您的 UI 状态，以便即使您被杀死也可以恢复它）。<br>Data Protection（可以将文件设置为在用户设备的屏幕被锁定时受到保护）。<br>Open URL（在 Xcode 的 Project Settings 的 Info 选项卡中，您可以注册某些 URL）。<br>Background Fetching（您可以在后台获取和接收结果）。</p>
+<h3 id="UIApplication"><a href="#UIApplication" class="headerlink" title="UIApplication"></a>UIApplication</h3><p>共享实例<br>您的应用程序中有一个 UIApplication 实例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let myApp = UIApplication.shared</span><br></pre></td></tr></table></figure><br>它管理所有全局行为,你永远不需要子类化它,它将您需要参与的所有内容委托给它的 UIApplicationDelegate<br>在另一个应用程序中打开 URL<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func open(URL)</span><br><span class="line">func canOpenURL(URL) -&gt; Bool</span><br></pre></td></tr></table></figure><br>注册接收推送通知<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func (un)registerForRemoteNotifications()</span><br></pre></td></tr></table></figure><br>本地通知和推送通知均由 UNNotification 框架处理。</p>
+<p>设置后台获取的获取间隔<br>如果您希望后台获取工作，您必须设置它…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func setMinimumBackgroundFetchInterval(TimeInterval)</span><br><span class="line">UIApplicationBackgroundFetchIntervalMinimum // 通常你会将它设置为 </span><br></pre></td></tr></table></figure><br>在后台要求更多时间<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func beginBackgroundTask(withExpirationHandler: (() -&gt; Void)?) -&gt; UIBackgroundTaskIdentifier </span><br></pre></td></tr></table></figure><br>完成后不要忘记调用 endBackgroundTask(UIBackgroundTaskIdentifier) ！<br>打开“正在使用的网络”微调器（状态栏左上角） var<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isNetworkActivityIndicatorVisible: Bool // 不幸的是只是一个 Bool，小心</span><br></pre></td></tr></table></figure><br>了解事情<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var backgroundTimeRemaining: TimeInterval &#123; get &#125; // 直到你被暂停</span><br><span class="line">var preferredContentSizeCategory: UIContentSizeCategory &#123; get &#125; // 大字体或小字体 var applicationState: UIApplicationState &#123; get &#125; // 前景、背景、活动		</span><br></pre></td></tr></table></figure></p>
+<h3 id="Info-plist"><a href="#Info-plist" class="headerlink" title="Info.plist"></a>Info.plist</h3><p>您的应用程序的许多设置都在 Info.plist 中您可以通过单击 Info.plist 来编辑此文件（在 Xcode 的属性列表编辑器中）<br>您应用程序的许多设置都在 Info.plist 中<br>您可以通过单击 Info.plist 来编辑这个文件（在 Xcode 的属性列表编辑器中），或者您甚至可以将它编辑为原始 XML！但通常您通过在导航器中单击您的项目来编辑 Info.plist 设置.</p>
+<h3 id="Capabilities"><a href="#Capabilities" class="headerlink" title="Capabilities"></a>Capabilities</h3><p>某些功能需要启用<br>这些是服务器和互操作性功能，如 iCloud、Game Center 等。<br>在功能选项卡中打开<br>在您的项目设置中</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-15/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Swift学习记录-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/04/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-14/">Swift学习记录-14</a>
+    </h1>
+  
+
+        
+        <a href="/2020/12/04/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-14/" class="archive-article-date">
+  	<time datetime="2020-12-03T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UIDocumentBrowserViewController"><a href="#UIDocumentBrowserViewController" class="headerlink" title="UIDocumentBrowserViewController"></a>UIDocumentBrowserViewController</h2><p>管理用户文档<br>您可能希望用户能够在基于文档的应用程序中轻松管理他们的文档。 选择要打开的文件、重命名文件、移动它们、访问 iCloud 驱动器等。UIDocumentBrowserViewController (UIDBVC) 为您完成所有这些工作。使用 UIDocument 来存储您的文档使得利用这个 UIDBVC 变得容易。<br>使用 UIDocumentBrowserViewController<br>它必须是故事板中的根视图控制器（即箭头指向它）。然后，您的文档编辑 MVC 将以present方式呈现在顶部（即接管屏幕）。<br>您可以打开哪些文件类型？<br>要使用 UIDBVC，您必须注册应用程序使用的类型。 您可以在信息选项卡的项目设置中执行此操作，并选择您的目标。 在文档类型区域中，添加您支持的类型。这是支持 JSON 文件的样子<br>Types 字段是您想要支持的类型的 UTI（例如 public.json、public.image）。 CFBundleTypeRole 和 LSHandlerRank 说明了您如何处理此类文档。<br>你是这种类型的主要编辑和所有者还是只是你可以打开的东西？</p>
+<p>声明您自己的文档类型<br>您可能有您的应用程序编辑的自定义文档类型<br>您可以在项目设置中相同位置的导出的 UTI 下添加此内容 这是添加“表情符号”类型文档的示例…</p>
+<p>建立一个基于 UIDocumentBrowserViewController 的应用程序需要一些设置 主要是 Info.plist 中的一个条目，一些 AppDelegate 代码和一些存根代码<br>模板中有什么？<br>项目设置中文档类型的存根（支持 public.image 文件类型）<br>Info.plist entry Supports Document Browser = YES<br>AppDelegate 中的一些代码允许其他应用程序（如文件）让您的应用程序打开文件<br>存根的 UIDocument 子类（具有空内容和 load(fromContents) 方法） 存根的 MVC 以显示文档（仅调用 UIDocument 的打开和关闭方法） UIDocumentBrowserViewController 的子类（几乎实现了所有内容）<br>您需要做些什么来个性化此模板…</p>
 <ul>
-<li>协议有三个步骤<ol>
-<li>协议声明(协议中有哪些属性和方法)</li>
-<li>声明实现协议的类、结构或enum声明</li>
-<li>实现协议的类、结构或枚举(或扩展)中的代码</li>
+<li><ol>
+<li>使用您的 UIDocument 子类而不是存根的子类</li>
+</ol>
+</li>
+<li><ol>
+<li>使用您的文档查看 MVC 代码（已经在使用 UIDocument）而不是存根 </li>
+</ol>
+</li>
+<li><ol>
+<li>将代码添加到 UIDBVC 子类以…<ul>
+<li>a. 配置 UIDBVC（允许多选？创建新文档？等等） </li>
+<li>b．指定要复制的模板文档的 url 以创建新文档</li>
+<li>c。给定文档的 url，以模态方式呈现您的文档查看 MVC</li>
+</ul>
+</li>
+</ol>
+</li>
+<li><ol>
+<li>将项目设置中的文档类型更新为您的类型（而不是 public.image）</li>
 </ol>
 </li>
 </ul>
-<p>通常任何协议实现者都必须实现协议中的所有方法/属性。然而，可以在协议中标记一些可选的方法’optional’<br>(不要与Optional类型混淆，这是另一回事)。<br>任何具有可选方法的协议都必须被标记为@objc。任何实现可选协议的类都必须继承自NSObject。它主要是为了向后兼容。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">protocol SomeProtocol : InheritedProtocol1, InheritedProtocol2 &#123;</span><br><span class="line">      var someProperty: Int &#123; get set &#125;</span><br><span class="line">      func aMethod(arg1: Double, anotherArgument: String) -&gt; SomeType</span><br><span class="line">      mutating func changeIt()</span><br><span class="line">      init(arg: Type)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上代码任何实现了SomeProtocol的类都必须同时实现InheritedProtocol1和2<br>必须指定属性是只使用get还是同时使用get和set<br>任何预期会使接收器改变属性的函数都应该被标记为’mutating’，(除非你打算用class关键字将你的协议限制为类实现者)<br>你甚至可以指定实现者必须实现给定的初始化方法</p>
-<p>协议需要的声明列在类的父类之后，(枚举和结构不需要，因为没有父类)<br>协议实现没有数量限制<br>在类中，必须将init标记为required(否则子类可能不符合)<br>扩展也可以添加协议</p>
-<h3 id="Delegation"><a href="#Delegation" class="headerlink" title="Delegation"></a>Delegation</h3><p>协议的一般用处是视图和控制器之间进行通讯</p>
-<ul>
-<li><p>代理实现方法</p>
-<ol>
-<li>一个视图声明了一个委托协议(即视图希望控制器为它做什么)</li>
-<li>视图的API有一个弱委托属性，它的类型是委托协议</li>
-<li>视图使用委托属性来获取/做它自己不能拥有或控制的事情</li>
-<li>控制器声明它实现协议</li>
-<li>控制器使用上面#2中的属性将视图的委托设置为自己</li>
-<li>控制器实现协议(可能有很多可选的方法)</li>
-</ol>
-<p>但是视图仍然不知道控制器是什么，所以视图仍然是通用的/可重用的</p>
-</li>
-</ul>
-<p>协议是可以多重继承的，例如Array实现了CountableRange，Sequence，Collection，可以使用通用代码来操作集合。Dictionary，Set，String也实现了这些协议，也可以通过代码来操作集合。</p>
-<p>扩展类会自动获得类已经有的协议。</p>
-<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>字符串是由Unicode组成，但也有Character的概念。即使一个字符由多个Unicode组成。由于无法确定字符具体数量，String 的下标不能是Int类型。是String.index类型，最简单的获取索引的方法是startIndex, endIndex和index(of:)，要移动到另一个索引，使用index(String.Index, offsetBy: Int)。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let pizzaJoint = “café pesto”</span><br><span class="line">let firstCharacterIndex = pizzaJoint.startIndex // of type String.Index</span><br><span class="line">let fourthCharacterIndex = pizzaJoint.index(firstCharacterIndex, offsetBy: 3) </span><br><span class="line">let fourthCharacter = pizzaJoint[fourthCharacterIndex] // é</span><br><span class="line"></span><br><span class="line">if let firstSpace = pizzaJoint.index(of: “ “) &#123; // returns nil if “ ” not found </span><br><span class="line">    let secondWordIndex = pizzaJoint.index(firstSpace, offsetBy: 1)</span><br><span class="line">    let secondWord = pizzaJoint[secondWordIndex..&lt;pizzaJoint.endIndex]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Swift中字符串是字符的集合，就像数组是一个集合一样。所以也可以调用集合的方法。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for c in s &#123; &#125; </span><br><span class="line">let characterArray = Array(s) </span><br></pre></td></tr></table></figure></p>
-<h2 id="NSAttributedString"><a href="#NSAttributedString" class="headerlink" title="NSAttributedString"></a>NSAttributedString</h2><p>每一个字符串对象都会配对一个字符串和一个属性字典。这个字典的键是字体，颜色等，值是UIFont，UIColor等。可以用在UILabel,UIButton上等等。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let attributes: [NSAttributedStringKey : Any] = [ </span><br><span class="line">    .strokeColor : UIColor.orange,</span><br><span class="line">    .strokeWidth : 5.0  ]</span><br><span class="line">let attribtext = NSAttributedString(string: “Flips: 0”, attributes: attributes) flipCountLabel.attributedText = attribtext </span><br></pre></td></tr></table></figure><br>NSAttributedString是一个与String完全不同的数据结构。由于他不是一个值类型，你不能通过var创建改变，你需要用到’NSMutableAttributedString’</p>
-<h2 id="Function-Types"><a href="#Function-Types" class="headerlink" title="Function Types"></a>Function Types</h2><p>在Swift中，Function也是类型。你可以将一个变量或者方法的参数声明为function类型。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var operation: (Double) -&gt; Double</span><br><span class="line">operation = sqrt</span><br><span class="line">let result = operation(4.0)</span><br></pre></td></tr></table></figure></p>
-<h3 id="Closure"><a href="#Closure" class="headerlink" title="Closure"></a>Closure</h3><p>通常，您希望“动态地”创建函数(而不是像sqrt那样已经存在)。您可以使用闭包“在一行中”完成此操作。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">func changeSign(operand: Double) -&gt; Double &#123; return -operand &#125;</span><br><span class="line">var operation: (Double) -&gt; Double</span><br><span class="line">operation = changeSign</span><br><span class="line">let result = operation(4.0)</span><br></pre></td></tr></table></figure><br>以上代码可以优化为<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var operation: (Double) -&gt; Double</span><br><span class="line">operation = &#123; (operand) in -operand &#125;</span><br><span class="line">let result = operation(4.0)</span><br></pre></td></tr></table></figure><br>Swift支持$符号代表参数，还可以继续优化为<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var operation: (Double) -&gt; Double</span><br><span class="line">operation = &#123; -$0 &#125;</span><br><span class="line">let result = operation(4.0</span><br></pre></td></tr></table></figure><br>如果闭包是在最后结尾，可以放在括号外<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let primes = [2.0, 3.0, 5.0, 7.0, 11.0]</span><br><span class="line">let negativePrimes = primes.map(&#123; -$0 &#125;) // [-2.0, -3.0, -5.0, -7.0, -11.0]</span><br><span class="line">let invertedPrimes = primes.map() &#123; 1.0/$0 &#125; // [0.5, 0.333, 0.2, etc.]</span><br><span class="line">let primeStrings = primes.map &#123; String($0) &#125; // [“2.0”,”3.0”,”5.0”,”7.0”,”11.0”]</span><br></pre></td></tr></table></figure><br>如果你想，还可以使用闭包初始化参数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var someProperty: Type = &#123;</span><br><span class="line">// construct the value of someProperty here return &lt;the constructed value&gt;</span><br><span class="line">&#125;()</span><br></pre></td></tr></table></figure><br>请注意，闭包是存放在堆里面，注意内存泄漏。</p>
+<p>步骤 1 和 2<br>只要您在 MVC 中正确实现 UIDocument，这不是额外的工作<br>步骤 3a：配置 UIDBVC 这发生在它的 viewDidLoad<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    delegate = self </span><br><span class="line">    allowsDocumentCreation = true</span><br><span class="line">    allowsPickingMultipleItems = true</span><br><span class="line">    browserUserInterfaceStyle = .dark</span><br><span class="line">    view.tintColor = .white</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>根据需要设置这些。<br>步骤 3b：指定“新文档”模板 URL<br>这发生在这个 UIDBVC 委托方法中<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func documentBrowser(_ controller: UIDBVC,</span><br><span class="line">    didRequestDocumentCreationWithHandler handler: @escaping (URL?, UIDBVC.ImportMode) -&gt; Void</span><br><span class="line">)&#123;</span><br><span class="line">    let url: URL? = </span><br><span class="line">    importHandler(url, .copy or .move) </span><br><span class="line">&#125;</span><br><span class="line">let newVC: UIViewController = ...</span><br><span class="line">existingVC.present(newVC, animated: true) &#123;</span><br><span class="line">// 演示完成动画时调用的完成处理程序</span><br><span class="line">//（如果完成后不需要做任何事情，可以完全省略）</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>通常您会指定 .copy，但您可以每次都创建一个新模板并使用 .move。 您可能会在这里有一些代码来创建该空白模板（或随您的应用程序提供）。</p>
+<p>步骤 3c：以模态方式呈现您的文档 MVC<br>Xcode 模板存根出一个名为 presentDocument(at: URL) 的函数来执行此操作<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">func presentDocument(at url: URL) &#123;</span><br><span class="line">    let story = UIStoryboard(name: “Main”, bundle: nil)</span><br><span class="line">    if let docvc = story.instantiateViewController(withIdentifier: “DocVC”) as? DocVC &#123;</span><br><span class="line">        docvc.document = MyDocument(fileURL: url)</span><br><span class="line">        present(docvc, animated: true)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>您可以随意调用此函数。<br>但关键是它需要一个指向您的文档之一的 URL 并显示它。<br>Xcode 模板然后从 UIDBVC 中的适当委托方法调用它。 这就是让 UIDBVC 正常工作所要做的一切。</p>
+<p>第 4 步：指定类型<br>除非您的应用打开 public.image 文件，否则您需要在项目设置中进行更改</p>
 
       
 
@@ -346,7 +511,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/06/19/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-04/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/12/04/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-14/">展开全文 >></a>
         </p>
       
 
@@ -361,111 +526,29 @@
 
 
   
-    <article id="post-Swift学习记录-03" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/10/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-03/">Swift学习记录-03</a>
+      <a class="article-title" href="/2020/09/11/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-13/">Swift学习记录-13</a>
     </h1>
   
 
         
-        <a href="/2019/05/10/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-03/" class="archive-article-date">
-  	<time datetime="2019-05-09T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-05-10</time>
+        <a href="/2020/09/11/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-13/" class="archive-article-date">
+  	<time datetime="2020-09-10T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Range"><a href="#Range" class="headerlink" title="Range"></a>Range</h2><p>Swift语言中，Range常规用法是<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let range = 0...20</span><br><span class="line"> //or</span><br><span class="line">let range1 = 0..&lt;20</span><br></pre></td></tr></table></figure></p>
-<p>同时他还提供stride方法支持浮点数类型<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let range = stride(from: 0.5, through: 15.25, by: 0.4)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Tuples"><a href="#Tuples" class="headerlink" title="Tuples"></a>Tuples</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">let x: (String, Int, Double) = (&quot;hello&quot;, 5, 0.85)</span><br><span class="line">let (word, number, value) = x</span><br><span class="line">print(word) // prints hello</span><br><span class="line">print(number) // prints 5</span><br><span class="line">print(value) // prints 0.85</span><br></pre></td></tr></table></figure>
-<p>上面代码中的x就是tuple，可以理解为一组数据，你也可以在声明的时候直接带上命名，这样可以直接通过命名来取值<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">let x: (w: String, i: Int, v: Double) = (&quot;hello&quot;, 5, 0.85)</span><br><span class="line">print(x.w) // prints hello</span><br><span class="line">print(x.i) // prints 5</span><br><span class="line">print(x.v) // prints 0.85</span><br><span class="line">let (word, number, value) = x</span><br><span class="line">print(word) // prints hello</span><br><span class="line">print(number) // prints 5</span><br><span class="line">print(value) // prints 0.85</span><br></pre></td></tr></table></figure><br>你也可以通过tuple让函数或者方法返回多个参数<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func getSize() -&gt; (weight: Double, height: Double) &#123; return (250, 80) &#125;</span><br><span class="line">let x = getSize()</span><br><span class="line">print(“weight is \(x.weight)”) // weight is 250</span><br><span class="line">... or ...</span><br><span class="line">print(“height is \(getSize().height)”) // height is 80</span><br></pre></td></tr></table></figure></p>
-<h2 id="Computed-Properties"><a href="#Computed-Properties" class="headerlink" title="Computed Properties"></a>Computed Properties</h2><p>我们在声明变量的时候，可以增加get和set方法，返回数值的时候就会进行计算后返回，如果不写set方法，该变量将变为只读属性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var foo: Double &#123;</span><br><span class="line">    get&#123;</span><br><span class="line">        return self.foo + 1</span><br><span class="line">    &#125;</span><br><span class="line">    set(newValue) &#123;</span><br><span class="line">        self.foo = newValue + 2</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Access-Control"><a href="#Access-Control" class="headerlink" title="Access Control"></a>Access Control</h2><p>由于Swift语言创建变量默认所有项目文件都可以访问，此部分与Objective-C中变量方法的属性类同，都是对变量方法增加访问限制。</p>
-<table>
-<thead>
-<tr>
-<th>internal</th>
-<th>（默认访问级别，internal修饰符可写可不写）internal访问级别所修饰的属性或方法在源代码所在的整个模块都可以访问。如果是框架或者库代码，则在整个框架内部都可以访问，框架由外部代码所引用时，则不可以访问。如果是App代码，也是在整个App代码，也是在整个App内部可以访问。</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>private</td>
-<td>private访问级别所修饰的属性或者方法只能在当前类里访问。</td>
-</tr>
-<tr>
-<td>private(set)</td>
-<td>其他代码可以读取不能写入</td>
-</tr>
-<tr>
-<td>fileprivate</td>
-<td>fileprivate访问级别所修饰的属性或者方法在当前的Swift源文件里可以访问。</td>
-</tr>
-<tr>
-<td>public</td>
-<td>可以被任何人访问。但其他module中不可以被override和继承，而在module内可以被override和继承。</td>
-</tr>
-<tr>
-<td>open</td>
-<td>可以被任何人使用，包括override和继承。</td>
-</tr>
-</tbody>
-</table>
-<p>访问顺序：<br>现在的访问权限则依次为：open，public，internal，fileprivate，private。</p>
-<h2 id="Extensions"><a href="#Extensions" class="headerlink" title="Extensions"></a>Extensions</h2><p>扩展现有的数据结构，只能为Class、Struct、Eume添加属性和方法，即使你没有源码。<br>你不能重新实现已经存在的方法或属性，只能添加新的方法和属性。</p>
-<h2 id="Enum"><a href="#Enum" class="headerlink" title="Enum"></a>Enum</h2><p>枚举是除了结构体和类之外的另一种数据结构，他只拥有分散的状态。Enum是Value类型，所以他在传递的时候是直接被复制。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">enum FastFoodMenuItem &#123;</span><br><span class="line">    case hamburger</span><br><span class="line">    case fries</span><br><span class="line">    case drink</span><br><span class="line">    case cookie</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>每个枚举类型都可以有自己的关联数据，甚至还可以关联Enum。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">enum FastFoodMenuItem &#123;</span><br><span class="line">    case hamburger(numberOfPatties: Int)</span><br><span class="line">    case fries(size: FryOrderSize)</span><br><span class="line">    case drink(String, ounces: Int) </span><br><span class="line">    case cookie </span><br><span class="line">&#125;</span><br><span class="line">enum FryOrderSize &#123;</span><br><span class="line">    case large</span><br><span class="line">    case small </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可以使用Switch来检查Enum状态<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var menuItem = FastFoodMenuItem.hamburger(patties: 2)</span><br><span class="line">switch menuItem &#123;</span><br><span class="line">      case .hamburger: print(“burger”)</span><br><span class="line">      case .fries: print(“fries”)</span><br><span class="line">      case .drink: print(“drink”)</span><br><span class="line">      case .cookie: print(“cookie”)</span><br><span class="line">      default: print(“other”)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>甚至还可以直接取出对于的值<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var menuItem = FastFoodMenuItem.drink(“Coke”, ounces: 32)</span><br><span class="line">switch menuItem &#123;</span><br><span class="line">      case .hamburger(let pattyCount): print(“a burger with \(pattyCount) patties!”)</span><br><span class="line">      case .fries(let size): print(“a \(size) order of fries!”)</span><br><span class="line">      case .drink(let brand, let ounces): print(“a \(ounces)oz \(brand)”)</span><br><span class="line">      case .cookie: print(“a cookie!”)</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure><br>Enum中可以包含方法和计算属性，但不能有存储属性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">enum FastFoodMenuItem &#123; ...</span><br><span class="line">    func isIncludedInSpecialOrder(number: Int) -&gt; Bool &#123;</span><br><span class="line">          switch self &#123;</span><br><span class="line">    case .hamburger(let pattyCount): return pattyCount == number</span><br><span class="line">    case .fries, .cookie: return true // a drink and cookie in every special order              </span><br><span class="line">    case .drink(_, let ounces): return ounces == 16 // &amp; 16oz drink of any kind</span><br><span class="line"> &#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>你还可以重新分配Enum中的Self<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">enum FastFoodMenuItem &#123; ...</span><br><span class="line">    mutating func switchToBeingACookie() &#123;</span><br><span class="line">        self = .cookie // this works even if self is a .hamburger, .fries or .drink</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Optionals"><a href="#Optionals" class="headerlink" title="Optionals"></a>Optionals</h2><p>Optional可以理解为就是一个Enum<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Optional&lt;T&gt; &#123; // a generic type, like Array&lt;Element&gt; or Dictionary&lt;Key,Value&gt; </span><br><span class="line">    case none</span><br><span class="line">    case some(&lt;T&gt;) // the some case has associated data of type T </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>可选类型可以设置为nil，在类型结尾加上’?’就可以设为可选状态，如果加上’!’就表示强制选择。<br>可以在创建时前面加上’if’，这样可以有条件的获取可选类型的相关数据。<br>如果可选类型不默认赋值，他会是nil状态。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">let x: String? = ...</span><br><span class="line">let y = x?.foo()?.bar?.z</span><br><span class="line">switch x &#123;</span><br><span class="line">case .none: y = nil</span><br><span class="line">case .some(let data1):</span><br><span class="line">    switch data1.foo() &#123;</span><br><span class="line">    case .none: y = nil</span><br><span class="line">    case .some(let data2):</span><br><span class="line">        switch data2.bar &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Data-Structures"><a href="#Data-Structures" class="headerlink" title="Data Structures"></a>Data Structures</h2><p>Swift中基本的数据结构就分为四种</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Class</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"> Struct</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"> Enum</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:center"> Protocol</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="Class"><a href="#Class" class="headerlink" title="Class"></a>Class</h3><p>支持面向对象设计<br>功能和数据的单一继承(例如实例变量)<br>引用类型(类存储在堆中，通过指针传递)<br>堆被Swift自动清理(通过引用计数，而不是垃圾收集)。</p>
-<p>内存状态</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">strong</th>
-<th style="text-align:left">默认属性，只要强指针指向一个实例，他就会留在堆中</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">weak</td>
-<td style="text-align:left">弱引用，是一个可选指针，不会在堆中保存对象</td>
-</tr>
-<tr>
-<td style="text-align:center">unowned</td>
-<td style="text-align:left">不需要引用指针，很少用</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h3><p>结构体在创建的时候永远是拷贝，如果要改变里面的数据必须要添加’mutating’属性<br>结构体的类有：Array, Dictionary, String, Character, Int, Double, UInt32等</p>
-<h3 id="Enum-1"><a href="#Enum-1" class="headerlink" title="Enum"></a>Enum</h3><p>枚举是一个有一组值的变量，枚举数值每个选项都可以关联数据，可以添加方法和计算属性。</p>
-<h3 id="Protocol"><a href="#Protocol" class="headerlink" title="Protocol"></a>Protocol</h3><p>协议只能进行声明，没有任何类型的存储和值，Swift提供了多重继承。</p>
+        <h2 id="UserDefaults"><a href="#UserDefaults" class="headerlink" title="UserDefaults"></a>UserDefaults</h2><p>一个非常轻量级和有限的数据库<br>UserDefaults 本质上是一个非常小的数据库，它在您的应用程序启动之间持续存在。 非常适合“设置”之类的东西。 不要用它来做任何大事！<br>您可以在 UserDefaults 中存储的内容受到限制：它仅存储属性列表数据。属性列表是 Array、Dictionary、String、Date、Data 或数字（Int 等）的任意组合。 这是一个旧的 Objective-C API，没有代表所有这些的类型，所以这个 API 使用 Any。如果这是一个新的 Swift 风格的 API，它几乎肯定不会使用 Any。（可能会有一个协议或一些协议来实现这些类型。）<br>它的“核心”功能很简单。 它只是通过键存储和检索属性列表<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func set(Any?, forKey: String) // Any 必须是一个属性列表（或崩溃） </span><br><span class="line">func object(forKey: String) -&gt; Any？ // Any 保证是一个属性列表</span><br><span class="line">```				</span><br><span class="line">读写</span><br><span class="line">您通常不会使用 UserDefaults() 创建这些数据库之一。相反，您使用称为标准的静态（类型）var </span><br></pre></td></tr></table></figure><br>let defaults = UserDefaults.standard<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在数据库中设置一个值很容易，因为 set 方法采用 Any?。 </span><br></pre></td></tr></table></figure><br>defaults.set(3.1415, forKey: “pi”) // 3.1415 是一个 Double 属性列表类型<br>defaults.set([1,2,3,4,5], forKey: “My Array”) // 数组 和 Int 都是属性列表<br>defaults.set(nil, forKey: “Some Setting”) // 删除该键处的所有数据<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">您可以将任何内容作为第一个参数传递，只要它是属性列表类型的组合即可。</span><br><span class="line">UserDefaults 还具有用于获取许多属性列表类型的便利 API。</span><br></pre></td></tr></table></figure><br>func double(forKey: String) -&gt; Double<br>func 数组（forKey：字符串）-&gt; [任何]？ // 如果该键处为非数组，则返回 nil<br>func dictionary(forKey: String) -&gt; [String:Any]? // 请注意，返回的键是字符串。返回值中的 Any 当然是属性列表类型。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">保存数据库</span><br><span class="line">您的更改有时会自动保存。</span><br><span class="line">但是您可以随时通过同步来强制保存它们...</span><br><span class="line">```		</span><br><span class="line">if !defaults.synchronize() &#123; // 失败！ 但不清楚你能做些什么&#125;</span><br><span class="line">```		</span><br><span class="line"></span><br><span class="line">## Archiving</span><br><span class="line"></span><br><span class="line">有两种机制可以使任何对象持久化,一种历史方法，例如，如何使故事板持久化。iOS 11 中的一种新机制，由 Swift 语言环境直接支持。 我们只会详细讨论其中的第二个。由于该语言支持它，因此它更有可能成为您使用的语言。</span><br><span class="line"></span><br><span class="line">### NSCoder（旧）机制</span><br><span class="line">要求对象图中的所有对象都实现这两种方法...</span><br></pre></td></tr></table></figure><br>func encode(with aCoder: NSCoder)<br>init(coder: NSCoder)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">本质上，您将所有对象的数据存储在编码器的字典中。然后你必须能够从编码器的字典中初始化你的对象。 对象图中的引用是自动处理的。然后，您可以获取对象图并将其转换为数据（通过 NSKeyedArchiver）。 然后将数据转回对象图（通过 NSKeyedUnarchiver）。一旦有了数据，您就可以轻松地将其写入文件或以其他方式传递它。</span><br><span class="line"></span><br><span class="line">### Codable（新）机制</span><br><span class="line">本质上也是一种将对象的所有变量存储到字典中的方法。为此，您要存储的对象图中的所有对象都必须实现 Codable。 但不同的是，对于标准的 Swift 类型，Swift 会为你做这件事。如果您有非标准类型，您可以执行类似于旧方法的操作。</span><br><span class="line">Swift 自动编码的一些标准类型（你会认出）</span><br></pre></td></tr></table></figure><br>String, Bool, Int, Double, Float<br>Optional<br>Array, Dictionary, Set, Data<br>URL<br>Date, DateComponents, DateInterval, Calendar<br>CGFloat, AffineTransform, CGPoint, CGSize, CGRect, CGVector<br>IndexPath, IndexSet<br>NSRange<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">一旦您的对象图全部可编码，您就可以将其转换为 JSON 或属性列表。 </span><br></pre></td></tr></table></figure><br>let object: MyType = …<br>let jsonData: Data? = try? JSONEncoder().encode(object)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">请注意，此编码会抛出。 您可以轻松捕获和查找错误（下一张幻灯片）。</span><br><span class="line">顺便说一句，您可以像这样从这个 Data 中创建一个 String 对象</span><br></pre></td></tr></table></figure><br>let jsonString = String(data: jsonData!, encoding: .utf8) // JSON 总是 utf8<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">要从 JSON 中取回您的对象图</span><br></pre></td></tr></table></figure><br>if let myObject: MyType = try? JSONDecoder().decode(MyType.self, from: jsonData!) {<br>  }<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">JSON 不是“强类型”。 所以像 Date 或 URL 这样的东西只是字符串。 Swift 会自动处理所有这些，甚至是可配置的，例如 </span><br><span class="line"></span><br></pre></td></tr></table></figure><br>let decoder = JSONDecoder()<br>decoder.dateDecodingStrategy = .iso8601 // or .secondsSince1970, etc.<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">这是在解码过程中捕获错误的样子。</span><br><span class="line">decode 抛出的东西是 DecodingError 类型的枚举。</span><br><span class="line">请注意我们如何获得枚举的关联值，类似于我们如何使用 switch。</span><br><span class="line">```		</span><br><span class="line">do &#123;</span><br><span class="line">      let object = try JSONDecoder().decode(MyType.self, from: jsonData!)</span><br><span class="line">// success, do something with object</span><br><span class="line">&#125; catch DecodingError.keyNotFound(let key, let context) &#123;</span><br><span class="line">     print(“couldn’t find key \(key) in JSON: \(context.debugDescription)”)</span><br><span class="line">  &#125; catch DecodingError.valueNotFound(let type, let context) &#123;</span><br><span class="line">  &#125; catch DecodingError.typeMismatch(let type, let context) &#123;</span><br><span class="line"> &#125; catch DecodingError.dataCorrupted(let context) &#123;</span><br><span class="line"> &#125;</span><br><span class="line">```		</span><br><span class="line">有时 JSON 键的名称可能与您的 var 名称不同（或不包括在内）。 例如，someDate 可能是 some_date。</span><br><span class="line">您可以通过向您的名为 CodingKeys 的类型添加一个私有枚举来配置它，如下所示</span><br></pre></td></tr></table></figure><br>struct MyType : Codable {<br>    var someDate: Date<br>    var someString: String<br>    var other: SomeOtherType // SomeOtherType has to be Codable too!<br>    private enum CodingKeys : String, CodingKey {<br>        case someDate = “some_date”<br>        // note that the someString var will now not be included in the JSON<br>        case other // this key is also called “other” in JSON<br>    }<br>}<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">## File System</span><br><span class="line">您的应用程序将 iOS 文件系统视为普通的 Unix 文件系统</span><br><span class="line">它开始于 /.</span><br><span class="line">当然，有文件保护，就像普通的 Unix 一样，所以你看不到所有内容。 实际上，您只能在应用程序的“沙箱”中进行读写。</span><br><span class="line">沙盒</span><br><span class="line">安全性（因此没有其他人可以损坏您的应用程序）</span><br><span class="line">隐私（因此没有其他应用程序可以查看您的应用程序的数据）</span><br><span class="line">清理（当你删除一个应用程序时，它曾经写过的所有东西都会随之而来）</span><br><span class="line">“沙盒”中有什么</span><br><span class="line">Application directory ——您的可执行文件、.storyboards、.jpgs 等； 不可写。 </span><br><span class="line">Documents directory - 由用户创建并始终对用户可见的永久存储。</span><br><span class="line">Application Support directory - 用户无法直接看到的永久存储。 </span><br><span class="line">Caches directory - 目录——在这里存储临时文件（iTunes 不备份）。</span><br><span class="line">其他目录（参见文档）...</span><br><span class="line">获取这些特殊沙箱目录的路径</span><br><span class="line">FileManager（连同 URL）是您用来了解文件系统中的内容的工具。 例如，您可以像这样找到这些特殊系统目录的 URL </span><br></pre></td></tr></table></figure><br>let url: URL = FileManager.default.url(<br>    for directory: FileManager.SearchPathDirectory.documentDirectory,<br>    in domainMask： .userDomainMask // 在 iOS 上总是 .userDomainMask<br>    appropriateFor: nil, // 仅对“替换”文件操作有意义<br>    create: true // 如果系统目录不存在，是否创建系统目录<br>)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SearchPathDirectory 值的示例 .documentDirectory、.applicationSupportDirectory、.cachesDirectory 等。		</span><br><span class="line"></span><br><span class="line">### URL</span><br><span class="line">建立在这些系统路径 URL 方法之上：</span><br></pre></td></tr></table></figure><br>func appendingPathComponent(String) -&gt; URL funcappendingPathExtension(String)-&gt;URL //例如“jpg”<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">找出 URL 另一端的内容</span><br></pre></td></tr></table></figure><br>var isFileURL: Bool // 这是一个文件 URL（无论文件是否存在）还是别的什么？<br>func resourceValues(for keys: [URLResourceKey]) throws -&gt; [URLResourceKey:Any]?<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">示例键：.creationDateKey、.isDirectoryKey、.fileSizeKey</span><br><span class="line"></span><br><span class="line">从 URL 读取二进制数据...</span><br></pre></td></tr></table></figure><br>init(contentsOf: URL, options: Data.ReadingOptions) throws<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">将二进制数据写入 URL ...</span><br></pre></td></tr></table></figure><br>func write(to url: URL, options: Data.WritingOptions) throws -&gt; Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">选项可以是 .atomic（写入 tmp 文件，然后交换）或 .withoutOverwriting。 请注意，此函数抛出。</span><br><span class="line"></span><br><span class="line">提供实用程序操作。</span><br></pre></td></tr></table></figure><br>fileExists(atPath: String) -&gt; Bool<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">可以创建和枚举目录； 移动、复制、删除文件； 等等。</span><br><span class="line">线程安全（只要给定实例只在一个线程中使用）。</span><br><span class="line">还有一个带有许多“应该”方法的委托（执行操作或在错误后继续）。 还有更多。 查看文档。</span><br><span class="line"></span><br><span class="line">## Core Data</span><br><span class="line">数据库</span><br><span class="line">有时您需要将大量数据本地存储在数据库中。 您需要以高效、复杂的方式搜索它。</span><br><span class="line">进入 Core Data </span><br><span class="line">面向对象的数据库。</span><br><span class="line">iOS 中非常非常强大的框架（不幸的是，本季度没有时间介绍它）。 查看 2016-17 年冬季的 iTunesU，了解有关它的完整讲座！</span><br><span class="line">这是一种创建由数据库支持的对象图的方法，通常由 SQL 支持（但也可以执行 XML 或仅在内存中）。</span><br><span class="line">它是如何工作的？</span><br><span class="line">在数据库和对象之间创建一个可视化映射（使用 Xcode 工具）。 使用面向对象的 API 创建和查询对象。使用这些对象上的 var 访问“数据库表中的列”。</span><br><span class="line">那么如何在代码中访问所有这些内容呢？</span><br><span class="line">核心数据是通过 NSManagedObjectContext 访问的。</span><br><span class="line">它是所有核心数据活动所围绕的枢纽。</span><br><span class="line">Use Core Data 按钮添加的代码会在您的 AppDelegate 中为您创建一个。</span><br></pre></td></tr></table></figure><br>let context: NSManagedObjectContext = …<br>if let tweet = Tweet(context: context) {<br>    tweet.text = “140 characters of pure joy”<br>    tweet.created = Date()<br>    let joe = TwitterUser(context:tweet.managedObjectContext)<br>    tweet.tweeter = joe<br>    tweet.tweeter.name = “Joe Schmo”<br>}<br>context.delete(tweet) // Deleting objects<br>//Saving changes<br>do {<br>    try context.save()<br>  } catch {<br>    // deal with error<br>}<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">查询</span><br><span class="line">在数据库中搜索对象</span><br><span class="line">假设我们要查询所有 TwitterUsers ...</span><br></pre></td></tr></table></figure><br>let request: NSFetchRequest<TwitterUser> = TwitterUser.fetchRequest()<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在过去 24 小时内创建了推文的人 </span><br></pre></td></tr></table></figure><br>let yesterday = Date(timeIntervalSinceNow:-24<em>60</em>60) as NSDate<br>request.predicate = NSPredicate(format: “any tweets.created &gt; %@”, yesterday)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按 Twitter 用户名排序 </span><br></pre></td></tr></table></figure><br>request.sortDescriptors = [NSSortDescriptor(key: “name”, ascending: true)]<br>let context: NSManagedObjectContext = …<br>let recentTweeters = try? context.fetch(request)<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">如果成功并且数据库中没有匹配项，则返回一个空数组（不是 nil）。 如果有任何匹配项，则返回 NSManagedObjects（或其子类）的数组。 显然，如果 fetch 失败，try 会失败。</span><br><span class="line"></span><br><span class="line">## Cloud Kit</span><br><span class="line">云中的数据库。 使用简单，但具有非常基本的“数据库”操作。由于它在网络上，访问数据库可能很慢，甚至不可能。这需要一些深思熟虑的编程。</span><br><span class="line">本季度也没有时间进行此操作，但请查看 2015-16 年春季的 iTunesU 以获取完整演示。</span><br><span class="line">重要组件</span><br></pre></td></tr></table></figure><br>Record Type - 如类或结构<br>Fields - 像类或结构中的变量<br>Record - 记录类型的“实例”<br>Reference - 指向另一条记录的“指针”<br>Database - 存储记录的地方<br>Zone - 数据库的子区域<br>Container - 数据库集合<br>Query - 数据库搜索<br>Subscription - 一个“常设查询”，在发生更改时发送推送通知<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">let db = CKContainer.default.publicCloudDatabase</span><br><span class="line">let tweet = CKRecord(“Tweet”)</span><br><span class="line">tweet[“text”] = “140 characters of pure joy”</span><br><span class="line">let tweeter = CKRecord(“TwitterUser”)</span><br><span class="line">tweet[“tweeter”] = CKReference(record: tweeter, action: .deleteSelf)</span><br><span class="line">db.save(tweet) &#123; (savedRecord: CKRecord?, error: NSError?) -&gt; Void in</span><br><span class="line">    if error == nil &#123;</span><br><span class="line">        // hooray!</span><br><span class="line">    &#125; else if error?.errorCode == CKErrorCode.NotAuthenticated.rawValue &#123;</span><br><span class="line">        // tell user he or she has to be logged in to iCloud for this to work!</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        // report other errors (there are 29 different CKErrorCodes!) </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>Cloud Kit 最酷的功能之一是它能够发送有关更改的推送通知。<br>你所要做的就是注册一个 NSPredicate 并且每当数据库更改以匹配它时，繁荣！ 不幸的是，本季度我们没有时间讨论推送通知。<br>如果您有兴趣，请查看 UserNotifications 框架。</p>
+<h2 id="UIDocument"><a href="#UIDocument" class="headerlink" title="UIDocument"></a>UIDocument</h2><p>何时使用 UIDocument<br>如果您的应用程序以用户认为是“文档”的方式存储用户信息。 如果您只想让 iOS 管理用户信息的主要存储。<br>UIDocument 是做什么的？<br>管理与存储设备的所有交互（不仅是文件系统，还有 iCloud、Box 等）。 提供文件的异步打开、写入、读取和关闭。<br>自动保存您的文档数据。<br>基本上免费与 iOS 11 的新文件应用程序集成。<br>你需要做什么才能使 UIDocument 工作？<br>子类 UIDocument 以添加变量来保存 MVC 的模型，该模型显示您的“文档”。<br>然后实现一种将模型写入数据的方法和一种从数据中读取模型的方法。 而已。<br>现在您可以根据需要使用 UIDocument 的打开、保存和关闭方法。<br>您还可以使用其“文档已更改”方法（或实施撤消）来获取自动保存。</p>
+<p>子类化 UIDocument<br>对于简单的文档，除了将您的模型添加为 var …<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">class EmojiArtDocument: UIDocument &#123;</span><br><span class="line">    var emojiArt: EmojiArt?</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>当然，您可以覆盖一些方法，但通常您不需要。<br>创建一个 UIDocument<br>找出您希望将文档存储在文件系统中的位置…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var url = FileManager.urls(for: .documentDirectory, in: .userDomainMask).first！ </span><br><span class="line">url = url.appendingPathComponent(“Untitled.foo”)</span><br></pre></td></tr></table></figure><br>通过将该 url 传递给 UIDocument 的唯一初始化程序来实例化您的子类…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let myDocument = EmojiArtDocument(fileURL: url)</span><br></pre></td></tr></table></figure><br>…然后（最终）在您新创建的 UIDocument 子类上设置您的 Model var(s) …<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">myDocument.emojiArt = ...	</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -500,7 +583,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/05/10/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-03/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/11/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-13/">展开全文 >></a>
         </p>
       
 
@@ -515,37 +598,30 @@
 
 
   
-    <article id="post-Swift学习记录-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/18/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-02/">Swift学习记录-02</a>
+      <a class="article-title" href="/2020/07/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-12/">Swift学习记录-12</a>
     </h1>
   
 
         
-        <a href="/2019/04/18/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-02/" class="archive-article-date">
-  	<time datetime="2019-04-17T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-18</time>
+        <a href="/2020/07/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-12/" class="archive-article-date">
+  	<time datetime="2020-07-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h2><p>MVC指的是Model，View，Controller，该设计模式是iOS主要应用的设计模式</p>
-<p>Model:</p>
-<p>App展示的数据模型</p>
-<p>Controller：</p>
-<p>将模型展示给用户的控制器</p>
-<p>View:</p>
-<p>控制器的下属，用于显示内容</p>
-<p>需要明确的是，控制器是可以直接访问模型，也可以直接访问视图，但是视图和模型之间不能相互访问。</p>
-<p>控制器访问视图需要用outlet进行绑定，控制器可以创建Target，视图访问控制器的时候发送Action。控制器绑定视图的代理，这样可以处理视图的生命进程。视图并不拥有他显示的数据。他是通过data source来显示，并非通过模型。</p>
-<p>控制器来处理视图的模型数据。需要注意模型不能直接与控制器进行对话。如果模型在变更的时候需要通知到控制器，可以通过通知或者KVC的方式。视图可能会接收通知，但模型不会接收通知。</p>
-<p><img src="http://qn.heyim.top/image/190418/190418001.jpg" alt="190418001"></p>
+        <h2 id="UITextField"><a href="#UITextField" class="headerlink" title="UITextField"></a>UITextField</h2><p>与 UILabel 类似，但可编辑<br>在 iPhone 上输入内容是辅助 UI（键盘很小）。更多是 iPad 上的主流 UI 元素。不要被模拟器中的 UI 所迷惑（因为你可以使用物理键盘！）。 您可以设置属性文本、文本颜色、对齐方式、字体等，就像 UILabel 一样。<br>当 UITextField 成为“第一响应者”时出现键盘<br>当用户点击它时，它会自动执行此操作。或者，您可以通过向其发送 ‘becomeFirstResponder’消息使其成为第一响应者。要使键盘消失，请将’resignFirstResponder’发送到 UITextField。<br>Delegate 可以参与 Return 键等。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func textFieldShouldReturn(sender:UITextField)-&gt;Bool</span><br></pre></td></tr></table></figure><br>当“Return”被按下时，经常会在这个方法中使用，sender.resignFirstResponder()。返回按下 Return 键时是否进行正常处理（例如目标/动作）。</p>
+<p>找出编辑何时结束<br>另一个委托方法<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func textFieldDidEndEditing(sender: UITextField)</span><br></pre></td></tr></table></figure><br>当文本字段失去第一响应者时发送。<br>UITextField 是一个 UIControl<br>因此，您还可以设置目标/操作以在事情发生变化时通知您。就像按钮一样，有不同的’UIControlEvents’可以启动一个动作。 右键单击’storyboard’中的 UITextField 以查看可用选项。</p>
+<p>其他 UITextField 属性<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var clearsOnBeginEditing: Bool</span><br><span class="line">var adjustsFontSizeToFitWidth: Bool</span><br><span class="line">var minimumFontSize: CGFloat </span><br><span class="line">var placeholder: String? // 当文本字段为空时以灰色填充占位符</span><br><span class="line">var background/disabledBackground: UIImage?</span><br><span class="line">var defaultTextAttributes: [String:Any] // 适用于整个文本</span><br></pre></td></tr></table></figure><br>其他 UITextField 功能<br>UITextFields 有一个“左”和“右”覆盖。<br>您可以详细控制文本字段的布局（边框、左/右视图、清除按钮）。</p>
+<h2 id="Keyboard"><a href="#Keyboard" class="headerlink" title="Keyboard"></a>Keyboard</h2><p>控制键盘的外观<br>请记住，键盘是否显示取决于其第一响应者是否。您还可以控制出现什么样的键盘。设置 UITextInputTraits 协议中定义的属性（UITextField 实现）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var autocapitalizationType:UITextAutocapitalizationType //单词、句子等</span><br><span class="line">var autocorrectionType: UITextAutocorrectionType // 自动校正</span><br><span class="line">var returnKeyType: UIReturnKeyType // 确定键样式 Go、Search、Google、Done 等</span><br><span class="line">var isSecureTextEntry: Bool // 用于密码</span><br><span class="line">var keyboardType：UIKeyboardType // 键盘类型 ASCII、URL、PhonePad</span><br></pre></td></tr></table></figure><br>其他键盘功能<br>键盘可以具有显示在键盘上方的附件视图（自定义工具栏等）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var inputAccessoryView: UIView //UITextField方法</span><br></pre></td></tr></table></figure><br>当键盘出现在其他视图之上<br>因此，您可能需要调整视图位置（尤其是保持文本字段本身可见）。您可以通过对 UIWindow 发送的 UIKeyboard{Will,Did}{Show,Hide} 通知做出反应来做到这一点。我们还没有讨论什么是通知，但它非常简单。<br>您注册一个方法以在发生这样的命名“事件”时被调用<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">NotificationCenter.default.addObserver(self,</span><br><span class="line">                               selector: #selector(theKeyboardAppeared(_:)),</span><br><span class="line">                                  name: Notification.Name.UIKeyboardDidShow,</span><br><span class="line">                                object: view.window)</span><br></pre></td></tr></table></figure><br>这里的事件是 Notification.Name.UIKeyboardDidShow。对象是导致事件发生的对象（我们 MVC 的视图窗口）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func theKeyboardAppeared(_ notification: Notification) </span><br></pre></td></tr></table></figure><br>将在它发生时被调用。<br>notification.userInfo 是一个字典，其中包含有关外观的详细信息。<br>几乎总是对出现在文本字段上的键盘的反应是将其滚动可见。如果第一响应者不在滚动视图中，则将其定位，以便键盘永远不会覆盖它。<br>如果一行有 UITextField，UITableViewController 会监听这个并自动滚动表格。</p>
 
       
 
@@ -580,7 +656,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/18/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-02/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-12/">展开全文 >></a>
         </p>
       
 
@@ -595,137 +671,31 @@
 
 
   
-    <article id="post-Swift学习记录-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-11" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-01/">Swift学习记录-01</a>
+      <a class="article-title" href="/2020/05/22/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-11/">Swift学习记录-11</a>
     </h1>
   
 
         
-        <a href="/2019/04/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-01/" class="archive-article-date">
-  	<time datetime="2019-04-04T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-04-05</time>
+        <a href="/2020/05/22/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-11/" class="archive-article-date">
+  	<time datetime="2020-05-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-05-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>本系列内容来源于斯坦福CS193P-2017年课程</p>
-</blockquote>
-<h2 id="iOS系统包含内容"><a href="#iOS系统包含内容" class="headerlink" title="iOS系统包含内容"></a>iOS系统包含内容</h2><p>Core OS </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">OSX kenrnel</th>
-<th style="text-align:center">Power Management</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Mach 3.0</td>
-<td style="text-align:center">Keychain Access</td>
-</tr>
-<tr>
-<td style="text-align:center">BSD</td>
-<td style="text-align:center">Certificates</td>
-</tr>
-<tr>
-<td style="text-align:center">Sockets</td>
-<td style="text-align:center">File System</td>
-</tr>
-<tr>
-<td style="text-align:center">Security</td>
-<td style="text-align:center">Bonjour</td>
-</tr>
-</tbody>
-</table>
-<p>Core Services </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Collections</th>
-<th style="text-align:center">Core Location</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">AddressBook</td>
-<td style="text-align:center">Net Services</td>
-</tr>
-<tr>
-<td style="text-align:center">Networking</td>
-<td style="text-align:center">Threading</td>
-</tr>
-<tr>
-<td style="text-align:center">File Access</td>
-<td style="text-align:center">Preferences</td>
-</tr>
-<tr>
-<td style="text-align:center">SQLite</td>
-<td style="text-align:center">URL Utilities</td>
-</tr>
-</tbody>
-</table>
-<p>Media </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Core Audio</th>
-<th style="text-align:center">JPEG, PNG, TIFF</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">OpenAL</td>
-<td style="text-align:center">PDF</td>
-</tr>
-<tr>
-<td style="text-align:center">Audio Mixing</td>
-<td style="text-align:center">Quartz (2D)</td>
-</tr>
-<tr>
-<td style="text-align:center">Audio Recording</td>
-<td style="text-align:center">Core Animation</td>
-</tr>
-<tr>
-<td style="text-align:center">Video Playback</td>
-<td style="text-align:center">OpenGL ES</td>
-</tr>
-</tbody>
-</table>
-<p>Cocoa Touch </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">Multi-Touch</th>
-<th style="text-align:center">Alerts</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Core Motion</td>
-<td style="text-align:center">Web View</td>
-</tr>
-<tr>
-<td style="text-align:center">View Hierarchy</td>
-<td style="text-align:center">Map Kit</td>
-</tr>
-<tr>
-<td style="text-align:center">Localization</td>
-<td style="text-align:center">Image Picker</td>
-</tr>
-<tr>
-<td style="text-align:center">Controls</td>
-<td style="text-align:center">Camera</td>
-</tr>
-</tbody>
-</table>
+        <h2 id="Drag-and-Drop"><a href="#Drag-and-Drop" class="headerlink" title="Drag and Drop"></a>Drag and Drop</h2><p>移动数据的非常可互操作的方式<br>iPad 上的应用程序之间以及所有 iOS 11 设备上的应用程序内。在拖放过程中，您的应用程序继续正常工作。多点触控允许一些手指进行拖放，而其他手指则可以操作您的应用程序。 iOS 11 中的新多任务 UI 使拖放非常有用。<br>视图“注册”以使用交互参与拖放。它有点像拖放的“gesture recognizer”。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let drag/dropInteraction = UIDrag/DropInteraction(delegate: theDelegate) </span><br><span class="line">view.addInteraction(drag/dropInteraction)</span><br></pre></td></tr></table></figure><br>现在，如果视图中发生拖放，theDelegate 将参与其中。<br>当拖动在具有 UIDropInteraction 的视图上移动时，委托获得 …<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDragSession</span><br><span class="line">) -&gt; Bool</span><br></pre></td></tr></table></figure><br>在这一点上，代表甚至可以在它开始之前拒绝丢弃。,为了弄清楚这一点，代表可以询问可以提供什么样的对象<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let stringAvailable = session.canLoadObjects(ofClass: NSAttributedString.self) </span><br><span class="line">let imageAvailable = session.canLoadObjects(ofClass: UIImage.self)</span><br></pre></td></tr></table></figure><br>如果不符合您的喜好，请拒绝丢弃。<br>如果你没有在 canHandle: 中拒绝它，那么随着拖动的进行，你会开始得到<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func dropInteraction(_ interaction: UIDropInteraction,</span><br><span class="line">sessionDidUpdate session: UIDragSession</span><br><span class="line">) -&gt; UIDropProposal</span><br></pre></td></tr></table></figure><br>您将使用 UIDropProposal（操作：.copy/.move/.cancel）来响应。<br>.cancel 表示丢弃将被拒绝<br>.copy 表示 drop 将被接受<br>.move 表示 drop 将被接受并移动项目（仅适用于应用程序内的拖动）<br>如果很重要，您可以使用 session.location(in: view) 找出触摸的位置。</p>
+<h2 id="Table-and-Collection-Views"><a href="#Table-and-Collection-Views" class="headerlink" title="Table and Collection Views"></a>Table and Collection Views</h2><p>这些是用于显示无限量信息的 UIScrollView 子类。 表视图以长（可能是分段）列表的形式显示信息。Collection视图以 2D 格式呈现信息（通常像文本流一样“流动”）。 它们的 API 非常相似，因此我们将同时了解它们。<br>了解他们两个最重要的事情是他们从哪里获取数据。 请记住，根据 MVC，“不允许视图拥有它们的数据”。所以我们不能只是以某种方式将数据设置在某个 var 中。相反，我们设置了一个名为 dataSource 的 var。<br>dataSource var 的类型是具有提供数据的方法的协议。 dataSource 的工作方式与委托完全相同。表视图和集合视图也有一个委托。它们的委托控制它们的外观，而不是它们显示的数据（即数据源）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">In UITableView ...</span><br><span class="line">var dataSource: UITableViewDataSource</span><br><span class="line">var delegate: UITableViewDelegate</span><br><span class="line">In UICollectionView ...</span><br><span class="line">var dataSource: UICollectionViewDataSource var delegate: UICollectionViewDelegate</span><br></pre></td></tr></table></figure><br>“数据检索”协议有很多方法。<br>但是这3个是核心（UITableView缩写为UITV，UICollectionView缩写为UICV<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">UITableView</span><br><span class="line">func numberOfSections(in tableView: UITV) -&gt; Int</span><br><span class="line">func tableView(_ tv: UITV, numberOfRowsInSection section: Int) -&gt; Int</span><br><span class="line">func tableView(_ tv: UITV, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell</span><br><span class="line"></span><br><span class="line">UICollectionView</span><br><span class="line">func numberOfSections(in collectionView: UICV) -&gt; Int</span><br><span class="line">func collectionView(_ cv: UICV, numberOfItemsInSection section: Int) -&gt; Int</span><br><span class="line">func collectionView(_ cv: UICV, cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell</span><br></pre></td></tr></table></figure><br>一个 UITableView 可能有 1000 行（可能是你所有的音乐库歌曲？）。<br>如果它必须为所有这些创建一个 UIView，那将是非常低效的。<br>所以它重用了细胞。<br>当 UITableViewCell 滚出屏幕时，它会被放入一个池中以供重用。<br>dequeueReusableCell(withIdentifier:) 方法从该重用池中抓取一个。 但是如果重用池是空的（比如表第一次出现时）怎么办？<br>如何创建新的（非重复使用的）单元格？<br>它们是通过复制您在情节提要中配置的原型单元来创建的。<br>所以现在我们可以理解这行代码了。<br>如果可能，它正在重用具有给定标识符的 UITableViewCell。<br>否则，它会在情节提要中制作原型的副本。<br>重用单元的事实对多线程有严重的影响！<br>当某些东西从另一个线程返回时，可能已经重用了一个单元格。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">func tableView(_ tv: UITV, cellForRowAt indexPath: IndexPath) -&gt; UITableViewCell &#123;</span><br><span class="line">    let prototype = decision ? “FoodCell” : “CustomFoodCell”</span><br><span class="line">    let cell = tv.dequeueReusableCell(withIdentifier: prototype , for: indexPath)</span><br><span class="line">    cell.textLabel?.text = food(at: indexPath)</span><br><span class="line">    cell.detailTextLabel?.text = emoji(at: indexPath)</span><br><span class="line">    if let myTVCell = cell as? MyTVC &#123;</span><br><span class="line">        myTVC.name = food(at: indexPath); myTVC.emoji = emoji(at: indexPath)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="UITableView"><a href="#UITableView" class="headerlink" title="UITableView"></a>UITableView</h3><p>他有四种默认样式<br>Basic<br>Subtitle style<br>Left Detail style<br>Right Detail style<br>当然也可以自定义样式。Custom style<br>行也可以分组，Grouped</p>
+<h3 id="UICollectionView"><a href="#UICollectionView" class="headerlink" title="UICollectionView"></a>UICollectionView</h3><p>可配置为以任何 2D 排列显示信息。 但默认情况下，它会像文本流一样“flows”它显示的项目。 只有“custom”的信息布局。像Table View一样，也可以分节.</p>
+<h3 id="Table-View-Segues"><a href="#Table-View-Segues" class="headerlink" title="Table View Segues"></a>Table View Segues</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">func prepare(for segue: UIStoryboardSegue, sender: Any?) &#123;</span><br><span class="line">      if let identifier = segue.identifier &#123;</span><br><span class="line">          switch identifier &#123;</span><br><span class="line">          case “XyzSegue”: // handle XyzSegue here</span><br><span class="line">          case “AbcSegue”:</span><br><span class="line">              if let cell = sender as? MyTableViewCell,</span><br><span class="line">                 let indexPath = tableView.indexPath(for: cell),</span><br><span class="line">                 let seguedToMVC = segue.destination as? MyVC &#123;</span><br><span class="line">                     seguedToMVC.publicAPI = data[indexPath.section][indexPath.row]</span><br><span class="line">              &#125;</span><br><span class="line">          default: break</span><br><span class="line">&#125; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -760,7 +730,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/04/05/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-01/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/05/22/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-11/">展开全文 >></a>
         </p>
       
 
@@ -775,227 +745,30 @@
 
 
   
-    <article id="post-iOS开发页面布局实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/">iOS开发页面布局实战</a>
+      <a class="article-title" href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/">Swift学习记录-10</a>
     </h1>
   
 
         
-        <a href="/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/" class="archive-article-date">
-  	<time datetime="2019-03-28T03:36:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-28</time>
+        <a href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/" class="archive-article-date">
+  	<time datetime="2020-04-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="iOS开发页面布局实战"><a href="#iOS开发页面布局实战" class="headerlink" title="iOS开发页面布局实战"></a>iOS开发页面布局实战</h1><p>最近新项目中，设计提出了新的标准，要求其他任何尺寸的设备，截图后宽度缩小到750时要与设计图一致。这个时候就要考虑页面布局的比例缩放问题。<br><img src="http://qn.heyim.top/image/190328/iOS%E6%AF%94%E4%BE%8B%E5%B8%83%E5%B1%80.png" alt="比例布局"><br>还是从最初的布局讲起，如何满足这个要求。</p>
-<h2 id="一、绝对布局"><a href="#一、绝对布局" class="headerlink" title="一、绝对布局"></a>一、绝对布局</h2><p>讲起绝对布局，这应该是各位入行来最先接触的布局方式了吧。下面我们来看看绝对布局是如何布局的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br></pre></td></tr></table></figure>
-<p><img src="http://qn.heyim.top/image/190328/1.png" alt="绝对布局"></p>
-<p>这种布局模式适用于位置固定的地方使用（例如：UINavigationBar）,使用简单便捷，也是使用最多的布局模式。</p>
-<h2 id="二、适应布局"><a href="#二、适应布局" class="headerlink" title="二、适应布局"></a>二、适应布局</h2><p>当大尺寸iPhone开始流行的时候，这个时候为了更好的自适应的适配大尺寸iPhone，就需要用到Center这种布局模式。<br>绝对布局中，frame先设置了x，y坐标系，用来设置视图的起始位置，在frame中，x,y是在视图的左上角。当视图显示在屏幕上时，如果需要修改将视图移动到屏幕中间位置，这个时候在用frame操作就是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.frame = CGRect(x: (UIScreen.main.bounds.size.width-100)/2, y: (UIScreen.main.bounds.size.height - 100)/2, width: 100, height: 100)</span><br></pre></td></tr></table></figure>
-<p><img src="http://qn.heyim.top/image/190328/2.png" alt="绝对布局"></p>
-<p>这样的操作就显得比较复杂，这个时候就可以使用Center来移动视图的位置。这里必须明白一点，Center移动视图的参考点是视图的中心点而不是左上角，我们来看下Center如果移动视图</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: 100, height: 100)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)</span><br></pre></td></tr></table></figure>
-<p><img src="http://qn.heyim.top/image/190328/5.png" alt="绝对布局"></p>
-<p>这段代码跟上面的代码效果是一样的，可以看到Center需要一个CGPoint来指定视图中心的x,y坐标，这种模式扩宽了布局模式的可能性。</p>
-<h2 id="三、比例布局"><a href="#三、比例布局" class="headerlink" title="三、比例布局"></a>三、比例布局</h2><p>在iPhone 4s之前，以上布局模式已经基本可以满足需求，不用担心大屏幕的尺寸适配问题，但是到了iPhone5后面的时代，屏幕尺寸越来越大，为了适配其他尺寸的屏幕，需要通过屏幕尺寸来进行比例布局。<br>例如：在所有的屏幕上都距左，距右，距上100个像素，高度100个像素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">view.frame = CGRect(x: 100, y: 100, width: UIScreen.main.bounds.size.width-200, height: 100)        view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br></pre></td></tr></table></figure>
-<p><img src="http://qn.heyim.top/image/190328/3.png" alt="绝对布局"></p>
-<p><img src="http://qn.heyim.top/image/190328/4.png" alt="绝对布局"></p>
-<p>这里面在设置宽度的时候，先取得当前屏幕的宽度，在来根据屏幕的尺寸减去距左和距右的200像素，就能获得适配当前屏幕的宽度。<br>假如现在需求变动为：在所有屏幕上，视图居中，宽高都是屏幕的80%，这个时候就需要用到倍数来进行设置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let view = UIView()</span><br><span class="line">//设置宽高所占百分比</span><br><span class="line">view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width * 0.8, height: self.view.frame.height * 0.8)</span><br><span class="line">view.backgroundColor = .red</span><br><span class="line">self.view.addSubview(view)</span><br><span class="line">//将view移动到屏幕中央显示</span><br><span class="line">view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)</span><br></pre></td></tr></table></figure>
-<p><img src="http://qn.heyim.top/image/190328/6.png" alt="绝对布局"></p>
-<p><img src="http://qn.heyim.top/image/190328/7.png" alt="绝对布局"></p>
-<p>这个时候已经可以基本满足各种设计需求了。</p>
-<h2 id="四、全尺寸比例视图"><a href="#四、全尺寸比例视图" class="headerlink" title="四、全尺寸比例视图"></a>四、全尺寸比例视图</h2><p>最近项目中，设计在研究美团的时候，发现他们所有尺寸的屏幕在缩小到750像素的时候，都显示的一致。</p>
-<p><img src="http://qn.heyim.top/image/190328/8.JPG" alt="绝对布局"></p>
-<p>为了达成这种效果，需要在设置frame或者比例的时候，在乘以一个系数</p>
-<pre><code>//设置比例
-let YKScale_Width  = UIScreen.main.bounds.size.width / 375.0
-let view = UIView()
-//设置宽高所占百分比
-view.frame = CGRect(x: 0, y: 0, width: 200 * YKScale_Width, height: 200 * YKScale_Width)
-view.backgroundColor = .red
-self.view.addSubview(view)
-//将view移动到屏幕中央显示
-view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
-</code></pre><p>这种模式下。XR的屏幕宽度是414，对应的像素由200变成了220.8，这样就可以在所有的屏幕上都显示的一致。      </p>
-<p><img src="http://qn.heyim.top/image/190328/9.png" alt="绝对布局"></p>
-<p>但这样的方式太过于原始，这个时候推荐一个框架 SwiftyFitsize <a target="_blank" rel="noopener" href="https://github.com/LinXunFeng/SwiftyFitsize">https://github.com/LinXunFeng/SwiftyFitsize</a><br>这个框架简化了设置比例的过程，具体情况还是需要根据需求再来选择采用那种方式。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-AirPlay使用详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">AirPlay使用详解</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2019-02-21T08:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AirPlay使用详解"><a href="#AirPlay使用详解" class="headerlink" title="AirPlay使用详解"></a>AirPlay使用详解</h1><p>先上Demo地址 <a target="_blank" rel="noopener" href="https://github.com/HeYming/AirPlayer">https://github.com/HeYming/AirPlayer</a></p>
-<p>之前项目中，老大要求需要支持隔空，特地研究下这个是如何使用。</p>
-<p><img src="http://qn.heyim.top/image/190221/AirPlay.png" alt="AirPlay">@w=400</p>
-<h2 id="MPVolumeView"><a href="#MPVolumeView" class="headerlink" title="MPVolumeView"></a>MPVolumeView</h2><p>MPVolumeView是MediaPlayer框架里面的一个组件，调节音量使用的控件。但是他在iOS 9.0之前，还可以用来支持AirPlay功能。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_View_airplay = [[MPVolumeView alloc] initWithFrame:CGRectMake(20, 350, 30, 30)];</span><br><span class="line">_View_airplay.showsVolumeSlider = NO;    </span><br><span class="line">[self.view addSubview:_View_airplay];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>他的用法很简单，创建一个View，设置大小位置，放到View上就可以了。<br>但是这个方法在iOS9.0之后就取消了。且在无AirPlay设备的时候是不会显示的。<br>当有AirPlay设备后，他就会显示出来。注意他是个白色icon，背景色为白色的时候可能会看不见。</p>
-<h2 id="AVRoutePickerView"><a href="#AVRoutePickerView" class="headerlink" title="AVRoutePickerView"></a>AVRoutePickerView</h2><p>那么在iOS9之后MPVolumeView不再更新了就没有新的AirPlay组件了吗？<br>当谈不会，苹果在iOS11的时候，在AVKit框架中加入了AVRoutePickerView组件，用来代替原来的MPVolumeView。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AVRoutePickerView * view = [[AVRoutePickerView alloc]initWithFrame:CGRectMake(100, 350, 30, 30)];</span><br><span class="line">//活跃状态颜色</span><br><span class="line">view.activeTintColor = [UIColor redColor];</span><br><span class="line">//设置代理</span><br><span class="line">view.delegate = self;</span><br><span class="line">[self.view addSubview:view];</span><br></pre></td></tr></table></figure>
-<p>基本上看起来跟MPVolumeView没有什么区别，但是AVRoutePickerView的默认icon改了，注意区分。<br><img src="http://qn.heyim.top/image/190221/2.PNG" alt="icon"></p>
-<p>AVRoutePickerView也新增了两个代理：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//AirPlay界面弹出时回调</span><br><span class="line">- (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView *)routePickerView API_AVAILABLE(ios(11.0))&#123;</span><br><span class="line">    _lab.text = @&quot;AirPlay界面弹出时回调&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//AirPlay界面结束时回调</span><br><span class="line">- (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView *)routePickerView API_AVAILABLE(ios(11.0))&#123;</span><br><span class="line">    _lab.text = @&quot;AirPlay界面结束时回调&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两个代理是在弹出选择设备界面的时候调用的，可以把暂停开始功能加入到这个代理方法里面增加用户体验。<br><img src="http://qn.heyim.top/image/190221/4.PNG" alt="delegate"></p>
-<p>需要注意的是，AVRoutePickerView在周边没有AirPlay设备的时候也会显示icon。</p>
-<h2 id="手动管理"><a href="#手动管理" class="headerlink" title="手动管理"></a>手动管理</h2><p>这个就直接看DEMO吧，这部分代码来源于<a target="_blank" rel="noopener" href="https://github.com/coderMYC/Airplay">https://github.com/coderMYC/Airplay</a>这位大佬的项目。<br>这部分可以在无音视频的情况下连接到AirPlay设备，在将播放连接丢给AirPlay设备。亲测可以后台播放，但是附近无AirPlay设备的时候，也是无法查找到设备的。</p>
-<h2 id="其他事项"><a href="#其他事项" class="headerlink" title="其他事项"></a>其他事项</h2><p>AirPlay可以在当前界面没有音视频的时候创建，当连接到AirPlay设备后，音视频播放会直接在AirPlay设备上播放而不在当前设备上播放，这点需要注意。</p>
-<p>AirPlay功能实现很简单，但是存在换代的问题，iOS11之前用的MPVolumeView所在的框架播放器，功能简陋且原生不支持进度条拖动。<br><img src="http://qn.heyim.top/image/190221/1.PNG" alt="MPVolumeView"></p>
-<p>iOS11之后的AVKit框架中AVPlayerViewController播放器则功能更丰富一些，如果不需要深度定制，建议大家使用AVPlayerViewController播放器来播放视频。<br><img src="http://qn.heyim.top/image/190221/2.PNG" alt="MPVolumeView"></p>
-<p>当然，AVPlayer也不是万能的，他无法播放flv格式的视频。当AVPlayer也无法满足需求的时候，这个时候万能播放解码器FFmpeg来了。知名视频播放框架ijkplayer就采用了MediaPlayer、AVPlayer和FFmpeg三种解码模式。但是在FFmpeg模式下，AirPlay设备只能播放音频，不能播放视频，目前还无解决方案，有哪位大神有方案请告知。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-项目框架搭建指南-定制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/">项目框架搭建指南-定制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2018-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="项目框架搭建指南-定制"><a href="#项目框架搭建指南-定制" class="headerlink" title="项目框架搭建指南-定制"></a>项目框架搭建指南-定制</h1><p>这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。</p>
-<p><img src="http://qn.heyim.top/image/181112/3.png" alt="3"></p>
-<h2 id="UserModel"><a href="#UserModel" class="headerlink" title="UserModel"></a>UserModel</h2><p>用户模型是个绕不过去的东西，涉及登录注册就需要用到。</p>
-<p><img src="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png" alt="单例"></p>
-<p>基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。</p>
-<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。<br>这里需要讲一下的就是配置文件中最好统一，并且只有一份。有许多第三方框架中有各自的配置文件，可以使用第三方框架的方法，如果自己定义的话，最好在定义名称的时候加上标识符，避免名称冲突。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这里主要就是各个项目不一样的地方在来进行定制开发，上面讲的这些都是可以通用的。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/HeYming/KKSP">https://github.com/HeYming/KKSP</a></p>
-<p>这是个Swift语言的快速开发框架，欢迎各位下载讨论。</p>
+        <h2 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h2><h3 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h3><p>在iOS中，多线程主要与“队列”有关。<br>函数（通常是闭包）只是排成一个队列（就像在电影中！）。<br>然后将这些函数从队列中拉出，并在相关线程上执行。<br>队列可以是“串行”（一次一个闭包）或“并发”（多个线程为其提供服务）。</p>
+<h3 id="Main-Queue"><a href="#Main-Queue" class="headerlink" title="Main Queue"></a>Main Queue</h3><p>有一个非常特殊的串行队列，称为“主队列”<br>所有UI活动都必须在此队列上发生，并且只能在此队列上发生。<br>相反，该队列上不得出现任何耗时的非UI活动。我们这样做是因为我们希望我们的UI具有高度的响应性！<br>还有一个原因是，我们希望UI中发生的事情能够以可预测的方式（连续地）发生。<br>只有在主队列处于“quiet”状态时，才能在主队列中启动和处理功能。</p>
+<h3 id="Global-Queues"><a href="#Global-Queues" class="headerlink" title="Global Queues"></a>Global Queues</h3><p>对于非主队列工作，您通常将使用共享、全局、并发队列。</p>
+<h3 id="Getting-a-queue"><a href="#Getting-a-queue" class="headerlink" title="Getting a queue"></a>Getting a queue</h3><p>获取主队列（所有 UI 活动都必须在其中发生）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let mainQueue = DispatchQueue.main</span><br></pre></td></tr></table></figure><br>获得一个全局的、共享的、并发的“background”队列。<br>这几乎总是您将用于从主队列中获取活动的方法。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let backgroundQueue = DispatchQueue.global(qos: DispatchQoS) DispatchQoS.userInteractive // 高优先级，只做短而快的事情</span><br><span class="line">DispatchQoS.userInitiated// 高优先级，但可能需要一点时间</span><br><span class="line">调度QoS.background// 不是用户直接发起的，所以可以根据需要慢跑</span><br><span class="line">DispatchQoS.utility//长时间运行的后台进程，低优先级</span><br></pre></td></tr></table></figure><br>将一段代码放入队列<br>多线程只是将闭包放入这些队列的过程。 将闭包放入队列有两种主要方法。<br>您可以将闭包放入队列并继续在当前队列上运行…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue.async &#123; . . . &#125;</span><br></pre></td></tr></table></figure><br>或者您可以阻止当前队列等待，直到关闭在另一个队列上完成…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue.sync &#123; . . . &#125;</span><br></pre></td></tr></table></figure><br>获取非全局队列<br>极少情况下，您可能需要除主队列或全局队列之外的队列。<br>您自己的串行队列（仅当您有多个串行依赖的活动时才使用此队列）…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let serialQueue = DispatchQueue(label: “MySerialQ”)</span><br></pre></td></tr></table></figure><br>您自己的并发队列（与全局队列相比，您很少会这样做）<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let concurrentQueue = DispatchQueue(label: “MyConcurrentQ”, attributes: .concurrent)</span><br></pre></td></tr></table></figure><br>我们只看到了冰山一角<br>GCD（Grand Central Dispatch）还有很多,可以做锁、保护临界区、读写器、同步调度等。有兴趣可以查看文档,所有这些’OperationQueue’和’Operation’还有另一个 API,但是，通常我们使用 DispatchQueue API。这是因为调度的“nesting”在代码中读得很好,但是 Operation API 也很有用（尤其是对于更复杂的多线程）<br>多线程 iOS API<br>iOS 中相当多的地方会做他们在主队列之外做的事情，他们甚至可能让你有机会在主队列之外做一些事情，iOS 可能会要求您提供一个在主线程之外执行的函数（通常是闭包），不要忘记，如果你想在那里做 UI 的东西，你必须派回主队列！<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let session = URLSession(configuration: .default)</span><br><span class="line">    if let url = URL(string“http://stanford.edu/...”) &#123;</span><br><span class="line">        let task = session.dataTask(with: url) &#123; (data: Data?, response, error) in</span><br><span class="line">        DispatchQueue.main.async &#123;</span><br><span class="line">            // do UI stuff here</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    task.resume()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -1021,7 +794,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
         		</li>
       		
 		</ul>
@@ -1030,7 +803,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/">展开全文 >></a>
         </p>
       
 
@@ -1045,37 +818,38 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 
 
   
-    <article id="post-项目框架搭建指南-扩展" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/">项目框架搭建指南-扩展</a>
+      <a class="article-title" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">Swift学习记录-09</a>
     </h1>
   
 
         
-        <a href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/" class="archive-article-date">
-  	<time datetime="2018-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-27</time>
+        <a href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/" class="archive-article-date">
+  	<time datetime="2020-02-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="项目框架搭建指南-扩展"><a href="#项目框架搭建指南-扩展" class="headerlink" title="项目框架搭建指南-扩展"></a>项目框架搭建指南-扩展</h1><p>上篇介绍了基础框架的搭建，这篇介绍下支持快速开发所需要的扩展框架都需要哪些。<br><img src="http://qn.heyim.top/image/180827/2.png" alt="2"></p>
-<p>我大致分为三类：</p>
-<ol>
-<li>视图类</li>
-<li>网络类</li>
-<li>功能类</li>
-</ol>
-<h2 id="视图类"><a href="#视图类" class="headerlink" title="视图类"></a>视图类</h2><p>基础样式扩展：<br>TabBarController扩展ESTabBarController<br>其他视图扩展按照需求去找类似的开源框架<br>自动布局：<br>Objective-C用Masonry，Swift用Snap，这个应该是用的最多的代码自动布局框架。<br>专用视图扩展：<br>HUD的扩展，OC中用的最多的就是MBProgressHUD这个框架，也有很多其他类型的，找个适合当前项目的。</p>
-<h2 id="网络类"><a href="#网络类" class="headerlink" title="网络类"></a>网络类</h2><p>网络请求：<br>AFNetworking，这个应该是必备的，先封装网络请求，在根据当前业务再次封装适合当前项目使用的方法。</p>
-<p>网络图片缓存：<br>SDWebImage，这个就直接集成在项目中，不需要在进行封装，使用时直接调用。</p>
-<p>功能类：<br>数据处理：<br>JSON序列化，这个有很多种选择，我选择的是MJExtension，他支持混合类型的序列化，比较符合我的需求。<br>页面扩展：<br>MJRefresh，下拉刷新，这个也是几乎必备<br>功能扩展：<br>这里我推荐BlocksKit，这个只能用于OC，比较遗憾。这个框架封装了大部分系统原生的代理和通知，用block的形式来代替代理和通知。前期开发中这个绝对是省时省力的利器。</p>
+        <h2 id="View-Controller-Lifecycle"><a href="#View-Controller-Lifecycle" class="headerlink" title="View Controller Lifecycle"></a>View Controller Lifecycle</h2><h3 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h3><p>override func viewDidLoad()<br>该方法只会在视图创建的时候调用一次，不要再这里做任何UI设定，因为边界还未确定，可以设置模型</p>
+<h3 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h3><p>override func viewWillAppear(_ animated: Bool)<br>这个方法每次展示的时候都会被调用，可以更新视图，注意，这个方法可以被重复调用</p>
+<h3 id="viewDidAppear"><a href="#viewDidAppear" class="headerlink" title="viewDidAppear"></a>viewDidAppear</h3><p>override func viewDidAppear(_ animated: Bool)<br>当你的MVC完成出现在屏幕上时调用。将耗时的东西在这里进行调用，我们不能阻止UI和用户交互，可以使用加载图标提示用户我们正在获取数据。</p>
+<h3 id="viewWillDisappear"><a href="#viewWillDisappear" class="headerlink" title="viewWillDisappear"></a>viewWillDisappear</h3><p>override func viewWillDisappear(_ animated: Bool)<br>你的MVC仍然在屏幕上，但它即将离开屏幕。也许用户在UINavigationController中点击” back “ ，或者他们切换到UITabBarController中的另一个标签，通常你会撤销你在viewDidAppear中所做的，例如，停止计时器，你开始在那里或停止观察某物</p>
+<h3 id="viewDidDisappear"><a href="#viewDidDisappear" class="headerlink" title="viewDidDisappear"></a>viewDidDisappear</h3><p>override func viewDidDisappear(_ animated: Bool)<br>你的MVC离开了屏幕。在这里做一些事情有点罕见，但偶尔你可能想要“清理”你的MVC。例如，您可以保存一些状态或释放一些大型的、可重新创建的资源。</p>
+<h3 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h3><p>override func viewWillLayoutSubviews()<br>override func viewDidLayoutSubviews()</p>
+<p>当顶级视图的边界改变(或者需要重新布局)时，你会得到通知。<br>换句话说，当它接收到layoutSubviews时，就会调用这两个回调。<br>通常你不需要在这里做任何事情，因为自动布局。但如果你有与几何相关的设置要做，这是做它的地方。这些方法可以经常被调用(就像UIView中的layoutSubviews()可以经常被调用)。为此做好准备。不要在这里做任何不能正确(和有效)重复做的事情。它并不总是意味着你的视图边界实际上改变了。</p>
+<h4 id="Autorotation"><a href="#Autorotation" class="headerlink" title="Autorotation"></a>Autorotation</h4><p>当你的设备旋转时，会发生很多事情。当然，你的视图的边界会改变(因此你会得到viewWill/DidLayoutSubviews)。但产生的变化也会自动动画化。你可以了解到这些，如果你愿意，你甚至可以参与到动画中。重写’viewWillTransition’方法。</p>
+<h3 id="Low-Memory"><a href="#Low-Memory" class="headerlink" title="Low Memory"></a>Low Memory</h3><p>这很少见，但偶尔你的设备会出现内存不足的情况。这通常意味着大量的视频、图像或声音。如果你的应用程序在你的堆中保持这些东西的强指针，你可能会有帮助!当内存不足的情况发生时，iOS会在你的控制器中调用这个方法…’didReceiveMemoryWarning’。<br>注意：如果你的应用持续使用较大的内存，你可能会被iOS杀死</p>
+<h3 id="awakeFromNib"><a href="#awakeFromNib" class="headerlink" title="awakeFromNib"></a>awakeFromNib</h3><p>这个方法被发送到所有来自故事板的对象(包括你的控制器)<br>override func awakeFromNib()<br>可以初始化这里的东西，但它是非常早期的，它发生在outlet被设置之前在你准备好作为segue的一部分之前，这是最后一招了。如果可能的话，首先使用其他视图控制器生命周期方法。它主要用于在生命周期的早期执行代码的情况。</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Instantiated (通常来自故事板)<br>    awakeFromNib (仅当从一个故事板实例化时)<br>segue准备情况<br>    outlets get set<br>    viewDidLoad<br>每次你的控制器视图打开/关闭屏幕时，这些对都会被调用。<br>viewWillAppear and viewDidAppear<br>viewWillDisappear and viewDidDisappear<br>这些“几何改变”方法可能在viewDidLoad之后的任何时候被调用<br>    viewWillLayoutSubviews<br>    viewDidLayoutSubviews<br>在任何时候，如果内存下降，你可能会…<br>    didReceiveMemoryWarning</p>
+<h2 id="UIScrollView"><a href="#UIScrollView" class="headerlink" title="UIScrollView"></a>UIScrollView</h2><p>创建UIScrollView<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br><span class="line">logo.frame = CGRect(x: 2700, y: 50, width: 120, height: 180)</span><br><span class="line">scrollView.addSubview(logo)</span><br></pre></td></tr></table></figure><br>设置contentSize<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br></pre></td></tr></table></figure><br>获取当前内容位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let upperLeftOfVisible: CGPoint = scrollView.contentOffset</span><br></pre></td></tr></table></figure><br>获取子视图可见的区域<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let visibleRect: CGRect = aerial.convert(scrollView.bounds, from: scrollView)</span><br></pre></td></tr></table></figure><br>滚动到指定位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollRectToVisible(CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>缩放<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scrollView.minimumZoomScale = 0.5 // 0.5 表示其正常大小的一半</span><br><span class="line">scrollView.maximumZoomScale = 2.0 // 2.0 表示两倍于正常大小</span><br><span class="line">var zoomScale: CGFloat</span><br><span class="line">func setZoomScale(CGFloat, animated: Bool)</span><br><span class="line">func zoom(to rect: CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>代理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollViewDidEndZooming(UIScrollView, with view: UIView, atScale: CGFloat)//视图缩放代理</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -1101,7 +875,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
         		</li>
       		
 		</ul>
@@ -1110,7 +884,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">展开全文 >></a>
         </p>
       
 
@@ -1125,39 +899,31 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 
 
   
-    <article id="post-项目框架搭建指南-基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Swift学习记录-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/">项目框架搭建指南-基础</a>
+      <a class="article-title" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">Swift学习记录-08</a>
     </h1>
   
 
         
-        <a href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2018-07-22T01:51:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
+        <a href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/" class="archive-article-date">
+  	<time datetime="2019-12-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="项目框架搭建指南-基础"><a href="#项目框架搭建指南-基础" class="headerlink" title="项目框架搭建指南-基础"></a>项目框架搭建指南-基础</h1><p>前言：由于公司项目众多，每次新项目开始都从零搭建项目既费时，又效率低下。这个时候就需要搭建一个通用项目框架，当有新的项目的时候，只用修改部分页面就能完成快速开发。</p>
-<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><img src="http://qn.heyim.top/image/190722/%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA.png" alt="项目搭建"><br>我个人认为搭建通用项目框架基本分为三大类：</p>
-<ol>
-<li>基础框架</li>
-<li>扩展框架</li>
-<li>定制框架</li>
-</ol>
-<p>先来聊聊基础框架都需要些什么。</p>
-<p><img src="http://qn.heyim.top/image/190722/%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84.png" alt="项目基础架构"></p>
-<h1 id="AppDelegate"><a href="#AppDelegate" class="headerlink" title="AppDelegate"></a>AppDelegate</h1><p>在AppDelegate中，尽可能的少放耗时的操作，这样可以加快APP的启动速度。<br>注册Window的RootViewController，后面如果需要切换视图，只在这个Window中切换，避免造成混乱。<br>注册第三方服务组件。</p>
-<h1 id="LoadViewController"><a href="#LoadViewController" class="headerlink" title="LoadViewController"></a>LoadViewController</h1><p>AppDelegate的RootViewController设置LoadViewController为根控制器。<br>这个页面再来显示加载广告、启动页、自动登录等功能。<br>在由这个页面来决定跳转到登录还是进入首页</p>
-<h1 id="RootViewController"><a href="#RootViewController" class="headerlink" title="RootViewController"></a>RootViewController</h1><p>所有ViewController的根视图。<br>放设置Navigation、通用样式等方法。<br>根据业务需求增加所需要的方法。</p>
-<h1 id="MVC"><a href="#MVC" class="headerlink" title="MVC"></a>MVC</h1><p>这个就不需要怎么讲了。所有文件列表按照MVC来进行创建。<br><img src="http://qn.heyim.top/image/190722/1.png" alt="1"></p>
+        <h2 id="UIView-Animation"><a href="#UIView-Animation" class="headerlink" title="UIView Animation"></a>UIView Animation</h2><p>对某些 UIView 属性的更改可以随着时间的推移进行动画处理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frame/center</span><br><span class="line">bounds (transient size, does not conflict with animating center) transform (translation, rotation and scale)</span><br><span class="line">alpha (opacity)</span><br><span class="line">backgroundColor</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if myView.alpha == 1.0 &#123;</span><br><span class="line">    UIViewPropertyAnimator.runningPropertyAnimator(</span><br><span class="line">        withDuration: 3.0,</span><br><span class="line">               delay: 2.0,</span><br><span class="line">             options: [.allowUserInteraction],</span><br><span class="line">          animations: &#123; myView.alpha = 0.0 &#125;,</span><br><span class="line">          completion: &#123; if $0 == .end &#123; myView.removeFromSuperview() &#125; &#125;</span><br><span class="line">    )</span><br><span class="line">    print(“alpha = \(myView.alpha)”)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="UIViewAnimationOptions"><a href="#UIViewAnimationOptions" class="headerlink" title="UIViewAnimationOptions"></a>UIViewAnimationOptions</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">beginFromCurrentState // 从这些属性的其他正在进行的动画中获取</span><br><span class="line">allowUserInteraction // 允许在动画进行时处理手势 </span><br><span class="line">layoutSubviews // 使用父动画对子视图的重新布局进行动画处理</span><br><span class="line">repeat // 无限重复</span><br><span class="line">autoreverse // 向前播放动画，然后向后播放</span><br><span class="line">overrideInheritedDuration //如果没有设置，使用任何正在进行的动画的持续时间</span><br><span class="line">overrideInheritedCurve // 如果未设置，则使用进行中动画的曲线（例如缓入/缓出）</span><br><span class="line">allowAnimatedContent  // 如果未设置，则仅在当前和结束“位”之间进行插值</span><br><span class="line">curveEaseInEaseOut // 开始时较慢，始终正常，然后在结束时较慢 </span><br><span class="line">curveEaseIn // 开始时较慢，但在其余部分保持不变</span><br><span class="line">curveLinear  // 始终相同的速度</span><br><span class="line">transitionFlipFrom&#123;Left,Right,Top,Bottom&#125; //翻转整个视图</span><br><span class="line">transitionCrossDissolve    //从旧状态溶解到新状态</span><br><span class="line">transitionCurl&#123;Up,Down&#125;  // 向上或向下卷曲</span><br></pre></td></tr></table></figure>
+<p>示例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UIView.transition(with: myPlayingCardView,</span><br><span class="line">              duration: 0.75,</span><br><span class="line">               options: [.transitionFlipFromLeft],</span><br><span class="line">            animations: &#123; cardIsFaceUp = !cardIsFaceUp &#125;</span><br><span class="line">            completion: nil)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Dynamic-Animation"><a href="#Dynamic-Animation" class="headerlink" title="Dynamic Animation"></a>Dynamic Animation</h2><p>物理动画<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//创建UIDynamicAnimator</span><br><span class="line">var animator = UIDynamicAnimator(referenceView: UIView)</span><br><span class="line">//创建和添加 UIDynamicBehavior 实例</span><br><span class="line">let gravity = UIGravityBehavior() </span><br><span class="line">animator.addBehavior(gravity)</span><br><span class="line">collider = UICollisionBehavior() </span><br><span class="line">animator.addBehavior(collider)</span><br><span class="line">//将 UIDynamicItems 添加到 UIDynamicBehavior</span><br><span class="line">let item1: UIDynamicItem = ... // UIView</span><br><span class="line">let item2: UIDynamicItem = ... // UIView </span><br><span class="line">gravity.addItem(item1)</span><br><span class="line">collider.addItem(item1)</span><br><span class="line">gravity.addItem(item2)</span><br></pre></td></tr></table></figure></p>
 
       
 
@@ -1183,7 +949,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
         		</li>
       		
 		</ul>
@@ -1192,7 +958,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">展开全文 >></a>
         </p>
       
 
@@ -1209,7 +975,7 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
