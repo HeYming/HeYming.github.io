@@ -536,6 +536,131 @@
 
 
   
+    <article id="post-项目首页优化实战记录" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/">项目首页优化实战记录</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>项目搭建之初，页面比较简单，只有四个模块，就采用了UIScrollView + UIView的模式，快速搭建上线。<br><img src="http://qn.heyim.top/image/201112/001.png" alt="首页"></p>
+<p>随着后面页面模块越来越多，也越来越复杂，主页ViewController代码量都超过1500行，就需要进行重构首页。新版本首页采用标准MVC模式来进行重构，主页布局放弃UIScorllView模式，该模式修改困难，且布局计算相对麻烦。采用UITableView模式，当模块更改的时候只需要对当前Cell进行更新即可。<br>// 新的 tableview 的  图<br><img src="http://qn.heyim.top/image/201112/002.png" alt="项目架构"></p>
+<h1 id="优化方向"><a href="#优化方向" class="headerlink" title="优化方向"></a>优化方向</h1><p>当前版本首页基本固定，需求比较明确，根据当前页面需求和MVC框架，将更新下列内容<br><img src="http://qn.heyim.top/image/201112/003.png" alt="脑图"></p>
+<h1 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p><img src="http://qn.heyim.top/image/201112/004.jpg" alt="初始化"></p>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><h4 id="1-初始化基础内容"><a href="#1-初始化基础内容" class="headerlink" title="1. 初始化基础内容"></a>1. 初始化基础内容</h4><p>之前版本中，进入首页的流程是：</p>
+<ol>
+<li>初始化Navigation</li>
+<li>初始化基础数据</li>
+<li>配置UIScrollView</li>
+<li>请求页面数据<br>这样在启动的时候，由于已经Xib已经加载了View，会直接显示默认数据，且数据请求如果失败，视图并不会更新，会对用户造成迷惑，体验也很不好。</li>
+</ol>
+<p>重构后：</p>
+<ol>
+<li>初始化Navigation</li>
+<li>初始化基础数据</li>
+<li>配置UITableView</li>
+<li>设置Loading动画</li>
+<li>配置Model并监听结束回调</li>
+<li>收到回调结束Loading动画，执行TableView.reload()<br>更改后由于TableView的DataSource在没有加载数据的时候，所以界面会是空白，这个时候加上加载动画，会比较友好。</li>
+</ol>
+<h4 id="2-初始化Model"><a href="#2-初始化Model" class="headerlink" title="2. 初始化Model"></a>2. 初始化Model</h4><p>之前版本中，Model只有序列化能力，并不参与其他业务交互。</p>
+<p>重构后，Model主要增加以下功能</p>
+<ol>
+<li>单例，任何时候需要数据只需要访问单例即可</li>
+<li>网络请求，Model中集成网络请求，自己处理自己数据逻辑，外界不用关系数据来源问题</li>
+<li>通知，当单例被赋值的时候，会发送通知，需要知道Model变更的对象只需要监听通知就可以了</li>
+</ol>
+<h4 id="3-初始化View"><a href="#3-初始化View" class="headerlink" title="3. 初始化View"></a>3. 初始化View</h4><p>之前版本中，View都是在Xib中拖线到Controller,这样做优点就是快速，处理简单，但随着项目更新迭代，拖线Outlet属性多达上百个,这使得代码十分难以理解且不易维护。</p>
+<p>重构后，整体View由TableView控制，Controller只持有TableView,其他模块均改为UITableViewCell，拥有以下特性：</p>
+<ol>
+<li>自行处理用户事件</li>
+<li>自行绑定数据显示</li>
+<li>监听Model改变通知，收到通知自己更新</li>
+</ol>
+<h4 id="4-View行为绑定"><a href="#4-View行为绑定" class="headerlink" title="4. View行为绑定"></a>4. View行为绑定</h4><p>之前版本中，View的行为均在Controller中进行处理，这部分的逻辑占了代码总量的一半，由于过于分散，极难查找和维护</p>
+<p>重构后，所有的跳转事件交由专门的跳转类进行实现，还有一个公共行为类处理类似分享、登录、拉起第三方应用等操作。View在收到用户事件的时候可以直接调用公共类进行处理。</p>
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><p><img src="http://qn.heyim.top/image/201112/005.jpg" alt="显示"><br>之前版本中，由于View从Xib中创建，在Controller创建时，View内容已经创建并展示默认数据。当网络请求结束后，会对View进行更新</p>
+<p>重构后，由于是TableView,默认是空白视图，在网络请求全部结束后，根据请求内容配置需要显示的Cell，reload重新刷新下TableView即可。<br>TableViewCell会自行调用Model的静态属性来更新，此部分脱离出Controller。</p>
+<h2 id="行为处理"><a href="#行为处理" class="headerlink" title="行为处理"></a>行为处理</h2><h3 id="更新事件"><a href="#更新事件" class="headerlink" title="更新事件"></a>更新事件</h3><p><img src="http://qn.heyim.top/image/201112/006.jpg" alt="更新事件"><br>之前版本中，视图更新数据更新的流程是：</p>
+<ol>
+<li>Controller绑定View的Action事件</li>
+<li>Controller监听到View的Action更新事件</li>
+<li>Controller调用网络请求请求最新数据</li>
+<li>Controller将请求到的数据转为Model</li>
+<li>Controller将Model的数据更新到View上<br>这种模式下，所有的数据都是由Controller处理，当内容过多的时候，就会导致Controller过于臃肿且难以维护。</li>
+</ol>
+<p>重构后，视图更新数据更新的流程是：</p>
+<ol>
+<li>View收到Aciton更新事件</li>
+<li>View调用Model的更新方法</li>
+<li>Model请求网络更新自己的静态属性</li>
+<li>View收到Model静态方法更新通知</li>
+<li>View通过Model的静态数据更新<br>这样的方式，Controller将不在处理View的更新事件，也不需要编写大量的代码来维护View和Model,在更新和扩展的时候更加灵活</li>
+</ol>
+<h3 id="跳转事件"><a href="#跳转事件" class="headerlink" title="跳转事件"></a>跳转事件</h3><p><img src="http://qn.heyim.top/image/201112/007.jpg" alt="跳转事件"><br>之前版本中，View收到跳转Action，同样也是找到Controller,由Controller负责跳转，但当有十几个跳转事件后，每次改动将是件极难的事情，很多时候会出现改动遗忘的情况。</p>
+<p>重构后，所有的跳转事件有了公共类，入口统一，这样在更新改动的时候，只需要处理一个地方即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Swift学习记录-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -895,80 +1020,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Swift学习记录-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">Swift学习记录-08</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/" class="archive-article-date">
-  	<time datetime="2019-12-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="UIView-Animation"><a href="#UIView-Animation" class="headerlink" title="UIView Animation"></a>UIView Animation</h2><p>对某些 UIView 属性的更改可以随着时间的推移进行动画处理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frame/center</span><br><span class="line">bounds (transient size, does not conflict with animating center) transform (translation, rotation and scale)</span><br><span class="line">alpha (opacity)</span><br><span class="line">backgroundColor</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if myView.alpha == 1.0 &#123;</span><br><span class="line">    UIViewPropertyAnimator.runningPropertyAnimator(</span><br><span class="line">        withDuration: 3.0,</span><br><span class="line">               delay: 2.0,</span><br><span class="line">             options: [.allowUserInteraction],</span><br><span class="line">          animations: &#123; myView.alpha = 0.0 &#125;,</span><br><span class="line">          completion: &#123; if $0 == .end &#123; myView.removeFromSuperview() &#125; &#125;</span><br><span class="line">    )</span><br><span class="line">    print(“alpha = \(myView.alpha)”)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="UIViewAnimationOptions"><a href="#UIViewAnimationOptions" class="headerlink" title="UIViewAnimationOptions"></a>UIViewAnimationOptions</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">beginFromCurrentState // 从这些属性的其他正在进行的动画中获取</span><br><span class="line">allowUserInteraction // 允许在动画进行时处理手势 </span><br><span class="line">layoutSubviews // 使用父动画对子视图的重新布局进行动画处理</span><br><span class="line">repeat // 无限重复</span><br><span class="line">autoreverse // 向前播放动画，然后向后播放</span><br><span class="line">overrideInheritedDuration //如果没有设置，使用任何正在进行的动画的持续时间</span><br><span class="line">overrideInheritedCurve // 如果未设置，则使用进行中动画的曲线（例如缓入/缓出）</span><br><span class="line">allowAnimatedContent  // 如果未设置，则仅在当前和结束“位”之间进行插值</span><br><span class="line">curveEaseInEaseOut // 开始时较慢，始终正常，然后在结束时较慢 </span><br><span class="line">curveEaseIn // 开始时较慢，但在其余部分保持不变</span><br><span class="line">curveLinear  // 始终相同的速度</span><br><span class="line">transitionFlipFrom&#123;Left,Right,Top,Bottom&#125; //翻转整个视图</span><br><span class="line">transitionCrossDissolve    //从旧状态溶解到新状态</span><br><span class="line">transitionCurl&#123;Up,Down&#125;  // 向上或向下卷曲</span><br></pre></td></tr></table></figure>
-<p>示例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UIView.transition(with: myPlayingCardView,</span><br><span class="line">              duration: 0.75,</span><br><span class="line">               options: [.transitionFlipFromLeft],</span><br><span class="line">            animations: &#123; cardIsFaceUp = !cardIsFaceUp &#125;</span><br><span class="line">            completion: nil)</span><br></pre></td></tr></table></figure></p>
-<h2 id="Dynamic-Animation"><a href="#Dynamic-Animation" class="headerlink" title="Dynamic Animation"></a>Dynamic Animation</h2><p>物理动画<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//创建UIDynamicAnimator</span><br><span class="line">var animator = UIDynamicAnimator(referenceView: UIView)</span><br><span class="line">//创建和添加 UIDynamicBehavior 实例</span><br><span class="line">let gravity = UIGravityBehavior() </span><br><span class="line">animator.addBehavior(gravity)</span><br><span class="line">collider = UICollisionBehavior() </span><br><span class="line">animator.addBehavior(collider)</span><br><span class="line">//将 UIDynamicItems 添加到 UIDynamicBehavior</span><br><span class="line">let item1: UIDynamicItem = ... // UIView</span><br><span class="line">let item2: UIDynamicItem = ... // UIView </span><br><span class="line">gravity.addItem(item1)</span><br><span class="line">collider.addItem(item1)</span><br><span class="line">gravity.addItem(item2)</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">展开全文 >></a>
         </p>
       
 

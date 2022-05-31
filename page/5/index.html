@@ -168,6 +168,203 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-27-Interface-Builder-UISearchBar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-27-Interface-Builder-UISearchBar/">iOS开发指南-Objective—C基础-27-Interface-Builder-UISearchBar</a>
+    </h1>
+  
+
+        
+        <a href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-27-Interface-Builder-UISearchBar/" class="archive-article-date">
+  	<time datetime="2016-05-10T13:37:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-05-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="UISearchBar-检索条"><a href="#UISearchBar-检索条" class="headerlink" title="UISearchBar 检索条"></a>UISearchBar 检索条</h1><p><em>ps:这本书已经写了一半的，其中很多内容比较繁琐，我都是在网上找的方法进行复制，其中有很多表格就不写了，毕竟还有Google，本文内容来自<a target="_blank" rel="noopener" href="http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral">http://www.cnblogs.com/xiaofeixiang/p/4273620.html?utm_source=tuicool&amp;utm_medium=referral</a>,作者:FlyElephant</em></p>
+<p>#UISearchBar和UISearchDisplayController</p>
+<p>是网上最常见的也算是最简单的，也有使用Searh Bar Search Display Controller的控件的，本文就简单的使用Search Bar和UITableView实现搜索Demo的,最上面的就是搜索栏，之前的就是TableView:</p>
+<p>为了实现搜索需要声明委托UISearchBarDelegate,UISearchDisplayDelegate,其中搜索主要使用的就是UISearchDisplayDelegate，具体代码实现过程:</p>
+<p>##声明字段:</p>
+<pre><code>@property (strong,nonatomic) NSMutableArray  *dataList;
+
+@property (strong,nonatomic) NSMutableArray  *searchList;
+</code></pre><p>##初始化数据:</p>
+<pre><code>self.dataList=[NSMutableArray arrayWithCapacity:100];
+
+for (NSInteger i=0; i&lt;100; i++) &#123;
+    [self.dataList addObject:[NSString stringWithFormat:@&quot;%ld-FlyElephant&quot;,(long)i]];
+&#125;
+</code></pre><p>##设置区域:</p>
+<pre><code>//设置区域
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView&#123;
+    return 1;
+&#125;
+</code></pre><p>　<br>设置区域的行数(重点),这个就是使用委托之后需要需要判断是一下是否是需要使用Search之后的视图:</p>
+<pre><code>-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;
+        if (tableView == self.searchDisplayController.searchResultsTableView) &#123;
+            return [self.searchList count];
+        &#125;else&#123;
+            return [self.dataList count];
+    &#125;
+&#125;
+</code></pre><p>　<br>同样的返回单元格也有两种情况，一种是初始化数据，一种是过滤之后的数据视图:</p>
+<pre><code>-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
+    static NSString *flag=@&quot;cellFlag&quot;;
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
+    if (cell==nil) &#123;
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
+    &#125;
+    if (tableView==self.searchDisplayController.searchResultsTableView) &#123;
+        [cell.textLabel setText:self.searchList[indexPath.row]];
+    &#125;
+    else&#123;
+        [cell.textLabel setText:self.dataList[indexPath.row]];
+    &#125;
+
+    return cell;
+&#125;
+</code></pre><p>UISearchBarDelegate中的开始和结束的事件:</p>
+<pre><code>- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar&#123;
+    NSLog(@&quot;搜索Begin&quot;);
+    return YES;
+&#125;
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar&#123;
+    NSLog(@&quot;搜索End&quot;);
+    return YES;
+&#125;
+</code></pre><p>搜索时过滤数据:</p>
+<pre><code>- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString&#123;
+    // 谓词的包含语法,之前文章介绍过http://www.cnblogs.com/xiaofeixiang/
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
+
+    if (self.searchList!= nil) &#123;
+        [self.searchList removeAllObjects];
+    &#125;
+    //过滤数据
+    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
+    //刷新表格
+    return YES;
+&#125;
+</code></pre><p>UISearchController实现搜索</p>
+<p>UISeachBar通过UISearchDisplayDelegate实现上面的效果是没有问题的，网上也有很多类似的实现效果，不过是警告的，信息如下: ‘searchDisplayController’ is deprecated: first deprecated in iOS 8.0,这么明显一个警告总不能视而不见吧，在StackOverFlow中发现UISearchDisplayController is deprecated in IOS8.0, and recommended to use UISearchController instead，也就是说iOS 8.0不推荐UISearchDisplayController,也就是不推荐使用UISearchDisplayDelegate，但是可以通过UISearchController实现UISearchResultsUpdating这个委托实现上面的效果；</p>
+<p>视图中中需要声明UISearchResultsUpdating:</p>
+<pre><code>@interface ViewController : UITableViewController&lt;UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate,UISearchResultsUpdating&gt;
+</code></pre><p>@end<br>　属性声明:</p>
+<pre><code>@property (nonatomic, strong) UISearchController *searchController;
+</code></pre><p>　<br>需要自己初始化一下UISearchController:</p>
+<pre><code>_searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
+
+_searchController.searchResultsUpdater = self;
+
+_searchController.dimsBackgroundDuringPresentation = NO;
+
+_searchController.hidesNavigationBarDuringPresentation = NO;
+
+_searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.searchController.searchBar.frame.size.width, 44.0);
+
+self.tableView.tableHeaderView = self.searchController.searchBar;
+</code></pre><p>之前是通过判断搜索时候的TableView，不过现在直接使用self.searchController.active进行判断即可，也就是</p>
+<p>UISearchController的active属性:</p>
+<pre><code>//设置区域的行数
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section&#123;
+
+    if (self.searchController.active) &#123;
+        return [self.searchList count];
+    &#125;else&#123;
+        return [self.dataList count];
+    &#125;
+
+&#125;
+
+//返回单元格内容
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath&#123;
+    static NSString *flag=@&quot;cellFlag&quot;;
+    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:flag];
+    if (cell==nil) &#123;
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:flag];
+    &#125;
+    if (self.searchController.active) &#123;
+        [cell.textLabel setText:self.searchList[indexPath.row]];
+    &#125;
+    else&#123;
+        [cell.textLabel setText:self.dataList[indexPath.row]];
+    &#125;
+    return cell;
+&#125;
+</code></pre><p>　具体调用的时候使用的方法也发生了改变，这个时候使用updateSearchResultsForSearchController进行结果过滤:</p>
+<pre><code>-(void)updateSearchResultsForSearchController:(UISearchController *)searchController &#123;
+
+    NSString *searchString = [self.searchController.searchBar text];
+
+    NSPredicate *preicate = [NSPredicate predicateWithFormat:@&quot;SELF CONTAINS[c] %@&quot;, searchString];
+
+    if (self.searchList!= nil) &#123;
+        [self.searchList removeAllObjects];
+    &#125;
+    //过滤数据
+    self.searchList= [NSMutableArray arrayWithArray:[_dataList filteredArrayUsingPredicate:preicate]];
+    //刷新表格
+
+    [self.tableView reloadData];
+&#125;
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/05/10/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-27-Interface-Builder-UISearchBar/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-26-Interface-Builder-UIProgressView" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1414,82 +1611,6 @@ webView.frame = frame;
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2016/05/03/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-18-Interface%20Builder-%E9%A1%B5%E9%9D%A2%E5%88%9B%E5%BB%BA/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-iOS开发指南-Objective—C基础-17-Cocoa-Touch-总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/">iOS开发指南-Objective—C基础-Cocoa-Touch-总结-17</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2016-04-28T14:08:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>终于讲完这个章节，之前我也不是很懂Cocoa Touch 到底是干嘛的，其实Cocoa Touch简单的说就是为iOS运行和OC语言做一个连接，是iOS的核心框架。<br>后面还有本OC语法的书，就完全不涉及Cocoa Touch 的操作。</p>
-<p>我在iPhone上发现了一个文档，其中也有对iOS的核心和Cocoa Touch 的介绍。</p>
-<p><img src="http://qn.heyim.top/image/160428/1.jpg" alt="1"></p>
-<p><img src="http://qn.heyim.top/image/160428/2.jpg" alt="2"></p>
-<p><img src="http://qn.heyim.top/image/160428/3.jpg" alt="3"></p>
-<p><img src="http://qn.heyim.top/image/160428/4.jpg" alt="4"></p>
-<p>由于Cocoa Touch 是iOS的核心框架，所以就必须要学好并且掌握其中内容。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/28/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-17-Cocoa-Touch-%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 

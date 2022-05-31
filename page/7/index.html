@@ -168,6 +168,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-iOS开发指南-Objective—C基础-07-Cocoa-Touch UISwitch" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-07-Cocoa-Touch%20UISwitch/">iOS开发指南-Objective—C基础-07-Cocoa-Touch UISwitch</a>
+    </h1>
+  
+
+        
+        <a href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-07-Cocoa-Touch%20UISwitch/" class="archive-article-date">
+  	<time datetime="2016-04-26T13:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-04-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UISwitch-开关"><a href="#UISwitch-开关" class="headerlink" title="UISwitch 开关"></a>UISwitch 开关</h2><hr>
+<ul>
+<li>onTintColor  处于on时switch 的颜色</li>
+</ul>
+<hr>
+<pre><code>switchImage.onTintColor = [UIColor grayColor];
+</code></pre><ul>
+<li>tintColor 处于off时switch 的颜色</li>
+</ul>
+<hr>
+<pre><code>switchImage.tintColor = [UIColor greenColor];
+</code></pre><ul>
+<li>onImage  设置on 的图标</li>
+</ul>
+<hr>
+<pre><code>switchImage.onImage = [UIImage imageNamed:@&quot;1.png&quot;];
+</code></pre><ul>
+<li>offImage 设置off的图标</li>
+</ul>
+<hr>
+<pre><code>switchImage.offImage = [UIImage imageNamed:@&quot;4.png&quot;];
+</code></pre><ul>
+<li>on 设置switch的开关</li>
+</ul>
+<hr>
+<pre><code>swithImage.on = YES;
+</code></pre><ul>
+<li>thumbTintColor 设置拇指颜色</li>
+</ul>
+<hr>
+<pre><code>swithImage.thumbTintColor = [UIColor redColor];
+</code></pre><ul>
+<li>增加事件响应机制 监听的是这个事件：UIControlEventValueChanged，值改变事件</li>
+</ul>
+<hr>
+<pre><code>[switchImage addTarget:self action:@selector(switchOn) forControlEvents:UIControlEventValueChanged];
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/04/26/iOS%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97-Objective%E2%80%94C%E5%9F%BA%E7%A1%80-07-Cocoa-Touch%20UISwitch/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-iOS开发指南-Objective—C基础-06-Cocoa-Touch UIButton" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

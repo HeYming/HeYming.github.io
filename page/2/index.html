@@ -168,6 +168,80 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Swift学习记录-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">Swift学习记录-08</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/" class="archive-article-date">
+  	<time datetime="2019-12-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="UIView-Animation"><a href="#UIView-Animation" class="headerlink" title="UIView Animation"></a>UIView Animation</h2><p>对某些 UIView 属性的更改可以随着时间的推移进行动画处理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">frame/center</span><br><span class="line">bounds (transient size, does not conflict with animating center) transform (translation, rotation and scale)</span><br><span class="line">alpha (opacity)</span><br><span class="line">backgroundColor</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">if myView.alpha == 1.0 &#123;</span><br><span class="line">    UIViewPropertyAnimator.runningPropertyAnimator(</span><br><span class="line">        withDuration: 3.0,</span><br><span class="line">               delay: 2.0,</span><br><span class="line">             options: [.allowUserInteraction],</span><br><span class="line">          animations: &#123; myView.alpha = 0.0 &#125;,</span><br><span class="line">          completion: &#123; if $0 == .end &#123; myView.removeFromSuperview() &#125; &#125;</span><br><span class="line">    )</span><br><span class="line">    print(“alpha = \(myView.alpha)”)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="UIViewAnimationOptions"><a href="#UIViewAnimationOptions" class="headerlink" title="UIViewAnimationOptions"></a>UIViewAnimationOptions</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">beginFromCurrentState // 从这些属性的其他正在进行的动画中获取</span><br><span class="line">allowUserInteraction // 允许在动画进行时处理手势 </span><br><span class="line">layoutSubviews // 使用父动画对子视图的重新布局进行动画处理</span><br><span class="line">repeat // 无限重复</span><br><span class="line">autoreverse // 向前播放动画，然后向后播放</span><br><span class="line">overrideInheritedDuration //如果没有设置，使用任何正在进行的动画的持续时间</span><br><span class="line">overrideInheritedCurve // 如果未设置，则使用进行中动画的曲线（例如缓入/缓出）</span><br><span class="line">allowAnimatedContent  // 如果未设置，则仅在当前和结束“位”之间进行插值</span><br><span class="line">curveEaseInEaseOut // 开始时较慢，始终正常，然后在结束时较慢 </span><br><span class="line">curveEaseIn // 开始时较慢，但在其余部分保持不变</span><br><span class="line">curveLinear  // 始终相同的速度</span><br><span class="line">transitionFlipFrom&#123;Left,Right,Top,Bottom&#125; //翻转整个视图</span><br><span class="line">transitionCrossDissolve    //从旧状态溶解到新状态</span><br><span class="line">transitionCurl&#123;Up,Down&#125;  // 向上或向下卷曲</span><br></pre></td></tr></table></figure>
+<p>示例<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">UIView.transition(with: myPlayingCardView,</span><br><span class="line">              duration: 0.75,</span><br><span class="line">               options: [.transitionFlipFromLeft],</span><br><span class="line">            animations: &#123; cardIsFaceUp = !cardIsFaceUp &#125;</span><br><span class="line">            completion: nil)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Dynamic-Animation"><a href="#Dynamic-Animation" class="headerlink" title="Dynamic Animation"></a>Dynamic Animation</h2><p>物理动画<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">//创建UIDynamicAnimator</span><br><span class="line">var animator = UIDynamicAnimator(referenceView: UIView)</span><br><span class="line">//创建和添加 UIDynamicBehavior 实例</span><br><span class="line">let gravity = UIGravityBehavior() </span><br><span class="line">animator.addBehavior(gravity)</span><br><span class="line">collider = UICollisionBehavior() </span><br><span class="line">animator.addBehavior(collider)</span><br><span class="line">//将 UIDynamicItems 添加到 UIDynamicBehavior</span><br><span class="line">let item1: UIDynamicItem = ... // UIView</span><br><span class="line">let item2: UIDynamicItem = ... // UIView </span><br><span class="line">gravity.addItem(item1)</span><br><span class="line">collider.addItem(item1)</span><br><span class="line">gravity.addItem(item2)</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/06/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-08/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Swift学习记录-06" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1109,84 +1183,6 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-项目框架搭建指南-定制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/">项目框架搭建指南-定制</a>
-    </h1>
-  
-
-        
-        <a href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2018-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-11-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="项目框架搭建指南-定制"><a href="#项目框架搭建指南-定制" class="headerlink" title="项目框架搭建指南-定制"></a>项目框架搭建指南-定制</h1><p>这篇文章讲一下我在搭建通用项目的时候，针对性的做了哪些框架。</p>
-<p><img src="http://qn.heyim.top/image/181112/3.png" alt="3"></p>
-<h2 id="UserModel"><a href="#UserModel" class="headerlink" title="UserModel"></a>UserModel</h2><p>用户模型是个绕不过去的东西，涉及登录注册就需要用到。</p>
-<p><img src="http://qn.heyim.top/image/181112/%E5%8D%95%E4%BE%8B.png" alt="单例"></p>
-<p>基本上就跟上图中描述的操作流程。UserModel还要单独提供访问单例的方法，适用于在非ViewController中访问用户信息。</p>
-<h2 id="Config"><a href="#Config" class="headerlink" title="Config"></a>Config</h2><p>全局配置文件，这个所有的APP应该是都有的，按照项目需要设定配置文件。<br>这里需要讲一下的就是配置文件中最好统一，并且只有一份。有许多第三方框架中有各自的配置文件，可以使用第三方框架的方法，如果自己定义的话，最好在定义名称的时候加上标识符，避免名称冲突。</p>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>这里主要就是各个项目不一样的地方在来进行定制开发，上面讲的这些都是可以通用的。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/HeYming/KKSP">https://github.com/HeYming/KKSP</a></p>
-<p>这是个Swift语言的快速开发框架，欢迎各位下载讨论。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/11/12/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%AE%9A%E5%88%B6/">展开全文 >></a>
         </p>
       
 

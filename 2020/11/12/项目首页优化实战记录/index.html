@@ -6,17 +6,28 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Swift | 小豆子的博客</title>
+  <title>项目首页优化实战记录 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小豆子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Swift/page/3/index.html">
+  <meta name="description" content="背景项目搭建之初，页面比较简单，只有四个模块，就采用了UIScrollView + UIView的模式，快速搭建上线。 随着后面页面模块越来越多，也越来越复杂，主页ViewController代码量都超过1500行，就需要进行重构首页。新版本首页采用标准MVC模式来进行重构，主页布局放弃UIScorllView模式，该模式修改困难，且布局计算相对麻烦。采用UITableView模式，当模块更改的时">
+<meta property="og:type" content="article">
+<meta property="og:title" content="项目首页优化实战记录">
+<meta property="og:url" content="http://yoursite.com/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:description" content="背景项目搭建之初，页面比较简单，只有四个模块，就采用了UIScrollView + UIView的模式，快速搭建上线。 随着后面页面模块越来越多，也越来越复杂，主页ViewController代码量都超过1500行，就需要进行重构首页。新版本首页采用标准MVC模式来进行重构，主页布局放弃UIScorllView模式，该模式修改困难，且布局计算相对麻烦。采用UITableView模式，当模块更改的时">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/001.png">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/002.png">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/003.png">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/004.jpg">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/005.jpg">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/006.jpg">
+<meta property="og:image" content="http://qn.heyim.top/image/201112/007.jpg">
+<meta property="article:published_time" content="2020-11-12T07:12:26.000Z">
+<meta property="article:modified_time" content="2022-05-31T15:52:59.931Z">
 <meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.heyim.top/image/201112/001.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -166,36 +177,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-项目首页优化实战记录" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2018-07-22T01:51:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/">项目框架搭建指南-基础</a>
+    <h1 class="article-title" itemprop="name">
+      项目首页优化实战记录
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/" class="archive-article-date">
+  	<time datetime="2020-11-12T07:12:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>项目搭建之初，页面比较简单，只有四个模块，就采用了UIScrollView + UIView的模式，快速搭建上线。<br><img src="http://qn.heyim.top/image/201112/001.png" alt="首页"></p>
+<p>随着后面页面模块越来越多，也越来越复杂，主页ViewController代码量都超过1500行，就需要进行重构首页。新版本首页采用标准MVC模式来进行重构，主页布局放弃UIScorllView模式，该模式修改困难，且布局计算相对麻烦。采用UITableView模式，当模块更改的时候只需要对当前Cell进行更新即可。<br>// 新的 tableview 的  图<br><img src="http://qn.heyim.top/image/201112/002.png" alt="项目架构"></p>
+<h1 id="优化方向"><a href="#优化方向" class="headerlink" title="优化方向"></a>优化方向</h1><p>当前版本首页基本固定，需求比较明确，根据当前页面需求和MVC框架，将更新下列内容<br><img src="http://qn.heyim.top/image/201112/003.png" alt="脑图"></p>
+<h1 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><p><img src="http://qn.heyim.top/image/201112/004.jpg" alt="初始化"></p>
+<h3 id="Controller"><a href="#Controller" class="headerlink" title="Controller"></a>Controller</h3><h4 id="1-初始化基础内容"><a href="#1-初始化基础内容" class="headerlink" title="1. 初始化基础内容"></a>1. 初始化基础内容</h4><p>之前版本中，进入首页的流程是：</p>
+<ol>
+<li>初始化Navigation</li>
+<li>初始化基础数据</li>
+<li>配置UIScrollView</li>
+<li>请求页面数据<br>这样在启动的时候，由于已经Xib已经加载了View，会直接显示默认数据，且数据请求如果失败，视图并不会更新，会对用户造成迷惑，体验也很不好。</li>
+</ol>
+<p>重构后：</p>
+<ol>
+<li>初始化Navigation</li>
+<li>初始化基础数据</li>
+<li>配置UITableView</li>
+<li>设置Loading动画</li>
+<li>配置Model并监听结束回调</li>
+<li>收到回调结束Loading动画，执行TableView.reload()<br>更改后由于TableView的DataSource在没有加载数据的时候，所以界面会是空白，这个时候加上加载动画，会比较友好。</li>
+</ol>
+<h4 id="2-初始化Model"><a href="#2-初始化Model" class="headerlink" title="2. 初始化Model"></a>2. 初始化Model</h4><p>之前版本中，Model只有序列化能力，并不参与其他业务交互。</p>
+<p>重构后，Model主要增加以下功能</p>
+<ol>
+<li>单例，任何时候需要数据只需要访问单例即可</li>
+<li>网络请求，Model中集成网络请求，自己处理自己数据逻辑，外界不用关系数据来源问题</li>
+<li>通知，当单例被赋值的时候，会发送通知，需要知道Model变更的对象只需要监听通知就可以了</li>
+</ol>
+<h4 id="3-初始化View"><a href="#3-初始化View" class="headerlink" title="3. 初始化View"></a>3. 初始化View</h4><p>之前版本中，View都是在Xib中拖线到Controller,这样做优点就是快速，处理简单，但随着项目更新迭代，拖线Outlet属性多达上百个,这使得代码十分难以理解且不易维护。</p>
+<p>重构后，整体View由TableView控制，Controller只持有TableView,其他模块均改为UITableViewCell，拥有以下特性：</p>
+<ol>
+<li>自行处理用户事件</li>
+<li>自行绑定数据显示</li>
+<li>监听Model改变通知，收到通知自己更新</li>
+</ol>
+<h4 id="4-View行为绑定"><a href="#4-View行为绑定" class="headerlink" title="4. View行为绑定"></a>4. View行为绑定</h4><p>之前版本中，View的行为均在Controller中进行处理，这部分的逻辑占了代码总量的一半，由于过于分散，极难查找和维护</p>
+<p>重构后，所有的跳转事件交由专门的跳转类进行实现，还有一个公共行为类处理类似分享、登录、拉起第三方应用等操作。View在收到用户事件的时候可以直接调用公共类进行处理。</p>
+<h2 id="显示"><a href="#显示" class="headerlink" title="显示"></a>显示</h2><p><img src="http://qn.heyim.top/image/201112/005.jpg" alt="显示"><br>之前版本中，由于View从Xib中创建，在Controller创建时，View内容已经创建并展示默认数据。当网络请求结束后，会对View进行更新</p>
+<p>重构后，由于是TableView,默认是空白视图，在网络请求全部结束后，根据请求内容配置需要显示的Cell，reload重新刷新下TableView即可。<br>TableViewCell会自行调用Model的静态属性来更新，此部分脱离出Controller。</p>
+<h2 id="行为处理"><a href="#行为处理" class="headerlink" title="行为处理"></a>行为处理</h2><h3 id="更新事件"><a href="#更新事件" class="headerlink" title="更新事件"></a>更新事件</h3><p><img src="http://qn.heyim.top/image/201112/006.jpg" alt="更新事件"><br>之前版本中，视图更新数据更新的流程是：</p>
+<ol>
+<li>Controller绑定View的Action事件</li>
+<li>Controller监听到View的Action更新事件</li>
+<li>Controller调用网络请求请求最新数据</li>
+<li>Controller将请求到的数据转为Model</li>
+<li>Controller将Model的数据更新到View上<br>这种模式下，所有的数据都是由Controller处理，当内容过多的时候，就会导致Controller过于臃肿且难以维护。</li>
+</ol>
+<p>重构后，视图更新数据更新的流程是：</p>
+<ol>
+<li>View收到Aciton更新事件</li>
+<li>View调用Model的更新方法</li>
+<li>Model请求网络更新自己的静态属性</li>
+<li>View收到Model静态方法更新通知</li>
+<li>View通过Model的静态数据更新<br>这样的方式，Controller将不在处理View的更新事件，也不需要编写大量的代码来维护View和Model,在更新和扩展的时候更加灵活</li>
+</ol>
+<h3 id="跳转事件"><a href="#跳转事件" class="headerlink" title="跳转事件"></a>跳转事件</h3><p><img src="http://qn.heyim.top/image/201112/007.jpg" alt="跳转事件"><br>之前版本中，View收到跳转Action，同样也是找到Controller,由Controller负责跳转，但当有十几个跳转事件后，每次改动将是件极难的事情，很多时候会出现改动遗忘的情况。</p>
+<p>重构后，所有的跳转事件有了公共类，入口统一，这样在更新改动的时候，只需要处理一个地方即可。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,7 +272,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -220,177 +285,104 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2018-01-19T02:39:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/">新浪微博4.0版本移植填坑记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2020/11/12/%E9%A1%B9%E7%9B%AE%E9%A6%96%E9%A1%B5%E4%BC%98%E5%8C%96%E5%AE%9E%E6%88%98%E8%AE%B0%E5%BD%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/Swift-Extension/" class="archive-article-date">
-  	<time datetime="2017-06-01T14:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/Swift-Extension/">Swift-Extension</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/Swift-KVC/" class="archive-article-date">
-  	<time datetime="2017-06-01T13:39:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/Swift-KVC/">Swift-KVC</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+<nav id="article-nav">
+  
+    <a href="/2020/12/04/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-14/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Swift学习记录-14
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/11/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-13/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Swift学习记录-13</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Swift/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/tags/Swift/">1</a><a class="page-number" href="/tags/Swift/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+  <div id="SOHUCS" sid="项目首页优化实战记录" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyu6avmX8"; 
+var conf = "prod_623af84bb3ea59cbe29f751a15dc11e8"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
   
 
 
@@ -414,9 +406,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",
