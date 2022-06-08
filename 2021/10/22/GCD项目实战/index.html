@@ -6,17 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: Swift | 小豆子的博客</title>
+  <title>GCD项目实战 | 小豆子的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我的征程是星辰大海">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小豆子的博客">
-<meta property="og:url" content="http://yoursite.com/tags/Swift/page/3/index.html">
+  <meta name="description" content="背景上次重构首页代码后，还有一个问题没有解决，那就是首页总计有15个接口请求数据，之前写法每个接口请求后都需要刷新页面，这样在网络波动的情况用户会看到首页内容一直在变动，造成迷惑。 分析想要解决这个问题，我们首先要判断那些数据是必须要先加载，那些数据是可以等待加载。  基础配置接口，例如文本配置，浮窗配置。这部分接口可以滞后，他并不会给用户体验带来特别大的影响。 用户信息接口，用户数据，Vip信息">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GCD项目实战">
+<meta property="og:url" content="http://yoursite.com/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/index.html">
 <meta property="og:site_name" content="小豆子的博客">
-<meta property="og:description" content="我的征程是星辰大海">
+<meta property="og:description" content="背景上次重构首页代码后，还有一个问题没有解决，那就是首页总计有15个接口请求数据，之前写法每个接口请求后都需要刷新页面，这样在网络波动的情况用户会看到首页内容一直在变动，造成迷惑。 分析想要解决这个问题，我们首先要判断那些数据是必须要先加载，那些数据是可以等待加载。  基础配置接口，例如文本配置，浮窗配置。这部分接口可以滞后，他并不会给用户体验带来特别大的影响。 用户信息接口，用户数据，Vip信息">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://qn.heyim.top/image/211022/GCD.png">
+<meta property="article:published_time" content="2021-10-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-08T08:57:01.000Z">
 <meta property="article:author" content="小豆子">
+<meta property="article:tag" content="Swift">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qn.heyim.top/image/211022/GCD.png">
   
     <link rel="alternative" href="/atom.xml" title="小豆子的博客" type="application/atom+xml">
   
@@ -166,36 +171,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-GCD项目实战" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/" class="archive-article-date">
-  	<time datetime="2018-08-27T03:00:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-27</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/08/27/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E6%89%A9%E5%B1%95/">项目框架搭建指南-扩展</a>
+    <h1 class="article-title" itemprop="name">
+      GCD项目实战
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2021-10-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上次重构首页代码后，还有一个问题没有解决，那就是首页总计有15个接口请求数据，之前写法每个接口请求后都需要刷新页面，这样在网络波动的情况用户会看到首页内容一直在变动，造成迷惑。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>想要解决这个问题，我们首先要判断那些数据是必须要先加载，那些数据是可以等待加载。</p>
+<ul>
+<li>基础配置接口，例如文本配置，浮窗配置。这部分接口可以滞后，他并不会给用户体验带来特别大的影响。</li>
+<li>用户信息接口，用户数据，Vip信息。由于我们需要根据用户信息来进行界面内容展示，那么用户数据接口必须最先获取。Vip信息可以滞后。</li>
+<li>界面内容接口，banner，首页数据。这部分接口要在用户数据接口获取后在开始请求。</li>
+</ul>
+<p>分析清楚需求后，在想想用什么方法解决：</p>
+<ol>
+<li>每个接口请求后刷新对应的页面数据，这样用户会迷惑，首页内容在接口全部请求结束前会来回变动。</li>
+<li>采用GCD的并发队列异步执行，用队列组进行约束。这样用户在看到页面的时候，就已经是完整的数据展示，体验会更好。</li>
+</ol>
+<h2 id="行动"><a href="#行动" class="headerlink" title="行动"></a>行动</h2><h3 id="GCD简介"><a href="#GCD简介" class="headerlink" title="GCD简介"></a>GCD简介</h3><p>首先我们先了解下GCD，大致内容如下</p>
+<p><img src="http://qn.heyim.top/image/211022/GCD.png" alt="GCD"></p>
+<h3 id="改变前"><a href="#改变前" class="headerlink" title="改变前"></a>改变前</h3><p>由于最开始项目简单，一个请求下来再刷新页面是比较快捷简单的方式。但随着项目更新，新的功能块越来越多，就会造成很臃肿难以维护的局面，也导致项目体验较差。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    self.createMianView()</span><br><span class="line">    self.requestCommonBaseDict()//请求基本配置</span><br><span class="line">    self.requestMakeMoneyActive()//请求弹窗配置</span><br><span class="line">    self.requestUserIndex()//请求用户基本信息数据</span><br><span class="line">    self.requestUserUserType()//请求用户类型数据</span><br><span class="line">    self.requestUserVipStatus()//请求Vip状态</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func requestUserUserType() &#123;</span><br><span class="line">    //异步网络请求</span><br><span class="line">    self.requestHomeInfo()//请求首页页面数据</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func requestHomeInfo() &#123;</span><br><span class="line">    //根据获取到的用户类型获取不同的首页参数</span><br><span class="line">    if user_type == 1 &#123;    </span><br><span class="line">        self.requestIndexBanners()</span><br><span class="line">        self.requestIndexTodayHotGames()</span><br><span class="line">        self.requestIndexTimeLineMoney()</span><br><span class="line">        self.requestCplInfoQueryAwardGameList()</span><br><span class="line">        self.requestMakeMoneyMenu()</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        self.requestIndexBanners()</span><br><span class="line">        self.requestIndexUncplIndex()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h3 id="采用GCD队列"><a href="#采用GCD队列" class="headerlink" title="采用GCD队列"></a>采用GCD队列</h3><p>看到当前的项目现状，首先想到的就是队列，在请求首页参数的时候就可以只用刷新页面一次。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    self.createMianView()</span><br><span class="line">    self.createData()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func createData() &#123;</span><br><span class="line">    self.requestCommonBaseDict()//请求基本配置</span><br><span class="line">    self.requestMakeMoneyActive()//请求弹窗配置</span><br><span class="line">    self.requestUserIndex()//请求用户基本信息数据</span><br><span class="line">    self.requestUserUserType()//请求用户类型数据</span><br><span class="line">    self.requestUserVipStatus()//请求Vip状态</span><br><span class="line">    //增加一个加载动画，避免首页空白</span><br><span class="line">    DispatchQueue.main.async &#123;</span><br><span class="line">        HUD.show(.progress, onView: self.view)</span><br><span class="line">    &#125;</span><br><span class="line">    let group = DispatchGroup()//创建一个队列组</span><br><span class="line">    let queue = DispatchQueue(label: &quot;requestType&quot;)//创建一个队列</span><br><span class="line">    group.enter()//队列组添加一个任务</span><br><span class="line">    queue.async &#123;//队列组添加一个任务</span><br><span class="line">        self.requestUserUserType(group: group)//队列异步执行请求用户类型接口，当请求结束后执行任务离开</span><br><span class="line">    &#125;</span><br><span class="line">    group.notify(queue: queue) &#123;//当队列组收到队列已经执行完成后进行页面数据请求</span><br><span class="line">        let group1 = DispatchGroup()</span><br><span class="line">        let queue1 = DispatchQueue(label: &quot;request&quot;)</span><br><span class="line">        if user_type == 1 &#123;</span><br><span class="line">            //不影响页面刷新的接口就不添加到队列任务中</span><br><span class="line">            self.requestRedBagGuide()</span><br><span class="line">            self.requestIndexVipDiscount()</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default) &#123;</span><br><span class="line">                HomeIndexModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                CplInfoQueryAwardGameListModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                MakeMoneyMenuModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                HomeTodayHotGameModel.getModel(type: 2, sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                HomeTimeLineMoneyModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                NiuRecListModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                NewInviteGetRankModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async &#123;</span><br><span class="line">                HomeIndexUncplIndexModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        group.notify(queue: queue)&#123;</span><br><span class="line">            self.updateMainView()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取用户类型</span><br><span class="line">func requestUserUserType(group: DispatchGroup) &#123;</span><br><span class="line">    //网络请求结束后任务任务离开</span><br><span class="line">    group.leave()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样需求就完成了，且逻辑也较为清晰。<br>在GCD中需要注意线程死锁的问题，</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -207,7 +228,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -220,226 +241,95 @@
 	</div>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2018-07-22T01:51:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-07-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/07/22/%E9%A1%B9%E7%9B%AE%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA%E6%8C%87%E5%8D%97-%E5%9F%BA%E7%A1%80/">项目框架搭建指南-基础</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/" class="archive-article-date">
-  	<time datetime="2018-01-19T02:39:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/19/%E6%96%B0%E6%B5%AA%E5%BE%AE%E5%8D%9A4.0%E7%89%88%E6%9C%AC%E7%A7%BB%E6%A4%8D%E5%A1%AB%E5%9D%91%E8%AE%B0%E5%BD%95/">新浪微博4.0版本移植填坑记录</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/Swift-Extension/" class="archive-article-date">
-  	<time datetime="2017-06-01T14:16:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/Swift-Extension/">Swift-Extension</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/Swift-KVC/" class="archive-article-date">
-  	<time datetime="2017-06-01T13:39:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/Swift-KVC/">Swift-KVC</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/tags/" class="article-tag-list-link color5">tags</a>
-        		</li>
-      		
-		</ul>
-	</div>
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/14/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-17/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Swift学习记录-17</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
+
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/tags/Swift/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/tags/Swift/">1</a><a class="page-number" href="/tags/Swift/page/2/">2</a><span class="page-number current">3</span>
-    </nav>
+  
+  <div id="SOHUCS" sid="GCD项目实战" ></div> 
+<script type="text/javascript"> 
+(function(){ 
+var appid = "cyu6avmX8"; 
+var conf = "prod_623af84bb3ea59cbe29f751a15dc11e8"; 
+var width = window.innerWidth || document.documentElement.clientWidth; 
+if (width < 960) { 
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("http://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+  
+
   
 
 
@@ -463,9 +353,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		root: "/",

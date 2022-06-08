@@ -168,6 +168,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Swift学习记录-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">Swift学习记录-09</a>
+    </h1>
+  
+
+        
+        <a href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/" class="archive-article-date">
+  	<time datetime="2020-02-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="View-Controller-Lifecycle"><a href="#View-Controller-Lifecycle" class="headerlink" title="View Controller Lifecycle"></a>View Controller Lifecycle</h2><h3 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h3><p>override func viewDidLoad()<br>该方法只会在视图创建的时候调用一次，不要再这里做任何UI设定，因为边界还未确定，可以设置模型</p>
+<h3 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h3><p>override func viewWillAppear(_ animated: Bool)<br>这个方法每次展示的时候都会被调用，可以更新视图，注意，这个方法可以被重复调用</p>
+<h3 id="viewDidAppear"><a href="#viewDidAppear" class="headerlink" title="viewDidAppear"></a>viewDidAppear</h3><p>override func viewDidAppear(_ animated: Bool)<br>当你的MVC完成出现在屏幕上时调用。将耗时的东西在这里进行调用，我们不能阻止UI和用户交互，可以使用加载图标提示用户我们正在获取数据。</p>
+<h3 id="viewWillDisappear"><a href="#viewWillDisappear" class="headerlink" title="viewWillDisappear"></a>viewWillDisappear</h3><p>override func viewWillDisappear(_ animated: Bool)<br>你的MVC仍然在屏幕上，但它即将离开屏幕。也许用户在UINavigationController中点击” back “ ，或者他们切换到UITabBarController中的另一个标签，通常你会撤销你在viewDidAppear中所做的，例如，停止计时器，你开始在那里或停止观察某物</p>
+<h3 id="viewDidDisappear"><a href="#viewDidDisappear" class="headerlink" title="viewDidDisappear"></a>viewDidDisappear</h3><p>override func viewDidDisappear(_ animated: Bool)<br>你的MVC离开了屏幕。在这里做一些事情有点罕见，但偶尔你可能想要“清理”你的MVC。例如，您可以保存一些状态或释放一些大型的、可重新创建的资源。</p>
+<h3 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h3><p>override func viewWillLayoutSubviews()<br>override func viewDidLayoutSubviews()</p>
+<p>当顶级视图的边界改变(或者需要重新布局)时，你会得到通知。<br>换句话说，当它接收到layoutSubviews时，就会调用这两个回调。<br>通常你不需要在这里做任何事情，因为自动布局。但如果你有与几何相关的设置要做，这是做它的地方。这些方法可以经常被调用(就像UIView中的layoutSubviews()可以经常被调用)。为此做好准备。不要在这里做任何不能正确(和有效)重复做的事情。它并不总是意味着你的视图边界实际上改变了。</p>
+<h4 id="Autorotation"><a href="#Autorotation" class="headerlink" title="Autorotation"></a>Autorotation</h4><p>当你的设备旋转时，会发生很多事情。当然，你的视图的边界会改变(因此你会得到viewWill/DidLayoutSubviews)。但产生的变化也会自动动画化。你可以了解到这些，如果你愿意，你甚至可以参与到动画中。重写’viewWillTransition’方法。</p>
+<h3 id="Low-Memory"><a href="#Low-Memory" class="headerlink" title="Low Memory"></a>Low Memory</h3><p>这很少见，但偶尔你的设备会出现内存不足的情况。这通常意味着大量的视频、图像或声音。如果你的应用程序在你的堆中保持这些东西的强指针，你可能会有帮助!当内存不足的情况发生时，iOS会在你的控制器中调用这个方法…’didReceiveMemoryWarning’。<br>注意：如果你的应用持续使用较大的内存，你可能会被iOS杀死</p>
+<h3 id="awakeFromNib"><a href="#awakeFromNib" class="headerlink" title="awakeFromNib"></a>awakeFromNib</h3><p>这个方法被发送到所有来自故事板的对象(包括你的控制器)<br>override func awakeFromNib()<br>可以初始化这里的东西，但它是非常早期的，它发生在outlet被设置之前在你准备好作为segue的一部分之前，这是最后一招了。如果可能的话，首先使用其他视图控制器生命周期方法。它主要用于在生命周期的早期执行代码的情况。</p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Instantiated (通常来自故事板)<br>    awakeFromNib (仅当从一个故事板实例化时)<br>segue准备情况<br>    outlets get set<br>    viewDidLoad<br>每次你的控制器视图打开/关闭屏幕时，这些对都会被调用。<br>viewWillAppear and viewDidAppear<br>viewWillDisappear and viewDidDisappear<br>这些“几何改变”方法可能在viewDidLoad之后的任何时候被调用<br>    viewWillLayoutSubviews<br>    viewDidLayoutSubviews<br>在任何时候，如果内存下降，你可能会…<br>    didReceiveMemoryWarning</p>
+<h2 id="UIScrollView"><a href="#UIScrollView" class="headerlink" title="UIScrollView"></a>UIScrollView</h2><p>创建UIScrollView<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br><span class="line">logo.frame = CGRect(x: 2700, y: 50, width: 120, height: 180)</span><br><span class="line">scrollView.addSubview(logo)</span><br></pre></td></tr></table></figure><br>设置contentSize<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br></pre></td></tr></table></figure><br>获取当前内容位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let upperLeftOfVisible: CGPoint = scrollView.contentOffset</span><br></pre></td></tr></table></figure><br>获取子视图可见的区域<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let visibleRect: CGRect = aerial.convert(scrollView.bounds, from: scrollView)</span><br></pre></td></tr></table></figure><br>滚动到指定位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollRectToVisible(CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>缩放<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scrollView.minimumZoomScale = 0.5 // 0.5 表示其正常大小的一半</span><br><span class="line">scrollView.maximumZoomScale = 2.0 // 2.0 表示两倍于正常大小</span><br><span class="line">var zoomScale: CGFloat</span><br><span class="line">func setZoomScale(CGFloat, animated: Bool)</span><br><span class="line">func zoom(to rect: CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>代理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollViewDidEndZooming(UIScrollView, with view: UIView, atScale: CGFloat)//视图缩放代理</span><br></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Swift学习记录-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1096,93 +1177,6 @@ view.center = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height/2)
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/03/28/iOS%E5%BC%80%E5%8F%91%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80%E5%AE%9E%E6%88%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-AirPlay使用详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">AirPlay使用详解</a>
-    </h1>
-  
-
-        
-        <a href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2019-02-21T08:26:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="AirPlay使用详解"><a href="#AirPlay使用详解" class="headerlink" title="AirPlay使用详解"></a>AirPlay使用详解</h1><p>先上Demo地址 <a target="_blank" rel="noopener" href="https://github.com/HeYming/AirPlayer">https://github.com/HeYming/AirPlayer</a></p>
-<p>之前项目中，老大要求需要支持隔空，特地研究下这个是如何使用。</p>
-<p><img src="http://qn.heyim.top/image/190221/AirPlay.png" alt="AirPlay">@w=400</p>
-<h2 id="MPVolumeView"><a href="#MPVolumeView" class="headerlink" title="MPVolumeView"></a>MPVolumeView</h2><p>MPVolumeView是MediaPlayer框架里面的一个组件，调节音量使用的控件。但是他在iOS 9.0之前，还可以用来支持AirPlay功能。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">_View_airplay = [[MPVolumeView alloc] initWithFrame:CGRectMake(20, 350, 30, 30)];</span><br><span class="line">_View_airplay.showsVolumeSlider = NO;    </span><br><span class="line">[self.view addSubview:_View_airplay];</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>他的用法很简单，创建一个View，设置大小位置，放到View上就可以了。<br>但是这个方法在iOS9.0之后就取消了。且在无AirPlay设备的时候是不会显示的。<br>当有AirPlay设备后，他就会显示出来。注意他是个白色icon，背景色为白色的时候可能会看不见。</p>
-<h2 id="AVRoutePickerView"><a href="#AVRoutePickerView" class="headerlink" title="AVRoutePickerView"></a>AVRoutePickerView</h2><p>那么在iOS9之后MPVolumeView不再更新了就没有新的AirPlay组件了吗？<br>当谈不会，苹果在iOS11的时候，在AVKit框架中加入了AVRoutePickerView组件，用来代替原来的MPVolumeView。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">AVRoutePickerView * view = [[AVRoutePickerView alloc]initWithFrame:CGRectMake(100, 350, 30, 30)];</span><br><span class="line">//活跃状态颜色</span><br><span class="line">view.activeTintColor = [UIColor redColor];</span><br><span class="line">//设置代理</span><br><span class="line">view.delegate = self;</span><br><span class="line">[self.view addSubview:view];</span><br></pre></td></tr></table></figure>
-<p>基本上看起来跟MPVolumeView没有什么区别，但是AVRoutePickerView的默认icon改了，注意区分。<br><img src="http://qn.heyim.top/image/190221/2.PNG" alt="icon"></p>
-<p>AVRoutePickerView也新增了两个代理：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//AirPlay界面弹出时回调</span><br><span class="line">- (void)routePickerViewWillBeginPresentingRoutes:(AVRoutePickerView *)routePickerView API_AVAILABLE(ios(11.0))&#123;</span><br><span class="line">    _lab.text = @&quot;AirPlay界面弹出时回调&quot;;</span><br><span class="line">&#125;</span><br><span class="line">//AirPlay界面结束时回调</span><br><span class="line">- (void)routePickerViewDidEndPresentingRoutes:(AVRoutePickerView *)routePickerView API_AVAILABLE(ios(11.0))&#123;</span><br><span class="line">    _lab.text = @&quot;AirPlay界面结束时回调&quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两个代理是在弹出选择设备界面的时候调用的，可以把暂停开始功能加入到这个代理方法里面增加用户体验。<br><img src="http://qn.heyim.top/image/190221/4.PNG" alt="delegate"></p>
-<p>需要注意的是，AVRoutePickerView在周边没有AirPlay设备的时候也会显示icon。</p>
-<h2 id="手动管理"><a href="#手动管理" class="headerlink" title="手动管理"></a>手动管理</h2><p>这个就直接看DEMO吧，这部分代码来源于<a target="_blank" rel="noopener" href="https://github.com/coderMYC/Airplay">https://github.com/coderMYC/Airplay</a>这位大佬的项目。<br>这部分可以在无音视频的情况下连接到AirPlay设备，在将播放连接丢给AirPlay设备。亲测可以后台播放，但是附近无AirPlay设备的时候，也是无法查找到设备的。</p>
-<h2 id="其他事项"><a href="#其他事项" class="headerlink" title="其他事项"></a>其他事项</h2><p>AirPlay可以在当前界面没有音视频的时候创建，当连接到AirPlay设备后，音视频播放会直接在AirPlay设备上播放而不在当前设备上播放，这点需要注意。</p>
-<p>AirPlay功能实现很简单，但是存在换代的问题，iOS11之前用的MPVolumeView所在的框架播放器，功能简陋且原生不支持进度条拖动。<br><img src="http://qn.heyim.top/image/190221/1.PNG" alt="MPVolumeView"></p>
-<p>iOS11之后的AVKit框架中AVPlayerViewController播放器则功能更丰富一些，如果不需要深度定制，建议大家使用AVPlayerViewController播放器来播放视频。<br><img src="http://qn.heyim.top/image/190221/2.PNG" alt="MPVolumeView"></p>
-<p>当然，AVPlayer也不是万能的，他无法播放flv格式的视频。当AVPlayer也无法满足需求的时候，这个时候万能播放解码器FFmpeg来了。知名视频播放框架ijkplayer就采用了MediaPlayer、AVPlayer和FFmpeg三种解码模式。但是在FFmpeg模式下，AirPlay设备只能播放音频，不能播放视频，目前还无解决方案，有哪位大神有方案请告知。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Objective-C</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/02/21/AirPlay%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
         </p>
       
 

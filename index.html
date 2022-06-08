@@ -168,6 +168,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-GCD项目实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">GCD项目实战</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" class="archive-article-date">
+  	<time datetime="2021-10-21T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>上次重构首页代码后，还有一个问题没有解决，那就是首页总计有15个接口请求数据，之前写法每个接口请求后都需要刷新页面，这样在网络波动的情况用户会看到首页内容一直在变动，造成迷惑。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>想要解决这个问题，我们首先要判断那些数据是必须要先加载，那些数据是可以等待加载。</p>
+<ul>
+<li>基础配置接口，例如文本配置，浮窗配置。这部分接口可以滞后，他并不会给用户体验带来特别大的影响。</li>
+<li>用户信息接口，用户数据，Vip信息。由于我们需要根据用户信息来进行界面内容展示，那么用户数据接口必须最先获取。Vip信息可以滞后。</li>
+<li>界面内容接口，banner，首页数据。这部分接口要在用户数据接口获取后在开始请求。</li>
+</ul>
+<p>分析清楚需求后，在想想用什么方法解决：</p>
+<ol>
+<li>每个接口请求后刷新对应的页面数据，这样用户会迷惑，首页内容在接口全部请求结束前会来回变动。</li>
+<li>采用GCD的并发队列异步执行，用队列组进行约束。这样用户在看到页面的时候，就已经是完整的数据展示，体验会更好。</li>
+</ol>
+<h2 id="行动"><a href="#行动" class="headerlink" title="行动"></a>行动</h2><h3 id="GCD简介"><a href="#GCD简介" class="headerlink" title="GCD简介"></a>GCD简介</h3><p>首先我们先了解下GCD，大致内容如下</p>
+<p><img src="http://qn.heyim.top/image/211022/GCD.png" alt="GCD"></p>
+<h3 id="改变前"><a href="#改变前" class="headerlink" title="改变前"></a>改变前</h3><p>由于最开始项目简单，一个请求下来再刷新页面是比较快捷简单的方式。但随着项目更新，新的功能块越来越多，就会造成很臃肿难以维护的局面，也导致项目体验较差。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    self.createMianView()</span><br><span class="line">    self.requestCommonBaseDict()//请求基本配置</span><br><span class="line">    self.requestMakeMoneyActive()//请求弹窗配置</span><br><span class="line">    self.requestUserIndex()//请求用户基本信息数据</span><br><span class="line">    self.requestUserUserType()//请求用户类型数据</span><br><span class="line">    self.requestUserVipStatus()//请求Vip状态</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func requestUserUserType() &#123;</span><br><span class="line">    //异步网络请求</span><br><span class="line">    self.requestHomeInfo()//请求首页页面数据</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func requestHomeInfo() &#123;</span><br><span class="line">    //根据获取到的用户类型获取不同的首页参数</span><br><span class="line">    if user_type == 1 &#123;    </span><br><span class="line">        self.requestIndexBanners()</span><br><span class="line">        self.requestIndexTodayHotGames()</span><br><span class="line">        self.requestIndexTimeLineMoney()</span><br><span class="line">        self.requestCplInfoQueryAwardGameList()</span><br><span class="line">        self.requestMakeMoneyMenu()</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        self.requestIndexBanners()</span><br><span class="line">        self.requestIndexUncplIndex()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h3 id="采用GCD队列"><a href="#采用GCD队列" class="headerlink" title="采用GCD队列"></a>采用GCD队列</h3><p>看到当前的项目现状，首先想到的就是队列，在请求首页参数的时候就可以只用刷新页面一次。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">override func viewDidLoad() &#123;</span><br><span class="line">    super.viewDidLoad()</span><br><span class="line">    self.createMianView()</span><br><span class="line">    self.createData()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">func createData() &#123;</span><br><span class="line">    self.requestCommonBaseDict()//请求基本配置</span><br><span class="line">    self.requestMakeMoneyActive()//请求弹窗配置</span><br><span class="line">    self.requestUserIndex()//请求用户基本信息数据</span><br><span class="line">    self.requestUserUserType()//请求用户类型数据</span><br><span class="line">    self.requestUserVipStatus()//请求Vip状态</span><br><span class="line">    //增加一个加载动画，避免首页空白</span><br><span class="line">    DispatchQueue.main.async &#123;</span><br><span class="line">        HUD.show(.progress, onView: self.view)</span><br><span class="line">    &#125;</span><br><span class="line">    let group = DispatchGroup()//创建一个队列组</span><br><span class="line">    let queue = DispatchQueue(label: &quot;requestType&quot;)//创建一个队列</span><br><span class="line">    group.enter()//队列组添加一个任务</span><br><span class="line">    queue.async &#123;//队列组添加一个任务</span><br><span class="line">        self.requestUserUserType(group: group)//队列异步执行请求用户类型接口，当请求结束后执行任务离开</span><br><span class="line">    &#125;</span><br><span class="line">    group.notify(queue: queue) &#123;//当队列组收到队列已经执行完成后进行页面数据请求</span><br><span class="line">        let group1 = DispatchGroup()</span><br><span class="line">        let queue1 = DispatchQueue(label: &quot;request&quot;)</span><br><span class="line">        if user_type == 1 &#123;</span><br><span class="line">            //不影响页面刷新的接口就不添加到队列任务中</span><br><span class="line">            self.requestRedBagGuide()</span><br><span class="line">            self.requestIndexVipDiscount()</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default) &#123;</span><br><span class="line">                HomeIndexModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                CplInfoQueryAwardGameListModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                MakeMoneyMenuModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                HomeTodayHotGameModel.getModel(type: 2, sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                HomeTimeLineMoneyModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                NiuRecListModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async(group: group, qos: .default)  &#123;</span><br><span class="line">                NewInviteGetRankModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;else&#123;</span><br><span class="line">            group.enter()</span><br><span class="line">            queue.async &#123;</span><br><span class="line">                HomeIndexUncplIndexModel.getModel(sucess: &#123;_,_ in group.leave()&#125;, error: &#123;group.leave()&#125;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        group.notify(queue: queue)&#123;</span><br><span class="line">            self.updateMainView()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//获取用户类型</span><br><span class="line">func requestUserUserType(group: DispatchGroup) &#123;</span><br><span class="line">    //网络请求结束后任务任务离开</span><br><span class="line">    group.leave()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样需求就完成了，且逻辑也较为清晰。<br>在GCD中需要注意线程死锁的问题，</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/22/GCD%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Swift学习记录-17" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -939,87 +1026,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Swift学习记录-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">Swift学习记录-09</a>
-    </h1>
-  
-
-        
-        <a href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/" class="archive-article-date">
-  	<time datetime="2020-02-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="View-Controller-Lifecycle"><a href="#View-Controller-Lifecycle" class="headerlink" title="View Controller Lifecycle"></a>View Controller Lifecycle</h2><h3 id="viewDidLoad"><a href="#viewDidLoad" class="headerlink" title="viewDidLoad"></a>viewDidLoad</h3><p>override func viewDidLoad()<br>该方法只会在视图创建的时候调用一次，不要再这里做任何UI设定，因为边界还未确定，可以设置模型</p>
-<h3 id="viewWillAppear"><a href="#viewWillAppear" class="headerlink" title="viewWillAppear"></a>viewWillAppear</h3><p>override func viewWillAppear(_ animated: Bool)<br>这个方法每次展示的时候都会被调用，可以更新视图，注意，这个方法可以被重复调用</p>
-<h3 id="viewDidAppear"><a href="#viewDidAppear" class="headerlink" title="viewDidAppear"></a>viewDidAppear</h3><p>override func viewDidAppear(_ animated: Bool)<br>当你的MVC完成出现在屏幕上时调用。将耗时的东西在这里进行调用，我们不能阻止UI和用户交互，可以使用加载图标提示用户我们正在获取数据。</p>
-<h3 id="viewWillDisappear"><a href="#viewWillDisappear" class="headerlink" title="viewWillDisappear"></a>viewWillDisappear</h3><p>override func viewWillDisappear(_ animated: Bool)<br>你的MVC仍然在屏幕上，但它即将离开屏幕。也许用户在UINavigationController中点击” back “ ，或者他们切换到UITabBarController中的另一个标签，通常你会撤销你在viewDidAppear中所做的，例如，停止计时器，你开始在那里或停止观察某物</p>
-<h3 id="viewDidDisappear"><a href="#viewDidDisappear" class="headerlink" title="viewDidDisappear"></a>viewDidDisappear</h3><p>override func viewDidDisappear(_ animated: Bool)<br>你的MVC离开了屏幕。在这里做一些事情有点罕见，但偶尔你可能想要“清理”你的MVC。例如，您可以保存一些状态或释放一些大型的、可重新创建的资源。</p>
-<h3 id="Geometry"><a href="#Geometry" class="headerlink" title="Geometry"></a>Geometry</h3><p>override func viewWillLayoutSubviews()<br>override func viewDidLayoutSubviews()</p>
-<p>当顶级视图的边界改变(或者需要重新布局)时，你会得到通知。<br>换句话说，当它接收到layoutSubviews时，就会调用这两个回调。<br>通常你不需要在这里做任何事情，因为自动布局。但如果你有与几何相关的设置要做，这是做它的地方。这些方法可以经常被调用(就像UIView中的layoutSubviews()可以经常被调用)。为此做好准备。不要在这里做任何不能正确(和有效)重复做的事情。它并不总是意味着你的视图边界实际上改变了。</p>
-<h4 id="Autorotation"><a href="#Autorotation" class="headerlink" title="Autorotation"></a>Autorotation</h4><p>当你的设备旋转时，会发生很多事情。当然，你的视图的边界会改变(因此你会得到viewWill/DidLayoutSubviews)。但产生的变化也会自动动画化。你可以了解到这些，如果你愿意，你甚至可以参与到动画中。重写’viewWillTransition’方法。</p>
-<h3 id="Low-Memory"><a href="#Low-Memory" class="headerlink" title="Low Memory"></a>Low Memory</h3><p>这很少见，但偶尔你的设备会出现内存不足的情况。这通常意味着大量的视频、图像或声音。如果你的应用程序在你的堆中保持这些东西的强指针，你可能会有帮助!当内存不足的情况发生时，iOS会在你的控制器中调用这个方法…’didReceiveMemoryWarning’。<br>注意：如果你的应用持续使用较大的内存，你可能会被iOS杀死</p>
-<h3 id="awakeFromNib"><a href="#awakeFromNib" class="headerlink" title="awakeFromNib"></a>awakeFromNib</h3><p>这个方法被发送到所有来自故事板的对象(包括你的控制器)<br>override func awakeFromNib()<br>可以初始化这里的东西，但它是非常早期的，它发生在outlet被设置之前在你准备好作为segue的一部分之前，这是最后一招了。如果可能的话，首先使用其他视图控制器生命周期方法。它主要用于在生命周期的早期执行代码的情况。</p>
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>Instantiated (通常来自故事板)<br>    awakeFromNib (仅当从一个故事板实例化时)<br>segue准备情况<br>    outlets get set<br>    viewDidLoad<br>每次你的控制器视图打开/关闭屏幕时，这些对都会被调用。<br>viewWillAppear and viewDidAppear<br>viewWillDisappear and viewDidDisappear<br>这些“几何改变”方法可能在viewDidLoad之后的任何时候被调用<br>    viewWillLayoutSubviews<br>    viewDidLayoutSubviews<br>在任何时候，如果内存下降，你可能会…<br>    didReceiveMemoryWarning</p>
-<h2 id="UIScrollView"><a href="#UIScrollView" class="headerlink" title="UIScrollView"></a>UIScrollView</h2><p>创建UIScrollView<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br><span class="line">logo.frame = CGRect(x: 2700, y: 50, width: 120, height: 180)</span><br><span class="line">scrollView.addSubview(logo)</span><br></pre></td></tr></table></figure><br>设置contentSize<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scrollView.contentSize = CGSize(width: 3000, height: 2000)</span><br></pre></td></tr></table></figure><br>获取当前内容位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let upperLeftOfVisible: CGPoint = scrollView.contentOffset</span><br></pre></td></tr></table></figure><br>获取子视图可见的区域<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let visibleRect: CGRect = aerial.convert(scrollView.bounds, from: scrollView)</span><br></pre></td></tr></table></figure><br>滚动到指定位置<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollRectToVisible(CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>缩放<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scrollView.minimumZoomScale = 0.5 // 0.5 表示其正常大小的一半</span><br><span class="line">scrollView.maximumZoomScale = 2.0 // 2.0 表示两倍于正常大小</span><br><span class="line">var zoomScale: CGFloat</span><br><span class="line">func setZoomScale(CGFloat, animated: Bool)</span><br><span class="line">func zoom(to rect: CGRect, animated: Bool)</span><br></pre></td></tr></table></figure><br>代理<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func scrollViewDidEndZooming(UIScrollView, with view: UIView, atScale: CGFloat)//视图缩放代理</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/02/21/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-09/">展开全文 >></a>
         </p>
       
 
