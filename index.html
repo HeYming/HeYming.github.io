@@ -168,6 +168,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-商品属性选择列表开发" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/15/%E5%95%86%E5%93%81%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%88%97%E8%A1%A8%E5%BC%80%E5%8F%91/">商品属性选择列表开发</a>
+    </h1>
+  
+
+        
+        <a href="/2022/04/15/%E5%95%86%E5%93%81%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%88%97%E8%A1%A8%E5%BC%80%E5%8F%91/" class="archive-article-date">
+  	<time datetime="2022-04-14T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>新项目有个商品属性选择页面，大概就长这样。<br><img src="http://qn.heyim.top/image/220415/001.png" alt="001"></p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>第一眼看到这个，脑袋里的想法就是UIView+UITableView+UICollectionView。<br>Tableview分Section，然后类别用tableHeaderView显示。<br>选择项用UICollectionView，封装起来后将数据进行返回。</p>
+<p>在实际操作的时候，会有几个问题，首先就是动态TableViewCell的Height难以计算，要先计算一行显示多少个CollectionViewCell,还要计算要显示多少行。<br>在有就是数据刷新，用户点击选择后需要先将数据从UICollectionView传递给UITableView，在传递给UIView，过于复杂。</p>
+<p>既然用UITableView是为了tableHeaderView，且如此麻烦，那有没有简单的方法呢？</p>
+<p>在看了多个Github上大神的项目后，发现他们就是直接使用UICollectionView,且UICollectionView上也有Header类似的视图UICollectionReusableView。顿时就决定是他了。</p>
+<h2 id="行动"><a href="#行动" class="headerlink" title="行动"></a>行动</h2><h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>数据分为四个部分<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var model_Select = BoxCabinetAttrModel()//选择的数据</span><br><span class="line">var arr_List = [&quot;类别&quot;,&quot;尺寸&quot;,&quot;型号&quot;]//header数据</span><br><span class="line">var model : BoxCabinetModel?//商品信息</span><br><span class="line">var model_Attr : GoodsGetAttrConfModel?//分类属性</span><br></pre></td></tr></table></figure></p>
+<h3 id="视图处理"><a href="#视图处理" class="headerlink" title="视图处理"></a>视图处理</h3><p>我是用的xib画的，商品属性部分就是固定的，中间添加一个UICollectionView。<br><img src="http://qn.heyim.top/image/220415/002.png" alt="002"></p>
+<p>初始化CollectionView<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let flow = UICollectionViewLeftAlignedLayout.init()</span><br><span class="line">flow.minimumInteritemSpacing = 15</span><br><span class="line">flow.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)</span><br><span class="line">col.collectionViewLayout = flow</span><br><span class="line">col.delegate = self</span><br><span class="line">col.dataSource = self</span><br><span class="line">col.register(CollectionViewCell.self, forCellWithReuseIdentifier: &quot;cell&quot;)</span><br><span class="line">col.register(CollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: &quot;header&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<h3 id="DataSource"><a href="#DataSource" class="headerlink" title="DataSource"></a>DataSource</h3><p>先返回Sections数量，有多少个章节<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func numberOfSections(in collectionView: UICollectionView) -&gt; Int &#123;</span><br><span class="line">    return (model_Attr?.attr_conf?.color?.count ?? 0 &gt; 0 ? 1 : 0)</span><br><span class="line">    + (model_Attr?.attr_conf?.size?.count ?? 0 &gt; 0 ? 1 : 0)</span><br><span class="line">    + (model_Attr?.attr_conf?.model?.count ?? 0 &gt; 0 ? 1 : 0)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在返回每个Sections的数量<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -&gt; Int &#123;</span><br><span class="line">    var count = 0</span><br><span class="line">    var index = -1//添加索引，去掉空数组</span><br><span class="line">    for i in 0..&lt;3 &#123;</span><br><span class="line">        switch i &#123;</span><br><span class="line">        case 0 :</span><br><span class="line">            count = model_Attr?.attr_conf?.color?.count ?? 0</span><br><span class="line">        case 1 :</span><br><span class="line">            count = model_Attr?.attr_conf?.size?.count ?? 0</span><br><span class="line">        case 2 :</span><br><span class="line">            count = model_Attr?.attr_conf?.model?.count ?? 0</span><br><span class="line">        default:</span><br><span class="line">            count = 0</span><br><span class="line">        &#125;</span><br><span class="line">        if count != 0 &#123;</span><br><span class="line">            index = index + 1</span><br><span class="line">        &#125;</span><br><span class="line">        if section == index &#123;</span><br><span class="line">            break</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return count</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="FlowLayout"><a href="#FlowLayout" class="headerlink" title="FlowLayout"></a>FlowLayout</h3><p>这部分是核心内容，首先是UICollectionReusableView视图创建<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -&gt; UICollectionReusableView &#123;</span><br><span class="line">    let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind,withReuseIdentifier: &quot;header&quot;,for: indexPath) as! CollectionReusableView</span><br><span class="line">    var title = &quot;&quot;</span><br><span class="line">    var index = -1</span><br><span class="line">    for i in 0..&lt;3 &#123;</span><br><span class="line">        switch i &#123;</span><br><span class="line">        case 0 :</span><br><span class="line">            index = (model_Attr?.attr_conf?.color ?? []).count &gt; 0 ? index + 1 : index</span><br><span class="line">        case 1 :</span><br><span class="line">            index = (model_Attr?.attr_conf?.size ?? []).count &gt; 0 ? index + 1 : index</span><br><span class="line">        case 2 :</span><br><span class="line">            index = (model_Attr?.attr_conf?.model ?? []).count &gt; 0 ? index + 1 : index</span><br><span class="line">        default:</span><br><span class="line">            break</span><br><span class="line">        &#125;</span><br><span class="line">        if indexPath.section == index &#123;</span><br><span class="line">            title = arr_List[i]</span><br><span class="line">            break</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    view.set(text: title)</span><br><span class="line">    return view</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>设置UICollectionReusableView高度<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -&gt; CGSize &#123;</span><br><span class="line">    return CGSize(width: Screen_Width, height: 33)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>计算每个标签的宽度，返回Cell的大小<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -&gt; CGSize &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>返回Cell视图<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -&gt; UICollectionViewCell &#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后的效果图<br><img src="http://qn.heyim.top/image/220415/003.PNG" alt="003"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/item/" class="article-tag-list-link color5">item</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/04/15/%E5%95%86%E5%93%81%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%88%97%E8%A1%A8%E5%BC%80%E5%8F%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-GCD项目实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -967,79 +1051,6 @@
 
 
   
-    <article id="post-Swift学习记录-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/">Swift学习记录-10</a>
-    </h1>
-  
-
-        
-        <a href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/" class="archive-article-date">
-  	<time datetime="2020-04-02T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Multithreading"><a href="#Multithreading" class="headerlink" title="Multithreading"></a>Multithreading</h2><h3 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h3><p>在iOS中，多线程主要与“队列”有关。<br>函数（通常是闭包）只是排成一个队列（就像在电影中！）。<br>然后将这些函数从队列中拉出，并在相关线程上执行。<br>队列可以是“串行”（一次一个闭包）或“并发”（多个线程为其提供服务）。</p>
-<h3 id="Main-Queue"><a href="#Main-Queue" class="headerlink" title="Main Queue"></a>Main Queue</h3><p>有一个非常特殊的串行队列，称为“主队列”<br>所有UI活动都必须在此队列上发生，并且只能在此队列上发生。<br>相反，该队列上不得出现任何耗时的非UI活动。我们这样做是因为我们希望我们的UI具有高度的响应性！<br>还有一个原因是，我们希望UI中发生的事情能够以可预测的方式（连续地）发生。<br>只有在主队列处于“quiet”状态时，才能在主队列中启动和处理功能。</p>
-<h3 id="Global-Queues"><a href="#Global-Queues" class="headerlink" title="Global Queues"></a>Global Queues</h3><p>对于非主队列工作，您通常将使用共享、全局、并发队列。</p>
-<h3 id="Getting-a-queue"><a href="#Getting-a-queue" class="headerlink" title="Getting a queue"></a>Getting a queue</h3><p>获取主队列（所有 UI 活动都必须在其中发生）。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let mainQueue = DispatchQueue.main</span><br></pre></td></tr></table></figure><br>获得一个全局的、共享的、并发的“background”队列。<br>这几乎总是您将用于从主队列中获取活动的方法。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let backgroundQueue = DispatchQueue.global(qos: DispatchQoS) DispatchQoS.userInteractive // 高优先级，只做短而快的事情</span><br><span class="line">DispatchQoS.userInitiated// 高优先级，但可能需要一点时间</span><br><span class="line">调度QoS.background// 不是用户直接发起的，所以可以根据需要慢跑</span><br><span class="line">DispatchQoS.utility//长时间运行的后台进程，低优先级</span><br></pre></td></tr></table></figure><br>将一段代码放入队列<br>多线程只是将闭包放入这些队列的过程。 将闭包放入队列有两种主要方法。<br>您可以将闭包放入队列并继续在当前队列上运行…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue.async &#123; . . . &#125;</span><br></pre></td></tr></table></figure><br>或者您可以阻止当前队列等待，直到关闭在另一个队列上完成…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">queue.sync &#123; . . . &#125;</span><br></pre></td></tr></table></figure><br>获取非全局队列<br>极少情况下，您可能需要除主队列或全局队列之外的队列。<br>您自己的串行队列（仅当您有多个串行依赖的活动时才使用此队列）…<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let serialQueue = DispatchQueue(label: “MySerialQ”)</span><br></pre></td></tr></table></figure><br>您自己的并发队列（与全局队列相比，您很少会这样做）<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let concurrentQueue = DispatchQueue(label: “MyConcurrentQ”, attributes: .concurrent)</span><br></pre></td></tr></table></figure><br>我们只看到了冰山一角<br>GCD（Grand Central Dispatch）还有很多,可以做锁、保护临界区、读写器、同步调度等。有兴趣可以查看文档,所有这些’OperationQueue’和’Operation’还有另一个 API,但是，通常我们使用 DispatchQueue API。这是因为调度的“nesting”在代码中读得很好,但是 Operation API 也很有用（尤其是对于更复杂的多线程）<br>多线程 iOS API<br>iOS 中相当多的地方会做他们在主队列之外做的事情，他们甚至可能让你有机会在主队列之外做一些事情，iOS 可能会要求您提供一个在主线程之外执行的函数（通常是闭包），不要忘记，如果你想在那里做 UI 的东西，你必须派回主队列！<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">let session = URLSession(configuration: .default)</span><br><span class="line">    if let url = URL(string“http://stanford.edu/...”) &#123;</span><br><span class="line">        let task = session.dataTask(with: url) &#123; (data: Data?, response, error) in</span><br><span class="line">        DispatchQueue.main.async &#123;</span><br><span class="line">            // do UI stuff here</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    task.resume()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Swift</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/study/" class="article-tag-list-link color1">study</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/04/03/Swift%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1136,11 +1147,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
+                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Objective-C</a>
+                <a href="javascript:void(0)" class="js-tag color1">Swift</a>
               </li>
              
               <li class="article-tag-list-item">
